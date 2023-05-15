@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Web\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,5 +20,5 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix'=> 'admin', 'as' => 'admin.'], function(){
-    Route::get('/');
+    Route::get('/', [AdminController::class, 'dashboard']);
 });
