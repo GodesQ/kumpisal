@@ -1,1 +1,1 @@
-# kumpisal
+# kumpisalan
