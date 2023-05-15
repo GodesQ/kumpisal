@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
-    <link rel="stylesheet" href="{{ URL::asset('fonts/jost/stylesheet.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('libs/line-awesome/css/line-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('libs/fontawesome-pro/css/fontawesome.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('libs/bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('libs/slick/slick-theme.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('libs/slick/slick.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('libs/quilljs/css/quill.bubble.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('libs/quilljs/css/quill.core.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('libs/quilljs/css/quill.snow.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('libs/chosen/chosen.min.css') }}" />
-    <link rel="stylesheet" href="{{ URL::asset('libs/datetimepicker/jquery.datetimepicker.min.css') }}" />
-    <link rel="stylesheet" href="{{ URL::asset('libs/venobox/venobox.css') }}" />
-    <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}" />
-    <link rel="stylesheet" href="{{ URL::asset('css/responsive.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('user-assets/fonts/jost/stylesheet.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('user-assets/libs/line-awesome/css/line-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('user-assets/libs/fontawesome-pro/css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('user-assets/libs/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('user-assets/libs/slick/slick-theme.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('user-assets/libs/slick/slick.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('user-assets/libs/quilljs/css/quill.bubble.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('user-assets/libs/quilljs/css/quill.core.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('user-assets/libs/quilljs/css/quill.snow.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('user-assets/libs/chosen/chosen.min.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('user-assets/libs/datetimepicker/jquery.datetimepicker.min.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('user-assets/libs/venobox/venobox.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('user-assets/css/style.css') }}" />
+    <link rel="stylesheet" href="{{ URL::asset('user-assets/css/responsive.css') }}" />
 </head>
 <body>
 <div id="wrapper">
@@ -156,7 +156,7 @@
                             </div><!-- .site__menu -->
                             <div class="site__brand">
                                 <a title="Logo" href="/" class="site__brand__logo">
-                                    <h1 style="font-size: 35px;">Kumpisal.</h1>
+                                    <img src="user-assets/images/assets/kumpisalan-logo.png" alt="Golo">
                                 </a>
                             </div><!-- .site__brand -->
 
@@ -331,18 +331,18 @@
                 </div><!-- .row -->
             </div><!-- .container-fluid -->
         </header><!-- .site-header -->
-
+        @yield('container')
 		<footer id="footer" class="footer">
 			<div class="container">
 				<div class="footer__top">
 					<div class="row">
 						<div class="col-lg-5">
 							<div class="footer__top__info">
-								<a title="Logo" href="01_index_1.html" class="footer__top__info__logo"><img src="images/assets/logo.png" alt="Golo"></a>
+								<a title="Logo" href="01_index_1.html" class="footer__top__info__logo"><img src="user-assets/images/assets/kumpisalan-logo.png" alt="Golo"></a>
 								<p class="footer__top__info__desc">Discover amazing things to do everywhere you go.</p>
 								<div class="footer__top__info__app">
-									<a title="App Store" href="#" class="banner-apps__download__iphone"><img src="images/assets/app-store.png" alt="App Store"></a>
-									<a title="Google Play" href="#" class="banner-apps__download__android"><img src="images/assets/google-play.png" alt="Google Play"></a>
+									<a title="App Store" href="#" class="banner-apps__download__iphone"><img src="user-assets/images/assets/app-store.png" alt="App Store"></a>
+									<a title="Google Play" href="#" class="banner-apps__download__android"><img src="user-assets/images/assets/google-play.png" alt="Google Play"></a>
 								</div>
 							</div>
 						</div>
@@ -418,5 +418,6 @@
     <script src="{{ asset('libs/datetimepicker/jquery.datetimepicker.full.min.js') }}"></script>
     <script src="{{ asset('libs/venobox/venobox.min.js') }}"></script>
     <script src="{{ asset('libs/waypoints/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>
