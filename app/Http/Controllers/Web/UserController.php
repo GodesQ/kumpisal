@@ -4,10 +4,14 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+
 use DataTables;
 use App\Models\User;
 
 use App\Http\Requests\User\CreateUserRequest;
+use App\Http\Requests\User\UpdateUserRequest;
 
 class UserController extends Controller
 {
@@ -25,11 +29,11 @@ class UserController extends Controller
                         return $badge;
                     })
                     ->addColumn('action', function($row) {
-                        $btn = '<a class="btn btn-primary btn-sm"><i class="ti ti-edit"></i></a>
-                                <a class="btn btn-danger btn-sm"><i class="ti ti-trash"></i></a>';
+                        $btn = '<a href="/admin/user/edit/' .$row->user_uuid. '" class="btn btn-primary btn-sm"><i class="ti ti-edit"></i></a>
+                                <a id="' .$row->user_uuid. '" class="btn btn-danger btn-sm"><i class="ti ti-trash"></i></a>';
                         return $btn;
                     })
-                    ->rawColumns(['action'])
+                    ->rawColumns(['action', 'verified'])
                     ->make(true);
         }
         return view('admin.users.list');
@@ -40,10 +44,23 @@ class UserController extends Controller
     }
 
     public function store(CreateUserRequest $request) {
-        dd($request->all());
+        $data = $request->except('_token', 'password');
+
+        $store = User::create(array_merge($data, [
+            'name' => $request->firstname . ' ' . $request->lastname,
+            'password' => Hash::make($request->password),
+            'user_uuid' => Str::orderedUuid()
+        ]));
+
+        if($store) return redirect()->route('admin.users.list')->with('success', 'Created Successfully');
     }
 
     public function edit(Request $request) {
+        $user = User::where('user_uuid', $request->uuid)->first();
+        return view('admin.users.edit', compact('user'));
+    }
+
+    public function update(UpdateUserRequest $request) {
 
     }
 }

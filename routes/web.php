@@ -29,8 +29,10 @@ Route::group(['prefix'=> 'admin', 'as' => 'admin.', 'middleware' => ['auth.admin
     Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
 
     Route::get('/users', [UserController::class, 'lists'])->name('users.list');
-    Route::get('/user/create', [UserController::class, 'create'])->name('users.create');
-    Route::post('/user/store', [UserController::class, 'store'])->name('users.store');
+    Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
+    Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
+    Route::get('/user/edit/{uuid}', [UserController::class, 'edit'])->name('user.edit');
+    Route::post('/user/update/{uuid}', [UserController::class, 'update'])->name('user.update');
 
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 });
