@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Web\AdminController;
+use App\Http\Controllers\Web\Auth\AdminAuthController;
+use App\Http\Controllers\Web\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,9 +19,18 @@ use App\Http\Controllers\Web\AdminController;
 */
 
 Route::get('/', function () {
-    return view('layouts.user-layout');
+    return view('user.home');
 });
 
-Route::group(['prefix'=> 'admin', 'as' => 'admin.'], function(){
-    Route::get('/', [AdminController::class, 'dashboard']);
+Route::get('admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
+Route::post('admin/login', [AdminAuthController::class, 'saveLogin'])->name('admin.post.login');
+
+Route::group(['prefix'=> 'admin', 'as' => 'admin.', 'middleware' => ['auth.admin']], function(){
+    Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
+
+    Route::get('/users', [UserController::class, 'lists'])->name('users.list');
+    Route::get('/user/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/user/store', [UserController::class, 'store'])->name('users.store');
+
+    Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 });

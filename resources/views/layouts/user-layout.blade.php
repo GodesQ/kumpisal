@@ -331,7 +331,7 @@
                 </div><!-- .row -->
             </div><!-- .container-fluid -->
         </header><!-- .site-header -->
-        @yield('container')
+        @yield('content')
 		<footer id="footer" class="footer">
 			<div class="container">
 				<div class="footer__top">
@@ -406,18 +406,18 @@
 		</footer><!-- site-footer -->
 	</div><!-- #wrapper -->
 
-    <script src="{{ asset('js/jquery-1.12.4.js') }}"></script>
-	<script src="{{ asset('libs/popper/popper.js') }}"></script>
-    <script src="{{ asset('libs/bootstrap/js/bootstrap.min.js') }}"></script>
-	<script src="{{ asset('libs/slick/slick.min.js') }}"></script>
-	<script src="{{ asset('libs/slick/jquery.zoom.min.js') }}"></script>
-	<script src="{{ asset('libs/isotope/isotope.pkgd.min.js') }}"></script>
-	<script src="{{ asset('libs/quilljs/js/quill.core.js') }}"></script>
-    <script src="{{ asset('libs/quilljs/js/quill.js') }}"></script>
-    <script src="{{ asset('libs/chosen/chosen.jquery.min.js') }}"></script>
-    <script src="{{ asset('libs/datetimepicker/jquery.datetimepicker.full.min.js') }}"></script>
-    <script src="{{ asset('libs/venobox/venobox.min.js') }}"></script>
-    <script src="{{ asset('libs/waypoints/jquery.waypoints.min.js') }}"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('user-assets/js/jquery-1.12.4.js') }}"></script>
+	<script src="{{ asset('user-assets/libs/popper/popper.js') }}"></script>
+    <script src="{{ asset('user-assets/libs/bootstrap/js/bootstrap.min.js') }}"></script>
+	<script src="{{ asset('user-assets/libs/slick/slick.min.js') }}"></script>
+	<script src="{{ asset('user-assets/libs/slick/jquery.zoom.min.js') }}"></script>
+	<script src="{{ asset('user-assets/libs/isotope/isotope.pkgd.min.js') }}"></script>
+	<script src="{{ asset('user-assets/libs/quilljs/js/quill.core.js') }}"></script>
+    <script src="{{ asset('user-assets/libs/quilljs/js/quill.js') }}"></script>
+    <script src="{{ asset('user-assets/libs/chosen/chosen.jquery.min.js') }}"></script>
+    <script src="{{ asset('user-assets/libs/datetimepicker/jquery.datetimepicker.full.min.js') }}"></script>
+    <script src="{{ asset('user-assets/libs/venobox/venobox.min.js') }}"></script>
+    <script src="{{ asset('user-assets/libs/waypoints/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ asset('user-assets/js/main.js') }}"></script>
 </body>
 </html>
