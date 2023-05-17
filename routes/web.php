@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Web\AdminController;
-use App\Http\Controllers\Web\Auth\AdminAuthController;
 use App\Http\Controllers\Web\UserController;
+use App\Http\Controllers\Web\Auth\AdminAuthController;
+use App\Http\Controllers\Web\Auth\UserAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +18,17 @@ use App\Http\Controllers\Web\UserController;
 
 |
 */
+Route::post('login', [UserAuthController::class, 'saveLogin'])->name('login.user');
+Route::post('register', [UserAuthController::class, 'saveRegister'])->name('register.user');
 
 Route::get('/', function () {
-    return view('user.home');
+    return view('user-page.home');
+})->name('home');
+
+Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['auth']], function() {
+    Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+
+    Route::post('logout', [UserAuthController::class, 'logout'])->name('logout');
 });
 
 Route::get('admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
@@ -33,6 +42,12 @@ Route::group(['prefix'=> 'admin', 'as' => 'admin.', 'middleware' => ['auth.admin
     Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
     Route::get('/user/edit/{uuid}', [UserController::class, 'edit'])->name('user.edit');
     Route::post('/user/update/{uuid}', [UserController::class, 'update'])->name('user.update');
+
+    Route::get('/churches', [UserController::class, 'lists'])->name('churches.list');
+    Route::get('/church/create', [UserController::class, 'create'])->name('church.create');
+    Route::post('/church/store', [UserController::class, 'store'])->name('church.store');
+    Route::get('/church/edit/{uuid}', [UserController::class, 'edit'])->name('church.edit');
+    Route::post('/church/update/{uuid}', [UserController::class, 'update'])->name('church.update');
 
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 });

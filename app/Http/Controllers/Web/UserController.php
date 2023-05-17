@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use DB;
 
 use DataTables;
 use App\Models\User;
@@ -15,6 +16,10 @@ use App\Http\Requests\User\UpdateUserRequest;
 
 class UserController extends Controller
 {
+    public function dashboard(Request $request) {
+        return view('user-page.dashboard');
+    }
+
     public function lists(Request $request) {
         if($request->ajax()) {
             $users = User::get();
@@ -36,11 +41,11 @@ class UserController extends Controller
                     ->rawColumns(['action', 'verified'])
                     ->make(true);
         }
-        return view('admin.users.list');
+        return view('admin-page.users.list');
     }
 
     public function create(Request $request) {
-        return view('admin.users.create');
+        return view('admin-page.users.create');
     }
 
     public function store(CreateUserRequest $request) {
@@ -57,10 +62,18 @@ class UserController extends Controller
 
     public function edit(Request $request) {
         $user = User::where('user_uuid', $request->uuid)->first();
-        return view('admin.users.edit', compact('user'));
+        return view('admin-page.users.edit', compact('user'));
     }
 
     public function update(UpdateUserRequest $request) {
+        $data = $request->validated();
 
+        $update = User::where('user_uuid', $request->uuid)->update(array_merge($data, [
+            'password' => $request->new_password ? $request->new_password : DB::raw('password'),
+            'is_verify' => $request->has('is_verify') ? true : false,
+            'is_active' => $request->has('is_active') ? true : false,
+        ]));
+
+        if($update) return back()->with('success', 'Update User Successfully');
     }
 }

@@ -1,3 +1,7 @@
+function handleUserDropdown() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
 (function ($) {
     "use strict";
     $(document).ready(function () {
@@ -522,7 +526,7 @@
             var container = $(".toggle-select");
 
             // if the target of the click isn't the container nor a descendant of the container
-            if (!container.is(e.target) && container.has(e.target).length === 0) 
+            if (!container.is(e.target) && container.has(e.target).length === 0)
             {
                 container.find( '.toggle-list' ).slideUp();
             }
@@ -533,19 +537,19 @@
         function readURL(input, _this) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
-        
+
                 reader.onload = function (e) {
                     _this.parents( '.field-group' ).find( '.img_preview' ).attr('src', e.target.result);
                 }
                 reader.readAsDataURL(input.files[0]);
             }
         }
-        
+
         $( '.field-group input[type="file"]' ).change(function () {
         	var _this = $( this );
             readURL(this, _this);
         });
-        
+
         var fileInput = $('.upload-file');
         var maxSize = fileInput.data('max-size');
         $('.upload-form').submit(function(e){
@@ -775,12 +779,12 @@
             $( this ).parents( '.sidebar' ).toggleClass( 'open' );
             $( this ).parents( '.sidebar' ).find( '.widget' ).toggleClass( 'open' );
         });
-        $(document).mouseup(function(e) 
+        $(document).mouseup(function(e)
         {
             var container = $( '.widget' );
 
             // if the target of the click isn't the container nor a descendant of the container
-            if (!container.is(e.target) && container.has(e.target).length === 0) 
+            if (!container.is(e.target) && container.has(e.target).length === 0)
             {
                 container.removeClass( 'open' );
                 container.parents( '.sidebar' ).removeClass( 'open' );
@@ -1003,12 +1007,12 @@
             });
         }
 
-        $(document).mouseup(function(e) 
+        $(document).mouseup(function(e)
         {
             var container = $("ul.list");
 
             // if the target of the click isn't the container nor a descendant of the container
-            if (!container.is(e.target) && container.has(e.target).length === 0) 
+            if (!container.is(e.target) && container.has(e.target).length === 0)
             {
                 container.parents( '.filter-control' ).removeClass( 'active' );
             }
@@ -1087,7 +1091,7 @@
             $('.xdsoft_datetimepicker').width(width - 10);
         });
 
-        
+
         var date_width = $('.datepicker').outerWidth();
         $('.gj-picker-bootstrap').css('width', date_width);
 
@@ -1204,6 +1208,20 @@
             offset: '92%',
             triggerOnce: true
         });
-        
     });
 })(jQuery);
+
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+    if (!event.target.matches('.user-drop-btn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+        }
+        }
+    }
+}

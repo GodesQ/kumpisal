@@ -17,7 +17,7 @@ class AdminAuthController extends Controller
         // check if you are currently login
         if(Auth::guard('admin')->check()) return back()->with('authenticated-but-login', 'You are currently login. Please logout first to continue.');
 
-        return view('admin.auth.login');
+        return view('admin-page.auth.login');
     }
 
     public function saveLogin(AdminLoginRequest $request) {
@@ -30,7 +30,7 @@ class AdminAuthController extends Controller
     }
 
     public function logout(Request $request) {
-        $logout = Auth::guard('admin')->logout();
+        Auth::guard('admin')->logout();
         return redirect()->route('admin.login')->with('success', 'Logout Successfully');
     }
 }

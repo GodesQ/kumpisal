@@ -1,5 +1,7 @@
 @extends('layouts.user-layout')
 
+@section('title', 'Kumpisalan')
+
 @section('content')
     <main id="main" class="site-main overflow">
         <div class="site-banner" style="background-image: url(user-assets/images/bg/top-banner.png);">
@@ -56,7 +58,7 @@
                             <div class="cities__item hover__box">
                                 <div class="cities__thumb hover__box__thumb">
                                     <a title="London" href="city-details-3.html">
-                                        <img src="images/city/tokyo.jpeg" alt="Tokyo">
+                                        <img src="/user-assets/images/city/tokyo.jpeg" alt="Tokyo">
                                     </a>
                                 </div>
                                 <h4 class="cities__name">Japan</h4>
@@ -70,7 +72,7 @@
                             <div class="cities__item hover__box">
                                 <div class="cities__thumb hover__box__thumb">
                                     <a title="Barca" href="city-details-3.html">
-                                        <img src="images/city/barca.jpeg" alt="Barca">
+                                        <img src="/user-assets/images/city/barca.jpeg" alt="Barca">
                                     </a>
                                 </div>
                                 <h4 class="cities__name">Spain</h4>
@@ -84,7 +86,7 @@
                             <div class="cities__item hover__box">
                                 <div class="cities__thumb hover__box__thumb">
                                     <a title="New York" href="city-details-3.html">
-                                        <img src="images/city/newyork.jpg" alt="New York">
+                                        <img src="/user-assets/images/city/newyork.jpg" alt="New York">
                                     </a>
                                 </div>
                                 <h4 class="cities__name">United States</h4>
@@ -98,7 +100,7 @@
                             <div class="cities__item hover__box">
                                 <div class="cities__thumb hover__box__thumb">
                                     <a title="Paris" href="city-details-3.html">
-                                        <img src="images/city/paris.jpg" alt="Paris">
+                                        <img src="/user-assets/images/city/paris.jpg" alt="Paris">
                                     </a>
                                 </div>
                                 <h4 class="cities__name">France</h4>
@@ -112,7 +114,7 @@
                             <div class="cities__item hover__box">
                                 <div class="cities__thumb hover__box__thumb">
                                     <a title="Amsterdam" href="city-details-3.html">
-                                        <img src="images/city/amsterdam.jpg" alt="Amsterdam">
+                                        <img src="/user-assets/images/city/amsterdam.jpg" alt="Amsterdam">
                                     </a>
                                 </div>
                                 <h4 class="cities__name">Netherlands</h4>
@@ -126,7 +128,7 @@
                             <div class="cities__item hover__box">
                                 <div class="cities__thumb hover__box__thumb">
                                     <a title="Singapo" href="city-details-3.html">
-                                        <img src="images/city/singapo.jpg" alt="Singapo">
+                                        <img src="/user-assets/images/city/singapo.jpg" alt="Singapo">
                                     </a>
                                 </div>
                                 <h4 class="cities__name">Singapo</h4>
@@ -140,7 +142,7 @@
                             <div class="cities__item hover__box">
                                 <div class="cities__thumb hover__box__thumb">
                                     <a title="Sydney" href="city-details-3.html">
-                                        <img src="images/city/sydney.jpg" alt="Sydney">
+                                        <img src="/user-assets/images/city/sydney.jpg" alt="Sydney">
                                     </a>
                                 </div>
                                 <h4 class="cities__name">Australia</h4>
@@ -154,7 +156,7 @@
                             <div class="cities__item hover__box">
                                 <div class="cities__thumb hover__box__thumb">
                                     <a title="angeles" href="city-details-3.html">
-                                        <img src="images/city/angeles.jpeg" alt="angeles">
+                                        <img src="/user-assets/images/city/angeles.jpeg" alt="angeles">
                                     </a>
                                 </div>
                                 <h4 class="cities__name">United States</h4>

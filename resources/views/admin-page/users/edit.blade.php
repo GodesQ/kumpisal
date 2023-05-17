@@ -10,6 +10,9 @@
                 <a href="{{ route('admin.users.list') }}" class="btn btn-primary">Back to List</a>
             </div>
             <div class="card-body">
+                @if (Session::get('success'))
+                    <div class="alert alert-success">{{ Session::get('success') }}</div>
+                @endif
                 <form action="{{ route('admin.user.update', $user->user_uuid) }}" method="post">
                     @csrf
                     <div class="row border-bottom">
@@ -27,7 +30,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="password" class="form-label">Change Password</label>
-                                <input type="password" class="form-control" id="password" name="password" aria-describedby="passwordHelp">
+                                <input type="password" class="form-control" id="password" name="new_password" aria-describedby="passwordHelp">
                                 <span class="text-danger danger">@error('password'){{ $message }}@enderror</span>
                                 <div id="passwordHelp" class="form-text">We'll never share your password with anyone else.</div>
                             </div>

@@ -412,14 +412,13 @@
     </div>
 @endsection
 
-@push('stylesheets')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
-@endpush
-
-@push('scripts')
-    @if (Session::get('login-success'))
+@if (Session::get('login-success'))
+    @push('scripts')
         <script>
             toastr.success("{{ Session::get('login-success') }}", 'Login');
         </script>
-    @endif
-@endpush
+    @endpush
+@endif
+
+
+

@@ -17,6 +17,7 @@ class CreateChurchTable extends Migration
             $table->id();
             $table->uuid('church_uuid');
             $table->string('name', 150);
+            $table->string('church_image', 150);
             $table->string('address', 250)->nullable();
             $table->float('latitude')->nullable();
             $table->float('longitude')->nullable();

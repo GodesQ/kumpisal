@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ URL::asset('admin-assets/css/styles.css') }}" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
     @stack('stylesheets')
 </head>
 
@@ -155,13 +156,14 @@
     <script src="{{ asset('admin-assets/libs/simplebar/dist/simplebar.js') }}"></script>
     <script src="{{ asset('admin-assets/js/dashboard.js') }}"></script>
 
-    // CDNs
+    {{-- CDNs --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
     <script src='https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @stack('scripts')
     @if (Session::get('authenticated-but-login'))
