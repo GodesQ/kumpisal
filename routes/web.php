@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Web\AdminController;
 use App\Http\Controllers\Web\UserController;
+use App\Http\Controllers\Web\ChurchController;
 use App\Http\Controllers\Web\Auth\AdminAuthController;
 use App\Http\Controllers\Web\Auth\UserAuthController;
 
@@ -43,11 +44,11 @@ Route::group(['prefix'=> 'admin', 'as' => 'admin.', 'middleware' => ['auth.admin
     Route::get('/user/edit/{uuid}', [UserController::class, 'edit'])->name('user.edit');
     Route::post('/user/update/{uuid}', [UserController::class, 'update'])->name('user.update');
 
-    Route::get('/churches', [UserController::class, 'lists'])->name('churches.list');
-    Route::get('/church/create', [UserController::class, 'create'])->name('church.create');
-    Route::post('/church/store', [UserController::class, 'store'])->name('church.store');
-    Route::get('/church/edit/{uuid}', [UserController::class, 'edit'])->name('church.edit');
-    Route::post('/church/update/{uuid}', [UserController::class, 'update'])->name('church.update');
+    Route::get('/churches', [ChurchController::class, 'lists'])->name('churches.list');
+    Route::get('/church/create', [ChurchController::class, 'create'])->name('church.create');
+    Route::post('/church/store', [ChurchController::class, 'store'])->name('church.store');
+    Route::get('/church/edit/{uuid}', [ChurchController::class, 'edit'])->name('church.edit');
+    Route::post('/church/update/{uuid}', [ChurchController::class, 'update'])->name('church.update');
 
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 });

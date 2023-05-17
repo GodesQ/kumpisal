@@ -58,7 +58,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
+                            <a class="sidebar-link" href="{{ route('admin.churches.list') }}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-building-church"></i>
                                 </span>

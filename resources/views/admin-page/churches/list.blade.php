@@ -8,7 +8,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <h4 class="card-title fw-semibold">Churches List</h4>
-                    <a href="{{ route('admin.user.create') }}" class="btn btn-primary btn-block">Create</a>
+                    <a href="{{ route('admin.church.create') }}" class="btn btn-primary btn-block">Create</a>
                 </div>
                 <div class="card">
                     <div class="card-body">
@@ -23,10 +23,10 @@
                                             <h6 class="fw-semibold mb-0">Church Name</h6>
                                         </th>
                                         <th class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0">Email</h6>
+                                            <h6 class="fw-semibold mb-0">Parish Priest</h6>
                                         </th>
                                         <th class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0">Email Verification</h6>
+                                            <h6 class="fw-semibold mb-0">Criteria</h6>
                                         </th>
                                         <th class="border-bottom-0" width="100">
                                             <h6 class="fw-semibold mb-0">Actions</h6>
@@ -50,7 +50,7 @@
             responsive: true,
             serverSide: true,
             ajax: {
-                url: "{{ route('admin.users.list') }}",
+                url: "{{ route('admin.churches.list') }}",
             },
             columns: [
                 {
@@ -64,14 +64,14 @@
                     searchable: true
                 },
                 {
-                    data: 'email',
-                    name: 'email',
+                    data: 'parist_priest',
+                    name: 'parist_priest',
                     orderable: true,
                     searchable: true
                 },
                 {
-                    data: 'verified',
-                    name: 'verified',
+                    data: 'criteria',
+                    name: 'criteria',
                     orderable: true,
                     searchable: true
                 },
