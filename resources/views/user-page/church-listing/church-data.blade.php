@@ -17,18 +17,19 @@
                         <div class="place-type list-item">
                             {{ Str::ucfirst($church->criteria) }}
                         </div>
-                        <div class="place-city">
-                            <a href="#">{{ date_format(new DateTime($church->feast_date), 'F d, Y') }}</a>
-                        </div>
                         @if(isset($church->distance))
                             <div class="place-city">
                                 <a href="#">{{ number_format($church->distance, 2) }} km</a>
+                            </div>
+                        @else
+                            <div class="place-city">
+                                <a href="#">{{ date_format(new DateTime($church->feast_date), 'M d, Y') }}</a>
                             </div>
                         @endif
                     </div>
                     <h3 class="place-title">
                         <a href="{{ route('churches.detailPage', ['uuid' => $church->church_uuid, 'name' => $church->name]) }}">
-                            {{ strlen($church->name) > 40 ? substr($church->name, 0, 40) . '...' : $church->name }}
+                            {{ strlen($church->name) > 30 ? substr($church->name, 0, 30) . '...' : $church->name }}
                         </a>
                     </h3>
                 </div>

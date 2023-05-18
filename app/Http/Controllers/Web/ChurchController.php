@@ -41,7 +41,7 @@ class ChurchController extends Controller
                         return $q->addSelect(DB::raw('6371 * acos(cos(radians(' . $latitude ."))
                                 * cos(radians(churches.latitude)) * cos(radians(churches.longitude) - radians(" .  $longitude . ")) + sin(radians(" .  $latitude . "))
                                 * sin(radians(churches.latitude))) AS distance"))
-                            ->having('distance', '<=', '5')
+                            ->having('distance', '<=', '2')
                             ->orderBy('distance', 'asc');
                     })
                     ->paginate(10);
@@ -50,6 +50,7 @@ class ChurchController extends Controller
 
         return response()->json([
             'view_data' => $view_data,
+            'churches' => $churches,
         ]);
     }
 
