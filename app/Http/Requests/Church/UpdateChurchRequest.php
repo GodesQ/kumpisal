@@ -4,7 +4,7 @@ namespace App\Http\Requests\Church;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateChurchRequest extends FormRequest
+class UpdateChurchRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,6 @@ class CreateChurchRequest extends FormRequest
         return [
             'name' => 'required|max:100',
             'description' => 'required',
-            'church_image' => 'required|file|max:10000|mimes:png,jpeg,jpg',
             'address' => 'nullable',
             'latitude' => 'nullable',
             'longitude' => 'nullable',

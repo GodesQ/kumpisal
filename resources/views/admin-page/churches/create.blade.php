@@ -10,13 +10,13 @@
                 <a href="{{ route('admin.churches.list') }}" class="btn btn-primary">Back to List</a>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.church.store') }}" method="post">
+                <form action="{{ route('admin.church.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Church Name</label>
-                                <input type="text" class="form-control" id="text" name="text" aria-describedby="nameHelp">
+                                <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp">
                                 <span class="text-danger danger">@error('name'){{ $message }}@enderror</span>
                             </div>
                         </div>
@@ -44,11 +44,25 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="criteria" class="form-label">Criteria</label>
-                                <select name="criteria" id="criteria" class="criteria-select w-100">
+                                <select name="criteria" id="criteria" class="form-select w-100">
                                     <option value="diocese">Diocese</option>
                                     <option value="vicariate">Vicariate</option>
                                 </select>
                                 <span class="text-danger danger">@error('criteria'){{ $message }}@enderror</span>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label for="church_image" class="form-label">Church Image</label>
+                                <input type="file" class="form-control" id="church_image" name="church_image" aria-describedby="churchImageHelp">
+                                <span class="text-danger danger">@error('church_image'){{ $message }}@enderror</span>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Church Description</label>
+                                <textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>
+                                <span class="text-danger danger">@error('description'){{ $message }}@enderror</span>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -73,11 +87,11 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endpush
 
-@push('scripts')
+{{-- @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function() {
             $('.criteria-select').select2();
         });
     </script>
-@endpush
+@endpush --}}

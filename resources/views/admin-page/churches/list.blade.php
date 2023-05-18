@@ -64,8 +64,8 @@
                     searchable: true
                 },
                 {
-                    data: 'parist_priest',
-                    name: 'parist_priest',
+                    data: 'parish_priest',
+                    name: 'parish_priest',
                     orderable: true,
                     searchable: true
                 },

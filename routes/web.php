@@ -26,9 +26,13 @@ Route::get('/', function () {
     return view('user-page.home');
 })->name('home');
 
+Route::get('churches', [ChurchController::class, 'searchPage'])->name('churches.searchPage');
+Route::get('churches/fetch', [ChurchController::class, 'fetchData'])->name('churches.fetchData');
+Route::get('church/{uuid}/{name}', [ChurchController::class, 'detailPage'])->name('churches.detailPage');
+
+
 Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['auth']], function() {
     Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
-
     Route::post('logout', [UserAuthController::class, 'logout'])->name('logout');
 });
 

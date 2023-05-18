@@ -61,7 +61,7 @@ class UserController extends Controller
     }
 
     public function edit(Request $request) {
-        $user = User::where('user_uuid', $request->uuid)->first();
+        $user = User::where('user_uuid', $request->uuid)->firstOrFail();
         return view('admin-page.users.edit', compact('user'));
     }
 
@@ -69,6 +69,7 @@ class UserController extends Controller
         $data = $request->validated();
 
         $update = User::where('user_uuid', $request->uuid)->update(array_merge($data, [
+            'name' => $request->firstname . ' ' . $request->lastname,
             'password' => $request->new_password ? $request->new_password : DB::raw('password'),
             'is_verify' => $request->has('is_verify') ? true : false,
             'is_active' => $request->has('is_active') ? true : false,

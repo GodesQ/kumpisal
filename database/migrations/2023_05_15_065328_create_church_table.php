@@ -17,11 +17,12 @@ class CreateChurchTable extends Migration
             $table->id();
             $table->uuid('church_uuid');
             $table->string('name', 150);
+            $table->longText('description');
             $table->string('church_image', 150);
             $table->string('address', 250)->nullable();
             $table->float('latitude')->nullable();
             $table->float('longitude')->nullable();
-            $table->string('parist_priest', 250)->nullable();
+            $table->string('parish_priest', 250)->nullable();
             $table->date('feast_date')->nullable();
             $table->string('criteria', 100)->nullable();
             $table->boolean('is_active')->nullable()->default(false);
