@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use DB;
 
 use DataTables;
@@ -13,11 +14,45 @@ use App\Models\User;
 
 use App\Http\Requests\User\CreateUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
+use App\Http\Requests\User\SaveUserProfileRequest;
+use App\Http\Requests\User\ChangeUserPasswordRequest;
 
 class UserController extends Controller
 {
     public function dashboard(Request $request) {
-        return view('user-page.dashboard');
+        return view('user-page.user-dashboard.dashboard');
+    }
+
+    public function profile(Request $request) {
+        return view('user-page.user-dashboard.user-profile');
+    }
+
+    public function saveProfile(SaveUserProfileRequest $request) {
+        $data = $request->validated();
+        $user = User::where('user_uuid', $request->uuid)->first();
+        $update_user = $user->update($data);
+        if($update_user) return back()->with('success', 'User Profile Successfully Saved.');
+
+        return back()->with('fail', 'Failed to update user profile.');
+    }
+
+    public function changePassword(ChangeUserPasswordRequest $request) {
+        $data = $request->validated();
+        $user = Auth::user();
+
+        if(!Hash::check($request->password, $user->password)) return back()->with('fail', 'Your old password is incorrect. Please Try Again.');
+        $update_user = $user->update([
+            'password' => Hash::make($request->new_password),
+        ]);
+
+        if($request->has('is_logout') && $update_user) {
+            Auth::logout();
+            return redirect()->route('home')->with('success', 'Your Password Updated Successfully. Login now with your new password.');
+        } else {
+            return back()->with('success', 'Your Password Updated Successfully.');
+        }
+
+        return back()->with('fail', 'Failed to update your password.');
     }
 
     public function lists(Request $request) {

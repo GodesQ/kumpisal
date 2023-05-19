@@ -1262,7 +1262,7 @@ a.place__comments__reply i { display: inline-block; vertical-align: middle; marg
 .form-underline textarea::-webkit-input-placeholder { font-size: 15px; font-style: normal; color: #8d8d8d; font-family: "Jost-Book"; }
 .form-underline textarea:-ms-input-placeholder { font-size: 15px; font-style: normal; color: #8d8d8d; font-family: "Jost-Book"; }
 .form-underline textarea::placeholder { font-size: 15px; font-style: normal; color: #8d8d8d; font-family: "Jost-Book"; }
-.form-underline input { width: 100%; height: 40px; line-height: 40px; border-radius: 0; -webkit-backface-visibility: hidden; -moz-backface-visibility: hidden; -webkit-transform: translate3d(0, 0, 0); -moz-transform: translate3d(0, 0, 0); border: 0; padding: 0; border-bottom: 2px solid #2d2d2d; margin-bottom: 20px; font-style: normal; background-color: inherit; }
+.form-underline input { color: #000; width: 100%; height: 40px; line-height: 40px; border-radius: 0; -webkit-backface-visibility: hidden; -moz-backface-visibility: hidden; -webkit-transform: translate3d(0, 0, 0); -moz-transform: translate3d(0, 0, 0); border: 0; padding: 0; border-bottom: 2px solid #2d2d2d; margin-bottom: 20px; font-style: normal; background-color: inherit; }
 .form-underline input::placeholder { font-size: 15px; font-style: normal; color: #8d8d8d; font-family: "Jost-Book"; }
 .form-underline input:-ms-input-placeholder { font-size: 15px; font-style: normal; color: #8d8d8d; font-family: "Jost-Book"; }
 .form-underline input::-ms-input-placeholder { font-size: 15px; font-style: normal; color: #8d8d8d; font-family: "Jost-Book"; }
@@ -1336,7 +1336,7 @@ a.place__comments__reply i { display: inline-block; vertical-align: middle; marg
 .member-menu li { display: inline-block; list-style: none; padding: 0 15px; }
 .member-menu li a { font-size: 15px; font-weight: 500; color: #ffffff; text-transform: uppercase; height: 60px; line-height: 60px; display: block; font-family: "Jost"; }
 .member-menu li:first-child { padding-left: 0; }
-.member-menu li.active a { color: #000; }
+.member-menu li.active a { color: #0084ff; }
 
 .member-wrap { margin-bottom: 60px; }
 .member-wrap .member-avatar { margin-bottom: 30px; }
@@ -1345,7 +1345,7 @@ a.place__comments__reply i { display: inline-block; vertical-align: middle; marg
 .member-wrap .member-avatar label input { position: absolute; opacity: 0; visibility: hidden; width: auto; }
 .member-wrap h1 { font-size: 28px; font-weight: 500; margin-bottom: 30px; }
 .member-wrap h3 { font-size: 15px; font-weight: 500; color: #8d8d8d; text-transform: uppercase; margin-bottom: 20px; }
-.member-wrap form { max-width: 300px; margin-bottom: 30px; }
+.member-wrap form { max-width: 100%; margin-bottom: 30px; }
 .member-wrap form input[type="file"] { border-bottom: 0; }
 .member-wrap form .field-submit { margin-top: 0; }
 .member-wrap form input[type="submit"] { width: auto; padding: 0 25px; }

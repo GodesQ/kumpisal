@@ -128,9 +128,15 @@
                 maxWidth: 200,
             });
 
+            const user_icon_marker = {
+                url: '../../../user-assets/images/icons/user-marker.png',
+                scaledSize: new google.maps.Size(35, 45)
+            }
+
             let my_marker = new google.maps.Marker({
                 position:  new google.maps.LatLng(Number(14.5995124), Number(120.9842195) ),
                 map: map,
+                icon: user_icon_marker,
                 draggable: true,
             })
 
@@ -139,52 +145,28 @@
 
             google.maps.event.addListener( searchBox, 'places_changed', function () {
                 var places = searchBox.getPlaces(), bounds = new google.maps.LatLngBounds(), i, place, lat, long, resultArray, address = places[0].formatted_address;
+
+                for( i = 0; place = places[i]; i++ ) {
+                    bounds.extend( place.geometry.location );
+                    my_marker.setPosition( place.geometry.location );  // Set my_marker position new.
+                }
+
+                map.fitBounds( bounds );  // Fit to the bound
+                map.setZoom( 15 ); // This function sets the zoom to 15, meaning zooms to level 15.
+
                 lat = places[0].geometry.location.lat()
-                long = places[0].geometry.location.lng();
+                long = places[0].geometry.location.lng()
                 latitude.value = lat;
                 longitude.value = long;
                 resultArray =  places[0].address_components;
             });
 
-            google.maps.event.addListener( my_marker, "dragend", function ( event ) {
-                var lat, long, address, resultArray;
-                var addressEl = document.querySelector( '#church_address' );
-                var latEl = document.querySelector( '#latitude' );
-                var longEl = document.querySelector( '#longitude' );
-
-                lat = my_marker.getPosition().lat();
-                long = my_marker.getPosition().lng();
-
-                var geocoder = new google.maps.Geocoder();
-                geocoder.geocode( { latLng: my_marker.getPosition() }, function ( result, status ) {
-                    if ( 'OK' === status ) {  // This line can also be written like if ( status == google.maps.GeocoderStatus.OK ) {
-                        address = result[0].formatted_address;
-                        resultArray =  result[0].address_components;
-                        addressEl.value = address;
-                        latEl.value = lat;
-                        longEl.value = long;
-                        filterChurches(1);
-                    } else {
-                        console.log( 'Geocode was not successful for the following reason: ' + status );
-                    }
-
-                    // Closes the previous info window if it already exists
-                    if ( infoWindow ) {
-                        infoWindow.close();
-                    }
-
-                    infoWindow = new google.maps.InfoWindow({
-                        content: address
-                    });
-
-                    infoWindow.open( map );
-                });
-            });
+            setMarkerDraggable(my_marker);
 
             function setLocations(churches) {
                 var mapOptions = {
                     center: new google.maps.LatLng( latitude.value, longitude.value ),
-                    zoom: 13,
+                    zoom: 14,
                     mapId: 'ad277f0b2aef047a',
                     disableDefaultUI: false, // Disables the controls like zoom control on the map if set to true
                     scrollWheel: true, // If set to false disables the scrolling on the map.
@@ -193,12 +175,59 @@
 
                 map = new google.maps.Map(document.querySelector("#place-map-filter"), mapOptions);
 
+                const user_icon_marker = {
+                    url: '../../../user-assets/images/icons/user-marker.png',
+                    scaledSize: new google.maps.Size(35, 45)
+                }
+
                 my_marker = new google.maps.Marker({
                     position:  new google.maps.LatLng(Number(latitude.value), Number(longitude.value) ),
+                    icon: user_icon_marker,
                     map: map,
                     draggable: true,
                 })
 
+                setMarkerDraggable(my_marker);
+
+                if(churches.data.length === 0) return false;
+
+                let total_churches = churches.data.length;
+                let marker;
+
+                for (i = 0; i <= total_churches; i++) {
+
+                    var data = churches.data[i];
+                    var myLatlng = new google.maps.LatLng(data?.latitude, data?.longitude);
+
+                    const churches_icon = {
+                        url: '../../../user-assets/images/icons/church.png',
+                        scaledSize: new google.maps.Size(35,45)
+                    }
+
+                    marker = new google.maps.Marker({
+                        position: myLatlng,
+                        map: map,
+                        icon: churches_icon,
+                        labelContent: data?.name,
+                        labelAnchor: new google.maps.Point(7, 30),
+                        labelClass: "labels",
+                        labelInBackground: true
+                    });
+
+                    (function (marker, data) {
+                            google.maps.event.addListener(marker, "click", function (e) {
+                            infoWindow.setContent(`${data?.name}`);
+                            infoWindow.open(map, marker);
+                            });
+                    })(marker, data);
+                }
+
+                if ( infoWindow ) {
+                    infoWindow.close();
+                }
+            }
+
+            function setMarkerDraggable(my_marker) {
                 google.maps.event.addListener( my_marker, "dragend", function ( event ) {
                     var lat, long, address, resultArray;
                     var addressEl = document.querySelector( '#church_address' );
@@ -233,48 +262,7 @@
                         infoWindow.open( map );
                     });
                 });
-
-                if(churches.data.length === 0) return false;
-
-                let total_churches = churches.data.length;
-                let marker;
-
-                for (i = 0; i <= total_churches; i++) {
-
-                    var data = churches.data[i];
-                    var myLatlng = new google.maps.LatLng(data?.latitude, data?.longitude);
-
-                    marker = new google.maps.Marker({
-                        position: myLatlng,
-                        map: map,
-                        labelContent: data?.name,
-                        labelAnchor: new google.maps.Point(7, 30),
-                        labelClass: "labels",
-                        labelInBackground: true
-                    });
-
-                    (function (marker, data) {
-                            google.maps.event.addListener(marker, "click", function (e) {
-                            infoWindow.setContent(`${data?.name}`);
-                            infoWindow.open(map, marker);
-                            });
-                    })(marker, data);
-                }
-
-                if ( infoWindow ) {
-                    infoWindow.close();
-                }
-
-                /**
-                    * Creates the info Window at the top of the marker
-                */
-                // infoWindow = new google.maps.InfoWindow({
-                //     content: address,
-                // });
-
-                // infoWindow.open( map, marker );
             }
-
 
 
         }

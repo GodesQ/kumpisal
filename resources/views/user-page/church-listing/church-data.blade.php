@@ -29,7 +29,7 @@
                     </div>
                     <h3 class="place-title">
                         <a href="{{ route('churches.detailPage', ['uuid' => $church->church_uuid, 'name' => $church->name]) }}">
-                            {{ strlen($church->name) > 30 ? substr($church->name, 0, 30) . '...' : $church->name }}
+                            {{ strlen($church->name) > 40 ? substr($church->name, 0, 40) . '...' : $church->name }}
                         </a>
                     </h3>
                 </div>

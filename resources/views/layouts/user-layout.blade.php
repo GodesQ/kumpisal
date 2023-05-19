@@ -191,12 +191,12 @@
                                 <div class="dropdown">
                                     <img src="{{ asset('admin-assets/images/profile/' . 'user-1.jpg') }}" onclick="handleUserDropdown()" alt="" width="35" height="35" class="rounded-circle user-drop-btn">
                                     <div id="myDropdown" class="dropdown-content">
-                                        <a href="#about"> <i class="ti ti-dashboard text-primary mr-3"></i> Dashboard</a>
-                                        <a href="#home"> <i class="ti ti-user text-primary mr-3"></i> My Profile</a>
+                                        <a href="{{ route('user.dashboard') }}"> <i class="ti ti-dashboard text-primary mr-3"></i> Dashboard</a>
+                                        <a href="{{ route('user.profile') }}"> <i class="ti ti-user text-primary mr-3"></i> My Profile</a>
                                         <a>
                                             <form action="{{ route('user.logout') }}" method="post">
                                                 @csrf
-                                                <button type="submit" class="w-100" style="text-align: left !important; background: none !important; border: none;">
+                                                <button type="submit" class="w-100 rounded mt-2 logout-btn">
                                                     <i class="ti ti-logout text-primary mr-3"></i>  Logout
                                                 </button>
                                             </form>

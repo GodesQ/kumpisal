@@ -2079,6 +2079,7 @@
   }
 
   .dropdown-content {
+    padding: 10px 0px;
     display: none;
     position: absolute;
     background-color: #fff;
@@ -2101,7 +2102,21 @@
   }
 
   .dropdown a:hover {
-    background-color: #ddd;
-    }
+        background-color: #ddd;
+}
+.dropdown a:last-child:hover {
+    background-color: transparent !important;
+}
+.logout-btn {
+    text-align: center !important;
+    border: 1px solid #000 !important;
+    background: transparent !important;
+}
+
+.logout-btn:hover {
+    background-color: #000 !important;
+    color: #fff;
+}
 
   .show {display: block;}
+

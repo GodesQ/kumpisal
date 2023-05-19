@@ -5,19 +5,14 @@
 @section('content')
 <main id="main" class="site-main">
     <div class="site-content owner-content">
-        <div class="member-menu">
-            <div class="container">
-                <ul>
-                    <li class="active"><a href="owner-dashboard.html">Dashboard</a></li>
-                    <li><a href="owner-bookings.html">Bookings</a></li>
-                    <li><a href="owner-listings.html">Listings</a></li>
-                    <li><a href="owner-wishlist.html">Wishlist</a></li>
-                    <li><a href="owner-profile.html">Profile</a></li>
-                </ul>
-            </div>
-        </div>
+        @include('user-page.user-dashboard.user-menu')
         <div class="container">
             <div class="member-wrap">
+                @if(!auth()->user()->is_verify)
+                    <div class="alert alert-danger p-2 w-100">
+                        Email verification required. Please verify your email to unlock additional features.
+                    </div>
+                @endif
                 <div class="member-wrap-top">
                     <h2>Welcome back! {{ auth()->user()->firstname }}</h2>
                 </div><!-- .member-wrap-top -->
@@ -46,7 +41,7 @@
                         </div>
                         <div class="col-lg-3 col-6">
                             <div class="item purple">
-                                <h3>Cancelled Schedules</h3>
+                                <h3>Canceled Schedules</h3>
                                 <span class="number">145</span>
                                 <span class="line"></span>
                             </div>
@@ -59,7 +54,7 @@
                             <div class="ob-item">
                                 <div class="ob-head">
                                     <h3>Recent Bookings</h3>
-                                    <a href="#" class="view-all" title="View All">View all</a>
+                                    <a href="#" class="view-all" title="View All">View All</a>
                                 </div>
                                 <div class="ob-content">
                                     <ul>

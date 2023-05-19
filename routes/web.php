@@ -33,6 +33,10 @@ Route::get('church/{uuid}/{name}', [ChurchController::class, 'detailPage'])->nam
 
 Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['auth']], function() {
     Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+    Route::get('profile', [UserController::class, 'profile'])->name('profile');
+    Route::post('profile/{uuid}', [UserController::class, 'saveProfile'])->name('profile.post');
+    Route::post('change_password/{uuid}', [UserController::class, 'changePassword'])->name('change_password.post');
+
     Route::post('logout', [UserAuthController::class, 'logout'])->name('logout');
 });
 
