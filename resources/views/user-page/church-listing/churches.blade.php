@@ -75,7 +75,7 @@
 
 @push('scripts')
     <script>
-        var map, address;
+        var map, address, my_marker;
         function initialize() {
             let church_address = document.querySelector('#church_address');
             let latitude = document.querySelector('#latitude');
@@ -127,17 +127,13 @@
             };
 
             map = new google.maps.Map(document.querySelector("#place-map-filter"), mapOptions);
-            infoWindow = new google.maps.InfoWindow({
-                maxWidth: 200,
-            });
 
             const user_icon_marker = {
                 url: '../../../user-assets/images/icons/user-marker.png',
                 scaledSize: new google.maps.Size(35, 45)
             }
 
-            let my_marker = new google.maps.Marker({
-                position:  new google.maps.LatLng(Number(14.5995124), Number(120.9842195) ),
+            my_marker = new google.maps.Marker({
                 map: map,
                 icon: user_icon_marker,
                 draggable: true,
@@ -149,13 +145,13 @@
             google.maps.event.addListener( searchBox, 'places_changed', function () {
                 var places = searchBox.getPlaces(), bounds = new google.maps.LatLngBounds(), i, place, lat, long, resultArray, address = places[0].formatted_address;
 
-                for( i = 0; place = places[i]; i++ ) {
-                    bounds.extend( place.geometry.location );
-                    my_marker.setPosition( place.geometry.location );  // Set my_marker position new.
-                }
+                // for( i = 0; place = places[i]; i++ ) {
+                //     bounds.extend( place.geometry.location );
+                //     my_marker.setPosition( place.geometry.location );  // Set my_marker position new.
+                // }
 
-                map.fitBounds( bounds );  // Fit to the bound
-                map.setZoom( 15 ); // This function sets the zoom to 15, meaning zooms to level 15.
+                // map.fitBounds( bounds );  // Fit to the bound
+                // map.setZoom( 15 ); // This function sets the zoom to 15, meaning zooms to level 15.
 
                 lat = places[0].geometry.location.lat()
                 long = places[0].geometry.location.lng()

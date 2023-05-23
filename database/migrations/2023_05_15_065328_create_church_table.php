@@ -25,6 +25,8 @@ class CreateChurchTable extends Migration
             $table->string('parish_priest', 250)->nullable();
             $table->date('feast_date')->nullable();
             $table->string('criteria', 100)->nullable();
+            $table->string('contact_number', 255);
+            $table->string('facebook_link', 255);
             $table->boolean('is_active')->nullable()->default(false);
             $table->boolean('is_delete')->nullable()->default(false);
             $table->timestamps();

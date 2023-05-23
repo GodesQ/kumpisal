@@ -57,7 +57,7 @@ class ChurchController extends Controller
     }
 
     public function detailPage(Request $request) {
-        $church = Church::where('church_uuid', $request->uuid)->with('schedules')->first();
+        $church = Church::where('church_uuid', $request->uuid)->with('active_schedules')->first();
         return view('user-page.church-listing.church-info', compact('church'));
     }
 
@@ -69,7 +69,7 @@ class ChurchController extends Controller
                     ->addIndexColumn()
                     ->addColumn('action', function($row) {
                         $btn = '<a href="/admin/church/edit/' .$row->church_uuid. '" class="btn btn-primary btn-sm"><i class="ti ti-edit"></i></a>
-                        <a id="' .$row->church_uuid. '" class="btn btn-danger btn-sm"><i class="ti ti-trash"></i></a>';
+                        <a id="' .$row->church_uuid. '" class="btn btn-danger btn-sm remove-btn"><i class="ti ti-trash"></i></a>';
                         return $btn;
                     })
                     ->rawColumns(['action'])
@@ -111,7 +111,7 @@ class ChurchController extends Controller
     }
 
     public function edit(Request $request) {
-        $church = Church::where('church_uuid', $request->uuid)->firstOrFail();
+        $church = Church::where('church_uuid', $request->uuid)->with('active_schedules')->firstOrFail();
         return view('admin-page.churches.edit', compact('church'));
     }
 

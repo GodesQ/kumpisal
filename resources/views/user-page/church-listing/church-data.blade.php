@@ -5,12 +5,12 @@
                 <div class="place-thumb">
                     <a class="entry-thumb" href="{{ route('churches.detailPage', ['uuid' => $church->church_uuid, 'name' => $church->name]) }}"><img src="{{ asset('admin-assets/images/churches' . '/' . $church->church_image )}}"
                             alt=""></a>
-                    <a href="#" class="golo-add-to-wishlist btn-add-to-wishlist "
+                    {{-- <a href="#" class="golo-add-to-wishlist btn-add-to-wishlist "
                         data-place-id="185">
                         <span class="icon-heart">
                             <i class="la la-bookmark large"></i>
                         </span>
-                    </a>
+                    </a> --}}
                 </div>
                 <div class="entry-detail">
                     <div class="entry-head">

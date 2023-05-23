@@ -29,10 +29,27 @@ class UserController extends Controller
 
     public function saveProfile(SaveUserProfileRequest $request) {
         $data = $request->validated();
-        $user = User::where('user_uuid', $request->uuid)->first();
-        $update_user = $user->update($data);
-        if($update_user) return back()->with('success', 'User Profile Successfully Saved.');
+        $user_image;
 
+        if($request->hasFile('member_avatar')) {
+
+            $old_upload_image = public_path('/user-assets/images/avatars/') . $request->old_user_image;
+            $remove_image = @unlink($old_upload_image);
+
+            $file = $request->file('member_avatar');
+            $user_image = $request->uuid . '.' . $file->getClientOriginalExtension();
+
+            // save to folder
+            $save_file = $file->move(public_path().'/user-assets/images/avatars', $user_image);
+        }
+
+        $user = User::where('user_uuid', $request->uuid)->first();
+
+        $update_user = $user->update(array_merge($data, [
+            'user_image' => $user_image
+        ]));
+
+        if($update_user) return back()->with('success', 'User Profile Successfully Saved.');
         return back()->with('fail', 'Failed to update user profile.');
     }
 

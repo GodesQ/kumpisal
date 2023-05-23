@@ -33,7 +33,7 @@ class UpdateChurchRequest extends FormRequest
             'feast_date' => 'required|date',
             'criteria' => 'required|in:diocese,vicariate',
             'contact_number' => 'nullable',
-            'facebook_link' => 'nullable',
+            'facebook_link' => 'nullable|url',
             'is_active' => 'nullable',
         ];
     }

@@ -44,7 +44,7 @@
 
 @push('scripts')
     <script>
-         let table = $('.data-table').DataTable({
+        let table = $('.data-table').DataTable({
             processing: true,
             pageLength: 25,
             responsive: true,
@@ -82,6 +82,10 @@
                     searchable: true
                 },
             ]
+        });
+
+        $('.remove-btn').click(function() {
+            console.log(true);
         });
     </script>
 @endpush

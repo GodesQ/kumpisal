@@ -28,21 +28,21 @@
                         <div class="col-lg-3 col-6">
                             <div class="item green">
                                 <h3>Saved Churches</h3>
-                                <span class="number">12</span>
+                                <span class="number">0</span>
                                 <span class="line"></span>
                             </div>
                         </div>
                         <div class="col-lg-3 col-6">
                             <div class="item yellow">
                                 <h3>Ongoing Schedules</h3>
-                                <span class="number">6</span>
+                                <span class="number">0</span>
                                 <span class="line"></span>
                             </div>
                         </div>
                         <div class="col-lg-3 col-6">
                             <div class="item purple">
                                 <h3>Canceled Schedules</h3>
-                                <span class="number">145</span>
+                                <span class="number">0</span>
                                 <span class="line"></span>
                             </div>
                         </div>
@@ -50,10 +50,10 @@
                 </div><!-- .member-statistical -->
                 <div class="owner-box">
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                             <div class="ob-item">
                                 <div class="ob-head">
-                                    <h3>Recent Bookings</h3>
+                                    <h3>Upcoming Schedules</h3>
                                     <a href="#" class="view-all" title="View All">View All</a>
                                 </div>
                                 <div class="ob-content">
@@ -92,10 +92,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                             <div class="ob-item">
                                 <div class="ob-head">
-                                    <h3>New Reviews</h3>
+                                    <h3>Churches near you</h3>
                                     <a href="#" class="view-all" title="View All">View all</a>
                                 </div>
                                 <div class="ob-content">
@@ -186,38 +186,6 @@
                                                 <p>Went there last Saturday for the first time to watch my favorite djs (Kungs, Sam Feldet and Watermat) and really had a great experience. </p>
                                             </div>
                                             <p class="place"><b>Place:</b>Bamboo Hotel Paris</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="ob-item">
-                                <div class="ob-head">
-                                    <h3>Notifications <span>(5)</span></h3>
-                                    <a href="#" class="clear-all" title="Clear All">Clear all</a>
-                                </div>
-                                <div class="ob-content">
-                                    <ul>
-                                        <li class="noti-item unread">
-                                            <p>You have got a new booking <br> Booking ID: #123434</p>
-                                            <span>1d ago</span><a href="#" class="delete-noti" title="Delete">Delete</a>
-                                        </li>
-                                        <li class="noti-item read">
-                                            <p>You have got a new booking <br> Booking ID: #123434</p>
-                                            <span>1d ago</span><a href="#" class="delete-noti" title="Delete">Delete</a>
-                                        </li>
-                                        <li class="noti-item read">
-                                            <p>You have got a new booking <br> Booking ID: #123434</p>
-                                            <span>1d ago</span><a href="#" class="delete-noti" title="Delete">Delete</a>
-                                        </li>
-                                        <li class="noti-item read">
-                                            <p>You have got a new booking <br> Booking ID: #123434</p>
-                                            <span>1d ago</span><a href="#" class="delete-noti" title="Delete">Delete</a>
-                                        </li>
-                                        <li class="noti-item read">
-                                            <p>You have got a new booking <br> Booking ID: #123434</p>
-                                            <span>1d ago</span><a href="#" class="delete-noti" title="Delete">Delete</a>
                                         </li>
                                     </ul>
                                 </div>

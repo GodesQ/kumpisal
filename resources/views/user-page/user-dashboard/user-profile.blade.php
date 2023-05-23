@@ -30,16 +30,16 @@
             @include('user-page.user-dashboard.user-menu')
             <div class="container">
                 <div class="member-wrap">
-                    <form action="{{ route('user.profile.post', auth()->user()->user_uuid) }}" method="POST" class="member-profile form-underline">
+                    <form action="{{ route('user.profile.post', auth()->user()->user_uuid) }}" enctype="multipart/form-data" method="POST" class="member-profile form-underline">
                         @csrf
                         <h3>Avatar</h3>
                         <div class="member-avatar">
                             <img id="member_avatar" src="{{ asset('user-assets/images/member-avatar.png') }}" alt="Member Avatar">
                             <label for="upload_new">
-                                <input id="upload_new" type="file" name="member_avatar" placeholder="Upload new"
-                                    value="">
+                                <input id="upload_new" type="file" name="member_avatar" placeholder="Upload New">
                                 Upload new
                             </label>
+                            <input type="hidden" name="old_user_image" id="old_user_image" value="{{ auth()->user()->user_image }}">
                         </div>
                         <h3>Basic Info</h3>
                         <div class="row">

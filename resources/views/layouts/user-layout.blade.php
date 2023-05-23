@@ -44,9 +44,7 @@
                                     </a><!-- .popup__close -->
                                     <div class="popup__content">
                                         <div class="popup__user popup__box open-form">
-                                            @if (auth()->check())
-
-                                            @else
+                                            @if (!auth()->check())
                                                 <a title="Login" href="#" class="open-login">Login</a>
                                                 <a title="Sign Up" href="#" class="open-signup">Sign Up</a>
                                             @endif
@@ -189,10 +187,14 @@
                             </div>
                             @auth
                                 <div class="dropdown">
-                                    <img src="{{ asset('admin-assets/images/profile/' . 'user-1.jpg') }}" onclick="handleUserDropdown()" alt="" width="35" height="35" class="rounded-circle user-drop-btn">
+                                    @if(auth()->user()->user_image)
+                                        <img src="{{ asset('user-assets/images/avatars/' . auth()->user()->user_image) }}" onclick="handleUserDropdown()" alt="" style="width: 35px; height: 35px; object-fit: cover;" class="rounded-circle user-drop-btn">
+                                    @else
+                                        <img src="{{ asset('admin-assets/images/profile/' . 'user-1.jpg') }}" onclick="handleUserDropdown()" alt="" width="35" height="35" class="rounded-circle user-drop-btn">
+                                    @endif
                                     <div id="myDropdown" class="dropdown-content">
-                                        <a href="{{ route('user.dashboard') }}"> <i class="ti ti-dashboard text-primary mr-3"></i> Dashboard</a>
-                                        <a href="{{ route('user.profile') }}"> <i class="ti ti-user text-primary mr-3"></i> My Profile</a>
+                                        <a href="{{ route('user.dashboard') }}" title="Dashboard"> <i class="ti ti-dashboard text-primary mr-3" ></i> Dashboard</a>
+                                        <a href="{{ route('user.profile') }}" title="My Profile"> <i class="ti ti-user text-primary mr-3"></i> My Profile</a>
                                         <a>
                                             <form action="{{ route('user.logout') }}" method="post">
                                                 @csrf

@@ -64,9 +64,9 @@
                                 </h3>
                                 <table class="open-table">
                                     <tbody>
-                                        @forelse ($church->schedules as $schedule)
+                                        @forelse ($church->active_schedules as $schedule)
                                             <tr>
-                                                <td class="day">{{ date_format(new DateTime($schedule->schedule_time), 'F d, Y') }}</td>
+                                                <td class="day">{{ date_format(new DateTime($schedule->schedule_date), 'F d, Y') }}</td>
                                                 <td class="time">{{ date_format(new DateTime($schedule->started_time), 'g:i A') }} - {{ date_format(new DateTime($schedule->end_time), 'g:i A') }}</td>
                                             </tr>
                                         @empty
@@ -203,7 +203,7 @@
             let longitude = document.querySelector('#longitude');
             var mapOptions = {
                 center: latitude.value && longitude.value ? new google.maps.LatLng( latitude.value, longitude.value ) : new google.maps.LatLng( 14.5995124, 120.9842195 ),
-                zoom: 14,
+                zoom: 16,
                 mapId: 'ad277f0b2aef047a',
                 disableDefaultUI: false, // Disables the controls like zoom control on the map if set to true
                 scrollWheel: true, // If set to false disables the scrolling on the map.
@@ -211,12 +211,10 @@
             };
 
             map = new google.maps.Map(document.querySelector("#map"), mapOptions);
-            infoWindow = new google.maps.InfoWindow({
-                maxWidth: 200,
-            });
+
 
             const user_icon_marker = {
-                url: '../../../user-assets/images/icons/user-marker.png',
+                url: '../../../user-assets/images/icons/church.png',
                 scaledSize: new google.maps.Size(35, 45)
             }
 
@@ -225,7 +223,7 @@
                     position:  new google.maps.LatLng(new google.maps.LatLng( Number(latitude.value), Number(longitude.value) )),
                     map: map,
                     icon: user_icon_marker,
-                    draggable: true,
+                    draggable: false,
                 })
             }
 

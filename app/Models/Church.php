@@ -15,6 +15,11 @@ class Church extends Model
         return $this->hasMany(ConfessionSchedule::class, 'church_uuid', 'church_uuid');
     }
 
+    public function active_schedules() {
+        $today = date('Y-m-d');
+        return $this->hasMany(ConfessionSchedule::class, 'church_uuid', 'church_uuid')->where('schedule_date', '>=  ', $today);
+    }
+
     public function scopeActive($query, $arg) {
         return $query->where('is_active', $arg);
     }

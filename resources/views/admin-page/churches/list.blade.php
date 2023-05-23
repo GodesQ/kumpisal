@@ -1,6 +1,6 @@
 @extends('layouts.admin-layout')
 
-@section('title', 'Churches')
+@section('title', 'Churches List')
 
 @section('content')
     <div class="container-fluid">
@@ -87,6 +87,10 @@
                     $(row).css("background-color", "#E5E4E2");
                 }
             },
+        });
+
+        $('.remove-btn').click(function() {
+            console.log(true);
         });
     </script>
 @endpush

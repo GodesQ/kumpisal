@@ -31,7 +31,10 @@
                             <div class="mb-3">
                                 <label for="address" class="form-label">Address</label>
                                 <input type="text" class="form-control" id="address" name="address" aria-describedby="addressHelp">
+                                <input type="hidden" name="latitude" id="latitude" value="">
+                                <input type="hidden" name="longitude" id="longitude" value="">
                                 <span class="text-danger danger">@error('address'){{ $message }}@enderror</span>
+
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -101,11 +104,33 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endpush
 
-{{-- @push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.criteria-select').select2();
+@push('scripts')
+<script>
+    function initialize() {
+        let address = document.querySelector('#address');
+        let latitude = document.querySelector('#latitude');
+        let longitude = document.querySelector('#longitude');
+
+        // for search
+        let searchBox = new google.maps.places.SearchBox( address );
+
+        google.maps.event.addListener( searchBox, 'places_changed', function () {
+            var places = searchBox.getPlaces(), bounds = new google.maps.LatLngBounds(), i, place, lat, long, resultArray, address = places[0].formatted_address;
+            lat = places[0].geometry.location.lat()
+            long = places[0].geometry.location.lng();
+            latitude.value = lat;
+            longitude.value = long;
+            resultArray =  places[0].address_components;
         });
-    </script>
-@endpush --}}
+    }
+
+    $(document).ready(function() {
+        $('#church_address').keydown(function(event){
+            if(event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+            }
+        });
+    });
+</script>
+@endpush

@@ -16,7 +16,7 @@
         <div class="field-group field-input">
             <label for="church_address">Church Address</label>
             <input class="w-100 mt-1" type="text" id="church_address" placeholder="What the name of place" name="church_address">
-            <input type="hidden" name="latitude" id="latitude">
+            <input type="hidden" name="latitude" id="latitude" >
             <input type="hidden" name="longitude" id="longitude">
         </div>
     </div>
