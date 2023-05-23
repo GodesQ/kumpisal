@@ -37,8 +37,8 @@
                                     <div class="mb-3">
                                         <label for="address" class="form-label">Address</label>
                                         <input type="text" class="form-control" id="address" name="address" aria-describedby="addressHelp" value="{{ $church->address }}">
-                                        <input type="hidden" name="latitude" id="latitude">
-                                        <input type="hidden" name="longitude" id="longitude">
+                                        <input type="hidden" name="latitude" id="latitude" value="{{ $church->latitude }}">
+                                        <input type="hidden" name="longitude" id="longitude" value="{{ $church->longitude }}">
                                         <span class="text-danger danger">@error('address'){{ $message }}@enderror</span>
                                     </div>
                                 </div>
@@ -72,6 +72,20 @@
                                         <span class="text-danger danger">@error('description'){{ $message }}@enderror</span>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="contact_number" class="form-label">Contact Number</label>
+                                        <input type="tel" name="contact_number" id="contact_number" class="form-control" value="{{ $church->contact_number }}">
+                                        <span class="text-danger danger">@error('contact_number'){{ $message }}@enderror</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="facebook_link" class="form-label">Facebook Link</label>
+                                        <input type="url" name="facebook_link" id="facebook_link" class="form-control" value="{{ $church->facebook_link }}">
+                                        <span class="text-danger danger">@error('facebook_link'){{ $message }}@enderror</span>
+                                    </div>
+                                </div>
                                 <div class="col-md-12">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="is_active" name="is_active" value="1" {{ $church->is_active ? 'checked' : null }}>
@@ -88,7 +102,7 @@
                     </div>
                     <div class="col-md-4">
                         <h5>Church Image</h5>
-                        <img src="{{ asset('/admin-assets/images/churches') . '/' . $church->church_image }}" alt="{{ $church->church_image }}" class="w-100">
+                        <img src="{{ asset('/admin-assets/images/churches') . '/' . $church->church_image }}" alt="{{ $church->name }}" class="w-100">
                         <a href="{{ asset('/admin-assets/images/churches') . '/' . $church->church_image }}" class="btn btn-primary mt-2" target="_blank">View Full Image</a>
                     </div>
                 </div>
@@ -131,12 +145,3 @@
         });
     </script>
 @endpush
-
-{{-- @push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.criteria-select').select2();
-        });
-    </script>
-@endpush --}}

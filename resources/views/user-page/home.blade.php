@@ -37,7 +37,9 @@
                             </div>
                         </div><!-- .site-banner__search__input -->
                         <div class="field-submit">
-                            <button><i class="las la-search la-24-black"></i></button>
+                            <button>
+                                <i class="las la-search la-24-black"></i>
+                            </button>
                         </div>
                     </form><!-- .site-banner__search -->
                     <p class="site-banner__meta">

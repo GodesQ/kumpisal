@@ -7,6 +7,7 @@ use App\Http\Controllers\Web\UserController;
 use App\Http\Controllers\Web\ChurchController;
 use App\Http\Controllers\Web\Auth\AdminAuthController;
 use App\Http\Controllers\Web\Auth\UserAuthController;
+use App\Http\Controllers\Web\ConfessionScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,12 @@ Route::group(['prefix'=> 'admin', 'as' => 'admin.', 'middleware' => ['auth.admin
     Route::post('/church/store', [ChurchController::class, 'store'])->name('church.store');
     Route::get('/church/edit/{uuid}', [ChurchController::class, 'edit'])->name('church.edit');
     Route::post('/church/update/{uuid}', [ChurchController::class, 'update'])->name('church.update');
+
+    Route::get('/confession_schedules', [ConfessionScheduleController::class, 'lists'])->name('confession_schedules.list');
+    Route::get('/confession_schedule/create', [ConfessionScheduleController::class, 'create'])->name('confession_schedule.create');
+    Route::post('/confession_schedule/store', [ConfessionScheduleController::class, 'store'])->name('confession_schedule.store');
+    Route::get('/confession_schedule/edit/{id}', [ConfessionScheduleController::class, 'edit'])->name('confession_schedule.edit');
+    Route::post('/confession_schedule/update/{id}', [ConfessionScheduleController::class, 'update'])->name('confession_schedule.update');
 
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 });

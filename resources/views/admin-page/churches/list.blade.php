@@ -81,7 +81,12 @@
                     orderable: true,
                     searchable: true
                 },
-            ]
+            ],
+            createdRow: function(row, data, dataIndex) {
+                if (data.is_active == 0) {
+                    $(row).css("background-color", "#E5E4E2");
+                }
+            },
         });
     </script>
 @endpush

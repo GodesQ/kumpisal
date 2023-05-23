@@ -6,17 +6,8 @@
 
 @section('content')
     <main id="main" class="site-main single single-02">
-        <div class="place">
-            {{-- <div class="slick-sliders">
-                <div class="slick-slider" data-item="1" data-arrows="true" data-itemscroll="1" data-dots="true"
-                    data-infinite="true" data-centermode="true" data-centerpadding="418px" data-tabletitem="1"
-                    data-tabletscroll="1" data-tabletpadding="70px" data-mobileitem="1" data-mobilescroll="1"
-                    data-mobilepadding="30px">
-                    <div class="place-slider__item bd"><a title="Place Slider Image" href="#">
-
-                    </div>
-                </div><!-- .page-title --> --}}
-            </div><!-- .place-slider -->
+            <input type="hidden" id="latitude" value="{{ $church->latitude }}" >
+            <input type="hidden" id="longitude" value="{{ $church->longitude }}" >
             <div class="container">
                 <img src="{{ asset('admin-assets/images/churches' . '/' . $church->church_image) }}" alt="slider-01" style="height: 400px; width: 100%; object-fit: cover;"></a>
                 <div class="row">
@@ -40,18 +31,20 @@
                                 </div>
                                 <div class="address">
                                     <i class="la la-map-marker"></i>
-                                    1906 Market St San Francisco 94102
-                                    <a href="#" title="Direction">(Direction)</a>
+                                    {{ $church->address }}
+                                    {{-- <a href="#" title="Direction">(Direction)</a> --}}
                                 </div>
                             </div><!-- .place__box -->
                             <div class="place__box">
                                 <h3>Contact Info</h3>
                                 <ul class="place__contact">
                                     <li>
-                                        <i class="la la-phone"></i>
-                                        <a title="00 343 7859" href="tel:003437859">00 343 7859</a>
+                                        @if($church->contact_number)
+                                            <i class="la la-phone"></i>
+                                            <a title="{{ $church->contact_number }}" href="tel:{{$church->contact_number}}">{{ $church->contact_number }}</a>
+                                        @endif
                                     </li>
-                                    <li>
+                                    {{-- <li>
                                         <i class="la la-globe"></i>
                                         <a title="www.abcsite.com" href="www.abcsite.com">www.abcsite.com</a>
                                     </li>
@@ -62,43 +55,25 @@
                                     <li>
                                         <i class="la la-instagram"></i>
                                         <a title="instagram.com/abc" href="instagram.com/abc">instagram.com/getgolo</a>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div><!-- .place__box -->
                             <div class="place__box place__box-open">
                                 <h3 class="place__title--additional">
-                                    Opening Hours
+                                    Confession Schedules
                                 </h3>
                                 <table class="open-table">
                                     <tbody>
-                                        <tr>
-                                            <td class="day">Monday</td>
-                                            <td class="time">8:00 am - 10:00 pm</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="day">Tuesday</td>
-                                            <td class="time">8:00 am - 10:00 pm</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="day">Wednesday</td>
-                                            <td class="time">8:00 am - 10:00 pm</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="day">Thursday</td>
-                                            <td class="time">8:00 am - 10:00 pm</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="day">Friday</td>
-                                            <td class="time">8:00 am - 10:00 pm</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="day">Saturday</td>
-                                            <td class="time">8:00 am - 10:00 pm</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="day">Sunday</td>
-                                            <td class="time">Close</td>
-                                        </tr>
+                                        @forelse ($church->schedules as $schedule)
+                                            <tr>
+                                                <td class="day">{{ date_format(new DateTime($schedule->schedule_time), 'F d, Y') }}</td>
+                                                <td class="time">{{ date_format(new DateTime($schedule->started_time), 'g:i A') }} - {{ date_format(new DateTime($schedule->end_time), 'g:i A') }}</td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="2">No Schedules Found</td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div><!-- .place__box -->
@@ -107,11 +82,11 @@
                     <div class="col-lg-4">
                         <div class="sidebar sidebar--shop sidebar--border">
                             <div class="widget-reservation-mini">
-                                <h3>Make a reservation</h3>
+                                <h3>Make a Schedule</h3>
                                 <a href="#" class="open-wg btn">Request</a>
                             </div>
                             <aside class="widget widget-shadow widget-reservation">
-                                <h3>Make a reservation</h3>
+                                <h3>Make a Schedule</h3>
                                 <form action="#" method="POST" class="form-underline">
                                     <div class="field-select has-sub field-guest">
                                         <span class="sl-icon"><i class="la la-user-friends"></i></span>
@@ -211,7 +186,6 @@
                                         </div>
                                     </div>
                                     <input type="submit" name="submit" value="Request a book">
-                                    <p class="note">You won't be charged yet</p>
                                 </form>
                             </aside><!-- .widget-reservation -->
                         </div><!-- .sidebar -->
@@ -221,3 +195,40 @@
         </div><!-- .place -->
     </main><!-- .site-main -->
 @endsection
+
+@push('scripts')
+    <script>
+        function initialize() {
+            let latitude = document.querySelector('#latitude');
+            let longitude = document.querySelector('#longitude');
+            var mapOptions = {
+                center: latitude.value && longitude.value ? new google.maps.LatLng( latitude.value, longitude.value ) : new google.maps.LatLng( 14.5995124, 120.9842195 ),
+                zoom: 14,
+                mapId: 'ad277f0b2aef047a',
+                disableDefaultUI: false, // Disables the controls like zoom control on the map if set to true
+                scrollWheel: true, // If set to false disables the scrolling on the map.
+                draggable: true, // If set to false , you cannot move the map around.
+            };
+
+            map = new google.maps.Map(document.querySelector("#map"), mapOptions);
+            infoWindow = new google.maps.InfoWindow({
+                maxWidth: 200,
+            });
+
+            const user_icon_marker = {
+                url: '../../../user-assets/images/icons/user-marker.png',
+                scaledSize: new google.maps.Size(35, 45)
+            }
+
+            if(latitude.value && longitude.value) {
+                let my_marker = new google.maps.Marker({
+                    position:  new google.maps.LatLng(new google.maps.LatLng( Number(latitude.value), Number(longitude.value) )),
+                    map: map,
+                    icon: user_icon_marker,
+                    draggable: true,
+                })
+            }
+
+        }
+    </script>
+@endpush

@@ -16,9 +16,8 @@ class CreateConfessionSchedulesTable extends Migration
         Schema::create('confession_schedules', function (Blueprint $table) {
             $table->id();
             $table->uuid('church_uuid');
-            $table->date('started_date');
+            $table->date('schedule_date');
             $table->time('started_time');
-            $table->date('end_date');
             $table->time('end_time');
             $table->boolean('is_active')->nullable()->default(false);
             $table->boolean('is_delete')->nullable()->default(false);

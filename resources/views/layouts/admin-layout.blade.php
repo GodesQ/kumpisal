@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
     <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
+
+    <link rel="stylesheet" href="{{ URL::asset('admin-assets/css/vendors.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('admin-assets/css/styles.css') }}" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
@@ -66,7 +68,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
+                            <a class="sidebar-link" href="{{ route('admin.confession_schedules.list') }}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-calendar-event"></i>
                                 </span>
@@ -148,6 +150,7 @@
            @yield('content')
         </div>
     </div>
+    <script src="{{ asset('admin-assets/js/vendors.min.js') }}"></script>
     <script src="{{ asset('admin-assets/libs/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('admin-assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('admin-assets/js/sidebarmenu.js') }}"></script>
@@ -167,6 +170,7 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEmTK1XpJ2VJuylKczq2-49A6_WuUlfe4&libraries=places&callback=initialize"></script>
 
     @stack('scripts')
+
     @if (Session::get('authenticated-but-login'))
         <script>
             toastr.error("{{ Session::get('authenticated-but-login') }}", "Fail");

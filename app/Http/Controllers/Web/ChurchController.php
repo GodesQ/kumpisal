@@ -18,12 +18,13 @@ class ChurchController extends Controller
 {
 
     public function searchPage(Request $request) {
-        $churches = Church::latest()->paginate(10);
+        $churches = Church::active(1)->latest()->with('schedules')->paginate(10);
         return view('user-page.church-listing.churches', compact('churches'));
     }
 
     public function fetchData(Request $request) {
         abort_if(!$request->ajax(), 404);
+
         $church_name = $request->church_name;
         $church_address = $request->church_address;
         $latitude = $request->latitude;
@@ -31,6 +32,7 @@ class ChurchController extends Controller
         $criterias = json_decode($request->criterias);
 
         $churches = Church::select('*')
+                    ->active(1)
                     ->where(DB::raw('lower(name)'), 'like', '%' . strtolower($church_name) . '%')
                     ->when($criterias, function ($q) use ($criterias) {
                         if ($criterias[0]) {
@@ -55,7 +57,7 @@ class ChurchController extends Controller
     }
 
     public function detailPage(Request $request) {
-        $church = Church::where('church_uuid', $request->uuid)->first();
+        $church = Church::where('church_uuid', $request->uuid)->with('schedules')->first();
         return view('user-page.church-listing.church-info', compact('church'));
     }
 

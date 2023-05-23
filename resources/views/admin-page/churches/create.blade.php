@@ -65,6 +65,20 @@
                                 <span class="text-danger danger">@error('description'){{ $message }}@enderror</span>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="contact_number" class="form-label">Contact Number</label>
+                                <input type="tel" name="contact_number" id="contact_number" class="form-control" value="">
+                                <span class="text-danger danger">@error('contact_number'){{ $message }}@enderror</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="facebook_link" class="form-label">Facebook Link</label>
+                                <input type="url" name="facebook_link" id="facebook_link" class="form-control" value="">
+                                <span class="text-danger danger">@error('facebook_link'){{ $message }}@enderror</span>
+                            </div>
+                        </div>
                         <div class="col-md-12">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="is_active" name="is_active" value="1">
