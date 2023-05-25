@@ -231,12 +231,12 @@
                         </div>
                         <div class="col-lg-2">
                             <aside class="footer__top__nav">
-                                <h3>Company</h3>
+                                <h3>Quick Links</h3>
                                 <ul>
-                                    <li><a title="About Us" href="06_about-us.html">About Us</a></li>
-                                    <li><a title="Blog" href="07_blog-right-sidebar.html">Blog</a></li>
-                                    <li><a title="Faqs" href="15_faqs.html">Faqs</a></li>
-                                    <li><a title="Contact" href="09_contact-us.html">Contact</a></li>
+                                    <li><a title="Home" href="">Home</a></li>
+                                    <li><a title="Churches" href="">Churches</a></li>
+                                    <li><a title="About Us" href="">About Us</a></li>
+                                    <li><a title="Contact Us" href="">Contact Us</a></li>
                                 </ul>
                             </aside>
                         </div>
@@ -283,8 +283,7 @@
                     </div>
                 </div><!-- .top-footer -->
                 <div class="footer__bottom">
-                    <p class="footer__bottom__copyright">2020 &copy; <a title="Uxper Team"
-                            href="#">uxper.co</a>. All rights reserved.</p>
+                    <p class="footer__bottom__copyright">2023 &copy; <a title="Uxper Team" href="#">Kumpisalan</a>. All rights reserved.</p>
                 </div><!-- .top-footer -->
             </div><!-- .container -->
         </footer><!-- site-footer -->

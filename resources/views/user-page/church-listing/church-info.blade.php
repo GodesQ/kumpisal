@@ -9,9 +9,38 @@
             <input type="hidden" id="latitude" value="{{ $church->latitude }}" >
             <input type="hidden" id="longitude" value="{{ $church->longitude }}" >
             <div class="container">
-                <img src="{{ asset('admin-assets/images/churches' . '/' . $church->church_image) }}" alt="slider-01" style="height: 400px; width: 100%; object-fit: cover;"></a>
                 <div class="row">
-                    <div class="col-lg-8">
+                    <div class="col-lg-7">
+                        <img src="{{ asset('admin-assets/images/churches' . '/' . $church->church_image) }}" alt="slider-01" style="height: 400px; width: 100%; object-fit: cover;"></a>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">
+                                    <h4>Confession Schedules</h4>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <table class="open-table">
+                                    <tbody>
+                                        @forelse ($church->active_schedules as $schedule)
+                                            <tr>
+                                                <td class="day">{{ date_format(new DateTime($schedule->schedule_date), 'F d, Y') }}</td>
+                                                <td class="time">{{ date_format(new DateTime($schedule->started_time), 'g:i A') }} - {{ date_format(new DateTime($schedule->end_time), 'g:i A') }}</td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="2">No Schedules Found</td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-7">
                         <div class="place__left">
                             <div class="place__box place__box--npd mt-3">
                                 <h1>{{ $church->name }}</h1>
@@ -20,7 +49,7 @@
                             <div class="place__box place__box-overview">
                                 <h3>Overview</h3>
                                 <div class="place__desc">{{ $church->description }}</div><!-- .place__desc -->
-                                <a href="#" class="show-more" title="Show More">Show more</a>
+                                <a href="#" class="show-more" title="Show More">Show More</a>
                             </div>
                             <div class="place__box place__box-map">
                                 <h3 class="place__title--additional">
@@ -79,8 +108,8 @@
                             </div><!-- .place__box -->
                         </div><!-- .place__left -->
                     </div>
-                    <div class="col-lg-4">
-                        <div class="sidebar sidebar--shop sidebar--border">
+                     <div class="col-lg-4">
+                    {{--    <div class="sidebar sidebar--shop sidebar--border">
                             <div class="widget-reservation-mini">
                                 <h3>Make a Schedule</h3>
                                 <a href="#" class="open-wg btn">Request</a>
@@ -188,7 +217,7 @@
                                     <input type="submit" name="submit" value="Request a book">
                                 </form>
                             </aside><!-- .widget-reservation -->
-                        </div><!-- .sidebar -->
+                        </div><!-- .sidebar -->  --}}
                     </div>
                 </div>
             </div>

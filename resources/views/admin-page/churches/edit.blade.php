@@ -15,14 +15,14 @@
                 @endif
                 <ul class="nav nav-tabs nav-justified border-bottom" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="active-tab" data-toggle="tab" href="#active" aria-controls="active" role="tab" aria-selected="true">Church</a>
+                        <a class="nav-link active" id="church-tab" data-toggle="tab" href="#active" aria-controls="active" role="tab" aria-selected="true">Church</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="link-tab" data-toggle="tab" href="#link" aria-controls="link" role="tab" aria-selected="false">Schedules</a>
                     </li>
                 </ul>
                 <div class="tab-content px-1 pt-1 my-4">
-                    <div class="tab-pane active in" id="active" aria-labelledby="active-tab" role="tabpanel">
+                    <div class="tab-pane active in" id="active" aria-labelledby="church-tab" role="tabpanel">
                         <div class="row">
                             <div class="col-md-8">
                                 <form action="{{ route('admin.church.update', $church->church_uuid) }}" method="post" enctype="multipart/form-data">
@@ -117,11 +117,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane" id="link" aria-labelledby="link-tab" role="tabpanel">
-
-                    </div>
-                    <div class="tab-pane" id="dropdownOpt1" aria-labelledby="dropdownOpt1-tab" role="tabpanel">
-                    </div>
+                    <div class="tab-pane" id="link" aria-labelledby="link-tab" role="tabpanel"></div>
                 </div>
             </div>
         </div>

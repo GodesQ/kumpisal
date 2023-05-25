@@ -7,15 +7,23 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use DB;
 
-
 use App\Http\Requests\Church\CreateChurchRequest;
 use App\Http\Requests\Church\UpdateChurchRequest;
 
 use DataTables;
 use App\Models\Church;
+use App\Models\ChurchDay;
+
+use App\Repositories\ChurchScheduleRepository;
 
 class ChurchController extends Controller
 {
+    protected $churchScheduleRepository;
+
+    public function __construct(ChurchScheduleRepository $churchScheduleRepository)
+    {
+        $this->churchScheduleRepository = $churchScheduleRepository;
+    }
 
     public function searchPage(Request $request) {
         $churches = Church::active(1)->latest()->with('schedules')->paginate(10);
@@ -93,12 +101,15 @@ class ChurchController extends Controller
         $save_file = $file->move(public_path().'/admin-assets/images/churches', $church_image_name);
 
         if($save_file) {
-            $save_church = Church::create(array_merge($data, [
+
+            $church = Church::create(array_merge($data, [
                 'church_uuid' => Str::orderedUuid(),
                 'church_image' => $church_image_name
             ]));
 
-            if(!$save_church) {
+            $saveDay = $this->churchScheduleRepository->createDay($request, $church);
+
+            if(!$church) {
                 $new_upload_image = public_path('/admin-assets/images/churches/') . $request->church_image_name;
                 $remove_image = @unlink($new_upload_image);
                 return back()->with('fail', 'Failed to create church. Please Try Again.');

@@ -134,6 +134,7 @@
             }
 
             my_marker = new google.maps.Marker({
+                position:  new google.maps.LatLng(14.5995124, 120.9842195   ),
                 map: map,
                 icon: user_icon_marker,
                 draggable: true,
@@ -145,13 +146,13 @@
             google.maps.event.addListener( searchBox, 'places_changed', function () {
                 var places = searchBox.getPlaces(), bounds = new google.maps.LatLngBounds(), i, place, lat, long, resultArray, address = places[0].formatted_address;
 
-                // for( i = 0; place = places[i]; i++ ) {
-                //     bounds.extend( place.geometry.location );
-                //     my_marker.setPosition( place.geometry.location );  // Set my_marker position new.
-                // }
+                for( i = 0; place = places[i]; i++ ) {
+                    bounds.extend( place.geometry.location );
+                    my_marker.setPosition( place.geometry.location );  // Set my_marker position new.
+                }
 
-                // map.fitBounds( bounds );  // Fit to the bound
-                // map.setZoom( 15 ); // This function sets the zoom to 15, meaning zooms to level 15.
+                map.fitBounds( bounds );  // Fit to the bound
+                map.setZoom( 15 ); // This function sets the zoom to 15, meaning zooms to level 15.
 
                 lat = places[0].geometry.location.lat()
                 long = places[0].geometry.location.lng()
