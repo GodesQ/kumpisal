@@ -10,39 +10,55 @@
             <input type="hidden" id="longitude" value="{{ $church->longitude }}" >
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-7">
-                        <img src="{{ asset('admin-assets/images/churches' . '/' . $church->church_image) }}" alt="slider-01" style="height: 400px; width: 100%; object-fit: cover;"></a>
+                    <div class="col-lg-8 order-md-2">
+                        <img class="mb-2" src="{{ asset('admin-assets/images/churches' . '/' . $church->church_image) }}" alt="slider-01" style="height: 450px; width: 100%; object-fit: cover;"></a>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <div class="card-title">
-                                    <h4>Confession Schedules</h4>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <table class="open-table">
-                                    <tbody>
-                                        @forelse ($church->active_schedules as $schedule)
-                                            <tr>
-                                                <td class="day">{{ date_format(new DateTime($schedule->schedule_date), 'F d, Y') }}</td>
-                                                <td class="time">{{ date_format(new DateTime($schedule->started_time), 'g:i A') }} - {{ date_format(new DateTime($schedule->end_time), 'g:i A') }}</td>
-                                            </tr>
-                                        @empty
-                                            <tr>
-                                                <td colspan="2">No Schedules Found</td>
-                                            </tr>
-                                        @endforelse
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                    <div class="col-lg-4 order-md-1">
+                        <table class="open-table table">
+                            <thead>
+                                <tr>
+                                    <th style="border: 1px solid rgb(61, 61, 61) !important; text-align: center;" colspan="2">Confession Schedules</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']; ?>
+                                @foreach ($days as $day)
+                                    <tr>
+                                        <td style="border: 1px solid rgb(61, 61, 61) !important;" align="center" class="day">
+                                            {{ Str::ucfirst($day) }}
+                                        </td>
+                                        <td style="border: 1px solid rgb(61, 61, 61) !important;" align="center" class="time">
+                                            @if(!$church->{'has_' . $day . '_sched'})
+                                                Not Available
+                                            @else
+                                                <?php
+                                                    $dayEntries = array_filter($church->schedules->toArray(), function ($schedule) use ($day) {
+                                                        return $schedule['day'] === $day;
+                                                    });
+
+                                                    usort($dayEntries, function ($a, $b) {
+                                                        return strtotime($a['start_time']) - strtotime($b['start_time']);
+                                                    });
+                                                ?>
+                                                @forelse ($dayEntries as $sched)
+                                                    <div>
+                                                        {{ date_format(new DateTime($sched['start_time']), 'h:i A') . ' - ' . date_format(new DateTime($sched['end_time']), 'h:i A') }}
+                                                    </div>
+                                                @empty
+                                                    Time Not Found
+                                                @endforelse
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-7">
+                    <div class="col-lg-12">
                         <div class="place__left">
-                            <div class="place__box place__box--npd mt-3">
+                            <div class="place__box--npd mt-3">
                                 <h1>{{ $church->name }}</h1>
                             </div><!-- .place__box -->
                             <hr>
@@ -87,137 +103,7 @@
                                     </li> --}}
                                 </ul>
                             </div><!-- .place__box -->
-                            <div class="place__box place__box-open">
-                                <h3 class="place__title--additional">
-                                    Confession Schedules
-                                </h3>
-                                <table class="open-table">
-                                    <tbody>
-                                        @forelse ($church->active_schedules as $schedule)
-                                            <tr>
-                                                <td class="day">{{ date_format(new DateTime($schedule->schedule_date), 'F d, Y') }}</td>
-                                                <td class="time">{{ date_format(new DateTime($schedule->started_time), 'g:i A') }} - {{ date_format(new DateTime($schedule->end_time), 'g:i A') }}</td>
-                                            </tr>
-                                        @empty
-                                            <tr>
-                                                <td colspan="2">No Schedules Found</td>
-                                            </tr>
-                                        @endforelse
-                                    </tbody>
-                                </table>
-                            </div><!-- .place__box -->
                         </div><!-- .place__left -->
-                    </div>
-                     <div class="col-lg-4">
-                    {{--    <div class="sidebar sidebar--shop sidebar--border">
-                            <div class="widget-reservation-mini">
-                                <h3>Make a Schedule</h3>
-                                <a href="#" class="open-wg btn">Request</a>
-                            </div>
-                            <aside class="widget widget-shadow widget-reservation">
-                                <h3>Make a Schedule</h3>
-                                <form action="#" method="POST" class="form-underline">
-                                    <div class="field-select has-sub field-guest">
-                                        <span class="sl-icon"><i class="la la-user-friends"></i></span>
-                                        <input type="text" placeholder="Guest" readonly>
-                                        <i class="la la-angle-down"></i>
-                                        <div class="field-sub">
-                                            <ul>
-                                                <li>
-                                                    <span>Adults</span>
-                                                    <div class="shop-details__quantity">
-                                                        <span class="minus">
-                                                            <i class="la la-minus"></i>
-                                                        </span>
-                                                        <input type="number" name="quantity" value="0"
-                                                            class="qty number_adults">
-                                                        <span class="plus">
-                                                            <i class="la la-plus"></i>
-                                                        </span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <span>Childrens</span>
-                                                    <div class="shop-details__quantity">
-                                                        <span class="minus">
-                                                            <i class="la la-minus"></i>
-                                                        </span>
-                                                        <input type="number" name="quantity" value="0"
-                                                            class="qty number_childrens">
-                                                        <span class="plus">
-                                                            <i class="la la-plus"></i>
-                                                        </span>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="field-select field-date">
-                                        <span class="sl-icon"><i class="la la-calendar-alt"></i></span>
-                                        <input type="text" placeholder="Date" class="datepicker">
-                                        <i class="la la-angle-down"></i>
-                                    </div>
-                                    <div class="field-select has-sub field-time">
-                                        <span class="sl-icon"><i class="la la-clock"></i></span>
-                                        <input type="text" placeholder="Time" readonly>
-                                        <i class="la la-angle-down"></i>
-                                        <div class="field-sub">
-                                            <ul>
-                                                <li><a href="#">12:00 AM</a></li>
-                                                <li><a href="#">12:30 AM</a></li>
-                                                <li><a href="#">1:00 AM</a></li>
-                                                <li><a href="#">1:30 AM</a></li>
-                                                <li><a href="#">2:00 AM</a></li>
-                                                <li><a href="#">2:30 AM</a></li>
-                                                <li><a href="#">3:00 AM</a></li>
-                                                <li><a href="#">3:30 AM</a></li>
-                                                <li><a href="#">4:00 AM</a></li>
-                                                <li><a href="#">4:30 AM</a></li>
-                                                <li><a href="#">5:00 AM</a></li>
-                                                <li><a href="#">5:30 AM</a></li>
-                                                <li><a href="#">6:00 AM</a></li>
-                                                <li><a href="#">6:30 AM</a></li>
-                                                <li><a href="#">7:00 AM</a></li>
-                                                <li><a href="#">7:30 AM</a></li>
-                                                <li><a href="#">8:00 AM</a></li>
-                                                <li><a href="#">8:30 AM</a></li>
-                                                <li><a href="#">9:00 AM</a></li>
-                                                <li><a href="#">9:30 AM</a></li>
-                                                <li><a href="#">10:00 AM</a></li>
-                                                <li><a href="#">10:30 AM</a></li>
-                                                <li><a href="#">11:00 AM</a></li>
-                                                <li><a href="#">11:30 AM</a></li>
-                                                <li><a href="#">12:00 PM</a></li>
-                                                <li><a href="#">12:30 PM</a></li>
-                                                <li><a href="#">1:00 PM</a></li>
-                                                <li><a href="#">1:30 PM</a></li>
-                                                <li><a href="#">2:00 PM</a></li>
-                                                <li><a href="#">2:30 PM</a></li>
-                                                <li><a href="#">3:00 PM</a></li>
-                                                <li><a href="#">3:30 PM</a></li>
-                                                <li><a href="#">4:00 PM</a></li>
-                                                <li><a href="#">4:30 PM</a></li>
-                                                <li><a href="#">5:00 PM</a></li>
-                                                <li><a href="#">5:30 PM</a></li>
-                                                <li><a href="#">6:00 PM</a></li>
-                                                <li><a href="#">6:30 PM</a></li>
-                                                <li><a href="#">7:00 PM</a></li>
-                                                <li><a href="#">7:30 PM</a></li>
-                                                <li><a href="#">8:00 PM</a></li>
-                                                <li><a href="#">8:30 PM</a></li>
-                                                <li><a href="#">9:00 PM</a></li>
-                                                <li><a href="#">9:30 PM</a></li>
-                                                <li><a href="#">10:00 PM</a></li>
-                                                <li><a href="#">10:30 PM</a></li>
-                                                <li><a href="#">11:00 PM</a></li>
-                                                <li><a href="#">11:30 PM</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <input type="submit" name="submit" value="Request a book">
-                                </form>
-                            </aside><!-- .widget-reservation -->
-                        </div><!-- .sidebar -->  --}}
                     </div>
                 </div>
             </div>

@@ -10,7 +10,7 @@
             <div class="member-wrap">
                 @if(!auth()->user()->is_verify)
                     <div class="alert alert-danger p-2 w-100">
-                        Email verification required. Please verify your email to unlock additional features.
+                        Your email has not been verified yet.
                     </div>
                 @endif
                 <div class="member-wrap-top">

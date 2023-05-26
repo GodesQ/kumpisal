@@ -14,15 +14,18 @@ use DataTables;
 use App\Models\Church;
 use App\Models\ChurchDay;
 
-use App\Repositories\ChurchScheduleRepository;
+use App\Repositories\ChurchRepository;
+use App\Repositories\ChurchTimeScheduleRepository;
 
 class ChurchController extends Controller
 {
-    protected $churchScheduleRepository;
+    protected $ChurchRepository;
+    protected $ChurchTimeScheduleRepository;
 
-    public function __construct(ChurchScheduleRepository $churchScheduleRepository)
+    public function __construct(ChurchRepository $ChurchRepository, ChurchTimeScheduleRepository $ChurchTimeScheduleRepository)
     {
-        $this->churchScheduleRepository = $churchScheduleRepository;
+        $this->ChurchRepository = $ChurchRepository;
+        $this->ChurchTimeScheduleRepository = $ChurchTimeScheduleRepository;
     }
 
     public function searchPage(Request $request) {
@@ -65,7 +68,7 @@ class ChurchController extends Controller
     }
 
     public function detailPage(Request $request) {
-        $church = Church::where('church_uuid', $request->uuid)->with('active_schedules')->first();
+        $church = Church::where('church_uuid', $request->uuid)->with('schedules')->first();
         return view('user-page.church-listing.church-info', compact('church'));
     }
 
@@ -97,17 +100,11 @@ class ChurchController extends Controller
         $file = $request->file('church_image');
         $church_image_name = Str::snake($request->name) . '.' . $file->getClientOriginalExtension();
 
-        // save to folder
         $save_file = $file->move(public_path().'/admin-assets/images/churches', $church_image_name);
 
         if($save_file) {
-
-            $church = Church::create(array_merge($data, [
-                'church_uuid' => Str::orderedUuid(),
-                'church_image' => $church_image_name
-            ]));
-
-            $saveDay = $this->churchScheduleRepository->createDay($request, $church);
+            $church = $this->ChurchRepository->store($request, $data, $church_image_name);
+            $saveScheduleTime = $this->ChurchTimeScheduleRepository->saveTime($request, $church);
 
             if(!$church) {
                 $new_upload_image = public_path('/admin-assets/images/churches/') . $request->church_image_name;
@@ -122,11 +119,12 @@ class ChurchController extends Controller
     }
 
     public function edit(Request $request) {
-        $church = Church::where('church_uuid', $request->uuid)->with('active_schedules')->firstOrFail();
+        $church = Church::where('church_uuid', $request->uuid)->with('schedules')->firstOrFail();
         return view('admin-page.churches.edit', compact('church'));
     }
 
     public function update(UpdateChurchRequest $request) {
+        // dd($request->all());
         $data = $request->validated();
         $church = Church::where('church_uuid', $request->uuid)->firstOrFail();
 
@@ -144,10 +142,8 @@ class ChurchController extends Controller
             $save_file = $file->move(public_path().'/admin-assets/images/churches', $church_image_path);
         }
 
-        $save_church = $church->update(array_merge($data, [
-            'church_image' => $church_image_path,
-            'is_active' => $request->has('is_active') ? true : false,
-        ]));
+        $save_church = $this->ChurchRepository->update($request, $data, $church, $church_image_path);
+        $saveScheduleTime = $this->ChurchTimeScheduleRepository->saveTime($request, $church);
 
         if(!$save_church && $save_file) {
             $new_upload_image = public_path('/admin-assets/images/churches/') . $request->church_image_name;

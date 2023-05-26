@@ -16,7 +16,7 @@
         <tr>
             <td>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="monday_sched" name="day[]" value="monday" checked>
+                    <input class="form-check-input" type="checkbox" id="monday_sched" name="has_monday_sched" value="monday" checked>
                     <label class="form-label" for="monday_sched">
                         <h5>Monday</h5>
                     </label>
@@ -46,7 +46,7 @@
         <tr>
             <td>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="tuesday_sched" name="day[]" value="tuesday" checked>
+                    <input class="form-check-input" type="checkbox" id="tuesday_sched" name="has_tuesday_sched" value="tuesday" checked>
                     <label class="form-label" for="tuesday_sched">
                         <h5>Tuesday</h5>
                     </label>
@@ -76,7 +76,7 @@
         <tr>
             <td>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="wednesday_sched" name="day[]" value="wednesday" checked>
+                    <input class="form-check-input" type="checkbox" id="wednesday_sched" name="has_wednesday_sched" value="wednesday" checked>
                     <label class="form-label" for="wednesday_sched">
                         <h5>Wednesday</h5>
                     </label>
@@ -106,7 +106,7 @@
         <tr>
             <td>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="thursday_sched" name="day[]" value="thursday" checked>
+                    <input class="form-check-input" type="checkbox" id="thursday_sched" name="has_thursday_sched" value="thursday" checked>
                     <label class="form-label" for="thursday_sched">
                         <h5>Thursday</h5>
                     </label>
@@ -136,7 +136,7 @@
         <tr>
             <td>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="friday_sched" name="day[]" value="friday" checked>
+                    <input class="form-check-input" type="checkbox" id="friday_sched" name="has_friday_sched" value="friday" checked>
                     <label class="form-label" for="friday_sched">
                         <h5>Friday</h5>
                     </label>
@@ -166,7 +166,7 @@
         <tr>
             <td>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="saturday_sched" name="day[]" value="saturday" checked>
+                    <input class="form-check-input" type="checkbox" id="saturday_sched" name="has_saturday_sched" value="saturday" checked>
                     <label class="form-label" for="saturday_sched">
                         <h5>Saturday</h5>
                     </label>
@@ -197,7 +197,7 @@
         <tr>
             <td>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="sunday_sched" name="day[]" value="sunday" checked>
+                    <input class="form-check-input" type="checkbox" id="sunday_sched" name="has_sunday_sched" value="sunday" checked>
                     <label class="form-label" for="sunday_sched">
                         <h5>Sunday</h5>
                     </label>

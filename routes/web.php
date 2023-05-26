@@ -22,6 +22,7 @@ use App\Http\Controllers\Web\ConfessionScheduleController;
 */
 Route::post('login', [UserAuthController::class, 'saveLogin'])->name('login.user');
 Route::post('register', [UserAuthController::class, 'saveRegister'])->name('register.user');
+Route::get('/user_verify_email', [UserAuthController::class, 'verifyEmail'])->name('user.verify_email');
 
 Route::get('/', function () {
     return view('user-page.home');
@@ -37,7 +38,6 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['auth']], fu
     Route::get('profile', [UserController::class, 'profile'])->name('profile');
     Route::post('profile/{uuid}', [UserController::class, 'saveProfile'])->name('profile.post');
     Route::post('change_password/{uuid}', [UserController::class, 'changePassword'])->name('change_password.post');
-
     Route::post('logout', [UserAuthController::class, 'logout'])->name('logout');
 });
 
@@ -46,6 +46,9 @@ Route::post('admin/login', [AdminAuthController::class, 'saveLogin'])->name('adm
 
 Route::group(['prefix'=> 'admin', 'as' => 'admin.', 'middleware' => ['auth.admin']], function(){
     Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
+
+    Route::get('/profile', [AdminController::class, 'profile'])->name('profile');
+    Route::post('/profile/{id}', [AdminController::class, 'saveProfile'])->name('profile.post');
 
     Route::get('/users', [UserController::class, 'lists'])->name('users.list');
     Route::get('/user/create', [UserController::class, 'create'])->name('user.create');

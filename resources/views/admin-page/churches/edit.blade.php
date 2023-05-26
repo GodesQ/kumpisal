@@ -13,19 +13,19 @@
                 @if (Session::get('success'))
                     <div class="alert alert-success">{{ Session::get('success') }}</div>
                 @endif
-                <ul class="nav nav-tabs nav-justified border-bottom" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="church-tab" data-toggle="tab" href="#active" aria-controls="active" role="tab" aria-selected="true">Church</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="link-tab" data-toggle="tab" href="#link" aria-controls="link" role="tab" aria-selected="false">Schedules</a>
-                    </li>
-                </ul>
-                <div class="tab-content px-1 pt-1 my-4">
-                    <div class="tab-pane active in" id="active" aria-labelledby="church-tab" role="tabpanel">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <form action="{{ route('admin.church.update', $church->church_uuid) }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('admin.church.update', $church->church_uuid) }}" method="post" enctype="multipart/form-data">
+                    <ul class="nav nav-tabs nav-justified border-bottom" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="church-tab" data-toggle="tab" href="#active" aria-controls="active" role="tab" aria-selected="true">Church</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="link-tab" data-toggle="tab" href="#link" aria-controls="link" role="tab" aria-selected="false">Schedules</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content px-1 pt-1 my-4">
+                        <div class="tab-pane active in" id="active" aria-labelledby="church-tab" role="tabpanel">
+                            <div class="row">
+                                <div class="col-md-8">
                                     @csrf
                                     <input type="hidden" name="current_image" value="{{ $church->church_image }}">
                                     <div class="row">
@@ -105,58 +105,65 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-end mt-3">
-                                        <button class="btn btn-primary"> Save Church </button>
-                                    </div>
-                                </form>
+                                </div>
+                                <div class="col-md-4">
+                                    <h5>Church Image</h5>
+                                    <img src="{{ asset('/admin-assets/images/churches') . '/' . $church->church_image }}" alt="{{ $church->name }}" class="w-100">
+                                    <a href="{{ asset('/admin-assets/images/churches') . '/' . $church->church_image }}" class="btn btn-primary mt-2" target="_blank">View Full Image</a>
+                                </div>
                             </div>
-                            <div class="col-md-4">
-                                <h5>Church Image</h5>
-                                <img src="{{ asset('/admin-assets/images/churches') . '/' . $church->church_image }}" alt="{{ $church->name }}" class="w-100">
-                                <a href="{{ asset('/admin-assets/images/churches') . '/' . $church->church_image }}" class="btn btn-primary mt-2" target="_blank">View Full Image</a>
+                        </div>
+                        <div class="tab-pane" id="link" aria-labelledby="link-tab" role="tabpanel">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title">Confession Schedules</div>
+                                </div>
+                                <div class="card-body">
+                                    @include('admin-page.churches.church-schedule-form.schedule-edit-form')
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane" id="link" aria-labelledby="link-tab" role="tabpanel"></div>
-                </div>
+                    <div class="d-flex justify-content-end mt-3">
+                        <button class="btn btn-primary">Save Church</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 @endsection
 
 @push('stylesheets')
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('admin-assets/app-assets/css/components.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endpush
 
 @push('scripts')
-    <script src="{{ asset('admin-assets/app-assets/js/scripts/navs/navs.js') }}"></script>
-    <script>
-        function initialize() {
-            let address = document.querySelector('#address');
-            let latitude = document.querySelector('#latitude');
-            let longitude = document.querySelector('#longitude');
+<script>
+    function initialize() {
+        let address = document.querySelector('#address');
+        let latitude = document.querySelector('#latitude');
+        let longitude = document.querySelector('#longitude');
 
-            // for search
-            let searchBox = new google.maps.places.SearchBox( address );
+        // for search
+        let searchBox = new google.maps.places.SearchBox( address );
 
-            google.maps.event.addListener( searchBox, 'places_changed', function () {
-                var places = searchBox.getPlaces(), bounds = new google.maps.LatLngBounds(), i, place, lat, long, resultArray, address = places[0].formatted_address;
-                lat = places[0].geometry.location.lat()
-                long = places[0].geometry.location.lng();
-                latitude.value = lat;
-                longitude.value = long;
-                resultArray =  places[0].address_components;
-            });
-        }
-
-        $(document).ready(function() {
-            $('#church_address').keydown(function(event){
-                if(event.keyCode == 13) {
-                    event.preventDefault();
-                    return false;
-                }
-            });
+        google.maps.event.addListener( searchBox, 'places_changed', function () {
+            var places = searchBox.getPlaces(), bounds = new google.maps.LatLngBounds(), i, place, lat, long, resultArray, address = places[0].formatted_address;
+            lat = places[0].geometry.location.lat()
+            long = places[0].geometry.location.lng();
+            latitude.value = lat;
+            longitude.value = long;
+            resultArray =  places[0].address_components;
         });
-    </script>
+    }
+
+    $(document).ready(function() {
+        $('#church_address').keydown(function(event){
+            if(event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+            }
+        });
+    });
+</script>
 @endpush

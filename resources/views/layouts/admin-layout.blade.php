@@ -60,7 +60,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="/admin/users" aria-expanded="false">
+                            <a class="sidebar-link" href="{{ route('home') }}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-user-plus"></i>
                                 </span>
@@ -76,15 +76,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{ route('admin.confession_schedules.list') }}" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-calendar-event"></i>
-                                </span>
-                                <span class="hide-menu">Confession Schedules</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="./ui-forms.html" aria-expanded="false">
+                            <a class="sidebar-link" href="#" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-bookmark"></i>
                                 </span>
@@ -128,7 +120,7 @@
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
                                     aria-labelledby="drop2">
                                     <div class="message-body">
-                                        <a href="javascript:void(0)"
+                                        <a href="{{ route('admin.profile') }}"
                                             class="d-flex align-items-center gap-2 dropdown-item">
                                             <i class="ti ti-user fs-6"></i>
                                             <p class="mb-0 fs-3">My Profile</p>
@@ -137,11 +129,6 @@
                                             class="d-flex align-items-center gap-2 dropdown-item">
                                             <i class="ti ti-mail fs-6"></i>
                                             <p class="mb-0 fs-3">My Account</p>
-                                        </a>
-                                        <a href="javascript:void(0)"
-                                            class="d-flex align-items-center gap-2 dropdown-item">
-                                            <i class="ti ti-list-check fs-6"></i>
-                                            <p class="mb-0 fs-3">My Task</p>
                                         </a>
                                         <a href="{{ route('admin.logout') }}" class="btn btn-outline-primary mx-3 mt-2 d-block" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                                         <form method="POST" action="{{ route('admin.logout') }}" id="logout-form" style="display: none;">
