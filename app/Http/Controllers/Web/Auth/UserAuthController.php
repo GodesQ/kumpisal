@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 
 use App\Http\Requests\UserAuth\UserLoginRequest;
 use App\Http\Requests\UserAuth\UserRegisterRequest;
+use App\Http\Requests\UserAuth\UserResendVerificationRequest;
 
 use App\Models\User;
 use App\Mail\UserEmailVerification;
@@ -24,8 +25,7 @@ class UserAuthController extends Controller
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             if(!$user->is_verify) {
-                Auth::logout();
-                return redirect()->route('home')->with('fail', 'Please verify your email to continue.');
+                return redirect()->route('user.verify_email_message')->with('fail', 'Please verify your email to continue.');
             }
             return redirect()->route('user.dashboard')->with('login-success', 'Login Successfully');
         } else {
@@ -53,8 +53,11 @@ class UserAuthController extends Controller
 
         // SEND EMAIL FOR VERIFICATION
         Mail::to($user->email)->send(new UserEmailVerification($details));
-
         return redirect()->route('home')->with('success', 'Register Successfully');
+    }
+
+    public function verifyEmailMessage(Request $request) {
+        return view('user-page.misc.verify_email_message');
     }
 
     public function verifyEmail(Request $request) {
@@ -66,10 +69,27 @@ class UserAuthController extends Controller
         return redirect()->route('home')->with('success', 'Email Verify Successfully');
     }
 
+    public function resendEmailVerification(UserResendVerificationRequest $request) {
+        $user = Auth::user();
+
+        # details for sending email to worker
+        $details = [
+            'title' => 'Verification Email from Kumpisalan App',
+            'email' => $user->email,
+            'name' => $user->name,
+        ];
+
+        Mail::to($user->email)->send(new UserEmailVerification($details));
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Successfully Resend Email'
+        ], 200);
+
+    }
+
     public function logout(Request $request) {
         Auth::logout();
         return redirect()->route('home')->with('success', 'Logout Successfully');
     }
-
-
 }

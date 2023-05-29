@@ -22,8 +22,9 @@
     <link rel="stylesheet" href="{{ URL::asset('user-assets/css/responsive.css') }}" />
 
     <link rel="stylesheet" href="{{ URL::asset('admin-assets/css/icons/tabler-icons/tabler-icons.css') }}" />
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
+
+    @stack('styles')
 </head>
 
 <body>

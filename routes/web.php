@@ -23,23 +23,27 @@ use App\Http\Controllers\Web\ConfessionScheduleController;
 Route::post('login', [UserAuthController::class, 'saveLogin'])->name('login.user');
 Route::post('register', [UserAuthController::class, 'saveRegister'])->name('register.user');
 Route::get('/user_verify_email', [UserAuthController::class, 'verifyEmail'])->name('user.verify_email');
+Route::post('/resend_email_verification', [UserAuthController::class, 'resendEmailVerification'])->name('user.resend_email_verification')->middleware('auth');
+
+Route::get('/verify_email', [UserAuthController::class, 'verifyEmailMessage'])->name('user.verify_email_message');
 
 Route::get('/', function () {
     return view('user-page.home');
 })->name('home');
 
-Route::get('churches', [ChurchController::class, 'searchPage'])->name('churches.searchPage');
-Route::get('churches/fetch', [ChurchController::class, 'fetchData'])->name('churches.fetchData');
-Route::get('church/{uuid}/{name}', [ChurchController::class, 'detailPage'])->name('churches.detailPage');
+Route::get('churches', [ChurchController::class, 'searchPage'])->name('churches.searchPage')->middleware('auth', 'auth.user.verify_email');
+Route::get('churches/fetch', [ChurchController::class, 'fetchData'])->name('churches.fetchData')->middleware('auth', 'auth.user.verify_email');
+Route::get('church/{uuid}/{name}', [ChurchController::class, 'detailPage'])->name('churches.detailPage')->middleware('auth', 'auth.user.verify_email');
 
 
-Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['auth']], function() {
+Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['auth', 'auth.user.verify_email']], function() {
     Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
     Route::get('profile', [UserController::class, 'profile'])->name('profile');
     Route::post('profile/{uuid}', [UserController::class, 'saveProfile'])->name('profile.post');
     Route::post('change_password/{uuid}', [UserController::class, 'changePassword'])->name('change_password.post');
-    Route::post('logout', [UserAuthController::class, 'logout'])->name('logout');
 });
+
+Route::post('user/logout', [UserAuthController::class, 'logout'])->name('user.logout')->middleware('auth');
 
 Route::get('admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
 Route::post('admin/login', [AdminAuthController::class, 'saveLogin'])->name('admin.post.login');
@@ -49,6 +53,7 @@ Route::group(['prefix'=> 'admin', 'as' => 'admin.', 'middleware' => ['auth.admin
 
     Route::get('/profile', [AdminController::class, 'profile'])->name('profile');
     Route::post('/profile/{id}', [AdminController::class, 'saveProfile'])->name('profile.post');
+    Route::post('/change_password/{id}', [AdminController::class, 'changePassword'])->name('change_password.post');
 
     Route::get('/users', [UserController::class, 'lists'])->name('users.list');
     Route::get('/user/create', [UserController::class, 'create'])->name('user.create');

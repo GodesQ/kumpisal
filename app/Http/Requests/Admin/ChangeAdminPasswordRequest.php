@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SaveAdminProfileRequest extends FormRequest
+class ChangeAdminPasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,9 @@ class SaveAdminProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|max:20',
-            'firstname' => 'required|max:20',
-            'lastname' => 'required|max:20',
-            'middlename' => 'nullable|max:20',
-            'is_verify' => 'nullable',
-            'is_active' => 'nullable'
+            'old_password' => 'required',
+            'new_password' => 'required|min:3',
+            'confirm_password' => 'required|same:new_password'
         ];
     }
 }
