@@ -27,10 +27,10 @@
 
     <main id="main" class="site-main">
         <div class="site-content owner-content">
-            @include('user-page.user-dashboard.user-menu')
+            @include('user-page.representative-dashboard.representative-menu')
             <div class="container">
                 <div class="member-wrap">
-                    <form action="{{ route('user.profile.post', auth()->user()->user_uuid) }}" enctype="multipart/form-data" method="POST" class="member-profile form-underline">
+                    <form action="{{ route('representative.profile.post', auth()->user()->id) }}" enctype="multipart/form-data" method="POST" class="member-profile form-underline">
                         @csrf
                         <h3>Avatar</h3>
                         <div class="member-avatar">
@@ -86,6 +86,33 @@
                                 </div>
                             </div>
                         </div>
+                        <h3>Other Info</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="field-input">
+                                    <label for="years_of_service">Years of Service</label>
+                                    <input type="number" name="years_of_service" id="years_of_service" value="{{ auth()->user()->representative_info->years_of_service }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="field-input">
+                                    <label for="contact_no">Contact No</label>
+                                    <input type="text" name="contact_no" id="contact_no" value="{{ auth()->user()->representative_info->contact_no }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="field-input">
+                                    <label for="birthdate">Birthdate</label>
+                                    <input type="date" name="birthdate" id="birthdate" value="{{ auth()->user()->representative_info->birthdate }}" onchange="getAge(this)">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="field-input">
+                                    <label for="age">Age</label>
+                                    <input type="number" name="age" id="age" readonly value="{{ auth()->user()->representative_info->age }}">
+                                </div>
+                            </div>
+                        </div>
                         <div class="field-submit">
                             <input type="submit" value="Update">
                         </div>
@@ -125,6 +152,22 @@
 
 @push('scripts')
     <script>
+        function getAge(e) {
+            var today = new Date();
+            var birthDate = new Date(e.value);
+            var age = today.getFullYear() - birthDate.getFullYear();
+            var m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            const ageInput = document.querySelector("#age");
+            ageInput.value = age;
+        }
+    </script>
+@endpush
+
+@push('scripts')
+    <script>
         var map;
         var address;
         function initialize() {
@@ -148,7 +191,7 @@
 
             const user_icon_marker = {
                 url: '../../../user-assets/images/icons/user-marker.png',
-                scaledSize: new google.maps.Size(40,40)
+                scaledSize: new google.maps.Size(50,50)
             }
 
             let my_marker = new google.maps.Marker({

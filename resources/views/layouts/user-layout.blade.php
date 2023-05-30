@@ -194,8 +194,8 @@
                                         <img src="{{ asset('admin-assets/images/profile/' . 'user-1.jpg') }}" onclick="handleUserDropdown()" alt="" width="35" height="35" class="rounded-circle user-drop-btn">
                                     @endif
                                     <div id="myDropdown" class="dropdown-content">
-                                        <a href="{{ route('user.dashboard') }}" title="Dashboard"> <i class="ti ti-dashboard text-primary mr-3" ></i> Dashboard</a>
-                                        <a href="{{ route('user.profile') }}" title="My Profile"> <i class="ti ti-user text-primary mr-3"></i> My Profile</a>
+                                        <a href="{{ auth()->user()->is_admin_generated ? route('representative.dashboard') : route('user.dashboard') }}" title="Dashboard"> <i class="ti ti-dashboard text-primary mr-3" ></i> Dashboard</a>
+                                        <a href="{{ auth()->user()->is_admin_generated ? route('representative.profile') : route('user.profile') }}" title="My Profile"> <i class="ti ti-user text-primary mr-3"></i> My Profile</a>
                                         <a>
                                             <form action="{{ route('user.logout') }}" method="post">
                                                 @csrf

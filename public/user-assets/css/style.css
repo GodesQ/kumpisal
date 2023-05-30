@@ -170,6 +170,18 @@ textarea:focus { border-color: #000; outline: none; }
     color: #fff !important;
 }
 
+.btn-danger {
+    color: #fff;
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+}
+
+@media only screen and (max-width: 475px) {
+    .site-banner__title {
+        font-size: 40px !important;
+    }
+}
+
 .align-center { text-align: center !important; }
 
 .align-left { text-align: left !important; }

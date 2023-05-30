@@ -30,6 +30,7 @@ class User extends Authenticatable
         'longitude',
         'is_verify',
         'email_verified_at',
+        'is_admin_generated',
         'is_active',
         'is_delete'
     ];
@@ -49,4 +50,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function representative_info() {
+        return $this->belongsTo(RepresentativeInfo::class, 'id', 'main_id');
+    }
 }

@@ -8,7 +8,7 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <h4 class="card-title fw-semibold">Representatives List</h4>
-                    <a href="{{ route('admin.user.create') }}" class="btn btn-primary btn-block">Create</a>
+                    <a href="{{ route('admin.representative.create') }}" class="btn btn-primary btn-block">Create</a>
                 </div>
                 <div class="card">
                     <div class="card-body">
@@ -53,7 +53,7 @@
             responsive: true,
             serverSide: true,
             ajax: {
-                url: "{{ route('admin.users.list') }}",
+                url: "{{ route('admin.representatives.list') }}",
             },
             columns: [
                 {
@@ -73,8 +73,14 @@
                     searchable: true
                 },
                 {
-                    data: 'verified',
-                    name: 'verified',
+                    data: 'contact_no',
+                    name: 'contact_no',
+                    orderable: true,
+                    searchable: true
+                },
+                {
+                    data: 'church',
+                    name: 'church',
                     orderable: true,
                     searchable: true
                 },

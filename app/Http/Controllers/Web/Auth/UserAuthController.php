@@ -27,7 +27,8 @@ class UserAuthController extends Controller
             if(!$user->is_verify) {
                 return redirect()->route('user.verify_email_message')->with('fail', 'Please verify your email to continue.');
             }
-            return redirect()->route('user.dashboard')->with('login-success', 'Login Successfully');
+
+            return Auth::user()->is_admin_generated ? redirect()->route('representative.dashboard')->with('login-success', 'Login Successfully') : redirect()->route('user.dashboard')->with('login-success', 'Login Successfully');
         } else {
             return back()->with('fail', 'Invalid Credentials.');
         }
@@ -57,6 +58,7 @@ class UserAuthController extends Controller
     }
 
     public function verifyEmailMessage(Request $request) {
+        if(Auth::user()->is_verify) return Auth::user()->is_admin_generated ? redirect()->route('representative.dashboard')->with('success', 'Email Already Verified.') : redirect()->route('user.dashboard')->with('success', 'Email Already Verified.');
         return view('user-page.misc.verify_email_message');
     }
 

@@ -8,6 +8,7 @@ use App\Http\Controllers\Web\ChurchController;
 use App\Http\Controllers\Web\Auth\AdminAuthController;
 use App\Http\Controllers\Web\Auth\UserAuthController;
 use App\Http\Controllers\Web\ConfessionScheduleController;
+use App\Http\Controllers\Web\RepresentativeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +44,17 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['auth', 'aut
     Route::post('change_password/{uuid}', [UserController::class, 'changePassword'])->name('change_password.post');
 });
 
+Route::group(['prefix' => 'representative', 'as' => 'representative.', 'middleware' => ['auth', 'auth.user.verify_email']], function() {
+    Route::get('dashboard', [RepresentativeController::class, 'dashboard'])->name('dashboard');
+    Route::get('profile', [RepresentativeController::class, 'profile'])->name('profile');
+    Route::post('profile/{id}', [RepresentativeController::class, 'saveProfile'])->name('profile.post');
+
+    Route::post('change_password/{uuid}', [RepresentativeController::class, 'changePassword'])->name('change_password.post');
+    Route::post('save_schedule', [ConfessionScheduleController::class, 'save_schedule'])->name('save_schedule');
+});
+
 Route::post('user/logout', [UserAuthController::class, 'logout'])->name('user.logout')->middleware('auth');
+
 
 Route::get('admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
 Route::post('admin/login', [AdminAuthController::class, 'saveLogin'])->name('admin.post.login');
@@ -60,6 +71,12 @@ Route::group(['prefix'=> 'admin', 'as' => 'admin.', 'middleware' => ['auth.admin
     Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
     Route::get('/user/edit/{uuid}', [UserController::class, 'edit'])->name('user.edit');
     Route::post('/user/update/{uuid}', [UserController::class, 'update'])->name('user.update');
+
+    Route::get('/representatives', [RepresentativeController::class, 'lists'])->name('representatives.list');
+    Route::get('/representative/create', [RepresentativeController::class, 'create'])->name('representative.create');
+    Route::post('/representative/store', [RepresentativeController::class, 'store'])->name('representative.store');
+    Route::get('/representative/edit/{id}', [RepresentativeController::class, 'edit'])->name('representative.edit');
+    Route::post('/representative/update/{id}', [RepresentativeController::class, 'update'])->name('representative.update');
 
     Route::get('/churches', [ChurchController::class, 'lists'])->name('churches.list');
     Route::get('/church/create', [ChurchController::class, 'create'])->name('church.create');

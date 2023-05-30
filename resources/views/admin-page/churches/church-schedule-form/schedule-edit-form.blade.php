@@ -1,14 +1,14 @@
-<table class="table table-bordered schedule-table">
+<table class="table table-bordered schedule-table table-responsive">
     <thead>
         <tr>
-            <th width="30%">
-                <h4>Day</h4>
+            <th width="20%">
+                <h4 class="text-left">Day</h4>
             </th>
             <th width="50%">
-                <h4>Time</h4>
+                <h4 class="text-center">Time</h4>
             </th>
             <th width="20%" align="center">
-                <h4>Action</h4>
+                <h4 class="text-center">Action</h4>
             </th>
         </tr>
     </thead>
@@ -378,7 +378,7 @@
 
 @push('scripts')
     <script>
-        function addRepeaterForm(container) {
+     function addRepeaterForm(container) {
             let parentContainer = document.querySelector(`#${container}`);
             let repeaterForm = parentContainer.children[0];
 

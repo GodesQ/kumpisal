@@ -5,53 +5,13 @@
 @section('content')
     <main id="main" class="site-main overflow">
         <div class="site-banner" style="background-image: url(user-assets/images/bg/top-banner.png);">
-            <div class="container">
+            <div class="container d-flex align-items-center justify-content-center">
                 <div class="site-banner__content">
-                    <h1 class="site-banner__title">Explore the world</h1>
-                    <form action="#" class="site-banner__search layout-02">
-                        <div class="field-input">
-                            <label for="s">Find</label>
-                            <input class="site-banner__search__input open-suggestion" id="s" type="text"
-                                name="s" placeholder="Ex: fastfood, beer" autocomplete="off">
-                            <div class="search-suggestions name-suggestions">
-                                <ul>
-                                    <li><a href="#"><i class="las la-utensils"></i><span>Restaurant</span></a></li>
-                                    <li><a href="#"><i class="las la-spa"></i><span>Beauty</span></a></li>
-                                    <li><a href="#"><i class="las la-dumbbell"></i><span>Fitness</span></a></li>
-                                    <li><a href="#"><i class="las la-cocktail"></i><span>Nightlight</span></a></li>
-                                    <li><a href="#"><i class="las la-shopping-bag"></i><span>Shopping</span></a></li>
-                                    <li><a href="#"><i class="las la-film"></i><span>Cinema</span></a></li>
-                                </ul>
-                            </div>
-                        </div><!-- .site-banner__search__input -->
-                        <div class="field-input">
-                            <label for="loca">Where</label>
-                            <input class="site-banner__search__input open-suggestion" id="loca" type="text"
-                                name="where" placeholder="Your city" autocomplete="off">
-                            <div class="search-suggestions location-suggestions">
-                                <ul>
-                                    <li><a href="#"><i class="las la-location-arrow"></i><span>Current
-                                                location</span></a></li>
-                                    <li><a href="#"><span>San Francisco, CA</span></a></li>
-                                </ul>
-                            </div>
-                        </div><!-- .site-banner__search__input -->
-                        <div class="field-submit">
-                            <button>
-                                <i class="las la-search la-24-black"></i>
-                            </button>
-                        </div>
-                    </form><!-- .site-banner__search -->
-                    <p class="site-banner__meta">
-                        <span>Popular:</span>
-                        <a title="London" href="city-details-1.html">London</a>
-                        <a title="Paris" href="city-details-1.html">Paris</a>
-                        <a title="Chicago" href="city-details-1.html">Chicago</a>
-                    </p><!-- .site-banner__meta -->
+                    <h1 class="site-banner__title">Kumpisalan: Journey of <br> Self-Discovery and Reflection</h1>
                 </div><!-- .site-banner__content -->
             </div>
         </div><!-- .site-banner -->
-        <div class="cities">
+        {{-- <div class="cities">
             <div class="container">
                 <h2 class="cities__title title offset-item">Popular cities</h2>
                 <div class="cities__content offset-item">
@@ -172,21 +132,7 @@
                     </div>
                 </div><!-- .cities__content -->
             </div>
-        </div><!-- .cities -->
-        <div class="banner-apps" style="background-image: url(images/bg/bg-app-1.jpg);">
-            <div class="container">
-                <div class="banner-apps__content">
-                    <h2 class="banner-apps__title offset-item">Get the App</h2>
-                    <p class="banner-apps__desc offset-item">Download the app and go to travel the world.</p>
-                    <div class="banner-apps__download offset-item">
-                        <a title="App Store" href="#" class="banner-apps__download__iphone"><img
-                                src="images/assets/app-store.png" alt="App Store"></a>
-                        <a title="Google Play" href="#" class="banner-apps__download__android"><img
-                                src="images/assets/google-play.png" alt="Google Play"></a>
-                    </div>
-                </div>
-            </div>
-        </div><!-- .banner-apps -->
+        </div><!-- .cities --> --}}
         <div class="news">
             <div class="container">
                 <h2 class="news__title title title--more offset-item">
