@@ -10,6 +10,7 @@ use App\Http\Controllers\Web\Auth\AdminAuthController;
 use App\Http\Controllers\Web\Auth\UserAuthController;
 use App\Http\Controllers\Web\ConfessionScheduleController;
 use App\Http\Controllers\Web\RepresentativeController;
+use App\Http\Controllers\Web\ContactMessageController;
 
 use App\Models\Church;
 /*
@@ -35,8 +36,10 @@ Route::get('contact-us', function() {
     return view('user-page.misc.contact-us');
 })->name('contact-us');
 
-Route::post('/resend_email_verification', [UserAuthController::class, 'resendEmailVerification'])->name('user.resend_email_verification')->middleware('auth');
+Route::post('/contact-message/store', [ContactMessageController::class, 'store'])->name('contact-message.store');
 
+
+Route::post('/resend_email_verification', [UserAuthController::class, 'resendEmailVerification'])->name('user.resend_email_verification')->middleware('auth');
 Route::get('/verify_email', [UserAuthController::class, 'verifyEmailMessage'])->name('user.verify_email_message');
 
 Route::get('/', function () {
@@ -51,7 +54,8 @@ Route::get('/', function () {
             ->orderBy('distance', 'asc');
     })
     ->latest()
-    ->get(8);
+    ->limit(8)
+    ->get();
 
     return view('user-page.home', compact('near_churches'));
 })->name('home');

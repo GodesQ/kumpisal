@@ -5,12 +5,6 @@
                 <div class="place-thumb">
                     <a class="entry-thumb" href="{{ route('churches.detailPage', ['uuid' => $church->church_uuid, 'name' => $church->name]) }}"><img src="{{ asset('admin-assets/images/churches' . '/' . $church->church_image )}}"
                             alt=""></a>
-                    {{-- <a href="#" class="golo-add-to-wishlist btn-add-to-wishlist "
-                        data-place-id="185">
-                        <span class="icon-heart">
-                            <i class="la la-bookmark large"></i>
-                        </span>
-                    </a> --}}
                 </div>
                 <div class="entry-detail">
                     <div class="entry-head">
@@ -29,7 +23,7 @@
                     </div>
                     <h3 class="place-title">
                         <a href="{{ route('churches.detailPage', ['uuid' => $church->church_uuid, 'name' => $church->name]) }}">
-                            {{ strlen($church->name) > 40 ? substr($church->name, 0, 40) . '...' : $church->name }}
+                            {{ strlen($church->name) > 50 ? substr($church->name, 0, 50) . '...' : $church->name }}
                         </a>
                     </h3>
                 </div>

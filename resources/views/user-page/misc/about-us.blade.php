@@ -4,7 +4,7 @@
 
 @section('content')
     <main id="main" class="site-main">
-        <div class="page-title page-title--small align-left" style="background-image: url(images/bg/bg-about.png);">
+        <div class="page-title page-title--small align-left" style="background-image: url(user-assets/images/bg/bg-about.png);">
             <div class="container">
                 <div class="page-title__content">
                     <h1 class="page-title__name">About Us</h1>
@@ -37,7 +37,6 @@
                             Overall, Kumpisalan seeks to serve the needs of the Catholic community by providing a valuable
                             resource for spiritual growth and practice. We believe that this project has the potential to
                             make a significant impact, and we look forward to its successful implementation and growth.
-
                         </p>
                     </div>
                 </div>

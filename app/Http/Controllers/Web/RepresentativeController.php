@@ -65,7 +65,7 @@ class RepresentativeController extends Controller
                         return $row->representative_info ? $row->representative_info->contact_no : null;
                     })
                     ->addColumn('church', function($row) {
-                        return $row->representative_info ? optional($row->representative_info->church)->name : null;
+                        return $row->representative_info ? substr(optional($row->representative_info->church)->name, 0, 30) . '...' : null;
                     })
                     ->addColumn('action', function($row) {
                         $btn = '<a href="/admin/representative/edit/' .$row->id. '" class="btn btn-primary btn-sm"><i class="ti ti-edit"></i></a>

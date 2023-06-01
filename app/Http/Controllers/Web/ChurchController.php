@@ -93,9 +93,8 @@ class ChurchController extends Controller
     }
 
     public function lists(Request $request) {
-
         if($request->ajax()) {
-            $churches = Church::get();
+            $churches = Church::latest('id')->get();
             return Datatables::of($churches)
                     ->addIndexColumn()
                     ->addColumn('action', function($row) {
@@ -106,7 +105,6 @@ class ChurchController extends Controller
                     ->rawColumns(['action'])
                     ->make(true);
         }
-
         return view('admin-page.churches.list');
     }
 
@@ -119,7 +117,6 @@ class ChurchController extends Controller
 
         $file = $request->file('church_image');
         $church_image_name = Str::snake($request->name) . '.' . $file->getClientOriginalExtension();
-
         $save_file = $file->move(public_path().'/admin-assets/images/churches', $church_image_name);
 
         if($save_file) {
@@ -131,7 +128,6 @@ class ChurchController extends Controller
                 $remove_image = @unlink($new_upload_image);
                 return back()->with('fail', 'Failed to create church. Please Try Again.');
             }
-
             return redirect()->route('admin.churches.list')->with('success', 'Church Successfully Created.');
         }
 

@@ -32,8 +32,8 @@ class UserController extends Controller
                 ->having('distance', '<=', '2')
                 ->orderBy('distance', 'asc');
         })
-        ->get(10);
-
+        ->limit(10)
+        ->get();
 
         return view('user-page.user-dashboard.dashboard', compact('near_churches'));
     }
@@ -87,7 +87,7 @@ class UserController extends Controller
 
     public function lists(Request $request) {
         if($request->ajax()) {
-            $users = User::get();
+            $users = User::where('is_admin_generated', 0)->get();
             return DataTables::of($users)
                     ->addIndexColumn()
                     ->addColumn('verified', function($row){

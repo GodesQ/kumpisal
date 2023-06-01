@@ -75,14 +75,14 @@
                                 <span class="hide-menu">Churches</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
+                        {{-- <li class="sidebar-item">
                             <a class="sidebar-link" href="#" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-bookmark"></i>
                                 </span>
                                 <span class="hide-menu">Saved Churches</span>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->

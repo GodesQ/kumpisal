@@ -9,10 +9,6 @@
                 <div class="site-banner__content">
                     <h1 class="site-banner__title">Kumpisalan: Journey of <br> Self-Discovery and Reflection</h1>
                     <form action="{{ route('churches.searchPage') }}" class="site-banner__search layout-02 offset-item">
-                        {{-- <div class="field-input">
-                            <label for="s">Find</label>
-                            <input class="site-banner__search__input open-suggestion" id="s" type="text" name="s" placeholder="Ex: fastfood, beer" autocomplete="off">
-                        </div><!-- .site-banner__search__input --> --}}
                         <div class="field-input">
                             <label for="loca">Where</label>
                             <input class="site-banner__search__input" id="loca" type="text" name="address" placeholder="Your place">
@@ -23,14 +19,14 @@
                             <button id="field-submit-btn"><i class="las la-search la-24-black"></i></button>
                         </div>
                     </form><!-- .site-banner__search -->
-                </div><!-- .site-banner__content -->
+                </div>
             </div>
         </div><!-- .site-banner -->
         <div class="cities">
             <div class="container">
-                <h3 class="cities__title title offset-item">{{ optional(auth()->user())->latitude && optional(auth()->user())->longitude ? 'Churches Near You' : 'Recent Churches' }}</h3>
+                <h3 class="cities__title title offset-item text-center">{{ optional(auth()->user())->latitude && optional(auth()->user())->longitude ? 'Churches Near You' : 'Churches' }}</h3>
                 <div class="cities__content offset-item">
-                    <div class="row">
+                    <div class="row justify-content-center">
                         @forelse ($near_churches as $church)
                             <div class="col-lg-3 col-sm-6">
                                 <div class="cities__item hover__box">
@@ -39,7 +35,6 @@
                                             <img src="{{ URL::asset('admin-assets/images/churches/' . $church->church_image) }}" alt="Tokyo" class="church-img">
                                         </a>
                                     </div>
-                                    {{-- <h4 class="cities__name">Japan</h4> --}}
                                     <div class="cities__info">
                                         <h3 class="cities__capital">{{ substr($church->name, 0, 30) }}...</h3>
                                         <p class="cities__number">{{ $church->distance ? number_format($church->distance, 2) . 'km' : Str::ucfirst($church->criteria) }} </p>

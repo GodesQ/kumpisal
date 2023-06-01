@@ -166,7 +166,7 @@
                                     </form>
                                 </div>
                             </div><!-- .popup-form -->
-                            <div class="right-header__search">
+                            {{-- <div class="right-header__search">
                                 <a title="Search" href="#" class="search-open">
                                     <i class="las la-search la-24-black"></i>
                                 </a>
@@ -189,7 +189,7 @@
                                         </div><!-- .search__input -->
                                     </form><!-- .search__form -->
                                 </div><!-- .site__search -->
-                            </div>
+                            </div> --}}
                             @auth
                                 <div class="dropdown">
                                     @if(auth()->user()->user_image)

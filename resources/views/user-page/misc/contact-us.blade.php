@@ -4,7 +4,7 @@
 
 @section('content')
 <main id="main" class="site-main contact-main">
-    <div class="page-title page-title--small align-left" style="background-image: url(images/bg/bg-about.png);">
+    <div class="page-title page-title--small align-left" style="background-image: url(user-assets/images/bg/bg-about.png);">
         <div class="container">
             <div class="page-title__content">
                 <h1 class="page-title__name">Contact Us</h1>
@@ -12,7 +12,7 @@
             </div>
         </div>
     </div><!-- .page-title -->
-    <div class="site-content site-contact">
+    <div class="">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -34,27 +34,32 @@
                 </div>
                 <div class="col-md-6">
                     <div class="contact-form">
-                        <h2>Get in touch with us</h2>
-                        <form action="#" method="POST" class="form-underline">
-                            <div class="field-inline">
-                                <div class="field-input">
-                                    <input type="text" name="first_name" value="" placeholder="First Name">
-                                </div>
-                                <div class="field-input">
-                                    <input type="text" name="last_name" value="" placeholder="Last Name">
-                                </div>
+                        <h3>Get in touch with us</h3>
+                        <br>
+                        <form action="{{ route('contact-message.store') }}" method="POST" class="form-underline">
+                            @csrf
+                            <div class="field-input">
+                                <input type="text" name="firstname" value="" placeholder="First Name">
+                                <span class="text-danger">@error('firstname'){{ $message }}@enderror</span>
+                            </div>
+                            <div class="field-input">
+                                <input type="text" name="lastname" value="" placeholder="Last Name">
+                                <span class="text-danger">@error('lastname'){{ $message }}@enderror</span>
                             </div>
                             <div class="field-input">
                                 <input type="email" name="email" value="" placeholder="Email">
+                                <span class="text-danger">@error('email'){{ $message }}@enderror</span>
                             </div>
                             <div class="field-input">
-                                <input type="tel" name="tel" value="" placeholder="Phone Number">
+                                <input type="tel" name="contact_no" value="" placeholder="Phone Number">
+                                <span class="text-danger">@error('contact_no'){{ $message }}@enderror</span>
                             </div>
                             <div class="field-textarea">
                                 <textarea name="message" placeholder="Message"></textarea>
+                                <span class="text-danger">@error('message'){{ $message }}@enderror</span>
                             </div>
-                            <div class="field-submit">
-                                <input type="submit" value="Send Message" class="btn">
+                            <div class="field-submit mt-3">
+                                <button class="btn btn-primary">Save Message</button>
                             </div>
                         </form>
                     </div>

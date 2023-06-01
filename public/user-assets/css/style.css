@@ -1910,6 +1910,14 @@ a.place__comments__reply i { display: inline-block; vertical-align: middle; marg
 .archive-city .col-left.no-maps .archive-filter { padding-left: 15px; }
 .archive-city .col-left.no-maps .main-primary { padding-right: 15px; }
 .archive-city .col-left.no-maps .place-item { -ms-flex: 0 0 33.33%; flex: 0 0 33.33%; max-width: 33.33%; }
+@media only screen and (max-width: 1024px) {
+    .archive-city .col-left.no-maps .place-item { -ms-flex: 0 0 50%; flex: 0 0 50%; max-width: 50%; }
+}
+
+@media only screen and (max-width: 768px) {
+    .archive-city .col-left.no-maps .place-item { -ms-flex: 0 0 50%; flex: 0 0 50%; max-width: 50%; }
+}
+
 .archive-city .col-right { flex: 0 0 375px; max-width: 375px; }
 .archive-city .col-right .filter-head { display: -webkit-box; display: -ms-flexbox; display: flex; justify-content: space-between; margin-bottom: 20px; display: none; }
 .archive-city .col-right .filter-head h2 { font-size: 24px; font-weight: 500; line-height: 1.58; }
