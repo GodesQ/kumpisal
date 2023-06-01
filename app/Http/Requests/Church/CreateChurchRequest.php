@@ -31,11 +31,12 @@ class CreateChurchRequest extends FormRequest
             'latitude' => 'nullable',
             'longitude' => 'nullable',
             'parish_priest' => 'required',
-            'feast_date' => 'required|date',
+            'feast_date' => 'required',
             'criteria' => 'required|in:diocese,vicariate',
             'contact_number' => 'nullable',
             'facebook_link' => 'nullable|url',
             'is_active' => 'nullable',
+            'titular' => 'nullable'
         ];
     }
 }

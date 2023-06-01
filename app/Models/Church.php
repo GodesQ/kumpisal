@@ -22,6 +22,7 @@ class Church extends Model
         'criteria',
         'contact_number',
         'facebook_link',
+        'titular',
         'has_monday_sched',
         'has_tuesday_sched',
         'has_wednesday_sched',

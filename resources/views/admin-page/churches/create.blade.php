@@ -11,6 +11,7 @@
             </div>
             <div class="card-body">
                 <form action="{{ route('admin.church.store') }}" method="post" enctype="multipart/form-data">
+                    @csrf
                     <ul class="nav nav-tabs nav-justified border-bottom" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="church-tab" data-toggle="tab" href="#active" aria-controls="active" role="tab" aria-selected="true">Church</a>
@@ -22,7 +23,6 @@
                     <div class="tab-content px-1 pt-1 my-4">
                         <div class="tab-pane active in" id="active" aria-labelledby="church-tab" role="tabpanel">
                             <div class="col-xl-12 col-lg-12">
-                                @csrf
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
@@ -51,7 +51,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="feast_date" class="form-label">Feast Date</label>
-                                            <input type="date" class="form-control" id="feast_date" name="feast_date" aria-describedby="feastDateHelp">
+                                            <input type="text" class="form-control" id="feast_date" name="feast_date" aria-describedby="feastDateHelp">
                                             <span class="text-danger danger">@error('feast_date'){{ $message }}@enderror</span>
                                         </div>
                                     </div>
@@ -65,11 +65,18 @@
                                             <span class="text-danger danger">@error('criteria'){{ $message }}@enderror</span>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="church_image" class="form-label">Church Image</label>
                                             <input type="file" class="form-control" id="church_image" name="church_image" aria-describedby="churchImageHelp">
                                             <span class="text-danger danger">@error('church_image'){{ $message }}@enderror</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="titular" class="form-label">Titular</label>
+                                            <input type="text" class="form-control" id="titular" name="titular" aria-describedby="titularHelp">
+                                            <span class="text-danger danger">@error('titular'){{ $message }}@enderror</span>
                                         </div>
                                     </div>
                                     <div class="col-md-12">

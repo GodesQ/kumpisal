@@ -11,6 +11,7 @@ use DB;
 
 use DataTables;
 use App\Models\User;
+use App\Models\Church;
 
 use App\Http\Requests\User\CreateUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
@@ -20,7 +21,21 @@ use App\Http\Requests\User\ChangeUserPasswordRequest;
 class UserController extends Controller
 {
     public function dashboard(Request $request) {
-        return view('user-page.user-dashboard.dashboard');
+        $user = Auth::user();
+
+        $near_churches = Church::select('*')
+        ->active(1)
+        ->when($user->latitude and $user->longitude && $user->address, function ($q) use ($user) {
+            return $q->addSelect(DB::raw('6371 * acos(cos(radians(' . $user->latitude ."))
+                    * cos(radians(churches.latitude)) * cos(radians(churches.longitude) - radians(" .  $user->longitude . ")) + sin(radians(" .  $user->latitude . "))
+                    * sin(radians(churches.latitude))) AS distance"))
+                ->having('distance', '<=', '2')
+                ->orderBy('distance', 'asc');
+        })
+        ->get(10);
+
+
+        return view('user-page.user-dashboard.dashboard', compact('near_churches'));
     }
 
     public function profile(Request $request) {
@@ -42,9 +57,7 @@ class UserController extends Controller
             // save to folder
             $save_file = $file->move(public_path().'/user-assets/images/avatars', $user_image);
         }
-
         $user = User::where('user_uuid', $request->uuid)->first();
-
         $update_user = $user->update(array_merge($data, [
             'user_image' => $user_image
         ]));

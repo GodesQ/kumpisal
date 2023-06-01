@@ -19,10 +19,7 @@
                         </div>
                     </div>
                     <div class="top-area top-area-filter">
-                        <div class="filter-left">
-                            <span class="result-count"><span class="count">{{ $churches->count() }}</span> results</span>
-                            <a href="#" class="clear">Clear filter</a>
-                        </div>
+
                         <div class="filter-center">
                             <div class="place-layout">
                                 <a class="active" href="#" data-layout="layout-grid"><i
@@ -76,11 +73,11 @@
 @push('scripts')
     <script>
         var map, address, my_marker;
-        function initialize() {
-            let church_address = document.querySelector('#church_address');
-            let latitude = document.querySelector('#latitude');
-            let longitude = document.querySelector('#longitude');
+        let church_address = document.querySelector('#church_address');
+        let latitude = document.querySelector('#latitude');
+        let longitude = document.querySelector('#longitude');
 
+        function initialize() {
             $(document).on('click', '.pagination .page-item a', function(event) {
                 event.preventDefault();
                 let page = $(this).attr('href').split('page=')[1];
@@ -88,13 +85,13 @@
                 filterChurches(page);
             })
 
-            $(document).on('submit', '.filterForm', function(event) {
-                event.preventDefault();
 
-                filterChurches(1);
+            $(document).ready(function() {
+                filterChurches(1)
             });
 
             function filterChurches(page) {
+                $('#churches-list').html('<h3 class="text-center">Searching...</h3>');
                 let selected_criterias = [];
 
                 // get all checked skills
@@ -164,6 +161,7 @@
             setMarkerDraggable(my_marker);
 
             function setLocations(churches) {
+
                 var mapOptions = {
                     center: new google.maps.LatLng( latitude.value, longitude.value ),
                     zoom: 14,
@@ -171,7 +169,7 @@
                     disableDefaultUI: false, // Disables the controls like zoom control on the map if set to true
                     scrollWheel: true, // If set to false disables the scrolling on the map.
                     draggable: true, // If set to false , you cannot move the map around.
-                };
+                }
 
                 map = new google.maps.Map(document.querySelector("#place-map-filter"), mapOptions);
 
@@ -220,10 +218,6 @@
                             infoWindow.open(map, marker);
                             });
                     })(marker, data);
-                }
-
-                if ( infoWindow ) {
-                    infoWindow.close();
                 }
             }
 

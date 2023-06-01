@@ -59,10 +59,10 @@
                                                     <a href="{{ route('churches.searchPage') }}" title="Churches">Churches</a>
                                                 </li>
                                                 <li>
-                                                    <a href="{{ route('churches.searchPage') }}" title="About Us">About Us</a>
+                                                    <a href="{{ route('about-us') }}" title="About Us">About Us</a>
                                                 </li>
                                                 <li>
-                                                    <a href="{{ route('churches.searchPage') }}" title="Contact Us">Contact Us</a>
+                                                    <a href="{{ route('contact-us') }}" title="Contact Us">Contact Us</a>
                                                 </li>
                                             </ul>
                                         </div><!-- .popup__menu -->
@@ -81,8 +81,8 @@
                                 </a>
                             </div><!-- .site__brand -->
 
-                        </div><!-- .site -->
-                    </div><!-- .col-md-6 -->
+                        </div>
+                    </div>
                     <div class="col-xl-6 col-7">
                         <div class="right-header align-right">
                             <nav class="main-menu">
@@ -94,10 +94,10 @@
                                         <a href="{{ route('churches.searchPage') }}" title="Churches">Churches</a>
                                     </li>
                                     <li>
-                                        <a href="" title="About Us">About Us</a>
+                                        <a href="{{ route('about-us') }}" title="About Us">About Us</a>
                                     </li>
                                     <li>
-                                        <a href="#" title="Contact Us">Contact Us</a>
+                                        <a href="{{ route('contact-us') }}" title="Contact Us">Contact Us</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -116,7 +116,6 @@
                                     <li class="nav-login"><a title="Log In" href="#login">Log In</a></li>
                                 </ul>
                                 <p class="choose-more">Continue with
-                                    <a title="Facebook" class="fb" href="#">Facebook</a> or
                                     <a title="Google" class="gg" href="#">Google</a>
                                 </p>
                                 <p class="choose-or"><span>Or</span></p>
@@ -172,16 +171,21 @@
                                     <i class="las la-search la-24-black"></i>
                                 </a>
                                 <div class="site__search">
+                                    <a title="Save" href="javascript:void(0)" class="search__save">
+                                        <i class="la la-search-location"></i>
+                                    </a><!-- .search__close -->
                                     <a title="Close" href="#" class="search__close">
                                         <i class="la la-times"></i>
                                     </a><!-- .search__close -->
-                                    <form action="#" class="site__search__form" method="GET">
+                                    <form action="{{ route('churches.searchPage') }}" class="site__search__form" method="GET">
                                         <div class="site__search__field">
                                             <span class="site__search__icon">
                                                 <i class="las la-search la-24-black"></i>
                                             </span><!-- .site__search__icon -->
-                                            <input class="site__search__input" type="text" name="s"
+                                            <input class="site__search__input" type="text" name="address"
                                                 placeholder="Search places, cities">
+                                            <input type="hidden" name="latitude" id="mob_latitude" value="">
+                                            <input type="hidden" name="longitude" id="mob_longitude" value="">
                                         </div><!-- .search__input -->
                                     </form><!-- .search__form -->
                                 </div><!-- .site__search -->
@@ -222,22 +226,16 @@
                                 <a title="Logo" href="01_index_1.html" class="footer__top__info__logo"><img
                                         src="{{ asset('user-assets/images/assets/kumpisalan-logo.png') }}" alt="Golo"></a>
                                 <p class="footer__top__info__desc">Discover amazing things to do everywhere you go.</p>
-                                <div class="footer__top__info__app">
-                                    <a title="App Store" href="#" class="banner-apps__download__iphone"><img
-                                            src="{{ asset('user-assets/images/assets/app-store.png') }}" alt="App Store"></a>
-                                    <a title="Google Play" href="#" class="banner-apps__download__android"><img
-                                            src="{{ asset('user-assets/images/assets/google-play.png') }}" alt="Google Play"></a>
-                                </div>
                             </div>
                         </div>
                         <div class="col-lg-2">
                             <aside class="footer__top__nav">
                                 <h3>Quick Links</h3>
                                 <ul>
-                                    <li><a title="Home" href="">Home</a></li>
-                                    <li><a title="Churches" href="">Churches</a></li>
-                                    <li><a title="About Us" href="">About Us</a></li>
-                                    <li><a title="Contact Us" href="">Contact Us</a></li>
+                                    <li><a title="Home" href="{{ route('home') }}">Home</a></li>
+                                    <li><a title="Churches" href="{{ route('churches.searchPage') }}">Churches</a></li>
+                                    <li><a title="About Us" href="{{ route('about-us') }}">About Us</a></li>
+                                    <li><a title="Contact Us" href="#">Contact Us</a></li>
                                 </ul>
                             </aside>
                         </div>
@@ -306,6 +304,54 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEmTK1XpJ2VJuylKczq2-49A6_WuUlfe4&libraries=places&callback=initialize"></script>
+
+    <script>
+        function initialize() {
+            let address = document.querySelector('.site__search__input');
+            let latitude = document.querySelector('#mob_latitude');
+            let longitude = document.querySelector('#mob_longitude');
+
+            // for search
+            let searchBox = new google.maps.places.SearchBox( address );
+
+            google.maps.event.addListener( searchBox, 'places_changed', function () {
+                var places = searchBox.getPlaces(), bounds = new google.maps.LatLngBounds(), i, place, lat, long, resultArray, address = places[0].formatted_address;
+                lat = places[0].geometry.location.lat()
+                long = places[0].geometry.location.lng();
+                latitude.value = lat;
+                longitude.value = long;
+                resultArray =  places[0].address_components;
+            });
+        }
+
+        $(document).ready(function() {
+            $('#church_address').keydown(function(event){
+                if(event.keyCode == 13) {
+                event.preventDefault();
+                return false;
+                }
+            });
+        });
+    </script>
+
+    <script>
+
+        $(document).ready(function() {
+            $('.site__search__input').keydown(function(event){
+                if(event.keyCode == 13) {
+                    event.preventDefault();
+                    return false;
+                }
+            });
+        });
+
+        $('.search__save').click(function () {
+            console.log(true);
+            $('.site__search__form').submit();
+        })
+
+
+    </script>
 
     @stack('scripts')
 

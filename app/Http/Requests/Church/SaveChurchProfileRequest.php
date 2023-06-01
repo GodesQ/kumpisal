@@ -4,7 +4,7 @@ namespace App\Http\Requests\Church;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateChurchRequest extends FormRequest
+class SaveChurchProfileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -34,8 +34,6 @@ class UpdateChurchRequest extends FormRequest
             'criteria' => 'required|in:diocese,vicariate',
             'contact_number' => 'nullable',
             'facebook_link' => 'nullable|url',
-            'is_active' => 'nullable',
-            'titular' => 'nullable'
         ];
     }
 }

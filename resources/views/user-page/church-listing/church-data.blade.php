@@ -23,7 +23,7 @@
                             </div>
                         @else
                             <div class="place-city">
-                                <a href="#">{{ date_format(new DateTime($church->feast_date), 'M d, Y') }}</a>
+                                <a href="#">{{ $church->feast_date }}</a>
                             </div>
                         @endif
                     </div>

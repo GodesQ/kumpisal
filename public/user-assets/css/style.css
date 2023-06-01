@@ -182,6 +182,48 @@ textarea:focus { border-color: #000; outline: none; }
     }
 }
 
+.church-img {
+    width: 100% !important;
+    height: 280px;
+    object-fit: cover;
+}
+
+.site-banner__search.layout-02 .field-input:nth-child(1), .site-banner__search.layout-02 .field-input:nth-child(2) {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+}
+
+.site-banner__search.layout-02 .field-input:nth-child(1):after {
+    right: 100% !important;
+}
+
+@media only screen and (max-width: 767px) {
+    .church-img {
+        width: 100% !important;
+        height: 200px !important;
+        object-fit: cover !important;
+    }
+}
+
+.site__search .search__save {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 25px;
+    line-height: 0;
+    z-index: 10;
+    display: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 50px;
+    line-height: 0;
+    z-index: 10;
+    display: none;
+}
+
 .align-center { text-align: center !important; }
 
 .align-left { text-align: left !important; }

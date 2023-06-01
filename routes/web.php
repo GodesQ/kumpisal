@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Web\AdminController;
 use App\Http\Controllers\Web\UserController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\Web\Auth\UserAuthController;
 use App\Http\Controllers\Web\ConfessionScheduleController;
 use App\Http\Controllers\Web\RepresentativeController;
 
+use App\Models\Church;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,18 +26,39 @@ use App\Http\Controllers\Web\RepresentativeController;
 Route::post('login', [UserAuthController::class, 'saveLogin'])->name('login.user');
 Route::post('register', [UserAuthController::class, 'saveRegister'])->name('register.user');
 Route::get('/user_verify_email', [UserAuthController::class, 'verifyEmail'])->name('user.verify_email');
+
+Route::get('about-us', function() {
+    return view('user-page.misc.about-us');
+})->name('about-us');
+
+Route::get('contact-us', function() {
+    return view('user-page.misc.contact-us');
+})->name('contact-us');
+
 Route::post('/resend_email_verification', [UserAuthController::class, 'resendEmailVerification'])->name('user.resend_email_verification')->middleware('auth');
 
 Route::get('/verify_email', [UserAuthController::class, 'verifyEmailMessage'])->name('user.verify_email_message');
 
 Route::get('/', function () {
-    return view('user-page.home');
+    $user = Auth::user();
+    $near_churches = Church::select('*')
+    ->active(1)
+    ->when(optional($user)->latitude and optional($user)->longitude && optional($user)->address, function ($q) use ($user) {
+        return $q->addSelect(DB::raw('6371 * acos(cos(radians(' . $user->latitude ."))
+                * cos(radians(churches.latitude)) * cos(radians(churches.longitude) - radians(" .  $user->longitude . ")) + sin(radians(" .  $user->latitude . "))
+                * sin(radians(churches.latitude))) AS distance"))
+            ->having('distance', '<=', '2')
+            ->orderBy('distance', 'asc');
+    })
+    ->latest()
+    ->get(8);
+
+    return view('user-page.home', compact('near_churches'));
 })->name('home');
 
 Route::get('churches', [ChurchController::class, 'searchPage'])->name('churches.searchPage')->middleware('auth', 'auth.user.verify_email');
 Route::get('churches/fetch', [ChurchController::class, 'fetchData'])->name('churches.fetchData')->middleware('auth', 'auth.user.verify_email');
 Route::get('church/{uuid}/{name}', [ChurchController::class, 'detailPage'])->name('churches.detailPage')->middleware('auth', 'auth.user.verify_email');
-
 
 Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['auth', 'auth.user.verify_email']], function() {
     Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
@@ -48,6 +71,9 @@ Route::group(['prefix' => 'representative', 'as' => 'representative.', 'middlewa
     Route::get('dashboard', [RepresentativeController::class, 'dashboard'])->name('dashboard');
     Route::get('profile', [RepresentativeController::class, 'profile'])->name('profile');
     Route::post('profile/{id}', [RepresentativeController::class, 'saveProfile'])->name('profile.post');
+
+    Route::get('church-profile/{uuid}', [ChurchController::class, 'churchProfile'])->name('church_profile');
+    Route::post('church-profile/{uuid}', [ChurchController::class, 'saveChurchProfile'])->name('church_profile.post');
 
     Route::post('change_password/{uuid}', [RepresentativeController::class, 'changePassword'])->name('change_password.post');
     Route::post('save_schedule', [ConfessionScheduleController::class, 'save_schedule'])->name('save_schedule');

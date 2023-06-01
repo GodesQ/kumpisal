@@ -11,13 +11,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 order-md-2">
-                        <img class="mb-2" src="{{ asset('admin-assets/images/churches' . '/' . $church->church_image) }}" alt="slider-01" style="height: 450px; width: 100%; object-fit: cover;"></a>
+                        <img class="mb-2" src="{{ asset('admin-assets/images/churches' . '/' . $church->church_image) }}" alt="slider-01" style="height: 400px; width: 100%; object-fit: cover;"></a>
                     </div>
                     <div class="col-lg-4 order-md-1">
                         <table class="open-table table">
                             <thead>
                                 <tr>
-                                    <th style="border: 1px solid rgb(61, 61, 61) !important; text-align: center;" colspan="2">Confession Schedules</th>
+                                    <th style="border: 1px solid rgb(61, 61, 61) !important; text-align: center; background: #000; color: #fff;" colspan="2">Confession Schedules</th>
                                 </tr>
                             </thead>
                             <tbody>

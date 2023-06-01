@@ -6,6 +6,9 @@
         <a href="#" class="close-filter"><i class="las la-times"></i></a>
     </div>
     <div class="filter-box">
+        <a href="{{ route('churches.searchPage') }}" class="btn btn-primary">Clear Filter</a>
+    </div>
+    <div class="filter-box">
         <div class="field-group field-input">
             <label for="church_name">Church Name</label>
             <input class="w-100 mt-1" type="text" id="church_name" placeholder="What the name of place"
@@ -15,9 +18,9 @@
     <div class="filter-box">
         <div class="field-group field-input">
             <label for="church_address">Church Address</label>
-            <input class="w-100 mt-1" type="text" id="church_address" placeholder="What the name of place" name="church_address">
-            <input type="hidden" name="latitude" id="latitude" >
-            <input type="hidden" name="longitude" id="longitude">
+            <input class="w-100 mt-1" type="text" id="church_address" placeholder="What the name of place" name="church_address" value="{{ $queries ? $queries['address'] : null }}">
+            <input type="hidden" name="latitude" id="latitude" value="{{ $queries ? $queries['latitude'] : null }}">
+            <input type="hidden" name="longitude" id="longitude" value="{{ $queries ? $queries['longitude'] : null }}">
         </div>
     </div>
     <div class="filter-box">

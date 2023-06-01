@@ -10,6 +10,8 @@ use DB;
 
 use App\Http\Requests\Church\CreateChurchRequest;
 use App\Http\Requests\Church\UpdateChurchRequest;
+use App\Http\Requests\Church\SaveChurchProfileRequest;
+
 
 use DataTables;
 use App\Models\Church;
@@ -29,9 +31,25 @@ class ChurchController extends Controller
         $this->ChurchTimeScheduleRepository = $ChurchTimeScheduleRepository;
     }
 
+    public function churchProfile(Request $request) {
+        $user = Auth::user();
+        return view('user-page.representative-dashboard.church-profile', compact('user'));
+    }
+
+    public function saveChurchProfile(SaveChurchProfileRequest $request) {
+        $data = $request->validated();
+        $church = Church::where('church_uuid', $request->uuid)->first();
+        $update_church = $church->update($data);
+
+        if($update_church) {
+            return back()->with('success', 'Save Church Successfully');
+        }
+    }
+
     public function searchPage(Request $request) {
+        $queries = $request->all();
         $churches = Church::active(1)->latest()->with('schedules')->paginate(10);
-        return view('user-page.church-listing.churches', compact('churches'));
+        return view('user-page.church-listing.churches', compact('churches', 'queries'));
     }
 
     public function fetchData(Request $request) {
@@ -55,9 +73,10 @@ class ChurchController extends Controller
                         return $q->addSelect(DB::raw('6371 * acos(cos(radians(' . $latitude ."))
                                 * cos(radians(churches.latitude)) * cos(radians(churches.longitude) - radians(" .  $longitude . ")) + sin(radians(" .  $latitude . "))
                                 * sin(radians(churches.latitude))) AS distance"))
-                            ->having('distance', '<=', '3')
+                            ->having('distance', '<=', '2')
                             ->orderBy('distance', 'asc');
                     })
+                    ->latest()
                     ->paginate(10);
 
         $view_data = view('user-page.church-listing.church-data', compact('churches'))->render();

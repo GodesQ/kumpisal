@@ -8,198 +8,85 @@
             <div class="container d-flex align-items-center justify-content-center">
                 <div class="site-banner__content">
                     <h1 class="site-banner__title">Kumpisalan: Journey of <br> Self-Discovery and Reflection</h1>
+                    <form action="{{ route('churches.searchPage') }}" class="site-banner__search layout-02 offset-item">
+                        {{-- <div class="field-input">
+                            <label for="s">Find</label>
+                            <input class="site-banner__search__input open-suggestion" id="s" type="text" name="s" placeholder="Ex: fastfood, beer" autocomplete="off">
+                        </div><!-- .site-banner__search__input --> --}}
+                        <div class="field-input">
+                            <label for="loca">Where</label>
+                            <input class="site-banner__search__input" id="loca" type="text" name="address" placeholder="Your place">
+                            <input type="hidden" name="latitude" id="latitude" value="">
+                            <input type="hidden" name="longitude" id="longitude" value="">
+                        </div><!-- .site-banner__search__input -->
+                        <div class="field-submit">
+                            <button id="field-submit-btn"><i class="las la-search la-24-black"></i></button>
+                        </div>
+                    </form><!-- .site-banner__search -->
                 </div><!-- .site-banner__content -->
             </div>
         </div><!-- .site-banner -->
-        {{-- <div class="cities">
+        <div class="cities">
             <div class="container">
-                <h2 class="cities__title title offset-item">Popular cities</h2>
+                <h3 class="cities__title title offset-item">{{ optional(auth()->user())->latitude && optional(auth()->user())->longitude ? 'Churches Near You' : 'Recent Churches' }}</h3>
                 <div class="cities__content offset-item">
                     <div class="row">
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="cities__item hover__box">
-                                <div class="cities__thumb hover__box__thumb">
-                                    <a title="London" href="city-details-3.html">
-                                        <img src="/user-assets/images/city/tokyo.jpeg" alt="Tokyo">
-                                    </a>
-                                </div>
-                                <h4 class="cities__name">Japan</h4>
-                                <div class="cities__info">
-                                    <h3 class="cities__capital">Tokyo</h3>
-                                    <p class="cities__number">80 places</p>
-                                </div>
-                            </div><!-- .cities__item -->
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="cities__item hover__box">
-                                <div class="cities__thumb hover__box__thumb">
-                                    <a title="Barca" href="city-details-3.html">
-                                        <img src="/user-assets/images/city/barca.jpeg" alt="Barca">
-                                    </a>
-                                </div>
-                                <h4 class="cities__name">Spain</h4>
-                                <div class="cities__info">
-                                    <h3 class="cities__capital">Barca</h3>
-                                    <p class="cities__number">92 places</p>
-                                </div>
-                            </div><!-- .cities__item -->
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="cities__item hover__box">
-                                <div class="cities__thumb hover__box__thumb">
-                                    <a title="New York" href="city-details-3.html">
-                                        <img src="/user-assets/images/city/newyork.jpg" alt="New York">
-                                    </a>
-                                </div>
-                                <h4 class="cities__name">United States</h4>
-                                <div class="cities__info">
-                                    <h3 class="cities__capital">New York</h3>
-                                    <p class="cities__number">64 places</p>
-                                </div>
-                            </div><!-- .cities__item -->
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="cities__item hover__box">
-                                <div class="cities__thumb hover__box__thumb">
-                                    <a title="Paris" href="city-details-3.html">
-                                        <img src="/user-assets/images/city/paris.jpg" alt="Paris">
-                                    </a>
-                                </div>
-                                <h4 class="cities__name">France</h4>
-                                <div class="cities__info">
-                                    <h3 class="cities__capital">Paris</h3>
-                                    <p class="cities__number">23 places</p>
-                                </div>
-                            </div><!-- .cities__item -->
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="cities__item hover__box">
-                                <div class="cities__thumb hover__box__thumb">
-                                    <a title="Amsterdam" href="city-details-3.html">
-                                        <img src="/user-assets/images/city/amsterdam.jpg" alt="Amsterdam">
-                                    </a>
-                                </div>
-                                <h4 class="cities__name">Netherlands</h4>
-                                <div class="cities__info">
-                                    <h3 class="cities__capital">Amsterdam</h3>
-                                    <p class="cities__number">44 places</p>
-                                </div>
-                            </div><!-- .cities__item -->
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="cities__item hover__box">
-                                <div class="cities__thumb hover__box__thumb">
-                                    <a title="Singapo" href="city-details-3.html">
-                                        <img src="/user-assets/images/city/singapo.jpg" alt="Singapo">
-                                    </a>
-                                </div>
-                                <h4 class="cities__name">Singapo</h4>
-                                <div class="cities__info">
-                                    <h3 class="cities__capital">Singapo</h3>
-                                    <p class="cities__number">60 places</p>
-                                </div>
-                            </div><!-- .cities__item -->
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="cities__item hover__box">
-                                <div class="cities__thumb hover__box__thumb">
-                                    <a title="Sydney" href="city-details-3.html">
-                                        <img src="/user-assets/images/city/sydney.jpg" alt="Sydney">
-                                    </a>
-                                </div>
-                                <h4 class="cities__name">Australia</h4>
-                                <div class="cities__info">
-                                    <h3 class="cities__capital">Sydney</h3>
-                                    <p class="cities__number">36 places</p>
-                                </div>
-                            </div><!-- .cities__item -->
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="cities__item hover__box">
-                                <div class="cities__thumb hover__box__thumb">
-                                    <a title="angeles" href="city-details-3.html">
-                                        <img src="/user-assets/images/city/angeles.jpeg" alt="angeles">
-                                    </a>
-                                </div>
-                                <h4 class="cities__name">United States</h4>
-                                <div class="cities__info">
-                                    <h3 class="cities__capital">Angeles</h3>
-                                    <p class="cities__number">44 places</p>
-                                </div>
-                            </div><!-- .cities__item -->
-                        </div>
-
+                        @forelse ($near_churches as $church)
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="cities__item hover__box">
+                                    <div class="cities__thumb hover__box__thumb">
+                                        <a title="{{ $church->name }}" href="{{ route('churches.detailPage', ['uuid' => $church->church_uuid, 'name' => $church->name ]) }}">
+                                            <img src="{{ URL::asset('admin-assets/images/churches/' . $church->church_image) }}" alt="Tokyo" class="church-img">
+                                        </a>
+                                    </div>
+                                    {{-- <h4 class="cities__name">Japan</h4> --}}
+                                    <div class="cities__info">
+                                        <h3 class="cities__capital">{{ substr($church->name, 0, 30) }}...</h3>
+                                        <p class="cities__number">{{ $church->distance ? number_format($church->distance, 2) . 'km' : Str::ucfirst($church->criteria) }} </p>
+                                    </div>
+                                </div><!-- .cities__item -->
+                            </div>
+                        @empty
+                        @endforelse
                     </div>
                 </div><!-- .cities__content -->
             </div>
-        </div><!-- .cities --> --}}
-        <div class="news">
-            <div class="container">
-                <h2 class="news__title title title--more offset-item">
-                    Related stories
-                    <a title="View more" href="#">
-                        View more
-                        <i class="la la-angle-right"></i>
-                    </a>
-                </h2>
-                <div class="news__content offset-item">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <article class="post hover__box">
-                                <div class="post__thumb hover__box__thumb">
-                                    <a title="The 8 Most Affordable Michelin Restaurants in Paris"
-                                        href="blog-detail.html"><img src="images/blog/thumb-01.jpg"
-                                            alt="The 8 Most Affordable Michelin Restaurants in Paris"></a>
-                                </div>
-                                <div class="post__info">
-                                    <ul class="post__category">
-                                        <li><a title="Paris" href="02_city-details_1.html">Paris</a></li>
-                                        <li><a title="Food" href="02_city-details_1.html">Food</a></li>
-                                    </ul>
-                                    <h3 class="post__title"><a title="The 8 Most Affordable Michelin Restaurants in Paris"
-                                            href="blog-detail.html">The 8 Most Affordable Michelin Restaurants in Paris</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </div>
-                        <div class="col-md-4">
-                            <article class="post hover__box">
-                                <div class="post__thumb hover__box__thumb">
-                                    <a title="The 7 Best Restaurants to Try Kobe Beef in London"
-                                        href="blog-detail.html"><img src="images/blog/thumb-05.jpg"
-                                            alt="The 7 Best Restaurants to Try Kobe Beef in London"></a>
-                                </div>
-                                <div class="post__info">
-                                    <ul class="post__category">
-                                        <li><a title="London" href="02_city-details_1.html">London</a></li>
-                                        <li><a title="Art & Decor" href="02_city-details_1.html">Art & Decor</a></li>
-                                    </ul>
-                                    <h3 class="post__title"><a title="The 7 Best Restaurants to Try Kobe Beef in London"
-                                            href="blog-detail.html">The 7 Best Restaurants to Try Kobe Beef in London</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </div>
-                        <div class="col-md-4">
-                            <article class="post hover__box">
-                                <div class="post__thumb hover__box__thumb">
-                                    <a title="The 8 Most Affordable Michelin Restaurants in Paris"
-                                        href="blog-detail.html"><img src="images/blog/thumb-08.jpg"
-                                            alt="The 8 Most Affordable Michelin Restaurants in Paris"></a>
-                                </div>
-                                <div class="post__info">
-                                    <ul class="post__category">
-                                        <li><a title="Paris" href="02_city-details_1.html">Paris</a></li>
-                                        <li><a title="Stay" href="02_city-details_1.html">Stay</a></li>
-                                    </ul>
-                                    <h3 class="post__title"><a title="The 8 Most Affordable Michelin Restaurants in Paris"
-                                            href="blog-detail.html">The 9 Best Cheap Hotels in New York City</a></h3>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><!-- .news -->
+        </div><!-- .cities -->
     </main><!-- .site-main -->
 @endsection
+
+@push('scripts')
+    <script>
+        function initialize() {
+            let address = document.querySelector('.site-banner__search__input');
+            let latitude = document.querySelector('#latitude');
+            let longitude = document.querySelector('#longitude');
+
+            // for search
+            let searchBox = new google.maps.places.SearchBox( address );
+
+            google.maps.event.addListener( searchBox, 'places_changed', function () {
+                var places = searchBox.getPlaces(), bounds = new google.maps.LatLngBounds(), i, place, lat, long, resultArray, address = places[0].formatted_address;
+                lat = places[0].geometry.location.lat()
+                long = places[0].geometry.location.lng();
+                latitude.value = lat;
+                longitude.value = long;
+                resultArray =  places[0].address_components;
+            });
+        }
+
+        $('#field-submit-btn').click(function () {
+            $('.site-banner__search').submit();
+        })
+
+        $(document).ready(function() {
+            $('.site-banner__search__input').keydown(function(event){
+                if(event.keyCode == 13) {
+                event.preventDefault();
+                return false;
+                }
+            });
+        });
+    </script>
+@endpush
+
