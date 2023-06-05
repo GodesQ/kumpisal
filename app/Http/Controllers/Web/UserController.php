@@ -44,7 +44,7 @@ class UserController extends Controller
 
     public function saveProfile(SaveUserProfileRequest $request) {
         $data = $request->validated();
-        $user_image;
+        $user_image = $request->old_user_iamge;
 
         if($request->hasFile('member_avatar')) {
 
@@ -106,6 +106,7 @@ class UserController extends Controller
                     ->rawColumns(['action', 'verified'])
                     ->make(true);
         }
+
         return view('admin-page.users.list');
     }
 

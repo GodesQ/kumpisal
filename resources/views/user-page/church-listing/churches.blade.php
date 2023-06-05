@@ -85,7 +85,6 @@
                 filterChurches(page);
             })
 
-
             $(document).ready(function() {
                 filterChurches(1)
             });
@@ -131,7 +130,7 @@
             }
 
             my_marker = new google.maps.Marker({
-                position:  new google.maps.LatLng(14.5995124, 120.9842195   ),
+                position:  new google.maps.LatLng(14.5995124, 120.9842195),
                 map: map,
                 icon: user_icon_marker,
                 draggable: true,
@@ -218,6 +217,7 @@
                             infoWindow.open(map, marker);
                             });
                     })(marker, data);
+
                 }
             }
 

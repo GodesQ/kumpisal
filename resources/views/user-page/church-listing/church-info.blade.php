@@ -6,8 +6,8 @@
 
 @section('content')
     <main id="main" class="site-main single single-02">
-            <input type="hidden" id="latitude" value="{{ $church->latitude }}" >
-            <input type="hidden" id="longitude" value="{{ $church->longitude }}" >
+            <input type="hidden" id="latitude" value="{{ $church->latitude }}">
+            <input type="hidden" id="longitude" value="{{ $church->longitude }}">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 order-md-2">
@@ -114,6 +114,7 @@
 @push('scripts')
     <script>
         function initialize() {
+
             let latitude = document.querySelector('#latitude');
             let longitude = document.querySelector('#longitude');
             var mapOptions = {
@@ -141,7 +142,7 @@
                     draggable: false,
                 })
             }
-
         }
+
     </script>
 @endpush

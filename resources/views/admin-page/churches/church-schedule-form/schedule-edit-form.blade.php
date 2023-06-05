@@ -32,13 +32,13 @@
                     @forelse ($mondayEntry as $key => $schedule)
                         <div id="monday_repeater_form">
                             <div class="row my-2">
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="monday_sched_starttime[]" class="form-control monday_sched_starttime" value="{{ $schedule['start_time'] }}">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="monday_sched_endtime[]" class="form-control monday_sched_endtime" value="{{ $schedule['end_time'] }}">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-2">
                                     <button type="button" class="btn btn-sm btn-danger" onclick="removeRepeater(this)"><i class="ti ti-trash"></i></button>
                                 </div>
                             </div>
@@ -46,13 +46,13 @@
                     @empty
                         <div id="monday_repeater_form">
                             <div class="row my-2">
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="monday_sched_starttime[]" class="form-control monday_sched_starttime">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="monday_sched_endtime[]" class="form-control monday_sched_endtime">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-2">
                                     <button type="button" class="btn btn-sm btn-danger" onclick="removeRepeater(this)"><i class="ti ti-trash"></i></button>
                                 </div>
                             </div>
@@ -84,13 +84,13 @@
                     @forelse ($tuesdayEntry as $key => $schedule)
                         <div id="tuesday_repeater_form">
                             <div class="row my-2">
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="tuesday_sched_starttime[]" class="form-control tuesday_sched_starttime" value="{{ $schedule['start_time'] }}">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="tuesday_sched_endtime[]" class="form-control tuesday_sched_endtime" value="{{ $schedule['end_time'] }}">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-2">
                                     <button type="button" class="btn btn-sm btn-danger" onclick="removeRepeater(this)"><i class="ti ti-trash"></i></button>
                                 </div>
                             </div>
@@ -98,13 +98,13 @@
                     @empty
                         <div id="tuesday_repeater_form">
                             <div class="row my-2" >
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="tuesday_sched_starttime[]" class="form-control tuesday_sched_starttime">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="tuesday_sched_endtime[]" class="form-control tuesday_sched_endtime">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-2">
                                     <button type="button" class="btn btn-sm btn-danger" onclick="removeRepeater(this)"><i class="ti ti-trash"></i></button>
                                 </div>
                             </div>
@@ -136,13 +136,13 @@
                     @forelse ($wednesdayEntry as $key => $schedule)
                         <div id="wednesday_repeater_form">
                             <div class="row my-2">
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="wednesday_sched_starttime[]" class="form-control wednesday_sched_starttime" value="{{ $schedule['start_time'] }}">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="wednesday_sched_endtime[]" class="form-control wednesday_sched_endtime" value="{{ $schedule['end_time'] }}">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-2">
                                     <button type="button" class="btn btn-sm btn-danger" onclick="removeRepeater(this)"><i class="ti ti-trash"></i></button>
                                 </div>
                             </div>
@@ -150,13 +150,13 @@
                     @empty
                         <div id="wednesday_repeater_form">
                             <div class="row my-2">
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="wednesday_sched_starttime[]" class="form-control wednesday_sched_starttime">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="wednesday_sched_endtime[]" class="form-control wednesday_sched_endtime">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-2">
                                     <button type="button" class="btn btn-sm btn-danger" onclick="removeRepeater(this)"><i class="ti ti-trash"></i></button>
                                 </div>
                             </div>
@@ -187,13 +187,13 @@
                     @forelse ($thursdayEntry as $key => $schedule)
                         <div id="thursday_repeater_form">
                             <div class="row my-2">
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="thursday_sched_starttime[]" class="form-control thursday_sched_starttime" value="{{ $schedule['start_time'] }}">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="thursday_sched_endtime[]" class="form-control thursday_sched_endtime" value="{{ $schedule['end_time'] }}">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-2">
                                     <button type="button" class="btn btn-sm btn-danger" onclick="removeRepeater(this)"><i class="ti ti-trash"></i></button>
                                 </div>
                             </div>
@@ -201,13 +201,13 @@
                     @empty
                         <div id="thursday_repeater_form">
                             <div class="row my-2">
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="thursday_sched_starttime[]" class="form-control thursday_sched_starttime">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="thursday_sched_endtime[]" class="form-control thursday_sched_endtime">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-2">
                                     <button type="button" class="btn btn-sm btn-danger" onclick="removeRepeater(this)"><i class="ti ti-trash"></i></button>
                                 </div>
                             </div>
@@ -238,13 +238,13 @@
                     @forelse ($fridayEntry as $key => $schedule)
                         <div id="friday_repeater_form">
                             <div class="row my-2">
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="friday_sched_starttime[]" class="form-control friday_sched_starttime" value="{{ $schedule['start_time'] }}">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="friday_sched_endtime[]" class="form-control friday_sched_endtime" value="{{ $schedule['end_time'] }}">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-2">
                                     <button type="button" class="btn btn-sm btn-danger" onclick="removeRepeater(this)"><i class="ti ti-trash"></i></button>
                                 </div>
                             </div>
@@ -252,13 +252,13 @@
                     @empty
                         <div id="friday_repeater_form">
                             <div class="row my-2">
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="friday_sched_starttime[]" class="form-control friday_sched_starttime">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="friday_sched_endtime[]" class="form-control friday_sched_endtime">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-2">
                                     <button type="button" class="btn btn-sm btn-danger" onclick="removeRepeater(this)"><i class="ti ti-trash"></i></button>
                                 </div>
                             </div>
@@ -289,13 +289,13 @@
                     @forelse ($saturdayEntry as $key => $schedule)
                         <div id="saturday_repeater_form">
                             <div class="row my-2">
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="saturday_sched_starttime[]" class="form-control saturday_sched_starttime" value="{{ $schedule['start_time'] }}">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="saturday_sched_endtime[]" class="form-control saturday_sched_endtime" value="{{ $schedule['end_time'] }}">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-2">
                                     <button type="button" class="btn btn-sm btn-danger" onclick="removeRepeater(this)"><i class="ti ti-trash"></i></button>
                                 </div>
                             </div>
@@ -303,13 +303,13 @@
                     @empty
                         <div id="saturday_repeater_form">
                             <div class="row my-2">
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="saturday_sched_starttime[]" class="form-control saturday_sched_starttime">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="saturday_sched_endtime[]" class="form-control saturday_sched_endtime">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-2">
                                     <button type="button" class="btn btn-sm btn-danger" onclick="removeRepeater(this)"><i class="ti ti-trash"></i></button>
                                 </div>
                             </div>
@@ -341,13 +341,13 @@
                     @forelse ($sundayEntry as $key => $schedule)
                         <div id="sunday_repeater_form">
                             <div class="row my-2">
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="sunday_sched_starttime[]" class="form-control sunday_sched_starttime" value="{{ $schedule['start_time'] }}">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="sunday_sched_endtime[]" class="form-control sunday_sched_endtime" value="{{ $schedule['end_time'] }}">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-2">
                                     <button type="button" class="btn btn-sm btn-danger" onclick="removeRepeater(this)"><i class="ti ti-trash"></i></button>
                                 </div>
                             </div>
@@ -355,13 +355,13 @@
                     @empty
                         <div id="sunday_repeater_form">
                             <div class="row my-2">
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="sunday_sched_starttime[]" class="form-control sunday_sched_starttime">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-5">
                                     <input type="time" name="sunday_sched_endtime[]" class="form-control sunday_sched_endtime">
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-md-2">
                                     <button type="button" class="btn btn-sm btn-danger" onclick="removeRepeater(this)"><i class="ti ti-trash"></i></button>
                                 </div>
                             </div>

@@ -56,13 +56,13 @@ Route::get('/', function () {
     ->latest()
     ->limit(8)
     ->get();
-
     return view('user-page.home', compact('near_churches'));
+
 })->name('home');
 
-Route::get('churches', [ChurchController::class, 'searchPage'])->name('churches.searchPage')->middleware('auth', 'auth.user.verify_email');
-Route::get('churches/fetch', [ChurchController::class, 'fetchData'])->name('churches.fetchData')->middleware('auth', 'auth.user.verify_email');
-Route::get('church/{uuid}/{name}', [ChurchController::class, 'detailPage'])->name('churches.detailPage')->middleware('auth', 'auth.user.verify_email');
+Route::get('churches', [ChurchController::class, 'searchPage'])->name('churches.searchPage');
+Route::get('churches/fetch', [ChurchController::class, 'fetchData'])->name('churches.fetchData');
+Route::get('church/{uuid}/{name}', [ChurchController::class, 'detailPage'])->name('churches.detailPage');
 
 Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['auth', 'auth.user.verify_email']], function() {
     Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
@@ -84,7 +84,6 @@ Route::group(['prefix' => 'representative', 'as' => 'representative.', 'middlewa
 });
 
 Route::post('user/logout', [UserAuthController::class, 'logout'])->name('user.logout')->middleware('auth');
-
 
 Route::get('admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
 Route::post('admin/login', [AdminAuthController::class, 'saveLogin'])->name('admin.post.login');
@@ -119,6 +118,13 @@ Route::group(['prefix'=> 'admin', 'as' => 'admin.', 'middleware' => ['auth.admin
     Route::post('/confession_schedule/store', [ConfessionScheduleController::class, 'store'])->name('confession_schedule.store');
     Route::get('/confession_schedule/edit/{id}', [ConfessionScheduleController::class, 'edit'])->name('confession_schedule.edit');
     Route::post('/confession_schedule/update/{id}', [ConfessionScheduleController::class, 'update'])->name('confession_schedule.update');
+
+    Route::get('/contact_messages', [ContactMessageController::class, 'lists'])->name('contact_messages.list');
+    Route::get('/contact_message/show/{id}', [ContactMessageController::class, 'show'])->name('contact_message.show');
+    // Route::get('/confession_schedule/create', [ConfessionScheduleController::class, 'create'])->name('confession_schedule.create');
+    // Route::post('/confession_schedule/store', [ConfessionScheduleController::class, 'store'])->name('confession_schedule.store');
+    // Route::get('/confession_schedule/edit/{id}', [ConfessionScheduleController::class, 'edit'])->name('confession_schedule.edit');
+    // Route::post('/confession_schedule/update/{id}', [ConfessionScheduleController::class, 'update'])->name('confession_schedule.update');
 
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 });

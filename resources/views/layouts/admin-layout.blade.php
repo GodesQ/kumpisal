@@ -75,6 +75,18 @@
                                 <span class="hide-menu">Churches</span>
                             </a>
                         </li>
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">SUPPORT</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="{{ route('admin.contact_messages.list') }}" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-mail"></i>
+                                </span>
+                                <span class="hide-menu">Contact Messages</span>
+                            </a>
+                        </li>
                         {{-- <li class="sidebar-item">
                             <a class="sidebar-link" href="#" aria-expanded="false">
                                 <span>
@@ -105,12 +117,12 @@
                     </ul>
                     <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
                         <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link nav-icon-hover" href="javascript:void(0)">
                                     <i class="ti ti-bell-ringing"></i>
                                     <div class="notification bg-primary rounded-circle"></div>
                                 </a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item dropdown">
                                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
                                     data-bs-toggle="dropdown" aria-expanded="false">

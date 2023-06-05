@@ -15,16 +15,14 @@
                 @endif
                 <div class="member-wrap-top">
                     <h2>Welcome back! {{ auth()->user()->firstname }}</h2>
-                </div><!-- .member-wrap-top -->
+                </div>
                 <hr>
                 <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">
-                            <h3 style="font-weight: 800 !important; color: #000;">Confession Schedules</h3>
-                            <h4>( {{ auth()->user()->representative_info->church->name }} )</h4>
-                        </div>
-                    </div>
                     <div class="card-body">
+                        <div class="card-title">
+                            <h3 class="text-center" style="font-weight: 800 !important; color: #000;">Confession Schedules</h3>
+                        </div>
+                        <hr>
                         <div class="row">
                             <div class="col-lg-12">
                                 <form action="{{ route('representative.save_schedule') }}" method="POST">
@@ -41,8 +39,6 @@
                         </div>
                     </div>
                 </div>
-
-
             </div><!-- .member-wrap -->
         </div>
     </div><!-- .site-content -->

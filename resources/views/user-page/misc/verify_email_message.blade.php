@@ -50,8 +50,11 @@
 
 @push('scripts')
     <script>
-        $('#resend-email').click(function () {
+        // Check if the timer value exists in localStorage
+        let timerValue = localStorage.getItem('timerValue');
+        let countdown; // Variable to hold the interval
 
+        $('#resend-email').click(function () {
             let data = {
                 _token: '{{ csrf_token() }}',
                 email: $('#email').val()
@@ -70,14 +73,31 @@
             })
         })
 
+        // function isValidHttpUrl(string) {
+        //     let url = string;
+        //     let http_url;
 
-        // Check if the timer value exists in localStorage
-        let timerValue = localStorage.getItem('timerValue');
-        let countdown; // Variable to hold the interval
+        //     try {
+        //         http_url = new URL(string);
+        //     } catch (error) {
+        //         http_url = {}
+        //     }
 
-        if (timerValue) {
+        //     const validProtocols = ["http:", "https:"];
+        //     const validTLDs = ["com", "net", "org", "edu", "gov"]; // Add more TLDs if needed
+        //     const validWWW = ['www'];
+
+        //     if(validProtocols.includes(http_url?.protocol) || validTLDs.includes(url.split(".")[1]) || validWWW.includes(url.split(".")[0])) {
+        //         return true;
+        //     } else {
+        //         return false;
+        //     }
+        // }
+
+        if (timerValue || parseInt(timerValue) >= 0) {
             // If the timer value exists, convert it to a number
             timerValue = parseInt(timerValue);
+            startTimer();
         } else {
             // If the timer value doesn't exist, set it to the desired initial value (in seconds)
             timerValue = 60; // 1 minute
@@ -89,26 +109,30 @@
         // Function to start the timer
         function startTimer() {
             countdown = setInterval(() => {
-                // Display the timer value on the page
-                document.getElementById('timer').textContent =  timerValue;
-
                 // Decrease the timer value by 1
                 timerValue--;
+
+                // Display the timer value on the page
+                document.getElementById('timer').textContent =  timerValue;
 
                 // Store the updated timer value in localStorage
                 localStorage.setItem('timerValue', timerValue.toString());
 
                 // Check if the timer has reached zero
-                if (timerValue < 0) {
+                if (timerValue <= 0) {
                     clearInterval(countdown); // Stop the timer
                     localStorage.removeItem('timerValue'); // Remove the timer value from localStorage
+
                     // Perform any additional actions when the timer ends
                     $('#resend-email').prop('disabled', false);
                     $('#resend-email').removeClass('disabled');
+                    timerValue = parseInt(60);
+
+                    // Display the timer value on the page
+                    document.getElementById('timer').textContent =  timerValue;
                 }
 
             }, 1000); // 1000 milliseconds = 1 second
         }
-
     </script>
 @endpush

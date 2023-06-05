@@ -244,8 +244,6 @@
                                 <h3>Support</h3>
                                 <ul>
                                     <li><a title="Get in Touch" href="#">Get in Touch</a></li>
-                                    <li><a title="Help Center" href="#">Help Center</a></li>
-                                    <li><a title="Live chat" href="#">Live chat</a></li>
                                     <li><a title="How it works" href="#">How it works</a></li>
                                 </ul>
                             </aside>
@@ -253,8 +251,8 @@
                         <div class="col-lg-3">
                             <aside class="footer__top__nav footer__top__nav--contact">
                                 <h3>Contact Us</h3>
-                                <p>Email: support@domain.com</p>
-                                <p>Phone: 1 (00) 832 2342</p>
+                                <p>Email: info@kumpisalan.com</p>
+                                <p>Phone: 09458426538</p>
                                 <ul>
                                     <li class="facebook">
                                         <a title="Facebook" href="#">
