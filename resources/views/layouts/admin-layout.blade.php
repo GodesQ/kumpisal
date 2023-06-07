@@ -87,6 +87,18 @@
                                 <span class="hide-menu">Contact Messages</span>
                             </a>
                         </li>
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">LOGS</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="{{ route('admin.logs.list') }}" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-folder"></i>
+                                </span>
+                                <span class="hide-menu">Logs</span>
+                            </a>
+                        </li>
                         {{-- <li class="sidebar-item">
                             <a class="sidebar-link" href="#" aria-expanded="false">
                                 <span>

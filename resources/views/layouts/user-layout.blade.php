@@ -120,76 +120,10 @@
                                 </p>
                                 <p class="choose-or"><span>Or</span></p>
                                 <div class="popup-content">
-                                    <form action="{{ route('register.user') }}" class="form-sign form-content" method="POST" id="signup">
-                                        @csrf
-                                        <div class="field-inline">
-                                            <div class="field-input">
-                                                <input type="text" placeholder="First Name" value="" name="firstname">
-                                                <span class="text-danger danger">@error('firstname'){{ $message }}@enderror</span>
-                                            </div>
-                                            <div class="field-input">
-                                                <input type="text" placeholder="Last Name" value="" name="lastname">
-                                                <span class="text-danger danger">@error('lastname'){{ $message }}@enderror</span>
-                                            </div>
-                                        </div>
-                                        <div class="field-input">
-                                            <input type="email" placeholder="Email" value="" name="email">
-                                            <span class="text-danger danger">@error('email'){{ $message }}@enderror</span>
-                                        </div>
-                                        <div class="field-input">
-                                            <input type="password" placeholder="Password" value="" name="password">
-                                            <span class="text-danger danger">@error('password'){{ $message }}@enderror</span>
-                                        </div>
-                                        <div class="field-check">
-                                            <label for="accept">
-                                                <input type="checkbox" id="accept" value="1" name="accept_terms_condition">
-                                                Accept the <a title="Terms" href="#">Terms</a> and <a title="Privacy Policy" href="#">Privacy Policy</a>
-                                                <span class="checkmark">
-                                                    <i class="la la-check"></i>
-                                                </span>
-                                            </label>
-                                        </div>
-                                        <input type="submit" name="submit" value="Sign Up">
-                                    </form>
-                                    <form action="{{ route('login.user') }}" class="form-log form-content" id="login" method="POST">
-                                        @csrf
-                                        <div class="field-input">
-                                            <input type="text" placeholder="Username or Email" value="" name="email">
-                                            <span class="text-danger danger">@error('email'){{ $message }}@enderror</span>
-                                        </div>
-                                        <div class="field-input">
-                                            <input type="password" placeholder="Password" value="" name="password">
-                                            <span class="text-danger danger">@error('password'){{ $message }}@enderror</span>
-                                        </div>
-                                        <a title="Forgot password" class="forgot_pass" href="#">Forgot Password</a>
-                                        <input type="submit" name="submit" value="Login">
-                                    </form>
+                                    @include('user-page.auth.register')
+                                    @include('user-page.auth.login')
                                 </div>
                             </div><!-- .popup-form -->
-                            {{-- <div class="right-header__search">
-                                <a title="Search" href="#" class="search-open">
-                                    <i class="las la-search la-24-black"></i>
-                                </a>
-                                <div class="site__search">
-                                    <a title="Save" href="javascript:void(0)" class="search__save">
-                                        <i class="la la-search-location"></i>
-                                    </a><!-- .search__close -->
-                                    <a title="Close" href="#" class="search__close">
-                                        <i class="la la-times"></i>
-                                    </a><!-- .search__close -->
-                                    <form action="{{ route('churches.searchPage') }}" class="site__search__form" method="GET">
-                                        <div class="site__search__field">
-                                            <span class="site__search__icon">
-                                                <i class="las la-search la-24-black"></i>
-                                            </span><!-- .site__search__icon -->
-                                            <input class="site__search__input" type="text" name="address"
-                                                placeholder="Search places, cities">
-                                            <input type="hidden" name="latitude" id="mob_latitude" value="">
-                                            <input type="hidden" name="longitude" id="mob_longitude" value="">
-                                        </div><!-- .search__input -->
-                                    </form><!-- .search__form -->
-                                </div><!-- .site__search -->
-                            </div> --}}
                             @auth
                                 <div class="dropdown">
                                     @if(auth()->user()->user_image)
@@ -204,7 +138,7 @@
                                             <form action="{{ route('user.logout') }}" method="post">
                                                 @csrf
                                                 <button type="submit" class="w-100 rounded mt-2 logout-btn">
-                                                    <i class="ti ti-logout text-primary mr-3"></i>  Logout
+                                                    <i class="ti ti-logout text-primary mr-3"></i>Logout
                                                 </button>
                                             </form>
                                         </a>

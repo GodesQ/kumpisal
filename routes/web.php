@@ -11,6 +11,7 @@ use App\Http\Controllers\Web\Auth\UserAuthController;
 use App\Http\Controllers\Web\ConfessionScheduleController;
 use App\Http\Controllers\Web\RepresentativeController;
 use App\Http\Controllers\Web\ContactMessageController;
+use App\Http\Controllers\Web\AdminLogController;
 
 use App\Models\Church;
 /*
@@ -121,10 +122,8 @@ Route::group(['prefix'=> 'admin', 'as' => 'admin.', 'middleware' => ['auth.admin
 
     Route::get('/contact_messages', [ContactMessageController::class, 'lists'])->name('contact_messages.list');
     Route::get('/contact_message/show/{id}', [ContactMessageController::class, 'show'])->name('contact_message.show');
-    // Route::get('/confession_schedule/create', [ConfessionScheduleController::class, 'create'])->name('confession_schedule.create');
-    // Route::post('/confession_schedule/store', [ConfessionScheduleController::class, 'store'])->name('confession_schedule.store');
-    // Route::get('/confession_schedule/edit/{id}', [ConfessionScheduleController::class, 'edit'])->name('confession_schedule.edit');
-    // Route::post('/confession_schedule/update/{id}', [ConfessionScheduleController::class, 'update'])->name('confession_schedule.update');
+
+    Route::get('/logs', [AdminLogController::class, 'lists'])->name('logs.list');
 
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 });

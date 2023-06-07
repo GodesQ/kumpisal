@@ -24,7 +24,7 @@
         </div><!-- .site-banner -->
         <div class="cities">
             <div class="container">
-                <h3 class="cities__title title offset-item text-center">{{ optional(auth()->user())->latitude && optional(auth()->user())->longitude ? 'Churches Near You' : 'Churches' }}</h3>
+                <h3 class="cities__title title offset-item text-center" style="font-size: 40px;">{{ optional(auth()->user())->latitude && optional(auth()->user())->longitude ? 'Churches Near You' : 'Churches' }}</h3>
                 <div class="cities__content offset-item">
                     <div class="row justify-content-center">
                         @forelse ($near_churches as $church)
@@ -32,7 +32,7 @@
                                 <div class="cities__item hover__box">
                                     <div class="cities__thumb hover__box__thumb">
                                         <a title="{{ $church->name }}" href="{{ route('churches.detailPage', ['uuid' => $church->church_uuid, 'name' => $church->name ]) }}">
-                                            <img src="{{ URL::asset('admin-assets/images/churches/' . $church->church_image) }}" alt="Tokyo" class="church-img">
+                                            <img src="{{ URL::asset('admin-assets/images/churches/' . $church->church_image) }}" alt="{{ $church->name }}" class="church-img">
                                         </a>
                                     </div>
                                     <div class="cities__info">
@@ -42,6 +42,7 @@
                                 </div><!-- .cities__item -->
                             </div>
                         @empty
+
                         @endforelse
                     </div>
                 </div><!-- .cities__content -->
