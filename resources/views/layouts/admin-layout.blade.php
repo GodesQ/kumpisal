@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
+    <link rel="shortcut icon" href="{{ URL::asset('user-assets/images/assets/kumpisalan-logo-32.png') }}" type="image/x-icon">
+
     @stack('stylesheets')
 </head>
 
@@ -23,9 +25,9 @@
         <aside class="left-sidebar">
             <!-- Sidebar scroll-->
             <div>
-                <div class="brand-logo d-flex align-items-center justify-content-between">
+                <div class="brand-logo d-flex align-items-center justify-content-center">
                     <a href="{{ route('admin.dashboard') }}" class="text-nowrap logo-img">
-                        <img src="{{ asset('user-assets/images/assets/kumpisalan-logo.png') }}" width="150"
+                        <img src="{{ asset('user-assets/images/assets/kumpisalan-logo.png') }}" width="50"
                             alt="" />
                     </a>
                     <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -73,6 +75,14 @@
                                     <i class="ti ti-building-church"></i>
                                 </span>
                                 <span class="hide-menu">Churches</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="{{ route('admin.admins.list') }}" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-user"></i>
+                                </span>
+                                <span class="hide-menu">Admins</span>
                             </a>
                         </li>
                         <li class="nav-small-cap">

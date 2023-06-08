@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use DB;
 
 use App\Models\Church;
 use App\Models\User;
@@ -13,6 +14,10 @@ use App\Models\Admin;
 
 use App\Http\Requests\Admin\SaveAdminProfileRequest;
 use App\Http\Requests\Admin\ChangeAdminPasswordRequest;
+use App\Http\Requests\Admin\CreateAdminRequest;
+use App\Http\Requests\Admin\UpdateAdminRequest;
+
+use DataTables;
 
 class AdminController extends Controller
 {
@@ -50,5 +55,52 @@ class AdminController extends Controller
         }
 
         return back()->with('fail', 'Failed to update your password.');
+    }
+
+    public function lists(Request $request) {
+        if($request->ajax()) {
+            $admins = Admin::get();
+            return Datatables::of($admins)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row) {
+                        $btn = '<a href="/admin/edit/' .$row->id. '" class="btn btn-primary btn-sm"><i class="ti ti-edit"></i></a>
+                        <a id="' .$row->id. '" class="btn btn-danger btn-sm remove-btn"><i class="ti ti-trash"></i></a>';
+                        return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+        return view('admin-page.admins.list');
+    }
+
+    public function create(Request $request) {
+        return view('admin-page.admins.create');
+    }
+
+    public function store(CreateAdminRequest $request) {
+        $data = $request->validated();
+        $admin =  new Admin;
+
+        $create_admin = $admin->create(array_merge($data, [
+            'name' => $request->firstname . ' ' . $request->lastname
+        ]));
+
+        return redirect()->route('admin.admins.list')->with('success', 'Admin Created Successfully');
+    }
+
+    public function edit(Request $request) {
+        $admin = Admin::where('id', $request->id)->first();
+        return view('admin-page.admins.edit', compact('admin'));
+    }
+
+    public function update(UpdateAdminRequest $request) {
+        $data = $request->validated();
+        $admin = Admin::where('id', $request->id)->first();
+
+        $admin->update(array_merge($data, [
+            'name' => $request->firstname . ' ' . $request->lastname
+        ]));
+
+        return back()->with('success', 'Admin Updated Successfully');
     }
 }

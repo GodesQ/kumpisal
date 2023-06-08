@@ -102,16 +102,14 @@ class RepresentativeController extends Controller
             $inputs = [];
             $representative = new User;
 
-            $representative->fill(array_merge($data, [
+            $save_representative = $representative->create(array_merge($data, [
                 'is_admin_generated' => 1,
                 'name' => $data['firstname'] . ' ' . $data['lastname'],
                 'password' => Hash::make($data['password']),
                 'user_uuid' => Str::orderedUuid(),
             ]));
 
-            $save_representative = $representative->save();
-
-            $representativeChangedAttributes = $representative->getDirty();
+            $representativeChangedAttributes = $representative->getChanges();
 
             // Loop through the changed attributes and do something with them
             foreach ($representativeChangedAttributes as $attribute => $value) {
@@ -126,7 +124,7 @@ class RepresentativeController extends Controller
             $representativeInfo = new RepresentativeInfo;
 
             // Step 3: Create the representative info
-            $representativeInfo->fill([
+            $save_representative_info = $representativeInfo->create([
                 'main_id' => $representative->id,
                 'church_id' => $data['church'],
                 'years_of_service' => $data['years_of_service'],
@@ -135,9 +133,7 @@ class RepresentativeController extends Controller
                 'contact_no' => $data['contact_no'],
             ]);
 
-            $save_representative_info = $representativeInfo->save();
-
-            $infoChangedAttributes = $representativeInfo->getDirty();
+            $infoChangedAttributes = $representativeInfo->getChanges();
 
             // Loop through the changed attributes and do something with them
             foreach ($infoChangedAttributes as $attribute => $value) {
@@ -151,7 +147,7 @@ class RepresentativeController extends Controller
             }
 
             // Step 5: Create Log
-            $create_log = $this->AdminLogRepository->create($request, $inputs, $this->title_create_log, 'create_representative');
+            $create_log = $this->AdminLogRepository->create($request, $inputs, $this->title_create_log, 'create_representative', $representative->id);
         });
 
         // Step 6: Redirect with success message
@@ -172,18 +168,13 @@ class RepresentativeController extends Controller
 
             $representative = User::where('id', $request->id)->first();
 
-            $representative->fill(array_merge($data, [
-                'is_admin_generated' => 1,
+            $representative_update = $representative->update(array_merge($data, [
                 'name' => $data['firstname'] . ' ' . $data['lastname'],
-                'user_uuid' => Str::orderedUuid(),
                 'is_verify' => $request->has('is_verify') ? true : false,
                 'is_active' => $request->has('is_active') ? true : false,
             ]));
 
-            $representative_update = $representative->save();
-
-            $representativeChangedAttributes = $representative->getDirty();
-            // dd($representativeChangedAttributes);
+            $representativeChangedAttributes = $representative->getChanges();
 
             // Loop through the changed attributes and do something with them
             foreach ($representativeChangedAttributes as $attribute => $value) {
@@ -198,7 +189,7 @@ class RepresentativeController extends Controller
             // Step 3: Create the representative info
             $representativeInfo = RepresentativeInfo::where('main_id', $representative->id)->first();
 
-            $representativeInfo->fill([
+            $representative_info_update = $representativeInfo->update([
                 'main_id' => $representative->id,
                 'church_id' => $data['church'],
                 'years_of_service' => $data['years_of_service'],
@@ -207,7 +198,14 @@ class RepresentativeController extends Controller
                 'contact_no' => $data['contact_no'],
             ]);
 
-            $representative_info_update = $representativeInfo->update();
+             $representativeInfo->save();
+
+            $infoChangedAttributes = $representativeInfo->getChanges();
+
+            // Loop through the changed attributes and do something with them
+            foreach ($infoChangedAttributes as $attribute => $value) {
+                array_push($inputs, "Attribute: $attribute, Value: $value");
+            }
 
             // Step 4: Check if the representative info was successfully created
             if (!$representative_info_update) {
@@ -215,7 +213,7 @@ class RepresentativeController extends Controller
                 return back()->with('error', 'Failed to create representative info');
             }
 
-            $create_log = $this->AdminLogRepository->create($request, $inputs, $this->title_update_log, 'update_representative');
+            $create_log = $this->AdminLogRepository->create($request, $inputs, $this->title_update_log, 'update_representative', $representative->id);
         });
 
         return back()->with('success', 'Update Successfully');

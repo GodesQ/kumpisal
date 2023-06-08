@@ -11,7 +11,7 @@
                     <form action="{{ route('churches.searchPage') }}" class="site-banner__search layout-02 offset-item">
                         <div class="field-input">
                             <label for="loca">Where</label>
-                            <input class="site-banner__search__input" id="loca" type="text" name="address" placeholder="Your place">
+                            <input class="site-banner__search__input" id="loca" type="text" name="address" placeholder="Your place" required>
                             <input type="hidden" name="latitude" id="latitude" value="">
                             <input type="hidden" name="longitude" id="longitude" value="">
                         </div><!-- .site-banner__search__input -->
@@ -72,7 +72,11 @@
         }
 
         $('#field-submit-btn').click(function () {
-            $('.site-banner__search').submit();
+            if($('.site-banner__search__input').val()) {
+                $('.site-banner__search').submit();
+            } else {
+                toastr.error('Missing required field', 'Error');
+            }
         })
 
         $(document).ready(function() {

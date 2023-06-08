@@ -15,19 +15,19 @@
 }
 
 .slider-black .noUi-connect {
-  background : #000000 !important;
+  background : #331f14 !important;
 }
 
 .slider-black.noUi-connect {
-  background : #000000 !important;
+  background : #331f14 !important;
 }
 
 .slider-black .noUi-handle {
-  border-color : #000000 !important;
+  border-color : #331f14 !important;
 }
 
 .slider-black.circle-filled .noUi-handle, .slider-black.square .noUi-handle {
-  background : #000000 !important;
+  background : #331f14 !important;
 }
 
 .slider-primary .noUi-connect {

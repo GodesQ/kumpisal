@@ -83,7 +83,7 @@
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <!-- LOGO -->
         <tr>
-            <td bgcolor="#000000" align="center">
+            <td bgcolor="#331f14" align="center">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
                         <td align="center" valign="top" style="padding: 40px 10px 40px 10px;"></td>
@@ -92,7 +92,7 @@
             </td>
         </tr>
         <tr>
-            <td bgcolor="#000000" align="center" style="padding: 0px 10px 0px 0px;">
+            <td bgcolor="#331f14" align="center" style="padding: 0px 10px 0px 0px;">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
                         <td bgcolor="#ffffff" align="center" valign="top"
@@ -185,8 +185,8 @@
             <td bgcolor="#f4f4f4" align="center" style="padding: 30px 10px 0px 10px;">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
-                        <td bgcolor="#B09D7C" align="center"
-                            style="padding: 30px 30px 30px 30px; border-radius: 4px 4px 4px 4px; color: #000000; font-family: 'Google Sans', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                        <td bgcolor="#331f14" align="center"
+                            style="padding: 30px 30px 30px 30px; border-radius: 4px 4px 4px 4px; color: #331f14; font-family: 'Google Sans', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
                             <h2 style="font-size: 20px; font-weight: 400; color: white; margin: 0;">Need more help?
                             </h2>
                             <p style="margin: 0;"><a href="" target="_blank"
@@ -204,7 +204,7 @@
                             style="padding: 0px 30px 30px 30px; color: #666666; font-family: 'Google Sans', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;">
                             <br>
                             <p style="margin: 0;">Powered by: <a. href="{{ url('') }}" target="_blank"
-                                    style="color: #000000; font-weight: 700;"><strong>KUMPISALAN APP</strong></a.></p>
+                                    style="color: #331f14; font-weight: 700;"><strong>KUMPISALAN APP</strong></a.></p>
                         </td>
                     </tr>
                 </table>

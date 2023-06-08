@@ -45,8 +45,65 @@
             {{-- <a href="#" class="more open-more" data-close="Close" data-more="More">More</a> --}}
         </div>
     </div>
+    <div class="filter-box">
+        <h3>Day</h3>
+        <div class="filter-list">
+            <div class="filter-group">
+                <div class="field-check">
+                    <label for="monday_checkbox">
+                        <input type="checkbox" id="monday_checkbox" value="monday" class="day">
+                            Monday
+                        <span class="checkmark"><i class="la la-check"></i></span>
+                    </label>
+                </div>
+                <div class="field-check">
+                    <label for="tuesday_checkbox">
+                        <input type="checkbox" id="tuesday_checkbox" value="tuesday" class="day">
+                            Tuesday
+                        <span class="checkmark"><i class="la la-check"></i></span>
+                    </label>
+                </div>
+                <div class="field-check">
+                    <label for="wednesday_checkbox">
+                        <input type="checkbox" id="wednesday_checkbox" value="wednesday" class="day">
+                            Wednesday
+                        <span class="checkmark"><i class="la la-check"></i></span>
+                    </label>
+                </div>
+                <div class="field-check">
+                    <label for="thursday_checkbox">
+                        <input type="checkbox" id="thursday_checkbox" value="thursday" class="day">
+                            Thursday
+                        <span class="checkmark"><i class="la la-check"></i></span>
+                    </label>
+                </div>
+                <div class="field-check">
+                    <label for="friday_checkbox">
+                        <input type="checkbox" id="friday_checkbox" value="friday" class="day">
+                            Friday
+                        <span class="checkmark"><i class="la la-check"></i></span>
+                    </label>
+                </div>
+                <div class="field-check">
+                    <label for="saturday_checkbox">
+                        <input type="checkbox" id="saturday_checkbox" value="saturday" class="day">
+                            Saturday
+                        <span class="checkmark"><i class="la la-check"></i></span>
+                    </label>
+                </div>
+                <div class="field-check">
+                    <label for="sunday_checkbox">
+                        <input type="checkbox" id="sunday_checkbox" value="sunday" class="day">
+                            Sunday
+                        <span class="checkmark"><i class="la la-check"></i></span>
+                    </label>
+                </div>
+            </div>
+            {{-- <a href="#" class="more open-more" data-close="Close" data-more="More">More</a> --}}
+        </div>
+    </div>
     <div class="align-center">
-        <button class="btn" type="submit">Apply</button>
+        <button class="btn" type="submit" id="filter-btn">Apply</button>
     </div>
 </form>
 <form action="#" class="sortForm" id="sortForm">
@@ -76,6 +133,6 @@
         </div>
     </div>
     <div class="form-button align-center">
-        <button class="btn" type="submit">Apply</button>
+        <button class="btn" type="submit" id="sort-btn">Apply</button>
     </div>
 </form>

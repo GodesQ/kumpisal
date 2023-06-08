@@ -120,10 +120,19 @@ Route::group(['prefix'=> 'admin', 'as' => 'admin.', 'middleware' => ['auth.admin
     Route::get('/confession_schedule/edit/{id}', [ConfessionScheduleController::class, 'edit'])->name('confession_schedule.edit');
     Route::post('/confession_schedule/update/{id}', [ConfessionScheduleController::class, 'update'])->name('confession_schedule.update');
 
+    Route::get('/admins', [AdminController::class, 'lists'])->name('admins.list');
+    Route::get('/create', [AdminController::class, 'create'])->name('create');
+    Route::post('/store', [AdminController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('edit');
+    Route::post('/update/{id}', [AdminController::class, 'update'])->name('update');
+
     Route::get('/contact_messages', [ContactMessageController::class, 'lists'])->name('contact_messages.list');
     Route::get('/contact_message/show/{id}', [ContactMessageController::class, 'show'])->name('contact_message.show');
 
     Route::get('/logs', [AdminLogController::class, 'lists'])->name('logs.list');
+    Route::get('/log/show/{id}', [AdminLogController::class, 'show'])->name('log.show');
+
+
 
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 });

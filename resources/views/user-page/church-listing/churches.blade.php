@@ -22,8 +22,8 @@
 
                         <div class="filter-center">
                             <div class="place-layout">
-                                <a class="active" href="#" data-layout="layout-grid"><i
-                                        class="las la-border-all icon-large"></i></a>
+                                <a class="active" href="#" data-layout="layout-grid">
+                                    <i class="las la-border-all icon-large"></i></a>
                                 <a class="" href="#" data-layout="layout-list"><i
                                         class="las la-list icon-large"></i></a>
                             </div>
@@ -85,6 +85,11 @@
                 filterChurches(page);
             })
 
+            $(document).on('click', '#filter-btn', function(event) {
+                event.preventDefault();
+                filterChurches(1);
+            })
+
             $(document).ready(function() {
                 filterChurches(1)
             });
@@ -92,14 +97,22 @@
             function filterChurches(page) {
                 $('#churches-list').html('<h3 class="text-center">Searching...</h3>');
                 let selected_criterias = [];
+                let selected_days = [];
 
                 // get all checked skills
                 $.each($(".criteria:checked"), function() {
                     selected_criterias.push($(this).val());
                 });
 
+                // get all checked days
+                $.each($(".day:checked"), function() {
+                    selected_days.push($(this).val());
+                });
+
                 selected_criterias = encodeURIComponent(JSON.stringify(selected_criterias));
-                let filter_parameters = `church_name=${$('#church_name').val()}&church_address=${$('#church_address').val()}&latitude=${latitude.value}&longitude=${longitude.value}&criterias=${selected_criterias}`;
+                selected_days = encodeURIComponent(JSON.stringify(selected_days));
+
+                let filter_parameters = `church_name=${$('#church_name').val()}&church_address=${$('#church_address').val()}&latitude=${latitude.value}&longitude=${longitude.value}&criterias=${selected_criterias}&days=${selected_days}`;
                 $.ajax({
                     url: "churches/fetch?page="+page+'&'+filter_parameters,
                     success: function (data) {

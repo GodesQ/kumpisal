@@ -10,7 +10,7 @@ class Admin extends Authenticatable
 {
     use HasFactory;
     protected $table = 'admins';
-    protected $fillable = ['username', 'email', 'password', 'firstname', 'lastname', 'name', 'is_verify', 'is_active', 'is_delete'];
+    protected $fillable = ['role', 'position', 'username', 'email', 'password', 'firstname', 'middlename', 'lastname', 'name', 'is_verify', 'is_active', 'is_delete'];
 
     public function logs() {
         $this->hasMany(AdminLog::class, 'admin_id');

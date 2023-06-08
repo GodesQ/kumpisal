@@ -18,8 +18,16 @@ use App\Http\Requests\User\UpdateUserRequest;
 use App\Http\Requests\User\SaveUserProfileRequest;
 use App\Http\Requests\User\ChangeUserPasswordRequest;
 
+use App\Repositories\AdminLogRepository;
+
 class UserController extends Controller
 {
+    public function __construct(AdminLogRepository $adminLogRepository) {
+        $this->title_create_log = 'Create User';
+        $this->title_update_log = 'Update User';
+        $this->AdminLogRepository = $adminLogRepository;
+    }
+
     public function dashboard(Request $request) {
         $user = Auth::user();
 
@@ -115,15 +123,26 @@ class UserController extends Controller
     }
 
     public function store(CreateUserRequest $request) {
+        $inputs = [];
         $data = $request->except('_token', 'password');
 
-        $store = User::create(array_merge($data, [
+        $user =  new User;
+
+        $user->create(array_merge($data, [
             'name' => $request->firstname . ' ' . $request->lastname,
             'password' => Hash::make($request->password),
             'user_uuid' => Str::orderedUuid()
         ]));
 
-        if($store) return redirect()->route('admin.users.list')->with('success', 'Created Successfully');
+        $userChangedAttributes = $user->getChanges();
+
+        foreach ($userChangedAttributes as $attribute => $value) {
+            array_push($inputs, "Attribute: $attribute, Value: $value");
+        }
+
+        $create_log = $this->AdminLogRepository->create($request, $inputs, $this->title_create_log, 'create_user', $user->id);
+
+        if($user && $create_log) return redirect()->route('admin.users.list')->with('success', 'Created Successfully');
     }
 
     public function edit(Request $request) {
@@ -132,15 +151,27 @@ class UserController extends Controller
     }
 
     public function update(UpdateUserRequest $request) {
+        $inputs = [];
         $data = $request->validated();
 
-        $update = User::where('user_uuid', $request->uuid)->update(array_merge($data, [
+        $user = User::where('user_uuid', $request->uuid)->first();
+
+        $user->update(array_merge($data, [
             'name' => $request->firstname . ' ' . $request->lastname,
             'password' => $request->new_password ? $request->new_password : DB::raw('password'),
             'is_verify' => $request->has('is_verify') ? true : false,
             'is_active' => $request->has('is_active') ? true : false,
         ]));
 
-        if($update) return back()->with('success', 'Update User Successfully');
+        $userChangedAttributes = $user->getChanges();
+
+        foreach ($userChangedAttributes as $attribute => $value) {
+            if($attribute != 'password') {
+                array_push($inputs, "Attribute: $attribute, Value: $value");
+            }
+        }
+
+        $create_log = $this->AdminLogRepository->create($request, $inputs, $this->title_update_log, 'update_user', $user->id);
+        if($user) return back()->with('success', 'Update User Successfully');
     }
 }

@@ -28,7 +28,7 @@
 /* Hovered time */
 .picker__list-item:hover {
   cursor: pointer;
-  color: #000;
+  color: #331f14;
   background: #b1dcfb;
   border-color: #0089ec;
   z-index: 10;
@@ -41,7 +41,7 @@
 .picker__list-item--highlighted:hover,
 .picker--focused .picker__list-item--highlighted {
   cursor: pointer;
-  color: #000;
+  color: #331f14;
   background: #b1dcfb;
 }
 /* Selected and hovered/focused time */
@@ -81,7 +81,7 @@
 }
 .picker--time .picker__button--clear:hover,
 .picker--time .picker__button--clear:focus {
-  color: #000;
+  color: #331f14;
   background: #b1dcfb;
   background: #e20;
   border-color: #e20;

@@ -317,7 +317,7 @@
   margin: 0 0 0 auto;
 }
 .ql-editor .ql-bg-black {
-  background-color: #000;
+  background-color: #331f14;
 }
 .ql-editor .ql-bg-red {
   background-color: #e60000;
@@ -855,7 +855,7 @@
   background-color: #fff;
 }
 .ql-bubble .ql-color-picker.ql-color .ql-picker-item {
-  background-color: #000;
+  background-color: #331f14;
 }
 .ql-bubble .ql-toolbar .ql-formats {
   margin: 8px 12px 8px 0px;

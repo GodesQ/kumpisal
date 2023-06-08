@@ -23,6 +23,7 @@
 
     <link rel="stylesheet" href="{{ URL::asset('admin-assets/css/icons/tabler-icons/tabler-icons.css') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
+    <link rel="shortcut icon" href="{{ URL::asset('user-assets/images/assets/kumpisalan-logo-32.png') }}" type="image/x-icon">
 
     @stack('styles')
 </head>
@@ -77,7 +78,7 @@
                             </div><!-- .site__menu -->
                             <div class="site__brand">
                                 <a title="Logo" href="/" class="site__brand__logo">
-                                    <img src="{{ asset('user-assets/images/assets/kumpisalan-logo.png') }}" alt="Kumpisalan">
+                                    <img src="{{ asset('user-assets/images/assets/kumpisalan-logo.png') }}" alt="Kumpisalan" width="40">
                                 </a>
                             </div><!-- .site__brand -->
 
@@ -155,11 +156,11 @@
             <div class="container">
                 <div class="footer__top">
                     <div class="row">
-                        <div class="col-lg-5">
+                        <div class="col-lg-4">
                             <div class="footer__top__info">
                                 <a title="Logo" href="01_index_1.html" class="footer__top__info__logo"><img
-                                        src="{{ asset('user-assets/images/assets/kumpisalan-logo.png') }}" alt="Golo"></a>
-                                <p class="footer__top__info__desc">Discover amazing things to do everywhere you go.</p>
+                                        src="{{ asset('user-assets/images/assets/kumpisalan-logo.png') }}" alt="Kumpisalan Logo" width="100"></a>
+                                <p class="footer__top__info__desc">Journey Inward: Unveiling the Depths Within - A Soulful Quest for Self-Understanding</p>
                             </div>
                         </div>
                         <div class="col-lg-2">
@@ -169,7 +170,7 @@
                                     <li><a title="Home" href="{{ route('home') }}">Home</a></li>
                                     <li><a title="Churches" href="{{ route('churches.searchPage') }}">Churches</a></li>
                                     <li><a title="About Us" href="{{ route('about-us') }}">About Us</a></li>
-                                    <li><a title="Contact Us" href="#">Contact Us</a></li>
+                                    <li><a title="Contact Us" href="{{ route('contact-us') }}">Contact Us</a></li>
                                 </ul>
                             </aside>
                         </div>
@@ -177,7 +178,7 @@
                             <aside class="footer__top__nav">
                                 <h3>Support</h3>
                                 <ul>
-                                    <li><a title="Get in Touch" href="#">Get in Touch</a></li>
+                                    <li><a title="Get in Touch" href="{{ route('contact-us') }}">Get in Touch</a></li>
                                     <li><a title="How it works" href="#">How it works</a></li>
                                 </ul>
                             </aside>

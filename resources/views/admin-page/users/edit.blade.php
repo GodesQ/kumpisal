@@ -65,6 +65,8 @@
                             <div class="mb-3">
                                 <label for="address" class="form-label">Address</label>
                                 <input type="text" class="form-control" id="address" name="address" aria-describedby="addressHelp" value="{{ $user->address }}">
+                                <input type="hidden" class="form-control" id="latitude" name="latitude" value="{{ $user->latitude }}">
+                                <input type="hidden" class="form-control" id="longitude" name="longitude" value="{{ $user->longitude }}">
                                 <span class="danger text-danger">@error('address'){{ $message }}@enderror</span>
                             </div>
                         </div>
@@ -91,3 +93,35 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+
+        let address = document.querySelector('#address');
+        let latitude = document.querySelector('#latitude');
+        let longitude = document.querySelector('#longitude');
+
+        function initialize() {
+            // for search
+            let searchBox = new google.maps.places.SearchBox( address );
+
+            google.maps.event.addListener( searchBox, 'places_changed', function () {
+                var places = searchBox.getPlaces(), bounds = new google.maps.LatLngBounds(), i, place, lat, long, resultArray, address = places[0].formatted_address;
+
+                for( i = 0; place = places[i]; i++ ) {
+                    bounds.extend( place.geometry.location );
+                    my_marker.setPosition( place.geometry.location );  // Set my_marker position new.
+                }
+
+                map.fitBounds( bounds );  // Fit to the bound
+                map.setZoom( 15 ); // This function sets the zoom to 15, meaning zooms to level 15.
+
+                lat = places[0].geometry.location.lat()
+                long = places[0].geometry.location.lng();
+                latitude.value = lat;
+                longitude.value = long;
+                resultArray =  places[0].address_components;
+            });
+        }
+    </script>
+@endpush

@@ -28,6 +28,9 @@
                                         <h6 class="fw-semibold mb-0">Type</h6>
                                     </th>
                                     <th class="border-bottom-0">
+                                        <h6 class="fw-semibold mb-0">Type ID</h6>
+                                    </th>
+                                    <th class="border-bottom-0">
                                         <h6 class="fw-semibold mb-0">Log Date</h6>
                                     </th>
                                     <th class="border-bottom-0" width="100">
@@ -78,6 +81,12 @@
             {
                 data: 'type',
                 name: 'type',
+                orderable: true,
+                searchable: true
+            },
+            {
+                data: 'type_id',
+                name: 'type_id',
                 orderable: true,
                 searchable: true
             },

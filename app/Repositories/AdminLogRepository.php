@@ -8,10 +8,11 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\AdminLog;
 
 class AdminLogRepository {
-    public function create($request, $inputs, $title, $type) {
+    public function create($request, $inputs, $title, $type, $type_id) {
         $create = AdminLog::create([
             'admin_id' => Auth::guard('admin')->user()->id,
             'type' => $type,
+            'type_id' => $type_id,
             'title' => $title,
             'inputs' => implode("|", $inputs)
         ]);

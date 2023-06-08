@@ -7,12 +7,12 @@
   color: #FFFFFF; }
 
 .tooltip-bg-black .tooltip-inner {
-  background-color: #000000; }
+  background-color: #331f14; }
   .tooltip-bg-black .tooltip-inner:before {
-    border-top-color: #000000 !important; }
+    border-top-color: #331f14 !important; }
 
 .tooltip-text-black .tooltip-inner {
-  color: #000000; }
+  color: #331f14; }
 
 .tooltip-bg-primary .tooltip-inner {
   background-color: #00b5b8; }

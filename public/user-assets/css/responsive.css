@@ -2109,12 +2109,12 @@
 }
 .logout-btn {
     text-align: center !important;
-    border: 1px solid #000 !important;
+    border: 1px solid #331f14 !important;
     background: transparent !important;
 }
 
 .logout-btn:hover {
-    background-color: #000 !important;
+    background-color: #331f14 !important;
     color: #fff;
 }
 

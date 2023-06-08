@@ -17,7 +17,7 @@
                         <table class="open-table table">
                             <thead>
                                 <tr>
-                                    <th style="border: 1px solid rgb(61, 61, 61) !important; text-align: center; background: #000; color: #fff;" colspan="2">Confession Schedules</th>
+                                    <th style="border: 1px solid rgb(61, 61, 61) !important; text-align: center; background: #331F14; color: #fff;" colspan="2">Confession Schedules</th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -161,23 +161,23 @@ License: MIT
     filter : progid:DXImageTransform.Microsoft.gradient(GradientType = 1, startColorstr='#FFFFFFFF', endColorstr='#00CC9A81');
 }
 .sp-val {
-    background-image: -webkit-gradient(linear, 0 100%, 0 0, from(#000000), to(rgba(204, 154, 129, 0)));
-    background-image: -webkit-linear-gradient(bottom, #000000, rgba(204, 154, 129, 0));
-    background-image: -moz-linear-gradient(bottom, #000, rgba(204, 154, 129, 0));
-    background-image: -o-linear-gradient(bottom, #000, rgba(204, 154, 129, 0));
-    background-image: -ms-linear-gradient(bottom, #000, rgba(204, 154, 129, 0));
-    background-image: linear-gradient(to top, #000, rgba(204, 154, 129, 0));
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#00CC9A81, endColorstr=#FF000000)";
-    filter : progid:DXImageTransform.Microsoft.gradient(startColorstr='#00CC9A81', endColorstr='#FF000000');
+    background-image: -webkit-gradient(linear, 0 100%, 0 0, from(#331f14), to(rgba(204, 154, 129, 0)));
+    background-image: -webkit-linear-gradient(bottom, #331f14, rgba(204, 154, 129, 0));
+    background-image: -moz-linear-gradient(bottom, #331f14, rgba(204, 154, 129, 0));
+    background-image: -o-linear-gradient(bottom, #331f14, rgba(204, 154, 129, 0));
+    background-image: -ms-linear-gradient(bottom, #331f14, rgba(204, 154, 129, 0));
+    background-image: linear-gradient(to top, #331f14, rgba(204, 154, 129, 0));
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#00CC9A81, endColorstr=#FF331f14)";
+    filter : progid:DXImageTransform.Microsoft.gradient(startColorstr='#00CC9A81', endColorstr='#FF331f14');
 }
 
 .sp-hue {
-    background: -moz-linear-gradient(top, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
-    background: -ms-linear-gradient(top, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
-    background: -o-linear-gradient(top, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
-    background: -webkit-gradient(linear, left top, left bottom, from(#ff0000), color-stop(0.17, #ffff00), color-stop(0.33, #00ff00), color-stop(0.5, #00ffff), color-stop(0.67, #0000ff), color-stop(0.83, #ff00ff), to(#ff0000));
-    background: -webkit-linear-gradient(top, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
-    background: linear-gradient(to bottom, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
+    background: -moz-linear-gradient(top, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #331f140ff 67%, #ff00ff 83%, #ff0000 100%);
+    background: -ms-linear-gradient(top, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #331f140ff 67%, #ff00ff 83%, #ff0000 100%);
+    background: -o-linear-gradient(top, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #331f140ff 67%, #ff00ff 83%, #ff0000 100%);
+    background: -webkit-gradient(linear, left top, left bottom, from(#ff0000), color-stop(0.17, #ffff00), color-stop(0.33, #00ff00), color-stop(0.5, #00ffff), color-stop(0.67, #331f140ff), color-stop(0.83, #ff00ff), to(#ff0000));
+    background: -webkit-linear-gradient(top, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #331f140ff 67%, #ff00ff 83%, #ff0000 100%);
+    background: linear-gradient(to bottom, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #331f140ff 67%, #ff00ff 83%, #ff0000 100%);
 }
 
 /* IE filters do not support multiple color stops.
@@ -198,11 +198,11 @@ License: MIT
 }
 .sp-4 {
     height:17%;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffff', endColorstr='#0000ff');
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffff', endColorstr='#331f140ff');
 }
 .sp-5 {
     height:16%;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0000ff', endColorstr='#ff00ff');
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#331f140ff', endColorstr='#ff00ff');
 }
 .sp-6 {
     height:17%;
@@ -229,7 +229,7 @@ License: MIT
    height: 5px;
    width: 5px;
    border: 1px solid #fff;
-   background: #000;
+   background: #331f14;
    cursor: pointer;
    position:absolute;
    top:0;
@@ -242,7 +242,7 @@ License: MIT
     height: 3px;
     left: -1px;
     right: -1px;
-    border: 1px solid #000;
+    border: 1px solid #331f14;
     background: white;
     opacity: .8;
 }
@@ -474,7 +474,7 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
 
 
 .sp-palette span:hover, .sp-palette span.sp-thumb-active {
-    border-color: #000;
+    border-color: #331f14;
 }
 
 .sp-preview, .sp-alpha, .sp-thumb-el {

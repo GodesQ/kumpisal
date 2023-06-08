@@ -3,7 +3,7 @@ li{list-style: none;}
 .colors{clear:both;padding:24px 0 9px;}
 .skin-line .colors{padding-top:28px}
 .colors strong{float:left;line-height:20px;margin-right:20px}
-.colors li{position:relative;float:left;width:16px;height:16px;margin:2px 1px 0 0;background:#000;cursor:pointer;filter:alpha(opacity=50);opacity:.5;-webkit-transition:opacity .2s;-moz-transition:opacity .2s;-ms-transition:opacity .2s;-o-transition:opacity .2s;transition:opacity .2s;}
+.colors li{position:relative;float:left;width:16px;height:16px;margin:2px 1px 0 0;background:#331f14;cursor:pointer;filter:alpha(opacity=50);opacity:.5;-webkit-transition:opacity .2s;-moz-transition:opacity .2s;-ms-transition:opacity .2s;-o-transition:opacity .2s;transition:opacity .2s;}
 .colors li:hover{filter:alpha(opacity=100);opacity:1}
 .colors li.active{height:20px;margin-top:0;filter:alpha(opacity=75);opacity:.75}
 .colors li.red{background:#d54e21}

@@ -95,10 +95,10 @@ input:focus ~ .bg-white {
   background-color: #FFFFFF; }
 
 .black {
-  color: #000000 !important; }
+  color: #331f14 !important; }
 
 .bg-black {
-  background-color: #000000 !important; }
+  background-color: #331f14 !important; }
   .bg-black .card-header,
   .bg-black .card-footer {
     background-color: transparent; }
@@ -111,20 +111,20 @@ input:focus ~ .bg-white {
     color: black !important; }
 
 .bullet.bullet-black {
-  background-color: #000000; }
+  background-color: #331f14; }
 
 .bg-light-black {
   background-color: rgba(0, 0, 0, 0.15); }
 
 .border-black {
-  border-color: #000000; }
+  border-color: #331f14; }
 
 .bg-black.badge-glow,
 .border-black.badge-glow {
-  box-shadow: 0px 0px 10px #000000; }
+  box-shadow: 0px 0px 10px #331f14; }
 
 .overlay-black {
-  background: #000000;
+  background: #331f14;
   /* The Fallback */
   background: rgba(0, 0, 0, 0.8); }
 
@@ -139,7 +139,7 @@ input:focus ~ .bg-white {
       } */
 .btn-black {
   border-color: !important;
-  background-color: #000000 !important;
+  background-color: #331f14 !important;
   color: #FFFFFF; }
   .btn-black:hover {
     border-color: !important;
@@ -151,44 +151,44 @@ input:focus ~ .bg-white {
     color: #FFF !important; }
 
 .btn-outline-black {
-  border-color: #000000;
+  border-color: #331f14;
   background-color: transparent;
-  color: #000000; }
+  color: #331f14; }
   .btn-outline-black:hover {
-    background-color: #000000;
+    background-color: #331f14;
     color: #FFF !important; }
 
 .widget-timeline .timeline-items.timeline-icon-black:before {
-  background-color: #000000; }
+  background-color: #331f14; }
 
 input[type="checkbox"].bg-black + .custom-control-label:before, input[type="radio"].bg-black + .custom-control-label:before {
-  background-color: #000000 !important; }
+  background-color: #331f14 !important; }
 
 input:focus ~ .bg-black {
-  box-shadow: 0 0 0 0.075rem #fff, 0 0 0 0.21rem #000000 !important; }
+  box-shadow: 0 0 0 0.075rem #fff, 0 0 0 0.21rem #331f14 !important; }
 
 .border-black {
-  border: 1px solid #000000 !important; }
+  border: 1px solid #331f14 !important; }
 
 .border-top-black {
-  border-top: 1px solid #000000; }
+  border-top: 1px solid #331f14; }
 
 .border-bottom-black {
-  border-bottom: 1px solid #000000; }
+  border-bottom: 1px solid #331f14; }
 
 .border-left-black {
-  border-left: 1px solid #000000; }
+  border-left: 1px solid #331f14; }
 
 .border-right-black {
-  border-right: 1px solid #000000; }
+  border-right: 1px solid #331f14; }
 
 /* Scrumboard Application - kanban-item with coloured border */
 /* --------------------------------------------------------- */
 .kanban-container .kanban-board .kanban-item[data-border=black]:before {
-  background-color: #000000; }
+  background-color: #331f14; }
 
 .edit-kanban-item select option.bg-color_name {
-  background-color: #000000; }
+  background-color: #331f14; }
 
 .primary.lighten-5 {
   color: #39fcff !important; }
@@ -467,7 +467,7 @@ input:focus ~ .bg-primary {
 .alert-primary {
   border-color: #00fbff !important;
   background-color: #00fbff !important;
-  color: #000506 !important; }
+  color: #331f14506 !important; }
   .alert-primary .alert-link {
     color: black !important; }
 
@@ -12115,14 +12115,14 @@ input:focus ~ .bg-grey-blue {
   background-color: #263238; }
 
 .shades.black {
-  color: #000000 !important; }
+  color: #331f14 !important; }
 
 .bg-shades.bg-black {
-  background-color: #000000 !important; }
+  background-color: #331f14 !important; }
 
 .btn-shades.btn-black {
   border-color: !important;
-  background-color: #000000 !important; }
+  background-color: #331f14 !important; }
   .btn-shades.btn-black:hover {
     border-color: !important;
     background-color: !important; }
@@ -12131,41 +12131,41 @@ input:focus ~ .bg-grey-blue {
     background-color: !important; }
 
 .btn-outline-shades.btn-outline-black {
-  border-color: #000000 !important;
-  color: #000000 !important; }
+  border-color: #331f14 !important;
+  color: #331f14 !important; }
   .btn-outline-shades.btn-outline-black:hover {
-    background-color: #000000 !important; }
+    background-color: #331f14 !important; }
 
 input:focus ~ .bg-shades {
-  box-shadow: 0 0 0 0.075rem #fff, 0 0 0 0.21rem #000000 !important; }
+  box-shadow: 0 0 0 0.075rem #fff, 0 0 0 0.21rem #331f14 !important; }
 
 .border-shades.border-black {
-  border: 1px solid #000000 !important; }
+  border: 1px solid #331f14 !important; }
 
 .border-top-shades.border-top-black {
-  border-top: 1px solid #000000 !important; }
+  border-top: 1px solid #331f14 !important; }
 
 .border-bottom-shades.border-bottom-black {
-  border-bottom: 1px solid #000000 !important; }
+  border-bottom: 1px solid #331f14 !important; }
 
 .border-left-shades.border-left-black {
-  border-left: 1px solid #000000 !important; }
+  border-left: 1px solid #331f14 !important; }
 
 .border-right-shades.border-right-black {
-  border-right: 1px solid #000000 !important; }
+  border-right: 1px solid #331f14 !important; }
 
 .overlay-shades.overlay-black {
-  background: #000000;
+  background: #331f14;
   /* The Fallback */
   background: rgba(0, 0, 0, 0.8); }
 
 /* Scrumboard Application - kanban-item with coloured border */
 /* --------------------------------------------------------- */
 .kanban-container .kanban-board .kanban-item[data-border=shades]:before {
-  background-color: #000000; }
+  background-color: #331f14; }
 
 .edit-kanban-item select option.bg-color_name {
-  background-color: #000000; }
+  background-color: #331f14; }
 
 .shades.white {
   color: #FFFFFF !important; }
@@ -12274,28 +12274,28 @@ input:focus ~ .bg-shades {
   background-color: transparent; }
 
 .black {
-  color: #000000; }
+  color: #331f14; }
 
 .bg-black {
-  background-color: #000000; }
+  background-color: #331f14; }
 
 input:focus ~ .bg-black {
-  box-shadow: 0 0 0 0.075rem #fff, 0 0 0 0.21rem #000000; }
+  box-shadow: 0 0 0 0.075rem #fff, 0 0 0 0.21rem #331f14; }
 
 .border-black {
-  border: 1px solid #000000; }
+  border: 1px solid #331f14; }
 
 .border-top-black {
-  border-top: 1px solid #000000; }
+  border-top: 1px solid #331f14; }
 
 .border-bottom-black {
-  border-bottom: 1px solid #000000; }
+  border-bottom: 1px solid #331f14; }
 
 .border-left-black {
-  border-left: 1px solid #000000; }
+  border-left: 1px solid #331f14; }
 
 .border-right-black {
-  border-right: 1px solid #000000; }
+  border-right: 1px solid #331f14; }
 
 .white {
   color: #FFFFFF; }

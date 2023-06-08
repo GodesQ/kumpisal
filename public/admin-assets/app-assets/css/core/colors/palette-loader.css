@@ -51,56 +51,56 @@
     background-color: #FFFFFF !important; }
 
 .loader-black div {
-  background-color: #000000 !important; }
+  background-color: #331f14 !important; }
 
 .loader-black.ball-clip-rotate div {
-  border-color: #000000 !important;
+  border-color: #331f14 !important;
   border-bottom-color: transparent !important;
   background-color: transparent !important; }
 
 .loader-black.ball-clip-rotate-pulse div:first-child {
-  background: #000000 !important; }
+  background: #331f14 !important; }
 
 .loader-black.ball-clip-rotate-pulse div:last-child {
   background: transparent !important;
-  border-color: #000000 transparent #000000 transparent !important; }
+  border-color: #331f14 transparent #331f14 transparent !important; }
 
 .loader-black.ball-clip-rotate-multiple div {
   background-color: transparent !important;
-  border-color: transparent #000000 transparent #000000 !important; }
+  border-color: transparent #331f14 transparent #331f14 !important; }
 
 .loader-black.ball-rotate div:before, .loader-black.ball-rotate div:after {
-  background-color: #000000 !important; }
+  background-color: #331f14 !important; }
 
 .loader-black.ball-triangle-path div {
   background-color: transparent !important;
-  border-color: #000000 !important; }
+  border-color: #331f14 !important; }
 
 .loader-black.ball-scale-ripple div {
   background-color: transparent !important;
-  border-color: #000000 !important; }
+  border-color: #331f14 !important; }
 
 .loader-black.ball-scale-ripple-multiple div {
   background-color: transparent !important;
-  border-color: #000000 !important; }
+  border-color: #331f14 !important; }
 
 .loader-black.triangle-skew-spin div {
   background-color: transparent !important;
-  border-bottom-color: #000000 !important; }
+  border-bottom-color: #331f14 !important; }
 
 .loader-black.semi-circle-spin div {
-  background-image: linear-gradient(transparent 0%, transparent 70%, #000000 30%, #000000 100%);
+  background-image: linear-gradient(transparent 0%, transparent 70%, #331f14 30%, #331f14 100%);
   background-color: transparent !important; }
 
 .loader-black.fading-circle div {
   background-color: transparent !important; }
   .loader-black.fading-circle div:before {
-    background-color: #000000 !important; }
+    background-color: #331f14 !important; }
 
 .loader-black.folding-cube div {
   background-color: transparent !important; }
   .loader-black.folding-cube div:before {
-    background-color: #000000 !important; }
+    background-color: #331f14 !important; }
 
 .loader-primary div {
   background-color: #00b5b8 !important; }

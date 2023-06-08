@@ -60,6 +60,7 @@ class ChurchController extends Controller
         $latitude = $request->latitude;
         $longitude = $request->longitude;
         $criterias = json_decode($request->criterias);
+        $days = json_decode($request->days);
 
         $churches = Church::select('*')
                     ->active(1)
@@ -67,6 +68,35 @@ class ChurchController extends Controller
                     ->when($criterias, function ($q) use ($criterias) {
                         if ($criterias[0]) {
                             return $q->whereIn('criteria', $criterias);
+                        }
+                    })
+                    ->when($days, function ($q) use ($days) {
+                        if(in_array('monday', $days)) {
+                            return $q->where('has_monday_sched', 1);
+                        }
+
+                        if(in_array('tuesday', $days)) {
+                            return $q->where('has_tuesday_sched', 1);
+                        }
+
+                        if(in_array('wednesday', $days)) {
+                            return $q->where('has_wednesday_sched', 1);
+                        }
+
+                        if(in_array('thursday', $days)) {
+                            return $q->where('has_thursday_sched', 1);
+                        }
+
+                        if(in_array('friday', $days)) {
+                            return $q->where('has_friday_sched', 1);
+                        }
+
+                        if(in_array('saturday', $days)) {
+                            return $q->where('has_saturday_sched', 1);
+                        }
+
+                        if(in_array('sunday', $days)) {
+                            return $q->where('has_sunday_sched', 1);
                         }
                     })
                     ->when($latitude and $longitude && $church_address, function ($q) use ($latitude, $longitude) {

@@ -22,9 +22,9 @@
                         <div class="card mb-0">
                             <div class="card-body">
                                 <a href="/" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                                    <img src="{{ asset('user-assets/images/assets/kumpisalan-logo.png') }}" width="180" alt="">
+                                    <img src="{{ asset('user-assets/images/assets/kumpisalan-logo.png') }}" width="100" alt="">
                                 </a>
-                                <p class="text-center">Admin Access</p>
+                                <h3 class="text-center">Admin Access</h3>
                                 @if($errors->all())
                                     <div class="alert alert-danger">Invalid Credentials</div>
                                 @endif
@@ -55,6 +55,9 @@
                                     </div>
                                     <button class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign In</button>
                                 </form>
+                                <div class="text-center">
+                                    <a href="{{ route('home') }}" class="btn btn-primary">Back to Home </a>
+                                </div>
                             </div>
                         </div>
                     </div>

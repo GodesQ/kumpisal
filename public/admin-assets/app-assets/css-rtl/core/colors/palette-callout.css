@@ -41,14 +41,14 @@
 
 .bs-callout-black {
   display : block;
-  border-color : #000000 !important;
+  border-color : #331f14 !important;
   background-color : #525252;
   border-radius : 0.25rem;
   color : black;
 }
 .bs-callout-black h1, .bs-callout-black h2, .bs-callout-black h3, .bs-callout-black h4, .bs-callout-black h5, .bs-callout-black h6 {
   margin-top : 0;
-  color : #000000;
+  color : #331f14;
 }
 .bs-callout-black p:last-child {
   margin-bottom : 0;
@@ -58,14 +58,14 @@
 }
 .bs-callout-black.callout-transparent {
   display : block;
-  border-color : #000000 !important;
+  border-color : #331f14 !important;
   background-color : transparent;
   border-radius : 0.25rem;
   color : black;
 }
 .bs-callout-black.callout-transparent h1, .bs-callout-black.callout-transparent h2, .bs-callout-black.callout-transparent h3, .bs-callout-black.callout-transparent h4, .bs-callout-black.callout-transparent h5, .bs-callout-black.callout-transparent h6 {
   margin-top : 0;
-  color : #000000;
+  color : #331f14;
 }
 .bs-callout-black.callout-transparent p:last-child {
   margin-bottom : 0;
@@ -74,10 +74,10 @@
   background-color : #FFFFFF;
 }
 .bs-callout-black .callout-arrow-left:before {
-  border-right-color : #000000;
+  border-right-color : #331f14;
 }
 .bs-callout-black .callout-arrow-right:before {
-  border-left-color : #000000;
+  border-left-color : #331f14;
 }
 
 .climacon-primary.climacon-lighten-5 .climacon_component-stroke {
@@ -1521,7 +1521,7 @@
 }
 
 .climacon-shades.climacon-black .climacon_component-stroke {
-  fill : #000000;
+  fill : #331f14;
 }
 
 .climacon-shades.climacon-white .climacon_component-stroke {

@@ -118,11 +118,11 @@ input:focus ~ .bg-white {
 }
 
 .black {
-  color : #000000 !important;
+  color : #331f14 !important;
 }
 
 .bg-black {
-  background-color : #000000 !important;
+  background-color : #331f14 !important;
 }
 .bg-black .card-header, .bg-black .card-footer {
   background-color : transparent;
@@ -138,7 +138,7 @@ input:focus ~ .bg-white {
 }
 
 .bullet.bullet-black {
-  background-color : #000000;
+  background-color : #331f14;
 }
 
 .bg-light-black {
@@ -146,15 +146,15 @@ input:focus ~ .bg-white {
 }
 
 .border-black {
-  border-color : #000000;
+  border-color : #331f14;
 }
 
 .bg-black.badge-glow, .border-black.badge-glow {
-  box-shadow : 0 0 10px #000000;
+  box-shadow : 0 0 10px #331f14;
 }
 
 .overlay-black {
-  background : #000000;
+  background : #331f14;
   /* The Fallback */
   background : rgba(0, 0, 0, 0.8);
 }
@@ -170,7 +170,7 @@ input:focus ~ .bg-white {
       } */
 .btn-black {
   border-color : !important;
-  background-color : #000000 !important;
+  background-color : #331f14 !important;
   color : #FFFFFF;
 }
 .btn-black:hover {
@@ -185,55 +185,55 @@ input:focus ~ .bg-white {
 }
 
 .btn-outline-black {
-  border-color : #000000;
+  border-color : #331f14;
   background-color : transparent;
-  color : #000000;
+  color : #331f14;
 }
 .btn-outline-black:hover {
-  background-color : #000000;
+  background-color : #331f14;
   color : #FFFFFF !important;
 }
 
 .widget-timeline .timeline-items.timeline-icon-black:before {
-  background-color : #000000;
+  background-color : #331f14;
 }
 
 input[type='checkbox'].bg-black + .custom-control-label:before, input[type='radio'].bg-black + .custom-control-label:before {
-  background-color : #000000 !important;
+  background-color : #331f14 !important;
 }
 
 input:focus ~ .bg-black {
-  box-shadow : 0 0 0 0.075rem #FFFFFF, 0 0 0 0.21rem #000000 !important;
+  box-shadow : 0 0 0 0.075rem #FFFFFF, 0 0 0 0.21rem #331f14 !important;
 }
 
 .border-black {
-  border : 1px solid #000000 !important;
+  border : 1px solid #331f14 !important;
 }
 
 .border-top-black {
-  border-top : 1px solid #000000;
+  border-top : 1px solid #331f14;
 }
 
 .border-bottom-black {
-  border-bottom : 1px solid #000000;
+  border-bottom : 1px solid #331f14;
 }
 
 .border-left-black {
-  border-right : 1px solid #000000;
+  border-right : 1px solid #331f14;
 }
 
 .border-right-black {
-  border-left : 1px solid #000000;
+  border-left : 1px solid #331f14;
 }
 
 /* Scrumboard Application - kanban-item with coloured border */
 /* --------------------------------------------------------- */
 .kanban-container .kanban-board .kanban-item[data-border=black]:before {
-  background-color : #000000;
+  background-color : #331f14;
 }
 
 .edit-kanban-item select option.bg-color_name {
-  background-color : #000000;
+  background-color : #331f14;
 }
 
 .primary.lighten-5 {
@@ -595,7 +595,7 @@ input:focus ~ .bg-primary {
 .alert-primary {
   border-color : #00FBFF !important;
   background-color : #00FBFF !important;
-  color : #000506 !important;
+  color : #331f14506 !important;
 }
 .alert-primary .alert-link {
   color : black !important;
@@ -15665,16 +15665,16 @@ input:focus ~ .bg-grey-blue {
 }
 
 .shades.black {
-  color : #000000 !important;
+  color : #331f14 !important;
 }
 
 .bg-shades.bg-black {
-  background-color : #000000 !important;
+  background-color : #331f14 !important;
 }
 
 .btn-shades.btn-black {
   border-color : !important;
-  background-color : #000000 !important;
+  background-color : #331f14 !important;
 }
 .btn-shades.btn-black:hover {
   border-color : !important;
@@ -15686,39 +15686,39 @@ input:focus ~ .bg-grey-blue {
 }
 
 .btn-outline-shades.btn-outline-black {
-  border-color : #000000 !important;
-  color : #000000 !important;
+  border-color : #331f14 !important;
+  color : #331f14 !important;
 }
 .btn-outline-shades.btn-outline-black:hover {
-  background-color : #000000 !important;
+  background-color : #331f14 !important;
 }
 
 input:focus ~ .bg-shades {
-  box-shadow : 0 0 0 0.075rem #FFFFFF, 0 0 0 0.21rem #000000 !important;
+  box-shadow : 0 0 0 0.075rem #FFFFFF, 0 0 0 0.21rem #331f14 !important;
 }
 
 .border-shades.border-black {
-  border : 1px solid #000000 !important;
+  border : 1px solid #331f14 !important;
 }
 
 .border-top-shades.border-top-black {
-  border-top : 1px solid #000000 !important;
+  border-top : 1px solid #331f14 !important;
 }
 
 .border-bottom-shades.border-bottom-black {
-  border-bottom : 1px solid #000000 !important;
+  border-bottom : 1px solid #331f14 !important;
 }
 
 .border-left-shades.border-left-black {
-  border-right : 1px solid #000000 !important;
+  border-right : 1px solid #331f14 !important;
 }
 
 .border-right-shades.border-right-black {
-  border-left : 1px solid #000000 !important;
+  border-left : 1px solid #331f14 !important;
 }
 
 .overlay-shades.overlay-black {
-  background : #000000;
+  background : #331f14;
   /* The Fallback */
   background : rgba(0, 0, 0, 0.8);
 }
@@ -15726,11 +15726,11 @@ input:focus ~ .bg-shades {
 /* Scrumboard Application - kanban-item with coloured border */
 /* --------------------------------------------------------- */
 .kanban-container .kanban-board .kanban-item[data-border=shades]:before {
-  background-color : #000000;
+  background-color : #331f14;
 }
 
 .edit-kanban-item select option.bg-color_name {
-  background-color : #000000;
+  background-color : #331f14;
 }
 
 .shades.white {
@@ -15872,35 +15872,35 @@ input:focus ~ .bg-shades {
 }
 
 .black {
-  color : #000000;
+  color : #331f14;
 }
 
 .bg-black {
-  background-color : #000000;
+  background-color : #331f14;
 }
 
 input:focus ~ .bg-black {
-  box-shadow : 0 0 0 0.075rem #FFFFFF, 0 0 0 0.21rem #000000;
+  box-shadow : 0 0 0 0.075rem #FFFFFF, 0 0 0 0.21rem #331f14;
 }
 
 .border-black {
-  border : 1px solid #000000;
+  border : 1px solid #331f14;
 }
 
 .border-top-black {
-  border-top : 1px solid #000000;
+  border-top : 1px solid #331f14;
 }
 
 .border-bottom-black {
-  border-bottom : 1px solid #000000;
+  border-bottom : 1px solid #331f14;
 }
 
 .border-left-black {
-  border-right : 1px solid #000000;
+  border-right : 1px solid #331f14;
 }
 
 .border-right-black {
-  border-left : 1px solid #000000;
+  border-left : 1px solid #331f14;
 }
 
 .white {

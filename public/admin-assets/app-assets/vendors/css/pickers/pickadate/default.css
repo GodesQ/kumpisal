@@ -8,7 +8,7 @@
   font-size: 16px;
   text-align: left;
   line-height: 1.2;
-  color: #000;
+  color: #331f14;
   position: absolute;
   z-index: 10000;
   -webkit-user-select: none;
@@ -144,7 +144,7 @@
   -ms-transform: translateY(0);
       transform: translateY(0);
   background: transparent;
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#1E000000,endColorstr=#1E000000)";
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#1E331f14,endColorstr=#1E331f14)";
   zoom: 1;
   background: rgba(0, 0, 0, 0.32);
   transition: background 0.15s ease-out;

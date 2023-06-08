@@ -28,6 +28,8 @@ class UpdateUserRequest extends FormRequest
             'lastname' => 'required|max:30|min:2',
             'middlename' => 'nullable|max:30|min:2',
             'address' => 'nullable',
+            'latitude' => 'nullable',
+            'longitude' => 'nullable'
         ];
     }
 }
