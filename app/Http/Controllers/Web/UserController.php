@@ -94,6 +94,10 @@ class UserController extends Controller
     }
 
     public function lists(Request $request) {
+
+        // check guards
+        // abort_if(!auth('admin')->user()->can('view_users_list'), 403);
+
         if($request->ajax()) {
             $users = User::where('is_admin_generated', 0)->get();
             return DataTables::of($users)

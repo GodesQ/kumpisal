@@ -12,6 +12,8 @@ use App\Http\Controllers\Web\ConfessionScheduleController;
 use App\Http\Controllers\Web\RepresentativeController;
 use App\Http\Controllers\Web\ContactMessageController;
 use App\Http\Controllers\Web\AdminLogController;
+use App\Http\Controllers\Web\RoleController;
+use App\Http\Controllers\Web\PermissionController;
 
 use App\Models\Church;
 /*
@@ -89,30 +91,30 @@ Route::post('user/logout', [UserAuthController::class, 'logout'])->name('user.lo
 Route::get('admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
 Route::post('admin/login', [AdminAuthController::class, 'saveLogin'])->name('admin.post.login');
 
-Route::group(['prefix'=> 'admin', 'as' => 'admin.', 'middleware' => ['auth.admin']], function(){
+Route::group(['prefix'=> 'admin', 'as' => 'admin.', 'middleware' => ['auth.admin', 'auth:admin']], function(){
     Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
 
     Route::get('/profile', [AdminController::class, 'profile'])->name('profile');
     Route::post('/profile/{id}', [AdminController::class, 'saveProfile'])->name('profile.post');
     Route::post('/change_password/{id}', [AdminController::class, 'changePassword'])->name('change_password.post');
 
-    Route::get('/users', [UserController::class, 'lists'])->name('users.list');
-    Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
-    Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
-    Route::get('/user/edit/{uuid}', [UserController::class, 'edit'])->name('user.edit');
-    Route::post('/user/update/{uuid}', [UserController::class, 'update'])->name('user.update');
+    Route::get('/users', [UserController::class, 'lists'])->name('users.list')->middleware('can:view_users_list');
+    Route::get('/user/create', [UserController::class, 'create'])->name('user.create')->middleware('can:create_user');
+    Route::post('/user/store', [UserController::class, 'store'])->name('user.store')->middleware('can:create_user');
+    Route::get('/user/edit/{uuid}', [UserController::class, 'edit'])->name('user.edit')->middleware('can:edit_user');
+    Route::post('/user/update/{uuid}', [UserController::class, 'update'])->name('user.update')->middleware('can:edit_user');
 
-    Route::get('/representatives', [RepresentativeController::class, 'lists'])->name('representatives.list');
-    Route::get('/representative/create', [RepresentativeController::class, 'create'])->name('representative.create');
-    Route::post('/representative/store', [RepresentativeController::class, 'store'])->name('representative.store');
-    Route::get('/representative/edit/{id}', [RepresentativeController::class, 'edit'])->name('representative.edit');
-    Route::post('/representative/update/{id}', [RepresentativeController::class, 'update'])->name('representative.update');
+    Route::get('/representatives', [RepresentativeController::class, 'lists'])->name('representatives.list')->middleware('can:view_representatives_list');
+    Route::get('/representative/create', [RepresentativeController::class, 'create'])->name('representative.create')->middleware('can:create_representative');
+    Route::post('/representative/store', [RepresentativeController::class, 'store'])->name('representative.store')->middleware('can:create_representative');
+    Route::get('/representative/edit/{id}', [RepresentativeController::class, 'edit'])->name('representative.edit')->middleware('can:edit_representative');
+    Route::post('/representative/update/{id}', [RepresentativeController::class, 'update'])->name('representative.update')->middleware('can:edit_representative');
 
-    Route::get('/churches', [ChurchController::class, 'lists'])->name('churches.list');
-    Route::get('/church/create', [ChurchController::class, 'create'])->name('church.create');
-    Route::post('/church/store', [ChurchController::class, 'store'])->name('church.store');
-    Route::get('/church/edit/{uuid}', [ChurchController::class, 'edit'])->name('church.edit');
-    Route::post('/church/update/{uuid}', [ChurchController::class, 'update'])->name('church.update');
+    Route::get('/churches', [ChurchController::class, 'lists'])->name('churches.list')->middleware('can:view_churches_list');
+    Route::get('/church/create', [ChurchController::class, 'create'])->name('church.create')->middleware('can:create_church');
+    Route::post('/church/store', [ChurchController::class, 'store'])->name('church.store')->middleware('can:create_church');
+    Route::get('/church/edit/{uuid}', [ChurchController::class, 'edit'])->name('church.edit')->middleware('can:edit_church');
+    Route::post('/church/update/{uuid}', [ChurchController::class, 'update'])->name('church.update')->middleware('can:edit_church');
 
     Route::get('/confession_schedules', [ConfessionScheduleController::class, 'lists'])->name('confession_schedules.list');
     Route::get('/confession_schedule/create', [ConfessionScheduleController::class, 'create'])->name('confession_schedule.create');
@@ -126,13 +128,23 @@ Route::group(['prefix'=> 'admin', 'as' => 'admin.', 'middleware' => ['auth.admin
     Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('edit');
     Route::post('/update/{id}', [AdminController::class, 'update'])->name('update');
 
+    Route::get('/roles', [RoleController::class, 'lists'])->name('roles.list');
+    Route::get('/role/create', [RoleController::class, 'create'])->name('role.create');
+    Route::post('/role/store', [RoleController::class, 'store'])->name('role.store');
+    Route::get('/role/edit/{id}', [RoleController::class, 'edit'])->name('role.edit');
+    Route::post('/role/update/{id}', [RoleController::class, 'update'])->name('role.update');
+
+    Route::get('/permissions', [PermissionController::class, 'lists'])->name('permissions.list');
+    Route::get('/permission/create', [PermissionController::class, 'create'])->name('permission.create');
+    Route::post('/permission/store', [PermissionController::class, 'store'])->name('permission.store');
+    Route::get('/permission/edit/{id}', [PermissionController::class, 'edit'])->name('permission.edit');
+    Route::post('/permission/update/{id}', [PermissionController::class, 'update'])->name('permission.update');
+
     Route::get('/contact_messages', [ContactMessageController::class, 'lists'])->name('contact_messages.list');
     Route::get('/contact_message/show/{id}', [ContactMessageController::class, 'show'])->name('contact_message.show');
 
     Route::get('/logs', [AdminLogController::class, 'lists'])->name('logs.list');
     Route::get('/log/show/{id}', [AdminLogController::class, 'show'])->name('log.show');
-
-
 
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 });

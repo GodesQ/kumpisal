@@ -53,70 +53,110 @@
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                             <span class="hide-menu">GENERAL</span>
                         </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="/admin/users" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-users"></i>
-                                </span>
-                                <span class="hide-menu">Users</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{ route('admin.representatives.list') }}" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-user-plus"></i>
-                                </span>
-                                <span class="hide-menu">Parish Representatives</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{ route('admin.churches.list') }}" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-building-church"></i>
-                                </span>
-                                <span class="hide-menu">Churches</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{ route('admin.admins.list') }}" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-user"></i>
-                                </span>
-                                <span class="hide-menu">Admins</span>
-                            </a>
-                        </li>
+                        @auth('admin')
+                            @can('view_users_list')
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="/admin/users" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-users"></i>
+                                        </span>
+                                        <span class="hide-menu">Users</span>
+                                    </a>
+                                </li>
+                            @endcan
+                        @endauth
+                        @auth('admin')
+                            @can('view_representatives_list')
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="{{ route('admin.representatives.list') }}" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-user-plus"></i>
+                                        </span>
+                                        <span class="hide-menu">Parish Representatives</span>
+                                    </a>
+                                </li>
+                            @endcan
+                        @endauth
+                        @auth('admin')
+                            @can('view_churches_list')
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="{{ route('admin.churches.list') }}" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-building-church"></i>
+                                        </span>
+                                        <span class="hide-menu">Churches</span>
+                                    </a>
+                                </li>
+                            @endcan
+                        @endauth
+                        @auth('admin')
+                            @can('view_admins_list')
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="{{ route('admin.admins.list') }}" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-user"></i>
+                                        </span>
+                                        <span class="hide-menu">Admins</span>
+                                    </a>
+                                </li>
+                            @endcan
+                        @endauth
+                        @auth('admin')
+                            @can('view_roles_list')
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="{{ route('admin.roles.list') }}" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-user-circle"></i>
+                                        </span>
+                                        <span class="hide-menu">Roles</span>
+                                    </a>
+                                </li>
+                            @endcan
+                        @endauth
+                        @auth('admin')
+                            @can('view_permissions_list')
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="{{ route('admin.permissions.list') }}" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-user-circle"></i>
+                                        </span>
+                                        <span class="hide-menu">Permissions</span>
+                                    </a>
+                                </li>
+                            @endcan
+                        @endauth
                         <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                             <span class="hide-menu">SUPPORT</span>
                         </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{ route('admin.contact_messages.list') }}" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-mail"></i>
-                                </span>
-                                <span class="hide-menu">Contact Messages</span>
-                            </a>
-                        </li>
+                        @auth('admin')
+                            @can('view_contact_messages_list')
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="{{ route('admin.contact_messages.list') }}" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-mail"></i>
+                                        </span>
+                                        <span class="hide-menu">Contact Messages</span>
+                                    </a>
+                                </li>
+                            @endcan
+                        @endauth
                         <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                             <span class="hide-menu">LOGS</span>
                         </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{ route('admin.logs.list') }}" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-folder"></i>
-                                </span>
-                                <span class="hide-menu">Logs</span>
-                            </a>
-                        </li>
-                        {{-- <li class="sidebar-item">
-                            <a class="sidebar-link" href="#" aria-expanded="false">
-                                <span>
-                                    <i class="ti ti-bookmark"></i>
-                                </span>
-                                <span class="hide-menu">Saved Churches</span>
-                            </a>
-                        </li> --}}
+                        @auth('admin')
+                            @can('view_admins_list')
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="{{ route('admin.logs.list') }}" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-folder"></i>
+                                        </span>
+                                        <span class="hide-menu">Logs</span>
+                                    </a>
+                                </li>
+                            @endcan
+                        @endauth
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->

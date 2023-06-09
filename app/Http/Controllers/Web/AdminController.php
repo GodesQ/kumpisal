@@ -11,6 +11,7 @@ use DB;
 use App\Models\Church;
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\Role;
 
 use App\Http\Requests\Admin\SaveAdminProfileRequest;
 use App\Http\Requests\Admin\ChangeAdminPasswordRequest;
@@ -74,7 +75,8 @@ class AdminController extends Controller
     }
 
     public function create(Request $request) {
-        return view('admin-page.admins.create');
+        $roles = Role::get();
+        return view('admin-page.admins.create', compact('roles'));
     }
 
     public function store(CreateAdminRequest $request) {
@@ -82,7 +84,8 @@ class AdminController extends Controller
         $admin =  new Admin;
 
         $create_admin = $admin->create(array_merge($data, [
-            'name' => $request->firstname . ' ' . $request->lastname
+            'name' => $request->firstname . ' ' . $request->lastname,
+            'password' => Hash::make($request->password)
         ]));
 
         return redirect()->route('admin.admins.list')->with('success', 'Admin Created Successfully');
@@ -90,7 +93,8 @@ class AdminController extends Controller
 
     public function edit(Request $request) {
         $admin = Admin::where('id', $request->id)->first();
-        return view('admin-page.admins.edit', compact('admin'));
+        $roles = Role::get();
+        return view('admin-page.admins.edit', compact('admin', 'roles'));
     }
 
     public function update(UpdateAdminRequest $request) {

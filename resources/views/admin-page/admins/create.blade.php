@@ -75,7 +75,11 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="address" class="form-label">Role</label>
-                                <input type="text" class="form-control" id="role" name="role" aria-describedby="roleHelp">
+                                <select name="role" id="role" class="form-select">
+                                    @foreach ($roles as $role)
+                                        <option value="{{ $role->slug }}">{{ $role->role }}</option>
+                                    @endforeach
+                                </select>
                                 <span class="danger text-danger">@error('role'){{ $message }}@enderror</span>
                             </div>
                         </div>

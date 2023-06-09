@@ -54,7 +54,7 @@ class UserAuthController extends Controller
 
         // SEND EMAIL FOR VERIFICATION
         Mail::to($user->email)->send(new UserEmailVerification($details));
-        return redirect()->route('home')->with('success', 'Register Successfully');
+        return redirect()->route('user.verify_email_message')->with('success', 'Register Successfully');
     }
 
     public function verifyEmailMessage(Request $request) {
@@ -74,7 +74,6 @@ class UserAuthController extends Controller
     public function resendEmailVerification(UserResendVerificationRequest $request) {
         $user = Auth::user();
 
-        # details for sending email to worker
         $details = [
             'title' => 'Verification Email from Kumpisalan App',
             'email' => $user->email,
