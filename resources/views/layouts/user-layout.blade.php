@@ -23,7 +23,7 @@
 
     <link rel="stylesheet" href="{{ URL::asset('admin-assets/css/icons/tabler-icons/tabler-icons.css') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
-    <link rel="shortcut icon" href="{{ URL::asset('user-assets/images/assets/kumpisalan-logo-32.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ URL::asset('user-assets/images/assets/dark-kumpisalan-32.png') }}" type="image/x-icon">
 
     @stack('styles')
 </head>
@@ -78,7 +78,7 @@
                             </div><!-- .site__menu -->
                             <div class="site__brand">
                                 <a title="Logo" href="/" class="site__brand__logo">
-                                    <img src="{{ asset('user-assets/images/assets/kumpisalan-logo.png') }}" alt="Kumpisalan" width="40">
+                                    <img src="{{ asset('user-assets/images/assets/dark-kumpisalan.png') }}" alt="Kumpisalan" style="max-width: 150px !important;">
                                 </a>
                             </div><!-- .site__brand -->
 
@@ -159,7 +159,7 @@
                         <div class="col-lg-4">
                             <div class="footer__top__info">
                                 <a title="Logo" href="01_index_1.html" class="footer__top__info__logo"><img
-                                        src="{{ asset('user-assets/images/assets/kumpisalan-logo.png') }}" alt="Kumpisalan Logo" width="100"></a>
+                                        src="{{ asset('user-assets/images/assets/dark-kumpisalan.png') }}" alt="Kumpisalan Logo" width="100"></a>
                                 <p class="footer__top__info__desc">Journey Inward: Unveiling the Depths Within - A Soulful Quest for Self-Understanding</p>
                             </div>
                         </div>

@@ -54,4 +54,8 @@ class User extends Authenticatable
     public function representative_info() {
         return $this->belongsTo(RepresentativeInfo::class, 'id', 'main_id');
     }
+
+    public function saved_churches() {
+        return $this->hasMany(SavedChurch::class, 'owner_id');
+    }
 }

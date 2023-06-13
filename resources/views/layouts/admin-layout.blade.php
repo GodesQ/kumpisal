@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
-    <link rel="shortcut icon" href="{{ URL::asset('user-assets/images/assets/kumpisalan-logo-32.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ URL::asset('user-assets/images/assets/dark-kumpisalan-32.png') }}" type="image/x-icon">
 
     @stack('stylesheets')
 </head>
@@ -27,7 +27,7 @@
             <div>
                 <div class="brand-logo d-flex align-items-center justify-content-center">
                     <a href="{{ route('admin.dashboard') }}" class="text-nowrap logo-img">
-                        <img src="{{ asset('user-assets/images/assets/kumpisalan-logo.png') }}" width="50"
+                        <img src="{{ asset('user-assets/images/assets/dark-kumpisalan.png') }}" width="200"
                             alt="" />
                     </a>
                     <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">

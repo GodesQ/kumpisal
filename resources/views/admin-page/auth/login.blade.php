@@ -22,7 +22,7 @@
                         <div class="card mb-0">
                             <div class="card-body">
                                 <a href="/" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                                    <img src="{{ asset('user-assets/images/assets/kumpisalan-logo.png') }}" width="100" alt="">
+                                    <img src="{{ asset('user-assets/images/assets/dark-kumpisalan.png') }}" width="300" alt="">
                                 </a>
                                 <h3 class="text-center">Admin Access</h3>
                                 @if($errors->all())

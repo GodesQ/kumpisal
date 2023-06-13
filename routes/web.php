@@ -14,6 +14,7 @@ use App\Http\Controllers\Web\ContactMessageController;
 use App\Http\Controllers\Web\AdminLogController;
 use App\Http\Controllers\Web\RoleController;
 use App\Http\Controllers\Web\PermissionController;
+use App\Http\Controllers\Web\SaveChurchController;
 
 use App\Models\Church;
 /*
@@ -72,6 +73,8 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['auth', 'aut
     Route::get('profile', [UserController::class, 'profile'])->name('profile');
     Route::post('profile/{uuid}', [UserController::class, 'saveProfile'])->name('profile.post');
     Route::post('change_password/{uuid}', [UserController::class, 'changePassword'])->name('change_password.post');
+
+    Route::post('save-church', [SaveChurchController::class, 'save_church'])->name('save_church');
 });
 
 Route::group(['prefix' => 'representative', 'as' => 'representative.', 'middleware' => ['auth', 'auth.user.verify_email']], function() {
@@ -84,6 +87,7 @@ Route::group(['prefix' => 'representative', 'as' => 'representative.', 'middlewa
 
     Route::post('change_password/{uuid}', [RepresentativeController::class, 'changePassword'])->name('change_password.post');
     Route::post('save_schedule', [ConfessionScheduleController::class, 'save_schedule'])->name('save_schedule');
+
 });
 
 Route::post('user/logout', [UserAuthController::class, 'logout'])->name('user.logout')->middleware('auth');

@@ -9,6 +9,7 @@ class Church extends Model
 {
     use HasFactory;
     protected $table = 'churches';
+
     protected $fillable = [
         'church_uuid',
         'name',
@@ -54,4 +55,6 @@ class Church extends Model
     public function scopeIsNotDeleted($query) {
         return $query->where('is_delete', 0);
     }
+
+
 }

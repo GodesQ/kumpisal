@@ -531,7 +531,7 @@ a.site__menu__icon { display: none; }
 
 .city-slider__grid { margin-left: -15px; margin-right: -15px; }
 
-.banner-dark { opacity: 0.9; background-color: #331f14000; padding: 40px 0 30px; }
+.banner-dark { opacity: 0.9; background-color: #331; padding: 40px 0 30px; }
 
 .other-city .cities__info .cities__capital { font-size: 22px; }
 
@@ -1075,9 +1075,9 @@ a.place__comments__reply i { display: inline-block; vertical-align: middle; marg
 .field-select .option.o-skrill input[type="radio"]:checked ~ .label:before { background-color: #862165; }
 .field-select .option.o-skrill input[type="radio"]:checked ~ .opt-val { top: -126px; }
 .field-select .option.o-skrill:hover ~ #option-bg { top: 80px; background-color: #862165; }
-.field-select .option.o-master input[type="radio"]:checked ~ .label:before { background-color: #331f14066; }
+.field-select .option.o-master input[type="radio"]:checked ~ .label:before { background-color: #331; }
 .field-select .option.o-master input[type="radio"]:checked ~ .opt-val { top: -166px; }
-.field-select .option.o-master:hover ~ #option-bg { top: 120px; background-color: #331f14066; }
+.field-select .option.o-master:hover ~ #option-bg { top: 120px; background-color: #331; }
 .field-select #option-bg { position: absolute; top: 0; right: 0; left: 0; height: 40px; transition: 0.3s ease all; z-index: 1; display: none; }
 
 .upload-form { max-width: 660px; }
@@ -1197,7 +1197,7 @@ a.place__comments__reply i { display: inline-block; vertical-align: middle; marg
 .single .place-share svg { margin-right: 3px; }
 .single .place-share svg > * { transition: all 0.3s; }
 .single .place-gallery { position: absolute; right: 50px; bottom: 40px; }
-.single .place-gallery a { padding: 0 17px; display: inline-block; height: 36px; line-height: 36px; border-radius: 3px; -webkit-backface-visibility: hidden; -moz-backface-visibility: hidden; -webkit-transform: translate3d(0, 0, 0); -moz-transform: translate3d(0, 0, 0); border: solid 1px #331f14000; margin-right: 8px; color: #ffffff; transition: all 0s; background-color: #331f14000; font-size: 15px; font-family: "Jost-Book"; font-weight: normal; transition: all 0.3s; }
+.single .place-gallery a { padding: 0 17px; display: inline-block; height: 36px; line-height: 36px; border-radius: 3px; -webkit-backface-visibility: hidden; -moz-backface-visibility: hidden; -webkit-transform: translate3d(0, 0, 0); -moz-transform: translate3d(0, 0, 0); border: solid 1px #331; margin-right: 8px; color: #ffffff; transition: all 0s; background-color: #331; font-size: 15px; font-family: "Jost-Book"; font-weight: normal; transition: all 0.3s; }
 .single .place-gallery a:hover { background-color: #331f14; border-color: #331f14; color: #ffffff; }
 .single .place-gallery svg { vertical-align: -3px; display: inline-block; margin-right: 3px; }
 .single .place-gallery svg > * { transition: all 0.3s; }
@@ -1650,7 +1650,7 @@ a.place__comments__reply i { display: inline-block; vertical-align: middle; marg
 .trending .slick-dots button:before { width: 8px; height: 8px; background-color: #d8d8d8; }
 .trending .slick-dots .slick-active button:before { background-color: #331f14; }
 
-.featured-cities { padding-bottom: 60px; background-color: #331f14000; padding: 60px 0; }
+.featured-cities { padding-bottom: 60px; background-color: #331; padding: 60px 0; }
 .featured-cities .slick-nav > div { opacity: 1; left: -25px; box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.1); }
 .featured-cities .slick-nav > div.slick-nav__next { right: -25px; left: auto; }
 .featured-cities .slick-dots { bottom: -40px; }
@@ -2559,5 +2559,20 @@ a.place__comments__reply i { display: inline-block; vertical-align: middle; marg
 .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box > div > div:hover { background: none !important; color: #331f14 !important; }
 
 .xdsoft_inline { position: absolute; top: 100%; left: 0; right: 0; position: absolute; }
+
+.save-church {
+    position: absolute;
+    background-color: #fff;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    right: 30px;
+    top: 5%;
+    font-size: 15px;
+    border-radius: 50%;
+}
 
 /*# sourceMappingURL=style.css.map */

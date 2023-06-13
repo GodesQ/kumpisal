@@ -6,12 +6,16 @@
 
 @section('content')
     <main id="main" class="site-main single single-02">
+            <input type="hidden" name="id" id="church_id" value="{{ $church->id }}">
             <input type="hidden" id="latitude" value="{{ $church->latitude }}">
             <input type="hidden" id="longitude" value="{{ $church->longitude }}">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-8 order-md-2">
-                        <img class="mb-2" src="{{ asset('admin-assets/images/churches' . '/' . $church->church_image) }}" alt="slider-01" style="height: 400px; width: 100%; object-fit: cover;"></a>
+                    <div class="col-lg-8 order-md-2 position-relative">
+                        <img class="mb-2 position-relative" src="{{ asset('admin-assets/images/churches' . '/' . $church->church_image) }}" alt="slider-01" style="height: 400px; width: 100%; object-fit: cover;"></a>
+                        <a title="Save" href="javascript:void(0)" class="save-church">
+							<i class="far fa-bookmark"></i>
+						</a>
                     </div>
                     <div class="col-lg-4 order-md-1">
                         <table class="open-table table">
@@ -89,18 +93,6 @@
                                             <a title="{{ $church->contact_number }}" href="tel:{{$church->contact_number}}">{{ $church->contact_number }}</a>
                                         @endif
                                     </li>
-                                    {{-- <li>
-                                        <i class="la la-globe"></i>
-                                        <a title="www.abcsite.com" href="www.abcsite.com">www.abcsite.com</a>
-                                    </li>
-                                    <li>
-                                        <i class="la la-facebook-f"></i>
-                                        <a title="fb.com/abc" href="fb.com/abc">facebook.com/getgolo</a>
-                                    </li>
-                                    <li>
-                                        <i class="la la-instagram"></i>
-                                        <a title="instagram.com/abc" href="instagram.com/abc">instagram.com/getgolo</a>
-                                    </li> --}}
                                 </ul>
                             </div><!-- .place__box -->
                         </div><!-- .place__left -->
@@ -113,6 +105,33 @@
 
 @push('scripts')
     <script>
+
+        $('.save-church').click(function (e) {
+            e.preventDefault()
+            let token = "{{ csrf_token() }}"
+            $.ajax({
+                url: "{{ route('user.save_church') }}",
+                method: "POST",
+                data: {
+                    church_id : $('#church_id').val(),
+                    _token: token
+                }
+            }).success(function (data) {
+                console.log(data);
+                if(data.status == 'Saved') {
+                    toastr.success(data.message, 'Save');
+                    $('.save-church').html('<i class="fa fa-bookmark text-danger danger"></i>')
+                }
+
+                if(data.status == 'Removed') {
+                    toastr.success(data.message, 'Unsaved');
+                    $('.save-church').html('<i class="far fa-bookmark"></i>')
+                }
+            }).fail(function (e) {
+                toastr.error(e.responseJSON.message, 'Fail')
+            })
+        })
+
         function initialize() {
 
             let latitude = document.querySelector('#latitude');
