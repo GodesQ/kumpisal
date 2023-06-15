@@ -28,6 +28,11 @@ class UserAuthController extends Controller
                 return redirect()->route('user.verify_email_message')->with('fail', 'Please verify your email to continue.');
             }
 
+            if($user->is_delete) {
+                Auth::logout();
+                return back()->with('fail', 'This account was removed. Contact Support for more info.');
+            }
+
             return Auth::user()->is_admin_generated ? redirect()->route('representative.dashboard')->with('login-success', 'Login Successfully') : redirect()->route('user.dashboard')->with('login-success', 'Login Successfully');
         } else {
             return back()->with('fail', 'Invalid Credentials.');

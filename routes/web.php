@@ -68,7 +68,7 @@ Route::get('churches', [ChurchController::class, 'searchPage'])->name('churches.
 Route::get('churches/fetch', [ChurchController::class, 'fetchData'])->name('churches.fetchData');
 Route::get('church/{uuid}/{name}', [ChurchController::class, 'detailPage'])->name('churches.detailPage');
 
-Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['auth', 'auth.user.verify_email']], function() {
+Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['auth', 'auth.user.verify_email', 'auth.user']], function() {
     Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
     Route::get('profile', [UserController::class, 'profile'])->name('profile');
     Route::post('profile/{uuid}', [UserController::class, 'saveProfile'])->name('profile.post');
@@ -77,7 +77,7 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['auth', 'aut
     Route::post('save-church', [SaveChurchController::class, 'save_church'])->name('save_church');
 });
 
-Route::group(['prefix' => 'representative', 'as' => 'representative.', 'middleware' => ['auth', 'auth.user.verify_email']], function() {
+Route::group(['prefix' => 'representative', 'as' => 'representative.', 'middleware' => ['auth', 'auth.user.verify_email', 'auth.representative']], function() {
     Route::get('dashboard', [RepresentativeController::class, 'dashboard'])->name('dashboard');
     Route::get('profile', [RepresentativeController::class, 'profile'])->name('profile');
     Route::post('profile/{id}', [RepresentativeController::class, 'saveProfile'])->name('profile.post');
@@ -107,12 +107,14 @@ Route::group(['prefix'=> 'admin', 'as' => 'admin.', 'middleware' => ['auth.admin
     Route::post('/user/store', [UserController::class, 'store'])->name('user.store')->middleware('can:create_user');
     Route::get('/user/edit/{uuid}', [UserController::class, 'edit'])->name('user.edit')->middleware('can:edit_user');
     Route::post('/user/update/{uuid}', [UserController::class, 'update'])->name('user.update')->middleware('can:edit_user');
+    Route::delete('/user/delete', [UserController::class, 'delete'])->name('user.delete')->middleware('can:delete_user');
 
     Route::get('/representatives', [RepresentativeController::class, 'lists'])->name('representatives.list')->middleware('can:view_representatives_list');
     Route::get('/representative/create', [RepresentativeController::class, 'create'])->name('representative.create')->middleware('can:create_representative');
     Route::post('/representative/store', [RepresentativeController::class, 'store'])->name('representative.store')->middleware('can:create_representative');
     Route::get('/representative/edit/{id}', [RepresentativeController::class, 'edit'])->name('representative.edit')->middleware('can:edit_representative');
     Route::post('/representative/update/{id}', [RepresentativeController::class, 'update'])->name('representative.update')->middleware('can:edit_representative');
+    Route::delete('/representative/delete', [RepresentativeController::class, 'delete'])->name('representative.delete')->middleware('can:delete_representative');
 
     Route::get('/churches', [ChurchController::class, 'lists'])->name('churches.list')->middleware('can:view_churches_list');
     Route::get('/church/create', [ChurchController::class, 'create'])->name('church.create')->middleware('can:create_church');

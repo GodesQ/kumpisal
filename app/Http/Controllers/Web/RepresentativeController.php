@@ -68,7 +68,7 @@ class RepresentativeController extends Controller
         // $representatives = User::where('is_admin_generated', 1)->with('representative_info.church')->get();
         // dd($representatives);
         if($request->ajax()) {
-            $representatives = User::where('is_admin_generated', 1)->with('representative_info.church')->get();
+            $representatives = User::where('is_admin_generated', 1)->where('is_delete', 0)->with('representative_info.church')->get();
             return Datatables::of($representatives)
                     ->addIndexColumn()
                     ->addColumn('contact_no', function($row) {
@@ -217,5 +217,26 @@ class RepresentativeController extends Controller
         });
 
         return back()->with('success', 'Update Successfully');
+    }
+
+    public function delete(Request $request) {
+        $representative = User::where('id', $request->user_id)->firstOr(function() {
+            return response([
+                'status' => 'Fail',
+                'message' => 'Representative Not Found'
+            ], 404);
+        });
+
+        $remove_representative = $representative->update([
+            'is_delete' => 1
+        ]);
+
+        if($remove_representative) {
+            return response([
+                'status' => 'Removed',
+                'message' => 'Representative Removed Successfully'
+            ], 200);
+        }
+
     }
 }

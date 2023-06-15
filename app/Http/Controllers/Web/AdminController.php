@@ -103,7 +103,7 @@ class AdminController extends Controller
 
         $admin->update(array_merge($data, [
             'name' => $request->firstname . ' ' . $request->lastname
-        ]));
+        ]), 400);
 
         return back()->with('success', 'Admin Updated Successfully');
     }

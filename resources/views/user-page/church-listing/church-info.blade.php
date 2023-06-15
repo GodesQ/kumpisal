@@ -13,9 +13,17 @@
                 <div class="row">
                     <div class="col-lg-8 order-md-2 position-relative">
                         <img class="mb-2 position-relative" src="{{ asset('admin-assets/images/churches' . '/' . $church->church_image) }}" alt="slider-01" style="height: 400px; width: 100%; object-fit: cover;"></a>
-                        <a title="Save" href="javascript:void(0)" class="save-church">
-							<i class="far fa-bookmark"></i>
-						</a>
+                        @auth
+                            @if (Auth::user()->saved_churches->contains('church_id', $church->id))
+                                <a title="Save" href="javascript:void(0)" class="save-church">
+                                    <i class="fa fa-bookmark danger text-danger"></i>
+                                </a>
+                            @else
+                                <a title="Save" href="javascript:void(0)" class="save-church">
+                                    <i class="far fa-bookmark"></i>
+                                </a>
+                            @endif
+                        @endauth
                     </div>
                     <div class="col-lg-4 order-md-1">
                         <table class="open-table table">
@@ -32,9 +40,7 @@
                                             {{ Str::ucfirst($day) }}
                                         </td>
                                         <td style="border: 1px solid rgb(61, 61, 61) !important;" align="center" class="time">
-                                            @if(!$church->{'has_' . $day . '_sched'})
-                                                Not Available
-                                            @else
+                                            @if($church->{'has_' . $day . '_sched'})
                                                 <?php
                                                     $dayEntries = array_filter($church->schedules->toArray(), function ($schedule) use ($day) {
                                                         return $schedule['day'] === $day;
@@ -51,6 +57,9 @@
                                                 @empty
                                                     Time Not Found
                                                 @endforelse
+                                                Not Available
+                                            @else
+                                                Not Available
                                             @endif
                                         </td>
                                     </tr>

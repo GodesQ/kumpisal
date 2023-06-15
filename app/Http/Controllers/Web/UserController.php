@@ -94,12 +94,11 @@ class UserController extends Controller
     }
 
     public function lists(Request $request) {
-
-        // check guards
-        // abort_if(!auth('admin')->user()->can('view_users_list'), 403);
-
         if($request->ajax()) {
-            $users = User::where('is_admin_generated', 0)->get();
+            $users = User::where('is_admin_generated', 0)
+                        ->where('is_delete', 0)
+                        ->get();
+
             return DataTables::of($users)
                     ->addIndexColumn()
                     ->addColumn('verified', function($row){
@@ -112,7 +111,7 @@ class UserController extends Controller
                     })
                     ->addColumn('action', function($row) {
                         $btn = '<a href="/admin/user/edit/' .$row->user_uuid. '" class="btn btn-primary btn-sm"><i class="ti ti-edit"></i></a>
-                                <a id="' .$row->user_uuid. '" class="btn btn-danger btn-sm"><i class="ti ti-trash"></i></a>';
+                                <a id="' .$row->user_uuid. '" class="btn btn-danger btn-sm remove-btn"><i class="ti ti-trash"></i></a>';
                         return $btn;
                     })
                     ->rawColumns(['action', 'verified'])
@@ -175,7 +174,26 @@ class UserController extends Controller
             }
         }
 
-        $create_log = $this->AdminLogRepository->create($request, $inputs, $this->title_update_log, 'update_user', $user->id);
+        $create_log = $thi000s->AdminLogRepository->create($request, $inputs, $this->title_update_log, 'update_user', $user->id);
         if($user) return back()->with('success', 'Update User Successfully');
+    }
+
+    public function delete(Request $request) {
+        $user = User::where('user_uuid', $request->user_uuid)->firstOr(function () {
+            return response([
+                'status' =>  'User not found'
+            ], 404);
+        });
+
+        $remove_user = $user->update([
+            'is_delete' => true
+        ]);
+
+        if($remove_user) {
+            return response()->json([
+                'status' => 'Removed',
+                'message' => 'Removed Successfully'
+            ], 200);
+        }
     }
 }

@@ -12,8 +12,7 @@ class SavedChurch extends Model
     protected $fillable = ['owner_id', 'church_id', 'saved_date'];
 
     public function church() {
-        return $this->hasOne(Church::class, 'church_id');
+        return $this->hasOne(Church::class, 'id', 'church_id');
     }
-
 
 }

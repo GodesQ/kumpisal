@@ -93,8 +93,37 @@
             ]
         });
 
-        $('.remove-btn').click(function() {
-            console.log(true);
+        $(document).on("click", ".remove-btn", function (e) {
+            let id = $(this).attr("id");
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Remove representative from list",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, remove it!'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "{{ route('admin.representative.delete') }}",
+                        method: "DELETE",
+                        data: {
+                            _token: "{{ csrf_token() }}",
+                            user_id: id
+                        },
+                        success: function(response) {
+                            if(response.status == 'Removed') {
+                                Swal.fire('Removed!',response.message, 'success').then(result => {
+                                    if(result.isConfirmed) {
+                                        location.reload();
+                                    }
+                                })
+                            }
+                        }
+                    })
+                }
+            })
         });
     </script>
 @endpush
