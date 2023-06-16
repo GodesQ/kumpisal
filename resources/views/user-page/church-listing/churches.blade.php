@@ -99,20 +99,16 @@
                 let selected_criterias = [];
                 let selected_days = [];
 
-                // get all checked skills
-                $.each($(".criteria:checked"), function() {
-                    selected_criterias.push($(this).val());
-                });
+
 
                 // get all checked days
                 $.each($(".day:checked"), function() {
                     selected_days.push($(this).val());
                 });
 
-                selected_criterias = encodeURIComponent(JSON.stringify(selected_criterias));
                 selected_days = encodeURIComponent(JSON.stringify(selected_days));
 
-                let filter_parameters = `church_name=${$('#church_name').val()}&church_address=${$('#church_address').val()}&latitude=${latitude.value}&longitude=${longitude.value}&criterias=${selected_criterias}&days=${selected_days}`;
+                let filter_parameters = `church_name=${$('#church_name').val()}&church_address=${$('#church_address').val()}&latitude=${latitude.value}&longitude=${longitude.value}&days=${selected_days}`;
                 $.ajax({
                     url: "churches/fetch?page="+page+'&'+filter_parameters,
                     success: function (data) {

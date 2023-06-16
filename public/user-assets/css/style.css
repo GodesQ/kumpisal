@@ -2575,4 +2575,11 @@ a.place__comments__reply i { display: inline-block; vertical-align: middle; marg
     border-radius: 50%;
 }
 
+.btn-primary:focus {
+    background: #303030 !important;
+}
+
+.forgot-password-container {
+    width: 40%;
+}
 /*# sourceMappingURL=style.css.map */

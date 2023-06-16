@@ -158,9 +158,11 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="footer__top__info">
-                                <a title="Logo" href="01_index_1.html" class="footer__top__info__logo"><img
-                                        src="{{ asset('user-assets/images/assets/dark-kumpisalan.png') }}" alt="Kumpisalan Logo" width="100"></a>
-                                <p class="footer__top__info__desc">Journey Inward: Unveiling the Depths Within - A Soulful Quest for Self-Understanding</p>
+                                <a title="Logo" href="01_index_1.html" class="">
+                                    <img src="{{ asset('user-assets/images/assets/dark-kumpisalan.png') }}" alt="Kumpisalan Logo" width="200">
+                                </a>
+
+                                <p class="footer__top__info__desc mt-3">Journey Inward: Unveiling the Depths Within - A Soulful Quest for Self-Understanding</p>
                             </div>
                         </div>
                         <div class="col-lg-2">

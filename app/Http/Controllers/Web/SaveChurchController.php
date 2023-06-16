@@ -39,4 +39,8 @@ class SaveChurchController extends Controller
             ], 201);
         }
     }
+
+    public function user_list(Request $request) {
+        return view('user-page.user-dashboard.save-churches');
+    }
 }

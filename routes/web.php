@@ -15,6 +15,7 @@ use App\Http\Controllers\Web\AdminLogController;
 use App\Http\Controllers\Web\RoleController;
 use App\Http\Controllers\Web\PermissionController;
 use App\Http\Controllers\Web\SaveChurchController;
+use App\Http\Controllers\Web\ForgotPasswordController;
 
 use App\Models\Church;
 /*
@@ -31,6 +32,11 @@ use App\Models\Church;
 Route::post('login', [UserAuthController::class, 'saveLogin'])->name('login.user');
 Route::post('register', [UserAuthController::class, 'saveRegister'])->name('register.user');
 Route::get('/user_verify_email', [UserAuthController::class, 'verifyEmail'])->name('user.verify_email');
+
+Route::get('forgot-password', [ForgotPasswordController::class, 'forgot_password'])->name('user.forgot_password');
+Route::post('forgot-password', [ForgotPasswordController::class, 'post_forgot_form'])->name('user.forgot_password.post');
+Route::get('reset-password-form', [ForgotPasswordController::class, 'reset_password_form'])->name('user.reset_password_form');
+Route::post('reset-password-form', [ForgotPasswordController::class, 'post_reset_password_form'])->name('user.reset_password_form.post');
 
 Route::get('about-us', function() {
     return view('user-page.misc.about-us');
@@ -75,6 +81,8 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['auth', 'aut
     Route::post('change_password/{uuid}', [UserController::class, 'changePassword'])->name('change_password.post');
 
     Route::post('save-church', [SaveChurchController::class, 'save_church'])->name('save_church');
+
+    Route::get('saved-churches/list', [SaveChurchController::class, 'user_list'])->name('saved_churches.list');
 });
 
 Route::group(['prefix' => 'representative', 'as' => 'representative.', 'middleware' => ['auth', 'auth.user.verify_email', 'auth.representative']], function() {

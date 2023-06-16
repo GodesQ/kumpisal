@@ -57,7 +57,6 @@
                                                 @empty
                                                     Time Not Found
                                                 @endforelse
-                                                Not Available
                                             @else
                                                 Not Available
                                             @endif

@@ -47,6 +47,7 @@ class UserAuthController extends Controller
         $user = User::create(array_merge($credentials, [
             'name' => $request->firstname . ' ' . $request->lastname,
             'password' => Hash::make($request->password),
+            'role' => 'user',
             'user_uuid' => Str::orderedUuid()
         ]));
 

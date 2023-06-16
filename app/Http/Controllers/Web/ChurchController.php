@@ -65,11 +65,6 @@ class ChurchController extends Controller
         $churches = Church::select('*')
                     ->active(1)
                     ->where(DB::raw('lower(name)'), 'like', '%' . strtolower($church_name) . '%')
-                    ->when($criterias, function ($q) use ($criterias) {
-                        if ($criterias[0]) {
-                            return $q->whereIn('criteria', $criterias);
-                        }
-                    })
                     ->when($days, function ($q) use ($days) {
                         if(in_array('monday', $days)) {
                             return $q->where('has_monday_sched', 1);

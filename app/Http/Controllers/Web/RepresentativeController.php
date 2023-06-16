@@ -106,6 +106,7 @@ class RepresentativeController extends Controller
                 'is_admin_generated' => 1,
                 'name' => $data['firstname'] . ' ' . $data['lastname'],
                 'password' => Hash::make($data['password']),
+                'role' => 'representative',
                 'user_uuid' => Str::orderedUuid(),
             ]));
 

@@ -86,6 +86,68 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <h4  class="mb-2">Prefer Days</h4>
+                            <?php $prefer_days = explode("|", auth()->user()->prefer_days); ?>
+                            <div class="col-md-12">
+                                <div class="field-check">
+                                    <label for="monday">
+                                        <input type="checkbox" name="prefer_days[]" id="monday" value="monday" {{ in_array('monday', $prefer_days) ? 'checked' : null }}>Monday
+                                        <span class="checkmark">
+                                            <i class="la la-check"></i>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="field-check">
+                                    <label for="tuesday">
+                                        <input type="checkbox" name="prefer_days[]" id="tuesday" value="tuesday" {{ in_array('tuesday', $prefer_days) ? 'checked' : null }}>Tuesday
+                                        <span class="checkmark">
+                                            <i class="la la-check"></i>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="field-check">
+                                    <label for="wednesday">
+                                        <input type="checkbox" name="prefer_days[]" id="wednesday" value="wednesday" {{ in_array('wednesday', $prefer_days) ? 'checked' : null }}>Wednesday
+                                        <span class="checkmark">
+                                            <i class="la la-check"></i>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="field-check">
+                                    <label for="thursday">
+                                        <input type="checkbox" name="prefer_days[]" id="thursday" value="thursday" {{ in_array('thursday', $prefer_days) ? 'checked' : null }}>Thursday
+                                        <span class="checkmark">
+                                            <i class="la la-check"></i>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="field-check">
+                                    <label for="friday">
+                                        <input type="checkbox" name="prefer_days[]" id="friday" value="friday" {{ in_array('friday', $prefer_days) ? 'checked' : null }}>Friday
+                                        <span class="checkmark">
+                                            <i class="la la-check"></i>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="field-check">
+                                    <label for="saturday">
+                                        <input type="checkbox" name="prefer_days[]" id="saturday" value="saturday" {{ in_array('saturday', $prefer_days) ? 'checked' : null }}>Saturday
+                                        <span class="checkmark">
+                                            <i class="la la-check"></i>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="field-check">
+                                    <label for="sunday">
+                                        <input type="checkbox" name="prefer_days[]" id="sunday" value="sunday" {{ in_array('sunday', $prefer_days) ? 'checked' : null }}>Sunday
+                                        <span class="checkmark">
+                                            <i class="la la-check"></i>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                         <div class="field-submit">
                             <input type="submit" value="Update">
                         </div>

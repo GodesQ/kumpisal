@@ -52,22 +52,27 @@ class UserController extends Controller
 
     public function saveProfile(SaveUserProfileRequest $request) {
         $data = $request->validated();
-        $user_image = $request->old_user_iamge;
+        $user_image = $request->old_user_image;
 
         if($request->hasFile('member_avatar')) {
-
             $old_upload_image = public_path('/user-assets/images/avatars/') . $request->old_user_image;
             $remove_image = @unlink($old_upload_image);
 
             $file = $request->file('member_avatar');
             $user_image = $request->uuid . '.' . $file->getClientOriginalExtension();
-
             // save to folder
             $save_file = $file->move(public_path().'/user-assets/images/avatars', $user_image);
         }
+
+        $prefer_days = null;
+        if($request->has('prefer_days')) {
+            $prefer_days = implode('|', $request->prefer_days);
+        }
+
         $user = User::where('user_uuid', $request->uuid)->first();
         $update_user = $user->update(array_merge($data, [
-            'user_image' => $user_image
+            'user_image' => $user_image,
+            'prefer_days' => $prefer_days,
         ]));
 
         if($update_user) return back()->with('success', 'User Profile Successfully Saved.');
@@ -79,6 +84,7 @@ class UserController extends Controller
         $user = Auth::user();
 
         if(!Hash::check($request->password, $user->password)) return back()->with('fail', 'Your old password is incorrect. Please Try Again.');
+
         $update_user = $user->update([
             'password' => Hash::make($request->new_password),
         ]);
@@ -101,7 +107,7 @@ class UserController extends Controller
 
             return DataTables::of($users)
                     ->addIndexColumn()
-                    ->addColumn('verified', function($row){
+                    ->addColumn('verified', function($row) {
                         if($row->is_verify) {
                             $badge = '<span class="badge bg-success rounded-3 fw-semibold">Verified</span>';
                         } else {

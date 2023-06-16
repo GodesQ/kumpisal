@@ -31,6 +31,8 @@ class User extends Authenticatable
         'is_verify',
         'email_verified_at',
         'is_admin_generated',
+        'role',
+        'prefer_days',
         'is_active',
         'is_delete'
     ];
