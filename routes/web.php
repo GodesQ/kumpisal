@@ -34,7 +34,8 @@ Route::post('register', [UserAuthController::class, 'saveRegister'])->name('regi
 Route::get('/user_verify_email', [UserAuthController::class, 'verifyEmail'])->name('user.verify_email');
 
 Route::get('forgot-password', [ForgotPasswordController::class, 'forgot_password'])->name('user.forgot_password');
-Route::post('forgot-password', [ForgotPasswordController::class, 'post_forgot_form'])->name('user.forgot_password.post');
+Route::post('forgot-password', [ForgotPasswordController::class, 'post_forgot_password'])->name('user.forgot_password.post');
+Route::get('forgot-password/message', [ForgotPasswordController::class, 'message'])->name('user.forgot_password.message');
 Route::get('reset-password-form', [ForgotPasswordController::class, 'reset_password_form'])->name('user.reset_password_form');
 Route::post('reset-password-form', [ForgotPasswordController::class, 'post_reset_password_form'])->name('user.reset_password_form.post');
 
