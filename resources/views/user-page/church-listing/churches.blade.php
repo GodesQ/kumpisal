@@ -29,23 +29,6 @@
                             </div>
                         </div>
                         <div class="filter-right">
-                            <div class="select-box">
-                                <select name="sort_by" class="sort-by">
-                                    <option value="">Sort by</option>
-                                    <option value="newest">Newest</option>
-                                    <option value="rating">Average rating</option>
-                                    <option value="featured">Featured</option>
-                                </select>
-                                <div class="filter-control" tabindex="0">
-                                    <span class="current">Sort by</span>
-                                    <ul class="list">
-                                        <li data-value="" class="option selected focus">Sort by</li>
-                                        <li data-value="newest" class="option">Newest</li>
-                                        <li data-value="rating" class="option">Average rating</li>
-                                        <li data-value="featured" class="option">Featured</li>
-                                    </ul>
-                                </div>
-                            </div>
                             <div class="show-map">
                                 <span>Maps</span>
                                 <a href="#" class="icon-toggle"></a>

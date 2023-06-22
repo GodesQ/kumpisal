@@ -19,7 +19,6 @@
         <div class="field-group field-input">
             <div class="d-flex justify-content-between align-items-center my-2">
                 <label for="church_address">Church Address</label>
-                <button type="button" class="btn btn-sm btn-primary"><i class="fa fa-location-arrow"></i></button>
             </div>
             <input class="w-100 mt-1" type="text" id="church_address" placeholder="What the name of place" name="church_address" value="{{ $queries ? $queries['address'] : null }}">
             <input type="hidden" name="latitude" id="latitude" value="{{ $queries ? $queries['latitude'] : null }}">

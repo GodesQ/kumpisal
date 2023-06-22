@@ -131,32 +131,34 @@ Route::group(['prefix'=> 'admin', 'as' => 'admin.', 'middleware' => ['auth.admin
     Route::get('/church/edit/{uuid}', [ChurchController::class, 'edit'])->name('church.edit')->middleware('can:edit_church');
     Route::post('/church/update/{uuid}', [ChurchController::class, 'update'])->name('church.update')->middleware('can:edit_church');
 
-    Route::get('/confession_schedules', [ConfessionScheduleController::class, 'lists'])->name('confession_schedules.list');
-    Route::get('/confession_schedule/create', [ConfessionScheduleController::class, 'create'])->name('confession_schedule.create');
-    Route::post('/confession_schedule/store', [ConfessionScheduleController::class, 'store'])->name('confession_schedule.store');
-    Route::get('/confession_schedule/edit/{id}', [ConfessionScheduleController::class, 'edit'])->name('confession_schedule.edit');
-    Route::post('/confession_schedule/update/{id}', [ConfessionScheduleController::class, 'update'])->name('confession_schedule.update');
+    // Route::get('/confession_schedules', [ConfessionScheduleController::class, 'lists'])->name('confession_schedules.list');
+    // Route::get('/confession_schedule/create', [ConfessionScheduleController::class, 'create'])->name('confession_schedule.create');
+    // Route::post('/confession_schedule/store', [ConfessionScheduleController::class, 'store'])->name('confession_schedule.store');
+    // Route::get('/confession_schedule/edit/{id}', [ConfessionScheduleController::class, 'edit'])->name('confession_schedule.edit');
+    // Route::post('/confession_schedule/update/{id}', [ConfessionScheduleController::class, 'update'])->name('confession_schedule.update');
 
-    Route::get('/admins', [AdminController::class, 'lists'])->name('admins.list');
-    Route::get('/create', [AdminController::class, 'create'])->name('create');
-    Route::post('/store', [AdminController::class, 'store'])->name('store');
-    Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('edit');
-    Route::post('/update/{id}', [AdminController::class, 'update'])->name('update');
+    Route::get('/admins', [AdminController::class, 'lists'])->name('admins.list')->middleware('can:view_admins_list');
+    Route::get('/create', [AdminController::class, 'create'])->name('create')->middleware('can:create_admin');
+    Route::post('/store', [AdminController::class, 'store'])->name('store')->middleware('can:create_admin');
+    Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('edit')->middleware('can:edit_admin');
+    Route::post('/update/{id}', [AdminController::class, 'update'])->name('update')->middleware('can:edit_admin');
 
-    Route::get('/roles', [RoleController::class, 'lists'])->name('roles.list');
-    Route::get('/role/create', [RoleController::class, 'create'])->name('role.create');
-    Route::post('/role/store', [RoleController::class, 'store'])->name('role.store');
-    Route::get('/role/edit/{id}', [RoleController::class, 'edit'])->name('role.edit');
-    Route::post('/role/update/{id}', [RoleController::class, 'update'])->name('role.update');
+    Route::get('/roles', [RoleController::class, 'lists'])->name('roles.list')->middleware('can:view_roles_list');
+    Route::get('/role/create', [RoleController::class, 'create'])->name('role.create')->middleware('can:create_role');
+    Route::post('/role/store', [RoleController::class, 'store'])->name('role.store')->middleware('can:create_role');
+    Route::get('/role/edit/{id}', [RoleController::class, 'edit'])->name('role.edit')->middleware('can:edit_role');
+    Route::post('/role/update/{id}', [RoleController::class, 'update'])->name('role.update')->middleware('can:edit_role');
 
-    Route::get('/permissions', [PermissionController::class, 'lists'])->name('permissions.list');
-    Route::get('/permission/create', [PermissionController::class, 'create'])->name('permission.create');
-    Route::post('/permission/store', [PermissionController::class, 'store'])->name('permission.store');
-    Route::get('/permission/edit/{id}', [PermissionController::class, 'edit'])->name('permission.edit');
-    Route::post('/permission/update/{id}', [PermissionController::class, 'update'])->name('permission.update');
+    Route::get('/permissions', [PermissionController::class, 'lists'])->name('permissions.list')->middleware('can:view_permissions_list');
+    Route::get('/permission/create', [PermissionController::class, 'create'])->name('permission.create')->middleware('can:create_permission');
+    Route::post('/permission/store', [PermissionController::class, 'store'])->name('permission.store')->middleware('can:create_permission');
+    Route::get('/permission/edit/{id}', [PermissionController::class, 'edit'])->name('permission.edit')->middleware('can:edit_permission');
+    Route::post('/permission/update/{id}', [PermissionController::class, 'update'])->name('permission.update')->middleware('can:edit_permission');
 
     Route::get('/contact_messages', [ContactMessageController::class, 'lists'])->name('contact_messages.list');
     Route::get('/contact_message/show/{id}', [ContactMessageController::class, 'show'])->name('contact_message.show');
+    Route::post('/contact_message_reply/post', [ContactMessageController::class, 'store_reply'])->name('contact_message_reply.store');
+    Route::get('/contact_message_replies/{id}', [ContactMessageController::class, 'reply_messages'])->name('contact_message.show');
 
     Route::get('/logs', [AdminLogController::class, 'lists'])->name('logs.list');
     Route::get('/log/show/{id}', [AdminLogController::class, 'show'])->name('log.show');

@@ -183,7 +183,7 @@
                             style="padding: 0px 30px 30px 30px; color: #666666; font-family: 'Google Sans', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;">
                             <br>
                             <p style="margin: 0;">Powered by: <a. href="{{ url('') }}" target="_blank"
-                                    style="color: #038dcc; font-weight: 700;"><strong>Kumpisalan App</strong></a.>
+                                    style="color: #038dcc; font-weight: 700;"><strong>Kumpisalan App</strong></a>
                             </p>
                         </td>
                     </tr>

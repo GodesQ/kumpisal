@@ -2,43 +2,44 @@
 
 @section('title', 'MESSAGES LIST')
 
+@push('stylesheets')
+    <link rel="stylesheet" href="{{ URL::asset('admin-assets/css/emails.css') }}">
+@endpush
+
 @section('content')
-    <div class="container-fluid">
-        <div class="card">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <h4 class="card-title fw-semibold">Contact Messages List</h4>
-                    {{-- <a href="{{ route('admin.representative.create') }}" class="btn btn-primary btn-block">Create</a> --}}
+    <div class="main-container">
+        <div class="contact-container">
+            <div class="contact-list-container">
+                <div class="contact-list-content">
+                    @include('admin-page.contact-messages.data')
                 </div>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table text-nowrap mb-0 align-middle data-table">
-                                <thead class="text-dark fs-4">
-                                    <tr>
-                                        <th class="border-bottom-0" width="50">
-                                            <h6 class="fw-semibold mb-0">Id</h6>
-                                        </th>
-                                        <th class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0">Name</h6>
-                                        </th>
-                                        <th class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0">Email</h6>
-                                        </th>
-                                        <th class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0">Contact No.</h6>
-                                        </th>
-                                        <th class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0">Created At</h6>
-                                        </th>
-                                        <th class="border-bottom-0" width="100">
-                                            <h6 class="fw-semibold mb-0">Actions</h6>
-                                        </th>
-                                    </tr>
-                                </thead>
-                            </table>
+            </div>
+            <div class="contact-body-content">
+                <div class="message-body-content">
+                    <div class="message-load">
+                        <div class="message-load-image">
+                            <img src="{{ URL::asset('admin-assets/images/icons/icons8-mail.gif') }}" alt="">
                         </div>
                     </div>
+                    <div class="client-message"></div>
+                    <div class="server-message"></div>
+                </div>
+                <div class="message-form">
+                    <form action="#" method="POST" id="reply_form" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="reply_to" id="reply_to">
+                        <div class="mb-3">
+                            <label for="custom_subject" class="form-label">Custom Subject</label>
+                            <input type="text" class="form-control" name="custom_subject" id="custom_subject" value="REPLY TO - " readonly disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label for="custom_subject" class="form-label">Message</label>
+                            <textarea name="message" id="message" cols="30" rows="3" class="form-control" required></textarea>
+                        </div>
+                        <div class="mb-3 d-flex justify-content-end">
+                            <button class="btn btn-primary" id="reply_btn">Send Message <i class="ti ti-send"></i></button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -47,54 +48,77 @@
 
 @push('scripts')
     <script>
-        let table = $('.data-table').DataTable({
-            processing: true,
-            pageLength: 25,
-            responsive: true,
-            serverSide: true,
-            ajax: {
-                url: "{{ route('admin.contact_messages.list') }}",
-            },
-            columns: [
-                {
-                    data: 'id',
-                    name: 'id'
-                },
-                {
-                    data: 'name',
-                    name: 'name',
-                    orderable: true,
-                    searchable: true
-                },
-                {
-                    data: 'email',
-                    name: 'email',
-                    orderable: true,
-                    searchable: true
-                },
-                {
-                    data: 'contact_no',
-                    name: 'contact_no',
-                    orderable: true,
-                    searchable: true
-                },
-                {
-                    data: 'created_at',
-                    name: 'created_at',
-                    orderable: true,
-                    searchable: true
-                },
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: true,
-                    searchable: true
-                },
-            ]
+        const contact_messages = document.querySelectorAll('.contact');
+
+        contact_messages.forEach(element => {
+            element.addEventListener('click', (e) => {
+                let data_id = element.getAttribute("data-id");
+                let data_name = element.getAttribute("data-name");
+
+                if(data_id == $('#reply_to').val()) return false;
+
+                setActiveMessage(contact_messages, element);
+                // show message load
+                $('.message-load').show();
+                getMessage(data_id);
+                getReplyMessages(data_id);
+
+                $('#custom_subject').val(`REPLY TO - ${data_name}`);
+                $('#reply_to').val(data_id);
+            })
         });
 
-        $('.remove-btn').click(function() {
-            console.log(true);
+        function getMessage(data_id) {
+
+            $.ajax({
+                url: `contact_message/show/${data_id}`,
+                success: function(data) {
+                    $('.client-message').html(data);
+                }
+            })
+        }
+
+        function setActiveMessage(contact_messages, message) {
+            contact_messages.forEach(element => {
+                element.classList.remove('active');
+            })
+            message.classList.add('active');
+        }
+
+        function getReplyMessages(data_id) {
+            $.ajax({
+                url: `contact_message_replies/${data_id}`,
+                success: function(data) {
+                    $('.server-message').html(data);
+                    // hide message load
+                    $('.message-load').hide();
+                }
+            })
+        }
+
+        $('#reply_form').submit(function(e) {
+            e.preventDefault();
+            const token = document.querySelector('input[name="_token"]').value;
+            $.ajax({
+                url: "{{ route('admin.contact_message_reply.store') }}",
+                type: "POST",
+                data: {
+                    _token: token,
+                    reply_to: $('#reply_to').val(),
+                    message: $('#message').val(),
+                    custom_subject: $('#custom_subject').val()
+                },
+                beforeSend: function() {
+                    $('#reply_btn').hide();
+                }
+            }).done(function(data) {
+                $('#reply_btn').show();
+                getReplyMessages($('#reply_to').val());
+                $('#message').val('');
+            })
         });
+
+        // hide message load
+        $('.message-load').hide();
     </script>
 @endpush

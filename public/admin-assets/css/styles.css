@@ -16513,7 +16513,7 @@ fieldset:disabled .btn {
     .navbar-collapse {
         border-top: 1px solid #ebf1f6;
         padding: 0 15px;
-        background-color: #fff;
+        background-color: whitesmoke;
         border-bottom-left-radius: 15px;
         border-bottom-right-radius: 15px;
     }

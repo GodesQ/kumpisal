@@ -1,0 +1,149 @@
+.main-container {
+    width: 100% !important;
+    height: auto;
+}
+.contact-container {
+    padding-top: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+@media screen and (max-width: 1024px) {
+    .contact-container {
+        padding: 70px 0px;
+    }
+    .contact-list-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+.contact-list-container {
+    width: 30%;
+    height: 100vh;
+    max-height: calc(100vh - 70px);
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 0;
+    padding: 10px;
+    background-color: rgb(247, 247, 247);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.contact-list-container::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+.contact-list-container::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: #F5F5F5;
+}
+
+.contact-list-container::-webkit-scrollbar-thumb
+{
+	background-color: #303030;
+}
+.contact-list-content
+{
+    width: 100%;
+    height: 100%;
+}
+.contact {
+    width: 100%;
+    padding: 20px 20px 10px 20px;
+    background: transparent;
+    border-bottom: 1px solid lightgray;
+    cursor: pointer;
+    margin: 5px 0;
+}
+.contact.active {
+    background: #fff;
+    border-radius: 10px;
+    border-bottom: none;
+}
+.contact-first {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 5px;
+}
+.contact-first h6 {
+    font-size: 12px;
+}
+.contact-body-content {
+    padding: 20px;
+    width: 70%;
+    height: 100vh;
+    max-height: calc(100vh - 70px);
+    position: relative;
+}
+.message-body-content {
+    width: 100%;
+    height: 60%;
+    max-height: 70%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px;
+    position: relative;
+}
+.message-body-content::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+.message-body-content::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: #F5F5F5;
+}
+
+.message-body-content::-webkit-scrollbar-thumb
+{
+	background-color: #303030;
+}
+.message-load {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-color: #fff;
+}
+.message-load-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.message-load-image img {
+    width: 150px;
+}
+.message {
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid lightgray;
+}
+.message-first {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.message-first h6 {
+    font-size: 12px;
+}
+.reply-container {
+    padding: 10px;
+}
+.message-form {
+    width: 100%;
+    height: 40%;
+    border-top: 1px solid #303030;
+    padding: 20px 10px;
+}
