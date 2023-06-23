@@ -130,6 +130,7 @@ Route::group(['prefix'=> 'admin', 'as' => 'admin.', 'middleware' => ['auth.admin
     Route::post('/church/store', [ChurchController::class, 'store'])->name('church.store')->middleware('can:create_church');
     Route::get('/church/edit/{uuid}', [ChurchController::class, 'edit'])->name('church.edit')->middleware('can:edit_church');
     Route::post('/church/update/{uuid}', [ChurchController::class, 'update'])->name('church.update')->middleware('can:edit_church');
+    Route::delete('/church/delete', [ChurchController::class, 'delete'])->name('church.delete');
 
     // Route::get('/confession_schedules', [ConfessionScheduleController::class, 'lists'])->name('confession_schedules.list');
     // Route::get('/confession_schedule/create', [ConfessionScheduleController::class, 'create'])->name('confession_schedule.create');

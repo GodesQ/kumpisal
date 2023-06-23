@@ -54,10 +54,9 @@
             element.addEventListener('click', (e) => {
                 let data_id = element.getAttribute("data-id");
                 let data_name = element.getAttribute("data-name");
-
                 if(data_id == $('#reply_to').val()) return false;
-
                 setActiveMessage(contact_messages, element);
+
                 // show message load
                 $('.message-load').show();
                 getMessage(data_id);
@@ -65,6 +64,7 @@
 
                 $('#custom_subject').val(`REPLY TO - ${data_name}`);
                 $('#reply_to').val(data_id);
+                checkReplyTo();
             })
         });
 
@@ -96,6 +96,16 @@
             })
         }
 
+        function checkReplyTo() {
+            if($('#reply_to').val() == '' || $('#reply_to').val() == null) {
+                $('#message').prop('disabled', true);
+                $('#reply_btn').hide();
+            } else {
+                $('#message').prop('disabled', false);
+                $('#reply_btn').show();
+            }
+        }
+
         $('#reply_form').submit(function(e) {
             e.preventDefault();
             const token = document.querySelector('input[name="_token"]').value;
@@ -120,5 +130,6 @@
 
         // hide message load
         $('.message-load').hide();
+        checkReplyTo()
     </script>
 @endpush

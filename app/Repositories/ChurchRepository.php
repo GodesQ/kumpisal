@@ -28,7 +28,7 @@ class ChurchRepository
             'has_sunday_sched' => $request->has('has_sunday_sched'),
         ]));
 
-        $churchChangedAttributes = $user->getChanges();
+        $churchChangedAttributes = $church->getChanges();
 
         foreach ($churchChangedAttributes as $attribute => $value) {
             if($value) {
@@ -36,7 +36,7 @@ class ChurchRepository
             }
         }
 
-        $create_log = $this->AdminLogRepository->create($request, $inputs, $this->title_create_log, 'create_church', $church->id);
+        $create_log = $this->AdminLogRepository->create($request, $inputs, $this->title_create_log, 'create_church', $create_church->id);
         return $create_church;
     }
 

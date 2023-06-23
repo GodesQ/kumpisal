@@ -14,6 +14,8 @@ use App\Models\ContactMessageReply;
 use App\Http\Requests\ContactMessage\CreateContactMessageRequest;
 
 use App\Mail\ContactMessageMail;
+use App\Mail\ContactMessageReplyMail;
+
 use DataTables;
 
 class ContactMessageController extends Controller
@@ -29,7 +31,7 @@ class ContactMessageController extends Controller
             'name' => $message->firstname . ' ' . $message->lastname,
         ];
 
-        // SEND EMAIL FOR VERIFICATION
+        // SEND EMAIL FOR VERIFICATION (james@godesq.com)
         $send_mail = Mail::to(env('SUPPORT_EMAIL'))->send(new ContactMessageMail($details, $message));
 
         if($message) return back()->with('success', 'Your Message Successfully Send.');
@@ -62,6 +64,15 @@ class ContactMessageController extends Controller
             'custom_subject' => $request->custom_subject,
             'message' => $request->message,
         ]);
+
+        $contact = ContactMessage::where('id', $request->reply_to)->first();
+
+        $details = [
+            'custom_subject' => $request->custom_subject,
+            'message' => $request->message
+        ];
+
+        Mail::to($contact->email)->send(new ContactMessageReplyMail($details));
 
         if($reply) return response([
             'status' => 'create',

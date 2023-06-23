@@ -194,4 +194,14 @@ class ChurchController extends Controller
 
         return redirect()->route('admin.church.edit', $church->church_uuid)->with('success', 'Church Successfully Updated.');
     }
+
+    public function delete(Request $request) {
+        $church = Church::where('church_uuid', $request->uuid)->first();
+        $delete = $church->delete();
+
+        if($delete) return response([
+            'status' => 'DELETED',
+            'message' => 'Church Successfully Deleted'
+        ]);
+    }
 }
