@@ -3,12 +3,25 @@
 @section('title', 'Users')
 
 @section('content')
+
+    @if (Session::get('success'))
+        @push('scripts')
+            <script>
+                toastr.success("{{ Session::get('success') }}", 'Success');
+            </script>
+        @endpush
+    @endif
+
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <h4 class="card-title fw-semibold">Representatives List</h4>
-                    <a href="{{ route('admin.representative.create') }}" class="btn btn-primary btn-block">Create</a>
+                    @auth('admin')
+                        @can('create_representative')
+                            <a href="{{ route('admin.representative.create') }}" class="btn btn-primary btn-block">Create</a>
+                        @endcan
+                    @endauth
                 </div>
                 <div class="card">
                     <div class="card-body">

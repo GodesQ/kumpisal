@@ -14,7 +14,7 @@ class AdminLogController extends Controller
     public function lists(Request $request) {
         if($request->ajax()) {
             $logs = AdminLog::select(DB::raw('admin_id'), DB::raw('MAX(id) as id'), DB::raw('MAX(type) as type'), DB::raw('MAX(title) as title'), DB::raw('MAX(created_at) as created_at'),
-            DB::raw('MAX(updated_at) as updated_at'), DB::raw('MAX(type_id) as type_id'))->groupBy('type_id', 'admin_id');
+            DB::raw('MAX(updated_at) as updated_at'), DB::raw('MAX(type_id) as type_id'))->groupBy('type_id', 'admin_id')->latest();
 
             return DataTables::of($logs)
                 ->addIndexColumn()

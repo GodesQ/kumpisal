@@ -29,7 +29,9 @@ class CreateUserRequest extends FormRequest
             'firstname' => 'required|max:30|min:2',
             'lastname' => 'required|max:30|min:2',
             'middlename' => 'required|max:30|min:2',
-            'address' => 'nullable'
+            'address' => 'nullable',
+            'latitude' => 'nullable',
+            'longitude' => 'nullable'
         ];
     }
 }

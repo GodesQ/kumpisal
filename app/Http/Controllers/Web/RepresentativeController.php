@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use DataTables;
 use DB;
+use Illuminate\Support\Facades\Gate;
 
 use App\Models\User;
 use App\Models\Church;
@@ -18,19 +19,14 @@ use App\Http\Requests\Representative\CreateRepresentativeRequest;
 use App\Http\Requests\Representative\UpdateRepresentativeRequest;
 use App\Http\Requests\Representative\SaveRepresentativeProfileRequest;
 
-use App\Repositories\AdminLogRepository;
+use App\Repositories\RepresentativeRepository;
 
 class RepresentativeController extends Controller
 {
-    protected $title_create_log;
-    protected $title_update_log;
-    protected $AdminLogRepository;
-
-    public function __construct(AdminLogRepository $adminLogRepository) {
-        $this->title_create_log = 'Create Parish Representative';
-        $this->title_update_log = 'Update Parish Representative';
-        $this->AdminLogRepository = $adminLogRepository;
+    public function __construct(RepresentativeRepository $representativeRepository) {
+        $this->RepresentativeRepository = $representativeRepository;
     }
+
     public function dashboard(Request $request) {
         $church = Church::where('id', Auth::user()->representative_info->church->id)->with('schedules')->first();
         return view('user-page.representative-dashboard.dashboard', compact('church'));
@@ -78,8 +74,11 @@ class RepresentativeController extends Controller
                         return $row->representative_info ? substr(optional($row->representative_info->church)->name, 0, 30) . '...' : null;
                     })
                     ->addColumn('action', function($row) {
-                        $btn = '<a href="/admin/representative/edit/' .$row->id. '" class="btn btn-primary btn-sm"><i class="ti ti-edit"></i></a>
-                        <a id="' .$row->id. '" class="btn btn-danger btn-sm remove-btn"><i class="ti ti-trash"></i></a>';
+                        $btn = '<a href="/admin/representative/edit/' .$row->id. '" class="btn btn-primary btn-sm"><i class="ti ti-edit"></i></a> ';
+
+                        if(Gate::allows('delete_representative')) {
+                            $btn .= '<a id="' .$row->id. '" class="btn btn-danger btn-sm remove-btn"><i class="ti ti-trash"></i></a>';
+                        }
                         return $btn;
                     })
                     ->rawColumns(['action'])
@@ -96,148 +95,35 @@ class RepresentativeController extends Controller
 
     public function store(CreateRepresentativeRequest $request) {
         $data = $request->validated();
+        $save_representative = $this->RepresentativeRepository->store($request, $data);
 
-        // Step 1: Create the representative in a transaction
-        DB::transaction(function () use ($data, $request) {
-            $inputs = [];
-            $representative = new User;
-
-            $save_representative = $representative->create(array_merge($data, [
-                'is_admin_generated' => 1,
-                'name' => $data['firstname'] . ' ' . $data['lastname'],
-                'password' => Hash::make($data['password']),
-                'role' => 'representative',
-                'user_uuid' => Str::orderedUuid(),
-            ]));
-
-            $representativeChangedAttributes = $representative->getChanges();
-
-            // Loop through the changed attributes and do something with them
-            foreach ($representativeChangedAttributes as $attribute => $value) {
-                array_push($inputs, "Attribute: $attribute, Value: $value");
-            }
-
-            // Step 2: Check if the representative was successfully created
-            if (!$save_representative) {
-                return back()->with('error', 'Failed to create representative');
-            }
-
-            $representativeInfo = new RepresentativeInfo;
-
-            // Step 3: Create the representative info
-            $save_representative_info = $representativeInfo->create([
-                'main_id' => $representative->id,
-                'church_id' => $data['church'],
-                'years_of_service' => $data['years_of_service'],
-                'age' => $data['age'],
-                'birthdate' => $data['birthdate'],
-                'contact_no' => $data['contact_no'],
-            ]);
-
-            $infoChangedAttributes = $representativeInfo->getChanges();
-
-            // Loop through the changed attributes and do something with them
-            foreach ($infoChangedAttributes as $attribute => $value) {
-                array_push($inputs, "Attribute: $attribute, Value: $value");
-            }
-
-            // Step 4: Check if the representative info was successfully created
-            if (!$save_representative_info) {
-                $representative->delete(); // Rollback by deleting the representative
-                return back()->with('error', 'Failed to create representative info');
-            }
-
-            // Step 5: Create Log
-            $create_log = $this->AdminLogRepository->create($request, $inputs, $this->title_create_log, 'create_representative', $representative->id);
-        });
-
-        // Step 6: Redirect with success message
-        return redirect()->route('admin.representatives.list')->with('success', 'Representative and info created successfully');
+        if($save_representative) return redirect()->route('admin.representatives.list')->with('success', 'Representative and info created successfully');
+        abort(500);
     }
 
     public function edit(Request $request) {
         $representative = User::where('id', $request->id)->where('is_admin_generated', 1)->with('representative_info')->first();
         $churches = Church::get();
+
         return view('admin-page.representatives.edit', compact('representative', 'churches'));
     }
 
     public function update(UpdateRepresentativeRequest $request) {
         $data = $request->validated();
+        $update_representative = $this->RepresentativeRepository->update($request, $data);
 
-        DB::transaction(function () use ($data, $request) {
-            $inputs = [];
-
-            $representative = User::where('id', $request->id)->first();
-
-            $representative_update = $representative->update(array_merge($data, [
-                'name' => $data['firstname'] . ' ' . $data['lastname'],
-                'is_verify' => $request->has('is_verify') ? true : false,
-                'is_active' => $request->has('is_active') ? true : false,
-            ]));
-
-            $representativeChangedAttributes = $representative->getChanges();
-
-            // Loop through the changed attributes and do something with them
-            foreach ($representativeChangedAttributes as $attribute => $value) {
-                array_push($inputs, "Attribute: $attribute, Value: $value");
-            }
-
-            // Step 2: Check if the representative was successfully created
-            if (!$representative_update) {
-                return back()->with('error', 'Failed to create representative');
-            }
-
-            // Step 3: Create the representative info
-            $representativeInfo = RepresentativeInfo::where('main_id', $representative->id)->first();
-
-            $representative_info_update = $representativeInfo->update([
-                'main_id' => $representative->id,
-                'church_id' => $data['church'],
-                'years_of_service' => $data['years_of_service'],
-                'age' => $data['age'],
-                'birthdate' => $data['birthdate'],
-                'contact_no' => $data['contact_no'],
-            ]);
-
-             $representativeInfo->save();
-
-            $infoChangedAttributes = $representativeInfo->getChanges();
-
-            // Loop through the changed attributes and do something with them
-            foreach ($infoChangedAttributes as $attribute => $value) {
-                array_push($inputs, "Attribute: $attribute, Value: $value");
-            }
-
-            // Step 4: Check if the representative info was successfully created
-            if (!$representative_info_update) {
-                $representative->delete(); // Rollback by deleting the representative
-                return back()->with('error', 'Failed to create representative info');
-            }
-
-            $create_log = $this->AdminLogRepository->create($request, $inputs, $this->title_update_log, 'update_representative', $representative->id);
-        });
-
-        return back()->with('success', 'Update Successfully');
+        if($update_representative) return back()->with('success', 'Update Successfully');
+        abort(500);
     }
 
     public function delete(Request $request) {
-        $representative = User::where('id', $request->user_id)->firstOr(function() {
-            return response([
-                'status' => 'Fail',
-                'message' => 'Representative Not Found'
-            ], 404);
-        });
+        $removed_representative = $this->RepresentativeRepository->destroy($request);
 
-        $remove_representative = $representative->update([
-            'is_delete' => 1
-        ]);
-
-        if($remove_representative) {
+        if($removed_representative) {
             return response([
                 'status' => 'Removed',
                 'message' => 'Representative Removed Successfully'
             ], 200);
         }
-
     }
 }

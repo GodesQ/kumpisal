@@ -62,6 +62,8 @@
                             <div class="mb-3">
                                 <label for="address" class="form-label">Address</label>
                                 <input type="text" class="form-control" id="address" name="address" aria-describedby="addressHelp">
+                                <input type="hidden" name="latitude" id="latitude">
+                                <input type="hidden" name="longitude" id="longitude">
                                 <span class="danger text-danger">@error('address'){{ $message }}@enderror</span>
                             </div>
                         </div>
@@ -88,3 +90,34 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+<script>
+    function initialize() {
+        let address = document.querySelector('#address');
+        let latitude = document.querySelector('#latitude');
+        let longitude = document.querySelector('#longitude');
+
+        // for search
+        let searchBox = new google.maps.places.SearchBox( address );
+
+        google.maps.event.addListener( searchBox, 'places_changed', function () {
+            var places = searchBox.getPlaces(), bounds = new google.maps.LatLngBounds(), i, place, lat, long, resultArray, address = places[0].formatted_address;
+            lat = places[0].geometry.location.lat()
+            long = places[0].geometry.location.lng();
+            latitude.value = lat;
+            longitude.value = long;
+            resultArray =  places[0].address_components;
+        });
+    }
+
+    $(document).ready(function() {
+        $('#church_address').keydown(function(event){
+            if(event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+            }
+        });
+    });
+</script>
+@endpush

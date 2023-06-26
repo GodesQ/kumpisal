@@ -3,6 +3,15 @@
 @section('title', 'Users')
 
 @section('content')
+
+    @if(Session::get('success'))
+        @push('scripts')
+            <script>
+                toastr.success("{{ Session::get('success') }}", 'Success')
+            </script>
+        @endpush
+    @endif
+
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">

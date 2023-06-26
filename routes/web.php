@@ -67,6 +67,7 @@ Route::get('/', function () {
     ->latest()
     ->limit(8)
     ->get();
+
     return view('user-page.home', compact('near_churches'));
 
 })->name('home');

@@ -60,4 +60,12 @@ class User extends Authenticatable
     public function saved_churches() {
         return $this->hasMany(SavedChurch::class, 'owner_id');
     }
+
+    public function scopeActive($query, $arg) {
+        return $query->where('is_active', $arg);
+    }
+
+    public function scopeIsNotDeleted($query) {
+        return $query->where('is_delete', 0);
+    }
 }

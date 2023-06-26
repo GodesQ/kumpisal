@@ -119,7 +119,7 @@ class ChurchController extends Controller
 
     public function lists(Request $request) {
         if($request->ajax()) {
-            $churches = Church::latest('id')->get();
+            $churches = Church::latest('id')->active(1)->isNotDeleted()->get();
             return Datatables::of($churches)
                     ->addIndexColumn()
                     ->addColumn('action', function($row) {
@@ -165,7 +165,6 @@ class ChurchController extends Controller
     }
 
     public function update(UpdateChurchRequest $request) {
-        // dd($request->all());
         $data = $request->validated();
         $church = Church::where('church_uuid', $request->uuid)->firstOrFail();
 

@@ -34,7 +34,9 @@ class CreateRepresentativeRequest extends FormRequest
             'contact_no' => 'required',
             'birthdate' => 'required|date',
             'age' => 'required',
-            'church' => 'required|exists:churches,id'
+            'church' => 'required|exists:churches,id',
+            'is_active' => 'nullable',
+            'is_verify' => 'nullable'
         ];
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use DB;
+use Illuminate\Support\Facades\Gate;
 
 use DataTables;
 use App\Models\User;
@@ -19,13 +20,15 @@ use App\Http\Requests\User\SaveUserProfileRequest;
 use App\Http\Requests\User\ChangeUserPasswordRequest;
 
 use App\Repositories\AdminLogRepository;
+use App\Repositories\UserRepository;
 
 class UserController extends Controller
 {
-    public function __construct(AdminLogRepository $adminLogRepository) {
+    public function __construct(AdminLogRepository $adminLogRepository, UserRepository $userRepository) {
         $this->title_create_log = 'Create User';
         $this->title_update_log = 'Update User';
         $this->AdminLogRepository = $adminLogRepository;
+        $this->UserRepository = $userRepository;
     }
 
     public function dashboard(Request $request) {
@@ -102,7 +105,7 @@ class UserController extends Controller
     public function lists(Request $request) {
         if($request->ajax()) {
             $users = User::where('is_admin_generated', 0)
-                        ->where('is_delete', 0)
+                        ->isNotDeleted()
                         ->get();
 
             return DataTables::of($users)
@@ -116,8 +119,10 @@ class UserController extends Controller
                         return $badge;
                     })
                     ->addColumn('action', function($row) {
-                        $btn = '<a href="/admin/user/edit/' .$row->user_uuid. '" class="btn btn-primary btn-sm"><i class="ti ti-edit"></i></a>
-                                <a id="' .$row->user_uuid. '" class="btn btn-danger btn-sm remove-btn"><i class="ti ti-trash"></i></a>';
+                        $btn = '<a href="/admin/user/edit/' .$row->user_uuid. '" class="btn btn-primary btn-sm"><i class="ti ti-edit"></i></a> ';
+                        if(Gate::allows('delete_user')) {
+                            $btn .= '<a id="' .$row->user_uuid. '" class="btn btn-danger btn-sm remove-btn"><i class="ti ti-trash"></i></a>';
+                        }
                         return $btn;
                     })
                     ->rawColumns(['action', 'verified'])
@@ -132,26 +137,11 @@ class UserController extends Controller
     }
 
     public function store(CreateUserRequest $request) {
-        $inputs = [];
         $data = $request->except('_token', 'password');
+        $save_user = $this->UserRepository->store($request, $data);
 
-        $user =  new User;
-
-        $user->create(array_merge($data, [
-            'name' => $request->firstname . ' ' . $request->lastname,
-            'password' => Hash::make($request->password),
-            'user_uuid' => Str::orderedUuid()
-        ]));
-
-        $userChangedAttributes = $user->getChanges();
-
-        foreach ($userChangedAttributes as $attribute => $value) {
-            array_push($inputs, "Attribute: $attribute, Value: $value");
-        }
-
-        $create_log = $this->AdminLogRepository->create($request, $inputs, $this->title_create_log, 'create_user', $user->id);
-
-        if($user && $create_log) return redirect()->route('admin.users.list')->with('success', 'Created Successfully');
+        if($save_user) return redirect()->route('admin.users.list')->with('success', 'Create User Successfully');
+        abort(500);
     }
 
     public function edit(Request $request) {
@@ -160,28 +150,11 @@ class UserController extends Controller
     }
 
     public function update(UpdateUserRequest $request) {
-        $inputs = [];
         $data = $request->validated();
+        $update_user = $this->UserRepository->update($request, $data);
 
-        $user = User::where('user_uuid', $request->uuid)->first();
-
-        $user->update(array_merge($data, [
-            'name' => $request->firstname . ' ' . $request->lastname,
-            'password' => $request->new_password ? $request->new_password : DB::raw('password'),
-            'is_verify' => $request->has('is_verify') ? true : false,
-            'is_active' => $request->has('is_active') ? true : false,
-        ]));
-
-        $userChangedAttributes = $user->getChanges();
-
-        foreach ($userChangedAttributes as $attribute => $value) {
-            if($attribute != 'password') {
-                array_push($inputs, "Attribute: $attribute, Value: $value");
-            }
-        }
-
-        $create_log = $thi000s->AdminLogRepository->create($request, $inputs, $this->title_update_log, 'update_user', $user->id);
-        if($user) return back()->with('success', 'Update User Successfully');
+        if($update_user) return back()->with('success', 'Update User Successfully');
+        abort(500);
     }
 
     public function delete(Request $request) {
