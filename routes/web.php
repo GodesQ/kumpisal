@@ -15,6 +15,7 @@ use App\Http\Controllers\Web\AdminLogController;
 use App\Http\Controllers\Web\RoleController;
 use App\Http\Controllers\Web\PermissionController;
 use App\Http\Controllers\Web\SaveChurchController;
+use App\Http\Controllers\Web\DioceseController;
 use App\Http\Controllers\Web\ForgotPasswordController;
 
 use App\Models\Church;
@@ -156,6 +157,12 @@ Route::group(['prefix'=> 'admin', 'as' => 'admin.', 'middleware' => ['auth.admin
     Route::post('/permission/store', [PermissionController::class, 'store'])->name('permission.store')->middleware('can:create_permission');
     Route::get('/permission/edit/{id}', [PermissionController::class, 'edit'])->name('permission.edit')->middleware('can:edit_permission');
     Route::post('/permission/update/{id}', [PermissionController::class, 'update'])->name('permission.update')->middleware('can:edit_permission');
+
+    Route::get('/dioceses', [DioceseController::class, 'lists'])->name('dioceses.list');
+    Route::get('/diocese/create', [DioceseController::class, 'create'])->name('diocese.create');
+    Route::post('/diocese/store', [DioceseController::class, 'store'])->name('diocese.store');
+    Route::get('/diocese/edit/{id}', [DioceseController::class, 'edit'])->name('diocese.edit');
+    Route::post('/diocese/update/{id}', [DioceseController::class, 'update'])->name('diocese.update');
 
     Route::get('/contact_messages', [ContactMessageController::class, 'lists'])->name('contact_messages.list');
     Route::get('/contact_message/show/{id}', [ContactMessageController::class, 'show'])->name('contact_message.show');

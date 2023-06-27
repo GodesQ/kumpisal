@@ -89,6 +89,14 @@
                                 </li>
                             @endcan
                         @endauth
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="{{ route('admin.dioceses.list') }}" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-building-church"></i>
+                                </span>
+                                <span class="hide-menu">Dioceses</span>
+                            </a>
+                        </li>
                         @auth('admin')
                             @can('view_admins_list')
                                 <li class="sidebar-item">
