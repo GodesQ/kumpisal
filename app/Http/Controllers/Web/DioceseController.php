@@ -11,11 +11,19 @@ use DB;
 use App\Models\Diocese;
 use DataTables;
 
+use App\Repositories\AdminLogRepository;
+
 use App\Http\Requests\Diocese\CreateDioceseRequest;
 use App\Http\Requests\Diocese\UpdateDioceseRequest;
 
 class DioceseController extends Controller
 {
+    public function __construct(AdminLogRepository $adminLogRepository) {
+        $this->title_create_log = 'Create Diocese';
+        $this->title_update_log = 'Update Diocese';
+        $this->AdminLogRepository = $adminLogRepository;
+    }
+
     public function lists(Request $request) {
         if($request->ajax()) {
             $data = Diocese::latest();
@@ -38,10 +46,23 @@ class DioceseController extends Controller
     }
 
     public function store(CreateDioceseRequest $request) {
+        $inputs = [];
        $data = $request->validated();
-       $diocese = Diocese::create($data);
+       $diocese = new Diocese;
 
-       if($diocese) return redirect()->route('admin.dioceses.list')->with('success', 'Diocese Created Successfully.');
+       $create_diocese = $diocese->create($data);
+
+       $dioceseChangedAttributes = $diocese->getChanges();
+
+        foreach ($dioceseChangedAttributes as $attribute => $value) {
+            if($value) {
+                array_push($inputs, "Attribute: $attribute, Value: $value");
+            }
+        }
+
+        $create_log = $this->AdminLogRepository->create($request, $inputs, $this->title_create_log, 'create_diocese', $create_diocese->id);
+
+       if($create_diocese) return redirect()->route('admin.dioceses.list')->with('success', 'Diocese Created Successfully.');
        abort(500);
     }
 
@@ -51,10 +72,22 @@ class DioceseController extends Controller
     }
 
     public function update(UpdateDioceseRequest $request) {
+        $inputs = [];
         $data = $request->validated();
         $diocese = Diocese::where('id', $request->id)->first();
 
         $update_diocese = $diocese->update($data);
+
+        $dioceseChangedAttributes = $diocese->getChanges();
+
+        foreach ($dioceseChangedAttributes as $attribute => $value) {
+            if($value) {
+                array_push($inputs, "Attribute: $attribute, Value: $value");
+            }
+        }
+
+        $create_log = $this->AdminLogRepository->create($request, $inputs, $this->title_update_log, 'update_diocese', $diocese->id);
+
         if($update_diocese) return back()->with('success', 'Diocese Updated Successfully.');
         abort(500);
     }

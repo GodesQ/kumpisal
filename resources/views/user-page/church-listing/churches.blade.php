@@ -61,11 +61,18 @@
         let longitude = document.querySelector('#longitude');
 
         function initialize() {
+
+            function scrollToTop() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+
             $(document).on('click', '.pagination .page-item a', function(event) {
                 event.preventDefault();
                 let page = $(this).attr('href').split('page=')[1];
                 $('#page_count').val(page);
                 filterChurches(page);
+                scrollToTop();
             })
 
             $(document).on('click', '#filter-btn', function(event) {

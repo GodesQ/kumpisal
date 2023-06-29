@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description"
+        content="Discover and manage confession schedules of churches across Luzon, Visayas, and Mindanao with Kumpisalan. This web app helps you find nearby churches, making it easier than ever to plan your confessions. Stay connected to your faith and explore spiritual opportunities effortlessly with Kumpisalan." />
+    <meta name="author" content="GODESQ DIGITAL MARKERTING SERVICES" />
+    <meta name="generator" content="KUMPISALAN" />
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{ URL::asset('user-assets/fonts/jost/stylesheet.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('user-assets/libs/line-awesome/css/line-awesome.min.css') }}">
@@ -23,7 +27,8 @@
 
     <link rel="stylesheet" href="{{ URL::asset('admin-assets/css/icons/tabler-icons/tabler-icons.css') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
-    <link rel="shortcut icon" href="{{ URL::asset('user-assets/images/assets/dark-kumpisalan-32.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ URL::asset('user-assets/images/assets/dark-kumpisalan-32.png') }}"
+        type="image/x-icon">
 
     @stack('styles')
 </head>
@@ -57,13 +62,15 @@
                                                     <a href="{{ route('home') }}" title="Home">Home</a>
                                                 </li>
                                                 <li>
-                                                    <a href="{{ route('churches.searchPage') }}" title="Churches">Churches</a>
+                                                    <a href="{{ route('churches.searchPage') }}"
+                                                        title="Churches">Churches</a>
                                                 </li>
                                                 <li>
                                                     <a href="{{ route('about-us') }}" title="About Us">About Us</a>
                                                 </li>
                                                 <li>
-                                                    <a href="{{ route('contact-us') }}" title="Contact Us">Contact Us</a>
+                                                    <a href="{{ route('contact-us') }}" title="Contact Us">Contact
+                                                        Us</a>
                                                 </li>
                                             </ul>
                                         </div><!-- .popup__menu -->
@@ -78,7 +85,8 @@
                             </div><!-- .site__menu -->
                             <div class="site__brand">
                                 <a title="Logo" href="/" class="site__brand__logo">
-                                    <img src="{{ asset('user-assets/images/assets/dark-kumpisalan.png') }}" alt="Kumpisalan" style="max-width: 150px !important;">
+                                    <img src="{{ asset('user-assets/images/assets/dark-kumpisalan.png') }}"
+                                        alt="Kumpisalan" style="max-width: 150px !important;">
                                 </a>
                             </div><!-- .site__brand -->
 
@@ -127,14 +135,23 @@
                             </div><!-- .popup-form -->
                             @auth
                                 <div class="dropdown">
-                                    @if(auth()->user()->user_image)
-                                        <img src="{{ asset('user-assets/images/avatars/' . auth()->user()->user_image) }}" onclick="handleUserDropdown()" alt="" style="width: 35px; height: 35px; object-fit: cover;" class="rounded-circle user-drop-btn">
+                                    @if (auth()->user()->user_image)
+                                        <img src="{{ asset('user-assets/images/avatars/' . auth()->user()->user_image) }}"
+                                            onclick="handleUserDropdown()" alt=""
+                                            style="width: 35px; height: 35px; object-fit: cover;"
+                                            class="rounded-circle user-drop-btn">
                                     @else
-                                        <img src="{{ asset('admin-assets/images/profile/' . 'user-1.jpg') }}" onclick="handleUserDropdown()" alt="" width="35" height="35" class="rounded-circle user-drop-btn">
+                                        <img src="{{ asset('admin-assets/images/profile/' . 'user-1.jpg') }}"
+                                            onclick="handleUserDropdown()" alt="" width="35" height="35"
+                                            class="rounded-circle user-drop-btn">
                                     @endif
                                     <div id="myDropdown" class="dropdown-content">
-                                        <a href="{{ auth()->user()->is_admin_generated ? route('representative.dashboard') : route('user.dashboard') }}" title="Dashboard"> <i class="ti ti-dashboard text-primary mr-3" ></i> Dashboard</a>
-                                        <a href="{{ auth()->user()->is_admin_generated ? route('representative.profile') : route('user.profile') }}" title="My Profile"> <i class="ti ti-user text-primary mr-3"></i> My Profile</a>
+                                        <a href="{{ auth()->user()->is_admin_generated ? route('representative.dashboard') : route('user.dashboard') }}"
+                                            title="Dashboard"> <i class="ti ti-dashboard text-primary mr-3"></i>
+                                            Dashboard</a>
+                                        <a href="{{ auth()->user()->is_admin_generated ? route('representative.profile') : route('user.profile') }}"
+                                            title="My Profile"> <i class="ti ti-user text-primary mr-3"></i> My
+                                            Profile</a>
                                         <a>
                                             <form action="{{ route('user.logout') }}" method="post">
                                                 @csrf
@@ -159,10 +176,12 @@
                         <div class="col-lg-4">
                             <div class="footer__top__info">
                                 <a title="Logo" href="01_index_1.html" class="">
-                                    <img src="{{ asset('user-assets/images/assets/dark-kumpisalan.png') }}" alt="Kumpisalan Logo" width="200">
+                                    <img src="{{ asset('user-assets/images/assets/dark-kumpisalan.png') }}"
+                                        alt="Kumpisalan Logo" width="200">
                                 </a>
 
-                                <p class="footer__top__info__desc mt-3">Journey Inward: Unveiling the Depths Within - A Soulful Quest for Self-Understanding</p>
+                                <p class="footer__top__info__desc mt-3">Journey Inward: Unveiling the Depths Within - A
+                                    Soulful Quest for Self-Understanding</p>
                             </div>
                         </div>
                         <div class="col-lg-2">
@@ -170,7 +189,8 @@
                                 <h3>Quick Links</h3>
                                 <ul>
                                     <li><a title="Home" href="{{ route('home') }}">Home</a></li>
-                                    <li><a title="Churches" href="{{ route('churches.searchPage') }}">Churches</a></li>
+                                    <li><a title="Churches" href="{{ route('churches.searchPage') }}">Churches</a>
+                                    </li>
                                     <li><a title="About Us" href="{{ route('about-us') }}">About Us</a></li>
                                     <li><a title="Contact Us" href="{{ route('contact-us') }}">Contact Us</a></li>
                                 </ul>
@@ -180,7 +200,8 @@
                             <aside class="footer__top__nav">
                                 <h3>Support</h3>
                                 <ul>
-                                    <li><a title="Get in Touch" href="{{ route('contact-us') }}">Get in Touch</a></li>
+                                    <li><a title="Get in Touch" href="{{ route('contact-us') }}">Get in Touch</a>
+                                    </li>
                                     <li><a title="How it works" href="#">How it works</a></li>
                                 </ul>
                             </aside>
@@ -217,7 +238,8 @@
                     </div>
                 </div><!-- .top-footer -->
                 <div class="footer__bottom">
-                    <p class="footer__bottom__copyright">2023 &copy; <a title="Uxper Team" href="#">Kumpisalan</a>. All rights reserved.</p>
+                    <p class="footer__bottom__copyright">2023 &copy; <a title="Uxper Team"
+                            href="#">Kumpisalan</a>. All rights reserved.</p>
                 </div><!-- .top-footer -->
             </div><!-- .container -->
         </footer><!-- site-footer -->
@@ -238,7 +260,9 @@
     <script src="{{ asset('user-assets/js/main.js') }}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEmTK1XpJ2VJuylKczq2-49A6_WuUlfe4&libraries=places&callback=initialize"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEmTK1XpJ2VJuylKczq2-49A6_WuUlfe4&libraries=places&callback=initialize">
+    </script>
 
     <script>
         function initialize() {
@@ -247,60 +271,60 @@
             let longitude = document.querySelector('#mob_longitude');
 
             // for search
-            let searchBox = new google.maps.places.SearchBox( address );
+            let searchBox = new google.maps.places.SearchBox(address);
 
-            google.maps.event.addListener( searchBox, 'places_changed', function () {
-                var places = searchBox.getPlaces(), bounds = new google.maps.LatLngBounds(), i, place, lat, long, resultArray, address = places[0].formatted_address;
+            google.maps.event.addListener(searchBox, 'places_changed', function() {
+                var places = searchBox.getPlaces(),
+                    bounds = new google.maps.LatLngBounds(),
+                    i, place, lat, long, resultArray, address = places[0].formatted_address;
                 lat = places[0].geometry.location.lat()
                 long = places[0].geometry.location.lng();
                 latitude.value = lat;
                 longitude.value = long;
-                resultArray =  places[0].address_components;
+                resultArray = places[0].address_components;
             });
         }
 
         $(document).ready(function() {
-            $('#church_address').keydown(function(event){
-                if(event.keyCode == 13) {
-                event.preventDefault();
-                return false;
+            $('#church_address').keydown(function(event) {
+                if (event.keyCode == 13) {
+                    event.preventDefault();
+                    return false;
                 }
             });
         });
     </script>
 
     <script>
-
         $(document).ready(function() {
-            $('.site__search__input').keydown(function(event){
-                if(event.keyCode == 13) {
+            $('.site__search__input').keydown(function(event) {
+                if (event.keyCode == 13) {
                     event.preventDefault();
                     return false;
                 }
             });
         });
 
-        $('.search__save').click(function () {
+        $('.search__save').click(function() {
             console.log(true);
             $('.site__search__form').submit();
         })
-
-
     </script>
 
     @stack('scripts')
 
-    @if(Session::get('fail'))
+    @if (Session::get('fail'))
         <script>
             toastr.error("{{ Session::get('fail') }}", 'Fail');
         </script>
     @endif
 
-    @if(Session::get('success'))
+    @if (Session::get('success'))
         <script>
             toastr.success("{{ Session::get('success') }}", 'Success');
         </script>
     @endif
 
 </body>
+
 </html>
