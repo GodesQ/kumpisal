@@ -47,12 +47,12 @@ class DioceseController extends Controller
 
     public function store(CreateDioceseRequest $request) {
         $inputs = [];
-       $data = $request->validated();
-       $diocese = new Diocese;
+        $data = $request->validated();
+        $diocese = new Diocese;
 
-       $create_diocese = $diocese->create($data);
+        $create_diocese = $diocese->create($data);
 
-       $dioceseChangedAttributes = $diocese->getChanges();
+        $dioceseChangedAttributes = $diocese->getChanges();
 
         foreach ($dioceseChangedAttributes as $attribute => $value) {
             if($value) {
@@ -62,8 +62,8 @@ class DioceseController extends Controller
 
         $create_log = $this->AdminLogRepository->create($request, $inputs, $this->title_create_log, 'create_diocese', $create_diocese->id);
 
-       if($create_diocese) return redirect()->route('admin.dioceses.list')->with('success', 'Diocese Created Successfully.');
-       abort(500);
+        if($create_diocese) return redirect()->route('admin.dioceses.list')->with('success', 'Diocese Created Successfully.');
+        abort(500);
     }
 
     public function edit(Request $request) {

@@ -15,7 +15,7 @@
         <div class="site-content">
             <div class="container">
                 <div class="company-info flex-inline my-4">
-                    <img src="{{ URL::asset('user-assets/images/about-2.jpeg') }}" alt="Our Company">
+                    <img src="{{ URL::asset('user-assets/images/about-us.png') }}" alt="Our Company">
                     <div class="ci-content">
                         <h3>Mission statement</h3>
                         <p>

@@ -9,6 +9,8 @@
         content="Discover and manage confession schedules of churches across Luzon, Visayas, and Mindanao with Kumpisalan. This web app helps you find nearby churches, making it easier than ever to plan your confessions. Stay connected to your faith and explore spiritual opportunities effortlessly with Kumpisalan." />
     <meta name="author" content="GODESQ DIGITAL MARKERTING SERVICES" />
     <meta name="generator" content="KUMPISALAN" />
+    <meta name="keywords"
+        content="confession schedules, churches, Luzon, Visayas, Mindanao, Kumpisalan, nearby churches, faith, spiritual opportunities">
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{ URL::asset('user-assets/fonts/jost/stylesheet.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('user-assets/libs/line-awesome/css/line-awesome.min.css') }}">
@@ -260,8 +262,7 @@
     <script src="{{ asset('user-assets/js/main.js') }}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEmTK1XpJ2VJuylKczq2-49A6_WuUlfe4&libraries=places&callback=initialize">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEmTK1XpJ2VJuylKczq2-49A6_WuUlfe4&libraries=places&callback=initialize">
     </script>
 
     <script>

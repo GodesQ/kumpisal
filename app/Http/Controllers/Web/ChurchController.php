@@ -38,7 +38,7 @@ class ChurchController extends Controller
 
     public function saveChurchProfile(SaveChurchProfileRequest $request) {
         $data = $request->validated();
-        $church = Church::where('church_uuid', $request->uuid)->first();
+        $church = Church::where('church_uuid', $request->uuid)->firstOrFail();
         $update_church = $church->update($data);
 
         if($update_church) {
@@ -105,7 +105,6 @@ class ChurchController extends Controller
                     ->paginate(10);
 
         $view_data = view('user-page.church-listing.church-data', compact('churches'))->render();
-
         return response()->json([
             'view_data' => $view_data,
             'churches' => $churches,
@@ -113,13 +112,13 @@ class ChurchController extends Controller
     }
 
     public function detailPage(Request $request) {
-        $church = Church::where('church_uuid', $request->uuid)->with('schedules')->first();
+        $church = Church::where('church_uuid', $request->uuid)->with('schedules')->firstOrFail();
         return view('user-page.church-listing.church-info', compact('church'));
     }
 
     public function lists(Request $request) {
         if($request->ajax()) {
-            $churches = Church::latest('id')->active(1)->isNotDeleted()->get();
+            $churches = Church::latest('id')->active(1)->isNotDeleted();
             return Datatables::of($churches)
                     ->addIndexColumn()
                     ->addColumn('action', function($row) {
@@ -195,7 +194,7 @@ class ChurchController extends Controller
     }
 
     public function delete(Request $request) {
-        $church = Church::where('church_uuid', $request->uuid)->first();
+        $church = Church::where('church_uuid', $request->uuid)->firstOrFail();
         $delete = $church->delete();
 
         if($delete) return response([
