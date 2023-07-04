@@ -54,7 +54,7 @@
 @endsection
 
 @push('scripts')
-    <script>
+    <script async defer>
         var map, address, my_marker;
         let church_address = document.querySelector('#church_address');
         let latitude = document.querySelector('#latitude');
@@ -98,13 +98,14 @@
 
                 selected_days = encodeURIComponent(JSON.stringify(selected_days));
 
-                let filter_parameters = `church_name=${$('#church_name').val()}&church_address=${$('#church_address').val()}&latitude=${latitude.value}&longitude=${longitude.value}&days=${selected_days}`;
+                let filter_parameters =
+                    `church_name=${$('#church_name').val()}&church_address=${$('#church_address').val()}&latitude=${latitude.value}&longitude=${longitude.value}&days=${selected_days}`;
                 $.ajax({
-                    url: "churches/fetch?page="+page+'&'+filter_parameters,
-                    success: function (data) {
+                    url: "churches/fetch?page=" + page + '&' + filter_parameters,
+                    success: function(data) {
                         $('#churches-list').html(data.view_data);
-                        if(data.churches.data.length > 0) {
-                            if(latitude.value && longitude.value && church_address.value) {
+                        if (data.churches.data.length > 0) {
+                            if (latitude.value && longitude.value && church_address.value) {
                                 setLocations(data.churches);
                             }
                         }
@@ -113,7 +114,7 @@
             }
 
             var mapOptions = {
-                center: new google.maps.LatLng( 14.5995124, 120.9842195 ),
+                center: new google.maps.LatLng(14.5995124, 120.9842195),
                 zoom: 15,
                 mapId: 'ad277f0b2aef047a',
                 disableDefaultUI: false, // Disables the controls like zoom control on the map if set to true
@@ -129,31 +130,33 @@
             }
 
             my_marker = new google.maps.Marker({
-                position:  new google.maps.LatLng(14.5995124, 120.9842195),
+                position: new google.maps.LatLng(14.5995124, 120.9842195),
                 map: map,
                 icon: user_icon_marker,
                 draggable: true,
             })
 
             // for search
-            let searchBox = new google.maps.places.SearchBox( church_address );
+            let searchBox = new google.maps.places.SearchBox(church_address);
 
-            google.maps.event.addListener( searchBox, 'places_changed', function () {
-                var places = searchBox.getPlaces(), bounds = new google.maps.LatLngBounds(), i, place, lat, long, resultArray, address = places[0].formatted_address;
+            google.maps.event.addListener(searchBox, 'places_changed', function() {
+                var places = searchBox.getPlaces(),
+                    bounds = new google.maps.LatLngBounds(),
+                    i, place, lat, long, resultArray, address = places[0].formatted_address;
 
-                for( i = 0; place = places[i]; i++ ) {
-                    bounds.extend( place.geometry.location );
-                    my_marker.setPosition( place.geometry.location );  // Set my_marker position new.
+                for (i = 0; place = places[i]; i++) {
+                    bounds.extend(place.geometry.location);
+                    my_marker.setPosition(place.geometry.location); // Set my_marker position new.
                 }
 
-                map.fitBounds( bounds );  // Fit to the bound
-                map.setZoom( 15 ); // This function sets the zoom to 15, meaning zooms to level 15.
+                map.fitBounds(bounds); // Fit to the bound
+                map.setZoom(15); // This function sets the zoom to 15, meaning zooms to level 15.
 
                 lat = places[0].geometry.location.lat()
                 long = places[0].geometry.location.lng()
                 latitude.value = lat;
                 longitude.value = long;
-                resultArray =  places[0].address_components;
+                resultArray = places[0].address_components;
             });
 
             setMarkerDraggable(my_marker);
@@ -161,7 +164,7 @@
             function setLocations(churches) {
 
                 var mapOptions = {
-                    center: new google.maps.LatLng( latitude.value, longitude.value ),
+                    center: new google.maps.LatLng(latitude.value, longitude.value),
                     zoom: 14,
                     mapId: 'ad277f0b2aef047a',
                     disableDefaultUI: false, // Disables the controls like zoom control on the map if set to true
@@ -177,7 +180,7 @@
                 }
 
                 my_marker = new google.maps.Marker({
-                    position:  new google.maps.LatLng(Number(latitude.value), Number(longitude.value) ),
+                    position: new google.maps.LatLng(Number(latitude.value), Number(longitude.value)),
                     icon: user_icon_marker,
                     map: map,
                     draggable: true,
@@ -185,7 +188,7 @@
 
                 setMarkerDraggable(my_marker);
 
-                if(churches.data.length === 0) return false;
+                if (churches.data.length === 0) return false;
 
                 let total_churches = churches.data.length;
                 let marker;
@@ -197,7 +200,7 @@
 
                     const churches_icon = {
                         url: '../../../user-assets/images/icons/church.png',
-                        scaledSize: new google.maps.Size(35,45)
+                        scaledSize: new google.maps.Size(35, 45)
                     }
 
                     marker = new google.maps.Marker({
@@ -210,49 +213,53 @@
                         labelInBackground: true
                     });
 
-                    (function (marker, data) {
-                            google.maps.event.addListener(marker, "click", function (e) {
+                    (function(marker, data) {
+                        google.maps.event.addListener(marker, "click", function(e) {
                             infoWindow.setContent(`${data?.name}`);
                             infoWindow.open(map, marker);
-                            });
+                        });
                     })(marker, data);
 
                 }
             }
 
             function setMarkerDraggable(my_marker) {
-                google.maps.event.addListener( my_marker, "dragend", function ( event ) {
+                google.maps.event.addListener(my_marker, "dragend", function(event) {
                     var lat, long, address, resultArray;
-                    var addressEl = document.querySelector( '#church_address' );
-                    var latEl = document.querySelector( '#latitude' );
-                    var longEl = document.querySelector( '#longitude' );
+                    var addressEl = document.querySelector('#church_address');
+                    var latEl = document.querySelector('#latitude');
+                    var longEl = document.querySelector('#longitude');
 
                     lat = my_marker.getPosition().lat();
                     long = my_marker.getPosition().lng();
 
 
                     var geocoder = new google.maps.Geocoder();
-                    geocoder.geocode( { latLng: my_marker.getPosition() }, function ( result, status ) {
-                        if ( 'OK' === status ) {  // This line can also be written like if ( status == google.maps.GeocoderStatus.OK ) {
+                    geocoder.geocode({
+                        latLng: my_marker.getPosition()
+                    }, function(result, status) {
+                        if ('OK' ===
+                            status
+                        ) { // This line can also be written like if ( status == google.maps.GeocoderStatus.OK ) {
                             address = result[0].formatted_address;
-                            resultArray =  result[0].address_components;
+                            resultArray = result[0].address_components;
                             addressEl.value = address;
                             latEl.value = lat;
                             longEl.value = long;
                             filterChurches(1);
                         } else {
-                            console.log( 'Geocode was not successful for the following reason: ' + status );
+                            console.log('Geocode was not successful for the following reason: ' + status);
                         }
 
                         // Closes the previous info window if it already exists
-                        if ( infoWindow ) {
+                        if (infoWindow) {
                             infoWindow.close();
                         }
 
                         infoWindow = new google.maps.InfoWindow({
                             content: address
                         });
-                        infoWindow.open( map );
+                        infoWindow.open(map);
                     });
                 });
             }
@@ -262,13 +269,12 @@
 
         // remove enter functionality in address input
         $(document).ready(function() {
-            $('#church_address').keydown(function(event){
-                if(event.keyCode == 13) {
-                event.preventDefault();
-                return false;
+            $('#church_address').keydown(function(event) {
+                if (event.keyCode == 13) {
+                    event.preventDefault();
+                    return false;
                 }
             });
         });
-
     </script>
 @endpush
