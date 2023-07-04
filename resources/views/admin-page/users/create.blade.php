@@ -71,7 +71,7 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="verify_email" name="is_verify" value="1">
                                 <label class="form-label" for="verify_email">
-                                    Verify Email <span style="font-size: 12px; font-weight: 400;">(If you check this box, It will not send a verification to email you registered.)</span>
+                                    Verify Email <span style="font-size: 12px; font-weight: 400;">(If you check this box, It will not send a verification to the email you registered.)</span>
                                 </label>
                             </div>
                             <div class="form-check">

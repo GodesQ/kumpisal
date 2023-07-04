@@ -24,6 +24,8 @@ class Church extends Model
         'contact_number',
         'facebook_link',
         'titular',
+        'diocese',
+        'vicariate',
         'has_monday_sched',
         'has_tuesday_sched',
         'has_wednesday_sched',

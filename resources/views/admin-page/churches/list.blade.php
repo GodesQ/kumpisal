@@ -33,9 +33,6 @@
                                         <th class="border-bottom-0">
                                             <h6 class="fw-semibold mb-0">Parish Priest</h6>
                                         </th>
-                                        <th class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0">Criteria</h6>
-                                        </th>
                                         <th class="border-bottom-0" width="100">
                                             <h6 class="fw-semibold mb-0">Actions</h6>
                                         </th>
@@ -73,12 +70,6 @@
                 {
                     data: 'parish_priest',
                     name: 'parish_priest',
-                    orderable: true,
-                    searchable: true
-                },
-                {
-                    data: 'criteria',
-                    name: 'criteria',
                     orderable: true,
                     searchable: true
                 },

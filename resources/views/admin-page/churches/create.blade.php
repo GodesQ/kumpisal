@@ -79,6 +79,21 @@
                                             <span class="text-danger danger">@error('titular'){{ $message }}@enderror</span>
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="diocese" class="form-label">Diocese</label>
+                                            <select name="diocese" id="diocese" class="select2 form-select">
+                                                <option value="">---- Select Diocese ----</option>
+                                                @forelse ($dioceses as $diocese)
+                                                    <option value="{{ $diocese->id }}">{{ $diocese->name }}</option>
+                                                @empty
+                                                    <option value="">No Diocese Found</option>
+                                                @endforelse
+                                            </select>
+                                            {{-- <input type="text" class="form-control" id="diocese" name="diocese" aria-describedby="dioceseHelp"> --}}
+                                            <span class="text-danger danger">@error('diocese'){{ $message }}@enderror</span>
+                                        </div>
+                                    </div>
                                     <div class="col-md-12">
                                         <div class="mb-3">
                                             <label for="description" class="form-label">Church Description</label>
@@ -132,7 +147,7 @@
 @endsection
 
 @push('stylesheets')
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="{{ URL::asset('admin-assets/app-assets/css/plugins/forms/select2.css')}}" rel="stylesheet" />
 @endpush
 
 @push('scripts')
@@ -156,7 +171,7 @@
     }
 
     $(document).ready(function() {
-        $('#church_address').keydown(function(event){
+        $('#address').keydown(function(event){
             if(event.keyCode == 13) {
             event.preventDefault();
             return false;

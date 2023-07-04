@@ -47,7 +47,7 @@
                                                     });
 
                                                     usort($dayEntries, function ($a, $b) {
-                                                        return strtotime($a['start_time']) - strtotime($b['start_time']);
+                                                        return strtotime($a['start_time']) - strtotime($b['end_time']);
                                                     });
                                                 ?>
                                                 @forelse ($dayEntries as $sched)
@@ -76,8 +76,19 @@
                             <hr>
                             <div class="place__box place__box-overview">
                                 <h3>Overview</h3>
-                                <div class="place__desc">{{ $church->description }}</div><!-- .place__desc -->
-                                <a href="#" class="show-more" title="Show More">Show More</a>
+                                <div class="">{{ $church->description }}</div><!-- .place__desc -->
+                            </div>
+                            <div class="place__box place__box-overview">
+                                <h3 style="margin-bottom: 5px !important;">Feast Date</h3>
+                                <div class="">{{ $church->feast_date }}</div>
+                            </div>
+                            <div class="place__box place__box-overview">
+                                <h3 style="margin-bottom: 5px !important;">Parish Priest</h3>
+                                <div class="">{{ $church->parish_priest }}</div>
+                            </div>
+                            <div class="place__box place__box-overview">
+                                <h3 style="margin-bottom: 5px !important;">Titular</h3>
+                                <div class="">{{ $church->titular }}</div>
                             </div>
                             <div class="place__box place__box-map">
                                 <h3 class="place__title--additional">
@@ -99,6 +110,12 @@
                                         @if($church->contact_number)
                                             <i class="la la-phone"></i>
                                             <a title="{{ $church->contact_number }}" href="tel:{{$church->contact_number}}">{{ $church->contact_number }}</a>
+                                        @endif
+                                    </li>
+                                    <li>
+                                        @if($church->contact_number)
+                                            <i class="la la-facebook"></i>
+                                            <a title="Facebook Link" href="{{ $church->facebook_link }}" target="_blank">{{ $church->facebook_link }}</a>
                                         @endif
                                     </li>
                                 </ul>

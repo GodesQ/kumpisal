@@ -19,9 +19,16 @@ use App\Http\Requests\Admin\CreateAdminRequest;
 use App\Http\Requests\Admin\UpdateAdminRequest;
 
 use DataTables;
+use App\Repositories\AdminLogRepository;
 
 class AdminController extends Controller
 {
+    public function __construct(AdminLogRepository $adminLogRepository) {
+        $this->title_create_log = 'Create Admin';
+        $this->title_update_log = 'Update Admin';
+        $this->AdminLogRepository = $adminLogRepository;
+    }
+
     public function dashboard() {
         $latest_users = User::latest()->limit(5)->get();
         $latest_churches = Church::latest()->limit(5)->get();
@@ -80,6 +87,7 @@ class AdminController extends Controller
     }
 
     public function store(CreateAdminRequest $request) {
+        $inputs = [];
         $data = $request->validated();
         $admin =  new Admin;
 
@@ -87,6 +95,14 @@ class AdminController extends Controller
             'name' => $request->firstname . ' ' . $request->lastname,
             'password' => Hash::make($request->password)
         ]));
+
+        $adminChangedAttributes = $admin->getChanges();
+
+        foreach ($adminChangedAttributes as $attribute => $value) {
+            array_push($inputs, "Attribute: $attribute, Value: $value");
+        }
+
+        $create_log = $this->AdminLogRepository->create($request, $inputs, $this->title_create_log, 'create_admin', $create_admin->id);
 
         return redirect()->route('admin.admins.list')->with('success', 'Admin Created Successfully');
     }
@@ -101,9 +117,11 @@ class AdminController extends Controller
         $data = $request->validated();
         $admin = Admin::where('id', $request->id)->first();
 
-        $admin->update(array_merge($data, [
+        $update_admin = $admin->update(array_merge($data, [
             'name' => $request->firstname . ' ' . $request->lastname
         ]), 400);
+
+
 
         return back()->with('success', 'Admin Updated Successfully');
     }

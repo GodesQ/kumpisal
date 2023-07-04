@@ -221,9 +221,9 @@
     <script src="{{ asset('admin-assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('admin-assets/js/sidebarmenu.js') }}"></script>
     <script src="{{ asset('admin-assets/js/app.min.js') }}"></script>
-    <script src="{{ asset('admin-assets/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('admin-assets/libs/simplebar/dist/simplebar.js') }}"></script>
     <script src="{{ asset('admin-assets/js/dashboard.js') }}"></script>
+    <script src="{{ asset('admin-assets/app-assets/vendors/js/forms/select/select2.full.js') }}"></script>
+    <script src="{{ asset('admin-assets/app-assets/js/scripts/forms/select/form-select2.js') }}"></script>
 
     {{-- CDNs --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

@@ -30,6 +30,7 @@ class CreateChurchRequest extends FormRequest
             'address' => 'nullable',
             'latitude' => 'nullable',
             'longitude' => 'nullable',
+            'diocese' => 'nullable',
             'parish_priest' => 'required',
             'feast_date' => 'required',
             'criteria' => 'required|in:diocese,vicariate',
