@@ -60,7 +60,7 @@
         let latitude = document.querySelector('#latitude');
         let longitude = document.querySelector('#longitude');
 
-        function initialize() {
+        async function initialize() {
 
             function scrollToTop() {
                 document.body.scrollTop = 0;
@@ -248,7 +248,8 @@
                             longEl.value = long;
                             filterChurches(1);
                         } else {
-                            console.log('Geocode was not successful for the following reason: ' + status);
+                            console.log('Geocode was not successful for the following reason: ' +
+                                status);
                         }
 
                         // Closes the previous info window if it already exists
