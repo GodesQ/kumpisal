@@ -54,13 +54,13 @@
 @endsection
 
 @push('scripts')
-    <script async defer>
+    <script>
         var map, address, my_marker;
         let church_address = document.querySelector('#church_address');
         let latitude = document.querySelector('#latitude');
         let longitude = document.querySelector('#longitude');
 
-        async function initialize() {
+        function initialize() {
 
             function scrollToTop() {
                 document.body.scrollTop = 0;
@@ -264,8 +264,6 @@
                     });
                 });
             }
-
-
         }
 
         // remove enter functionality in address input

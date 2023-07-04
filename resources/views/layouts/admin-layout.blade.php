@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
-    <link rel="shortcut icon" href="{{ URL::asset('user-assets/images/assets/dark-kumpisalan-32.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ URL::asset('user-assets/images/assets/dark-kumpisalan-32.png') }}"
+        type="image/x-icon">
 
     @stack('stylesheets')
 </head>
@@ -68,7 +69,8 @@
                         @auth('admin')
                             @can('view_representatives_list')
                                 <li class="sidebar-item">
-                                    <a class="sidebar-link" href="{{ route('admin.representatives.list') }}" aria-expanded="false">
+                                    <a class="sidebar-link" href="{{ route('admin.representatives.list') }}"
+                                        aria-expanded="false">
                                         <span>
                                             <i class="ti ti-user-plus"></i>
                                         </span>
@@ -140,7 +142,8 @@
                         @auth('admin')
                             @can('view_contact_messages_list')
                                 <li class="sidebar-item">
-                                    <a class="sidebar-link" href="{{ route('admin.contact_messages.list') }}" aria-expanded="false">
+                                    <a class="sidebar-link" href="{{ route('admin.contact_messages.list') }}"
+                                        aria-expanded="false">
                                         <span>
                                             <i class="ti ti-mail"></i>
                                         </span>
@@ -201,8 +204,11 @@
                                             <i class="ti ti-user fs-6"></i>
                                             <p class="mb-0 fs-3">My Profile</p>
                                         </a>
-                                        <a href="{{ route('admin.logout') }}" class="btn btn-outline-primary mx-3 mt-2 d-block" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                                        <form method="POST" action="{{ route('admin.logout') }}" id="logout-form" style="display: none;">
+                                        <a href="{{ route('admin.logout') }}"
+                                            class="btn btn-outline-primary mx-3 mt-2 d-block"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                        <form method="POST" action="{{ route('admin.logout') }}" id="logout-form"
+                                            style="display: none;">
                                             @csrf
                                         </form>
                                     </div>
@@ -213,7 +219,7 @@
                 </nav>
             </header>
             <!--  Header End -->
-           @yield('content')
+            @yield('content')
         </div>
     </div>
     <script src="{{ asset('admin-assets/js/vendors.min.js') }}"></script>
@@ -233,7 +239,9 @@
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
     <script src='https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEmTK1XpJ2VJuylKczq2-49A6_WuUlfe4&libraries=places&callback=initialize"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEmTK1XpJ2VJuylKczq2-49A6_WuUlfe4&libraries=places&callback=initialize">
+    </script>
 
     @stack('scripts')
 
