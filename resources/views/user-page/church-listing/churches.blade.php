@@ -104,10 +104,8 @@
                     url: "churches/fetch?page=" + page + '&' + filter_parameters,
                     success: function(data) {
                         $('#churches-list').html(data.view_data);
-                        if (data.churches.data.length > 0) {
-                            if (latitude.value && longitude.value && church_address.value) {
-                                setLocations(data.churches);
-                            }
+                        if (latitude.value && longitude.value && church_address.value) {
+                            setLocations(data.churches);
                         }
                     }
                 });
@@ -192,7 +190,6 @@
 
                 let total_churches = churches.data.length;
                 let marker;
-
                 for (i = 0; i <= total_churches; i++) {
 
                     var data = churches.data[i];
