@@ -126,7 +126,6 @@
                                     <li class="nav-signup"><a title="Sign Up" href="#signup">Sign Up</a></li>
                                     <li class="nav-login"><a title="Log In" href="#login">Log In</a></li>
                                 </ul>
-                                <p class="choose-or"><span>Or</span></p>
                                 <div class="popup-content">
                                     @include('user-page.auth.register')
                                     @include('user-page.auth.login')
