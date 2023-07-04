@@ -126,9 +126,6 @@
                                     <li class="nav-signup"><a title="Sign Up" href="#signup">Sign Up</a></li>
                                     <li class="nav-login"><a title="Log In" href="#login">Log In</a></li>
                                 </ul>
-                                <p class="choose-more">Continue with
-                                    <a title="Google" class="gg" href="#">Google</a>
-                                </p>
                                 <p class="choose-or"><span>Or</span></p>
                                 <div class="popup-content">
                                     @include('user-page.auth.register')
@@ -262,7 +259,8 @@
     <script src="{{ asset('user-assets/js/main.js') }}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEmTK1XpJ2VJuylKczq2-49A6_WuUlfe4&libraries=places&callback=initialize">
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEmTK1XpJ2VJuylKczq2-49A6_WuUlfe4&libraries=places&callback=initialize">
     </script>
 
     <script>

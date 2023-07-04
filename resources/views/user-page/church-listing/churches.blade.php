@@ -266,6 +266,8 @@
             }
         }
 
+        initialize()
+
         // remove enter functionality in address input
         $(document).ready(function() {
             $('#church_address').keydown(function(event) {
