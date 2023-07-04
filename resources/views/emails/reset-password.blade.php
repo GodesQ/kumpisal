@@ -98,8 +98,8 @@
                     <tr>
                         <td bgcolor="#ffffff" align="center" valign="top"
                             style="padding: 20px 20px 0px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Google Sans', Helvetica, Arial, sans-serif; font-size: 3px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
-                            <img src="{{ url('') }}/images/logo/main-logo.png" width="125" height="120"
-                                style="display: block; border: 0px;" />
+                            <img src="{{ URL::asset('user-assets/images/assets/dark-kumpisalan.png') }}" width="135"
+                                height="120" style="display: block; border: 0px;" />
                             <h1 style="font-size: 32px; font-weight: 800; margin-bottom: 0;">Password Reset!</h1>
                         </td>
                     </tr>
@@ -133,7 +133,8 @@
                                                             name="verify_token">
                                                         <input type="hidden" value="{{ $email }}"
                                                             name="email">
-                                                        <button type="submit" style="padding: 0.6rem 1rem 0.6rem 1rem; background: #303030; color: white; text-decoration: none; border-radius: 5px; cursor: pointer; font-family: 'Google Sans', Helvetica, Arial, sans-serif; font-size: 16px;">
+                                                        <button type="submit"
+                                                            style="padding: 0.6rem 1rem 0.6rem 1rem; background: #303030; color: white; text-decoration: none; border-radius: 5px; cursor: pointer; font-family: 'Google Sans', Helvetica, Arial, sans-serif; font-size: 16px;">
                                                             RESET YOUR PASSWORD
                                                         </button>
                                                     </form>
@@ -149,7 +150,8 @@
                     <tr>
                         <td bgcolor="#ffffff" align="center"
                             style="padding: 0px 30px 20px 30px; color: #666666; font-family: 'Google Sans', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 25px;">
-                            <p style="margin: 0;">If you have any questions, just reply to this email&mdash;we're always happy to help out.</p>
+                            <p style="margin: 0;">If you have any questions, just reply to this email&mdash;we're always
+                                happy to help out.</p>
                         </td>
                     </tr>
                     <tr>
@@ -169,7 +171,8 @@
                             style="padding: 30px 30px 30px 30px; border-radius: 4px 4px 4px 4px; color: #666666; font-family: 'Google Sans', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
                             <h2 style="font-size: 20px; font-weight: 400; color: white; margin: 0;">Need more help?
                             </h2>
-                            <p style="margin: 0;"><a href="" target="_blank" style="color: white;">We&rsquo;re here to help you out</a></p>
+                            <p style="margin: 0;"><a href="" target="_blank" style="color: white;">We&rsquo;re
+                                    here to help you out</a></p>
                         </td>
                     </tr>
                 </table>

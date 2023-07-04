@@ -7,71 +7,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <style type="text/css">
-    @media screen {
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-    }
-
-    /* CLIENT-SPECIFIC STYLES */
-    body,
-    table,
-    td,
-    a {
-        -webkit-text-size-adjust: 100%;
-        -ms-text-size-adjust: 100%;
-    }
-
-    table,
-    td {
-        mso-table-lspace: 0pt;
-        mso-table-rspace: 0pt;
-    }
-
-    img {
-        -ms-interpolation-mode: bicubic;
-    }
-
-    /* RESET STYLES */
-    img {
-        border: 0;
-        height: auto;
-        line-height: 100%;
-        outline: none;
-        text-decoration: none;
-    }
-
-    table {
-        border-collapse: collapse !important;
-    }
-
-    body {
-        height: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        width: 100% !important;
-    }
-
-    /* iOS BLUE LINKS */
-    a[x-apple-data-detectors] {
-        color: inherit !important;
-        text-decoration: none !important;
-        font-size: inherit !important;
-        font-family: inherit !important;
-        font-weight: inherit !important;
-        line-height: inherit !important;
-    }
-
-    /* MOBILE STYLES */
-    @media screen and (max-width:600px) {
-        h1 {
-            font-size: 32px !important;
-            line-height: 32px !important;
+        @media screen {
+            @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap');
         }
-    }
 
-    /* ANDROID CENTER FIX */
-    div[style*="margin: 16px 0;"] {
-        margin: 0 !important;
-    }
+        /* CLIENT-SPECIFIC STYLES */
+        body,
+        table,
+        td,
+        a {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        table,
+        td {
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+
+        img {
+            -ms-interpolation-mode: bicubic;
+        }
+
+        /* RESET STYLES */
+        img {
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+        }
+
+        table {
+            border-collapse: collapse !important;
+        }
+
+        body {
+            height: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+        }
+
+        /* iOS BLUE LINKS */
+        a[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+        }
+
+        /* MOBILE STYLES */
+        @media screen and (max-width:600px) {
+            h1 {
+                font-size: 32px !important;
+                line-height: 32px !important;
+            }
+        }
+
+        /* ANDROID CENTER FIX */
+        div[style*="margin: 16px 0;"] {
+            margin: 0 !important;
+        }
     </style>
 </head>
 
@@ -97,7 +97,8 @@
                     <tr>
                         <td bgcolor="#ffffff" align="center" valign="top"
                             style="padding: 20px 20px 0px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Google Sans', Helvetica, Arial, sans-serif; font-size: 3px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
-                            <img src="{{ url('') }}/user-assets/images/assets/dark-kumpisalan.png" width="125" height="120" style="display: block; border: 0px;" />
+                            <img src="{{ URL::asset('user-assets/images/assets/dark-kumpisalan.png') }}" width="125"
+                                height="120" style="display: block; border: 0px;" />
                             <h1 style="font-size: 32px; font-weight: 800; margin-bottom: 0;">CONTACT MESSAGE!</h1>
                         </td>
                     </tr>
@@ -121,9 +122,12 @@
                                             <tr>
                                                 <td>
                                                     <div>
-                                                        <div style="font-family: 'Google Sans', Helvetica, Arial, sans-serif;"><b>Name</b></div>
-                                                        <div style="font-family: 'Google Sans', Helvetica, Arial, sans-serif;">
-                                                            {{$message_data->firstname}} {{$message_data->lastname}}
+                                                        <div
+                                                            style="font-family: 'Google Sans', Helvetica, Arial, sans-serif;">
+                                                            <b>Name</b></div>
+                                                        <div
+                                                            style="font-family: 'Google Sans', Helvetica, Arial, sans-serif;">
+                                                            {{ $message_data->firstname }} {{ $message_data->lastname }}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -131,8 +135,11 @@
                                             <tr>
                                                 <td>
                                                     <div>
-                                                        <div style="font-family: 'Google Sans', Helvetica, Arial, sans-serif;"><b>Email</b></div>
-                                                        <div style="font-family: 'Google Sans', Helvetica, Arial, sans-serif;">
+                                                        <div
+                                                            style="font-family: 'Google Sans', Helvetica, Arial, sans-serif;">
+                                                            <b>Email</b></div>
+                                                        <div
+                                                            style="font-family: 'Google Sans', Helvetica, Arial, sans-serif;">
                                                             {{ $message_data->email }}
                                                         </div>
                                                     </div>
@@ -141,8 +148,11 @@
                                             <tr>
                                                 <td>
                                                     <div>
-                                                        <div style="font-family: 'Google Sans', Helvetica, Arial, sans-serif;"><b>Contact Number</b></div>
-                                                        <div style="font-family: 'Google Sans', Helvetica, Arial, sans-serif;">
+                                                        <div
+                                                            style="font-family: 'Google Sans', Helvetica, Arial, sans-serif;">
+                                                            <b>Contact Number</b></div>
+                                                        <div
+                                                            style="font-family: 'Google Sans', Helvetica, Arial, sans-serif;">
                                                             {{ $message_data->contact_no }}
                                                         </div>
                                                     </div>
@@ -151,9 +161,12 @@
                                             <tr>
                                                 <td>
                                                     <div>
-                                                        <div style="font-family: 'Google Sans', Helvetica, Arial, sans-serif;"><b>Message</b></div>
-                                                        <div style="font-family: 'Google Sans', Helvetica, Arial, sans-serif;">
-                                                            <?php echo nl2br($message_data->message) ?>
+                                                        <div
+                                                            style="font-family: 'Google Sans', Helvetica, Arial, sans-serif;">
+                                                            <b>Message</b></div>
+                                                        <div
+                                                            style="font-family: 'Google Sans', Helvetica, Arial, sans-serif;">
+                                                            <?php echo nl2br($message_data->message); ?>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -189,8 +202,8 @@
                             style="padding: 30px 30px 30px 30px; border-radius: 4px 4px 4px 4px; color: #331f14; font-family: 'Google Sans', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
                             <h2 style="font-size: 20px; font-weight: 400; color: white; margin: 0;">Need more help?
                             </h2>
-                            <p style="margin: 0;"><a href="" target="_blank"
-                                    style="color: white;">We&rsquo;re here to help you out</a></p>
+                            <p style="margin: 0;"><a href="" target="_blank" style="color: white;">We&rsquo;re
+                                    here to help you out</a></p>
                         </td>
                     </tr>
                 </table>
@@ -204,7 +217,8 @@
                             style="padding: 0px 30px 30px 30px; color: #666666; font-family: 'Google Sans', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;">
                             <br>
                             <p style="margin: 0;">Powered by: <a. href="{{ url('') }}" target="_blank"
-                                    style="color: #331f14; font-weight: 700;"><strong>KUMPISALAN APP</strong></a.></p>
+                                    style="color: #331f14; font-weight: 700;"><strong>KUMPISALAN APP</strong></a.>
+                            </p>
                         </td>
                     </tr>
                 </table>
