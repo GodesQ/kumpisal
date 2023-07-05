@@ -78,17 +78,25 @@
                                 <h3>Overview</h3>
                                 <div class="">{{ $church->description }}</div><!-- .place__desc -->
                             </div>
-                            <div class="place__box place__box-overview">
-                                <h3 style="margin-bottom: 5px !important;">Feast Date</h3>
-                                <div class="">{{ $church->feast_date }}</div>
-                            </div>
-                            <div class="place__box place__box-overview">
-                                <h3 style="margin-bottom: 5px !important;">Parish Priest</h3>
-                                <div class="">{{ $church->parish_priest }}</div>
-                            </div>
-                            <div class="place__box place__box-overview">
-                                <h3 style="margin-bottom: 5px !important;">Titular</h3>
-                                <div class="">{{ $church->titular }}</div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="place__box place__box-overview">
+                                        <h3 style="margin-bottom: 5px !important;">Feast Date</h3>
+                                        <div class="">{{ $church->feast_date }}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="place__box place__box-overview">
+                                        <h3 style="margin-bottom: 5px !important;">Parish Priest</h3>
+                                        <div class="">{{ $church->parish_priest }}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="place__box place__box-overview">
+                                        <h3 style="margin-bottom: 5px !important;">Titular</h3>
+                                        <div class="">{{ $church->titular }}</div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="place__box place__box-map">
                                 <h3 class="place__title--additional">
