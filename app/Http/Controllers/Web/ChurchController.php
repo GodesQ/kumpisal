@@ -116,7 +116,7 @@ class ChurchController extends Controller
                                 * sin(radians(churches.latitude))) AS distance",
                         ),
                     )
-                    ->having('distance', '<=', '2')
+                    ->having('distance', '<=', '5')
                     ->orderBy('distance', 'asc');
             })
             ->latest()

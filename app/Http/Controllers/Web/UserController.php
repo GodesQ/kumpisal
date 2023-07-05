@@ -40,7 +40,7 @@ class UserController extends Controller
             return $q->addSelect(DB::raw('6371 * acos(cos(radians(' . $user->latitude ."))
                     * cos(radians(churches.latitude)) * cos(radians(churches.longitude) - radians(" .  $user->longitude . ")) + sin(radians(" .  $user->latitude . "))
                     * sin(radians(churches.latitude))) AS distance"))
-                ->having('distance', '<=', '2')
+                ->having('distance', '<=', '5')
                 ->orderBy('distance', 'asc');
         })
         ->limit(6)
