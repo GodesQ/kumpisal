@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                             <div class="field-textarea">
-                                <textarea name="message" placeholder="Message"></textarea>
+                                <textarea name="message" placeholder="Message (Max: 500)"></textarea>
                                 <span class="text-danger">@error('message'){{ $message }}@enderror</span>
                             </div>
                             <div class="field-submit mt-3">
