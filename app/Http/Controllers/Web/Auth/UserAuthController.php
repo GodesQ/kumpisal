@@ -60,6 +60,7 @@ class UserAuthController extends Controller
 
         // SEND EMAIL FOR VERIFICATION
         Mail::to($user->email)->send(new UserEmailVerification($details));
+        Auth::login($user);
         return redirect()->route('user.verify_email_message')->with('success', 'Register Successfully');
     }
 
