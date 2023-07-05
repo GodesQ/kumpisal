@@ -15,9 +15,8 @@
     <div class="">
         <div class="container">
             <div class="row">
-
                 <div class="col-md-12">
-                    <div class="contact-form">
+                    <div class="contact-form py-2">
                         <h3>Get in touch with us</h3>
                         <br>
                         <form action="{{ route('contact-message.store') }}" method="POST" class="form-underline">
