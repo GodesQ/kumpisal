@@ -43,7 +43,7 @@ class UserController extends Controller
                 ->having('distance', '<=', '2')
                 ->orderBy('distance', 'asc');
         })
-        ->limit(10)
+        ->limit(6)
         ->get();
 
         return view('user-page.user-dashboard.dashboard', compact('near_churches'));
