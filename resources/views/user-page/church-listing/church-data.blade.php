@@ -9,7 +9,7 @@
                 <div class="entry-detail">
                     <div class="entry-head">
                         <div class="place-type list-item">
-                            {{ Str::ucfirst($church->criteria) }}
+                            {{ Str::ucfirst($church->parish_priest) }}
                         </div>
                         @if(isset($church->distance))
                             <div class="place-city">

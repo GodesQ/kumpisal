@@ -1377,7 +1377,7 @@ a.place__comments__reply i { display: inline-block; vertical-align: middle; marg
 
 .contact-main .page-title { margin-bottom: 0px; }
 .contact-main .contact-text { padding: 60px 0; }
-.contact-main .contact-form { padding-top: 60px; padding-bottom: 60px; padding-left: 45px; max-width: 340px; }
+.contact-main .contact-form { padding-top: 60px; padding-bottom: 60px; padding-left: 45px; }
 .contact-main .contact-form .field-submit { margin-top: 0; }
 
 .error-wrap { margin: 100px auto; text-align: center; max-width: 450px; }
@@ -2582,4 +2582,24 @@ a.place__comments__reply i { display: inline-block; vertical-align: middle; marg
 .forgot-password-container {
     width: 40%;
 }
+
+.days-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: start;
+}
+
+@media screen and (max-width: 780px) {
+    .days-container {
+        flex-direction: column;
+        gap: 0 !important;
+    }
+    .days-container .days-child {
+        width: 100% !important;
+    }
+    .days-child .field-check {
+        margin: 10px 0;
+    }
+}
+
 /*# sourceMappingURL=style.css.map */

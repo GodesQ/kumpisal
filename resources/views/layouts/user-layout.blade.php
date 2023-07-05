@@ -11,6 +11,8 @@
     <meta name="generator" content="KUMPISALAN" />
     <meta name="keywords"
         content="confession schedules, churches, Luzon, Visayas, Mindanao, Kumpisalan, nearby churches, faith, spiritual opportunities">
+    <link rel="shortcut icon" href="{{ URL::asset('user-assets/images/assets/favicon.ico') }}" type="image/x-icon">
+    <meta name="theme-color" content="#331f14">
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{ URL::asset('user-assets/fonts/jost/stylesheet.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('user-assets/libs/line-awesome/css/line-awesome.min.css') }}">
@@ -29,9 +31,6 @@
 
     <link rel="stylesheet" href="{{ URL::asset('admin-assets/css/icons/tabler-icons/tabler-icons.css') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
-    <link rel="shortcut icon" href="{{ URL::asset('user-assets/images/assets/dark-kumpisalan-32.png') }}"
-        type="image/x-icon">
-
     @stack('styles')
 </head>
 
@@ -136,7 +135,7 @@
                                     @if (auth()->user()->user_image)
                                         <img src="{{ asset('user-assets/images/avatars/' . auth()->user()->user_image) }}"
                                             onclick="handleUserDropdown()" alt=""
-                                            style="width: 35px; height: 35px; object-fit: cover;"
+                                            style="width: 35px; height: 35px; object-fit: cover; border: 1px solid #331f14;"
                                             class="rounded-circle user-drop-btn">
                                     @else
                                         <img src="{{ asset('admin-assets/images/profile/' . 'user-1.jpg') }}"
@@ -173,7 +172,7 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="footer__top__info">
-                                <a title="Logo" href="01_index_1.html" class="">
+                                <a title="Logo" href="{{ route('home') }}" class="">
                                     <img src="{{ asset('user-assets/images/assets/dark-kumpisalan.png') }}"
                                         alt="Kumpisalan Logo" width="200">
                                 </a>
@@ -200,29 +199,23 @@
                                 <ul>
                                     <li><a title="Get in Touch" href="{{ route('contact-us') }}">Get in Touch</a>
                                     </li>
-                                    <li><a title="How it works" href="#">How it works</a></li>
                                 </ul>
                             </aside>
                         </div>
                         <div class="col-lg-3">
                             <aside class="footer__top__nav footer__top__nav--contact">
                                 <h3>Contact Us</h3>
-                                <p>Email: info@kumpisalan.com</p>
-                                <p>Phone: 09458426538</p>
+                                <p>Email: <a href="mailto:info@kumpisalan.com">info@kumpisalan.com</a></p>
+                                <p>Phone: <a href="tel:09458426538"></a></p>
                                 <ul>
                                     <li class="facebook">
-                                        <a title="Facebook" href="#">
+                                        <a title="Facebook" href="https://www.facebook.com/profile.php?id=100093120504740" target="_blank">
                                             <i class="la la-facebook-f"></i>
                                         </a>
                                     </li>
                                     <li class="twitter">
                                         <a title="Twitter" href="#">
                                             <i class="la la-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li class="youtube">
-                                        <a title="Youtube" href="#">
-                                            <i class="la la-youtube"></i>
                                         </a>
                                     </li>
                                     <li class="instagram">
@@ -235,9 +228,10 @@
                         </div>
                     </div>
                 </div><!-- .top-footer -->
-                <div class="footer__bottom">
+                <div class="footer__bottom d-flex justify-content-around align-items-center">
                     <p class="footer__bottom__copyright">2023 &copy; <a title="Uxper Team"
                             href="#">Kumpisalan</a>. All rights reserved.</p>
+                    <p>Design & Developed by <a href="https://godesq.com/" target="_blank">GodesQ Digital Marketing Services</a></p>
                 </div><!-- .top-footer -->
             </div><!-- .container -->
         </footer><!-- site-footer -->

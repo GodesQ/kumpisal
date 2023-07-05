@@ -13,7 +13,6 @@
                     <div class="filter-mobile">
                         <ul>
                             <li><a class="mb-filter mb-open" href="#filterForm">Filter</a></li>
-                            <li><a class="mb-sort mb-open" href="#sortForm">Sort</a></li>
                         </ul>
                         <div class="mb-maps"><a class="mb-maps" href="#"><i class="las la-map-marked-alt"></i></a>
                         </div>
@@ -248,17 +247,9 @@
                             console.log('Geocode was not successful for the following reason: ' +
                                 status);
                         }
-
-                        // Closes the previous info window if it already exists
-                        if (infoWindow) {
-                            infoWindow.close();
-                        }
-
-                        infoWindow = new google.maps.InfoWindow({
-                            content: address
-                        });
-                        infoWindow.open(map);
                     });
+
+                    $('.close-maps').click();
                 });
             }
         }
