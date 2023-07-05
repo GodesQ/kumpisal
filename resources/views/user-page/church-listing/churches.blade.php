@@ -76,7 +76,6 @@
 
             $(document).on('click', '#filter-btn', function(event) {
                 event.preventDefault();
-                $('.close-filter').click();
                 filterChurches(1);
             })
 
@@ -250,7 +249,6 @@
                         }
                     });
 
-                    $('.close-maps').click();
                 });
             }
         }
