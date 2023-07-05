@@ -24,10 +24,40 @@ class CreateConfessionScheduleRequest extends FormRequest
     public function rules()
     {
         return [
-            'schedule_date' => 'required|date',
-            'started_time' => 'date_format:H:i',
-            'end_time' => 'date_format:H:i|after:started_time',
-            'is_active' => 'nullable'
+            'monday_sched_starttime.*' => 'nullable',
+            'monday_sched_endtime.*' => 'nullable|after:monday_sched_starttime.*',
+            'tuesday_sched_starttime.*' => 'nullable',
+            'tuesday_sched_endtime.*' => 'nullable|after:tuesday_sched_starttime.*',
+            'wednesday_sched_starttime.*' => 'nullable',
+            'wednesday_sched_endtime.*' => 'nullable|after:wednesday_sched_starttime.*',
+            'thursday_sched_starttime.*' => 'nullable',
+            'thursday_sched_endtime.*' => 'nullable|after:thursday_sched_starttime.*',
+            'friday_sched_starttime.*' => 'nullable',
+            'friday_sched_endtime.*' => 'nullable|after:friday_sched_starttime.*',
+            'saturday_sched_starttime.*' => 'nullable',
+            'saturday_sched_endtime.*' => 'nullable|after:saturday_sched_starttime.*',
+            'sunday_sched_starttime.*' => 'nullable',
+            'sunday_sched_endtime.*' => 'nullable|after:sunday_sched_starttime.*',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'monday_sched_starttime.*' => 'Monday start time',
+            'monday_sched_endtime.*' => 'Monday end time',
+            'tuesday_sched_starttime.*' => 'Tuesday start time',
+            'tuesday_sched_endtime.*' => 'Tuesday end time',
+            'wednesday_sched_starttime.*' => 'Wednesday start time',
+            'wednesday_sched_endtime.*' => 'Wednesday end time',
+            'thursday_sched_starttime.*' => 'Thursday start time',
+            'thursday_sched_endtime.*' => 'Thursday end time',
+            'friday_sched_starttime.*' => 'Friday start time',
+            'friday_sched_endtime.*' => 'Friday end time',
+            'saturday_sched_starttime.*' => 'Saturday start time',
+            'saturday_sched_endtime.*' => 'Saturday end time',
+            'sunday_sched_starttime.*' => 'Sunday start time',
+            'sunday_sched_endtime.*' => 'Sunday end time',
         ];
     }
 }

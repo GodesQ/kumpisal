@@ -4,7 +4,8 @@
 
 @section('content')
     <main id="main" class="site-main">
-        <div class="page-title page-title--small align-left" style="background-image: url(user-assets/images/bg/bg-about.png);">
+        <div class="page-title page-title--small align-left"
+            style="background-image: url(user-assets/images/bg/bg-about.png);">
             <div class="container">
                 <div class="page-title__content">
                     <h1 class="page-title__name">About Us</h1>
@@ -19,24 +20,24 @@
                     <div class="ci-content">
                         <h3>Mission statement</h3>
                         <p>
-                            The project's main goal is to encourage and promote the practice of confession as a regular part
-                            of Catholic spiritual life. Through Kumpisalan, we aim to provide a reliable and up-to-date
-                            source of information that will make it easier for Catholics to participate in this important
-                            sacrament.
+                            Our primary objective is to promote and encourage the practice of confession within the Catholic
+                            spiritual life through the Kumpisalan app. We strive to offer an accurate and reliable source of
+                            information that will facilitate Catholics in participating in this essential sacrament.
                             <br><br>
-                            While the primary source of income for the project will be through donations, we believe that
-                            the potential market for Kumpisalan is significant, given the large Catholic population in the
-                            Philippines and the growing interest in online directories. However, there are also risks
-                            involved, such as the challenge of obtaining accurate and timely information from parishes, as
-                            well as potential technical issues that may arise during development and maintenance.
+                            While donations will be the main source of income for the project, we recognize the significant
+                            market potential for Kumpisalan, given the substantial Catholic population in the Philippines
+                            and the increasing interest in online directories. However, we acknowledge the associated risks,
+                            such as the difficulty in obtaining precise and timely information from parishes, as well as
+                            potential technical challenges during development and maintenance.
                             <br><br>
-                            To mitigate these risks, we have developed a contingency plan that includes measures such as
-                            regular communication with parishes, backup data storage, and continuous monitoring and updating
-                            of the platform.
+                            To address these risks, we have devised a contingency plan that involves maintaining regular
+                            communication with parishes, implementing backup data storage, and continuously monitoring and
+                            updating the platform to ensure its smooth operation.
                             <br><br>
-                            Overall, Kumpisalan seeks to serve the needs of the Catholic community by providing a valuable
-                            resource for spiritual growth and practice. We believe that this project has the potential to
-                            make a significant impact, and we look forward to its successful implementation and growth.
+                            In essence, Kumpisalan aims to cater to the needs of the Catholic community by providing a
+                            valuable resource for spiritual growth and practice. We strongly believe that this project has
+                            the capacity to create a meaningful impact and we eagerly anticipate its successful
+                            implementation and expansion.
                         </p>
                     </div>
                 </div>

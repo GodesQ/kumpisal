@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Hash;
 
 use App\Models\User;
 use App\Models\RepresentativeInfo;
+use App\Models\Church;
 
 use App\Repositories\AdminLogRepository;
 use DB;
@@ -24,7 +25,7 @@ class RepresentativeRepository
         // Step 1: Create the representative in a transaction
         $transaction = DB::transaction(function () use ($data, $request) {
             $inputs = [];
-            $representative = new User;
+            $representative = new User();
 
             $save_representative = $representative->create(
                 array_merge($data, [
@@ -48,7 +49,7 @@ class RepresentativeRepository
                 return back()->with('error', 'Failed to create representative');
             }
 
-            $representativeInfo = new RepresentativeInfo;
+            $representativeInfo = new RepresentativeInfo();
 
             // Step 3: Create the representative info
             $save_representative_info = $representativeInfo->create([
@@ -77,10 +78,9 @@ class RepresentativeRepository
             $create_log = $this->AdminLogRepository->create($request, $inputs, $this->title_create_log, 'create_representative', $save_representative->id);
 
             return $save_representative && $save_representative_info && $create_log ? true : false;
-
         });
 
-        return $transaction ? true : false;
+        return $transaction;
     }
 
     public function update($request, $data)
@@ -90,11 +90,13 @@ class RepresentativeRepository
 
             $representative = User::where('id', $request->id)->first();
 
-            $representative_update = $representative->update(array_merge($data, [
-                'name' => $data['firstname'] . ' ' . $data['lastname'],
-                'is_verify' => $request->has('is_verify') ? true : false,
-                'is_active' => $request->has('is_active') ? true : false,
-            ]));
+            $representative_update = $representative->update(
+                array_merge($data, [
+                    'name' => $data['firstname'] . ' ' . $data['lastname'],
+                    'is_verify' => $request->has('is_verify') ? true : false,
+                    'is_active' => $request->has('is_active') ? true : false,
+                ]),
+            );
 
             $representativeChangedAttributes = $representative->getChanges();
 
@@ -111,6 +113,15 @@ class RepresentativeRepository
             // Step 3: Create the representative info
             $representativeInfo = RepresentativeInfo::where('main_id', $representative->id)->first();
 
+            $churchId = $representativeInfo->church_id;
+            $newChurchId = $data['church'];
+
+            $representativeInfo->church_id = $newChurchId;
+            $representativeInfo->save();
+
+            Church::where('id', $churchId)->update(['has_representative' => $churchId === $newChurchId]);
+            Church::where('id', $newChurchId)->update(['has_representative' => true]);
+
             $representative_info_update = $representativeInfo->update([
                 'main_id' => $representative->id,
                 'church_id' => $data['church'],
@@ -120,7 +131,7 @@ class RepresentativeRepository
                 'contact_no' => $data['contact_no'],
             ]);
 
-             $representativeInfo->save();
+            $representativeInfo->save();
 
             $infoChangedAttributes = $representativeInfo->getChanges();
 
@@ -137,22 +148,26 @@ class RepresentativeRepository
 
             $create_log = $this->AdminLogRepository->create($request, $inputs, $this->title_update_log, 'update_representative', $representative->id);
 
-            return $representative_update && $representative_info_update  && $create_log ? true : false;
+            return $representative_update && $representative_info_update && $create_log ? true : false;
         });
 
-        return $transaction ? true : false;
+        return $transaction;
     }
 
-    public function destroy($request) {
-        $representative = User::where('id', $request->user_id)->firstOr(function() {
-            return response([
-                'status' => 'Fail',
-                'message' => 'Representative Not Found'
-            ], 404);
+    public function destroy($request)
+    {
+        $representative = User::where('id', $request->user_id)->firstOr(function () {
+            return response(
+                [
+                    'status' => 'Fail',
+                    'message' => 'Representative Not Found',
+                ],
+                404,
+            );
         });
 
         $remove_representative = $representative->update([
-            'is_delete' => 1
+            'is_delete' => 1,
         ]);
 
         $create_log = $this->AdminLogRepository->create($request, $inputs, $this->title_remove_log, 'destroy_representative', $representative->id);

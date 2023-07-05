@@ -18,9 +18,9 @@ class ChurchTimeScheduleRepository
             $endTimeKey = "{$day}_sched_endtime";
 
             if (isset($request->$startTimeKey[0]) && isset($request->$endTimeKey[0])) {
-                foreach ($request->$startTimeKey as $key => $scheduleTime) {
+                foreach ($request->$startTimeKey as $key => $startTime) {
                     $endTime = $request->$endTimeKey[$key];
-                    $this->createSchedule($church->id, $day, $scheduleTime, $endTime);
+                    $this->createSchedule($church->id, $day, $startTime, $endTime);
                 }
             }
         }
@@ -29,6 +29,7 @@ class ChurchTimeScheduleRepository
     private function createSchedule($churchId, $day, $startTime, $endTime)
     {
         if ($startTime && $endTime) {
+            if($startTime < $endTime)
             return ChurchConfessionSchedule::create([
                 'church_id' => $churchId,
                 'day' => $day,

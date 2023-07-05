@@ -13,6 +13,13 @@
                 @if (Session::get('success'))
                     <div class="alert alert-success">{{ Session::get('success') }}</div>
                 @endif
+                @if ($errors->any())
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <div class="alert alert-danger p-2">{{ $error }}</div>
+                        @endforeach
+                    </ul>
+                @endif
                 <form action="{{ route('admin.church.update', $church->church_uuid) }}" method="post"
                     enctype="multipart/form-data">
                     <ul class="nav nav-tabs nav-justified border-bottom" role="tablist">
@@ -88,7 +95,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        {{-- <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="criteria" class="form-label">Criteria</label>
                                                 <select name="criteria" id="criteria" class="form-select w-100">
@@ -103,7 +110,7 @@
                                                     @enderror
                                                 </span>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="church_image" class="form-label">Change Church Image <span
@@ -132,7 +139,7 @@
                                                 <select name="diocese" id="diocese" class="select2 form-select">
                                                     <option value="">---- Select Diocese ----</option>
                                                     @forelse ($dioceses as $diocese)
-                                                        <option value="{{ $diocese->id }}">{{ $diocese->name }}</option>
+                                                        <option value="{{ $diocese->id }}" {{ $diocese->id == $church->diocese ? 'selected' : null }}>{{ $diocese->name }}</option>
                                                     @empty
                                                         <option value="">No Diocese Found</option>
                                                     @endforelse
@@ -148,7 +155,7 @@
                                         <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label for="description" class="form-label">Church Description</label>
-                                                <textarea name="description" id="description" cols="30" rows="10" class="form-control">{{ old('description') ? old('description') : $church->description }}</textarea>
+                                                <textarea name="description" id="description" cols="30" rows="5" class="form-control">{{ old('description') ? old('description') : $church->description }}</textarea>
                                                 <span class="text-danger danger">
                                                     @error('description')
                                                         {{ $message }}

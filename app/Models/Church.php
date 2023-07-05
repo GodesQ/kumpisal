@@ -26,6 +26,7 @@ class Church extends Model
         'titular',
         'diocese',
         'vicariate',
+        'has_representative',
         'has_monday_sched',
         'has_tuesday_sched',
         'has_wednesday_sched',

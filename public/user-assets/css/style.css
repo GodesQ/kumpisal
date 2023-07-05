@@ -265,7 +265,7 @@ textarea:focus { border-color: #331f14; outline: none; }
 .popup::-webkit-scrollbar { width: 0px; background-color: #F5F5F5; }
 .popup::-webkit-scrollbar-thumb { background-color: #331f14; border-radius: 10px; -webkit-backface-visibility: hidden; -moz-backface-visibility: hidden; -webkit-transform: translate3d(0, 0, 0); -moz-transform: translate3d(0, 0, 0); }
 .popup::-webkit-scrollbar-track { -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); background-color: #F5F5F5; }
-.popup .popup__close { position: absolute; top: 32px; right: 25px; cursor: pointer; line-height: 0; z-index: 9; }
+.popup .popup__close { position: absolute; top: 21px; right: 25px; cursor: pointer; line-height: 0; z-index: 9; }
 .popup .popup__close i { font-size: 20px; }
 .popup .popup__minicart { padding: 0 25px; }
 .popup .popup__button { border-bottom: 0; }
@@ -2563,8 +2563,9 @@ a.place__comments__reply i { display: inline-block; vertical-align: middle; marg
 .save-church {
     position: absolute;
     background-color: #fff;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
+    border: 0.5px solid #000;
     display: flex;
     align-items: center;
     justify-content: center;

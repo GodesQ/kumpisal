@@ -31,7 +31,7 @@ class SaveChurchProfileRequest extends FormRequest
             'longitude' => 'nullable',
             'parish_priest' => 'required',
             'feast_date' => 'required',
-            'criteria' => 'required|in:diocese,vicariate',
+            'criteria' => 'nullable',
             'contact_number' => 'nullable',
             'facebook_link' => 'nullable|url',
         ];

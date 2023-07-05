@@ -16,7 +16,7 @@
                         @auth
                             @if (Auth::user()->saved_churches->contains('church_id', $church->id))
                                 <a title="Save" href="javascript:void(0)" class="save-church">
-                                    <i class="fa fa-bookmark danger text-danger"></i>
+                                    <i class="fa fa-bookmark danger" style="color: #331F14;"></i>
                                 </a>
                             @else
                                 <a title="Save" href="javascript:void(0)" class="save-church">
@@ -29,17 +29,17 @@
                         <table class="open-table table">
                             <thead>
                                 <tr>
-                                    <th style="border: 1px solid rgb(61, 61, 61) !important; text-align: center; background: #331F14; color: #fff;" colspan="2">Confession Schedules</th>
+                                    <th style="border: 1px solid #d6d6d6 !important; text-align: center; background: #331F14; color: #fff;" colspan="2">Confession Schedules</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']; ?>
                                 @foreach ($days as $day)
                                     <tr>
-                                        <td style="border: 1px solid rgb(61, 61, 61) !important;" align="center" class="day">
+                                        <td style="border: 1px solid #d6d6d6 !important;" align="center" class="day">
                                             {{ Str::ucfirst($day) }}
                                         </td>
-                                        <td style="border: 1px solid rgb(61, 61, 61) !important;" align="center" class="time">
+                                        <td style="border: 1px solid #d6d6d6 !important;" align="center" class="time">
                                             @if($church->{'has_' . $day . '_sched'})
                                                 <?php
                                                     $dayEntries = array_filter($church->schedules->toArray(), function ($schedule) use ($day) {
@@ -113,7 +113,7 @@
                                         @endif
                                     </li>
                                     <li>
-                                        @if($church->contact_number)
+                                        @if($church->facebook_link)
                                             <i class="la la-facebook"></i>
                                             <a title="Facebook Link" href="{{ $church->facebook_link }}" target="_blank">{{ $church->facebook_link }}</a>
                                         @endif
@@ -145,7 +145,7 @@
                 console.log(data);
                 if(data.status == 'Saved') {
                     toastr.success(data.message, 'Save');
-                    $('.save-church').html('<i class="fa fa-bookmark text-danger danger"></i>')
+                    $('.save-church').html('<i class="fa fa-bookmark" style="color: #331F14;"></i>')
                 }
 
                 if(data.status == 'Removed') {

@@ -10,7 +10,7 @@ use DataTables;
 use App\Models\ConfessionSchedule;
 use App\Models\Church;
 
-// use App\Http\Requests\ConfessionSchedule\CreateConfessionScheduleRequest;
+use App\Http\Requests\ConfessionSchedule\CreateConfessionScheduleRequest;
 // use App\Http\Requests\ConfessionSchedule\UpdateConfessionScheduleRequest;
 use App\Repositories\ChurchTimeScheduleRepository;
 
@@ -23,7 +23,7 @@ class ConfessionScheduleController extends Controller
         $this->ChurchTimeScheduleRepository = $ChurchTimeScheduleRepository;
     }
 
-    public function save_schedule(Request $request) {
+    public function save_schedule(CreateConfessionScheduleRequest $request) {
         $church = Auth::user()->representative_info->church;
         $saveTime = $this->ChurchTimeScheduleRepository->saveTime($request, $church);
         return redirect()->back()->with('success', 'Save Schedule/s Successfully.');

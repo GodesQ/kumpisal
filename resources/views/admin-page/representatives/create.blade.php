@@ -91,7 +91,8 @@
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label for="address" class="form-label">Address</label>
-                                        <input type="text" class="form-control" id="church_address" name="address" aria-describedby="addressHelp" value="{{ old('address') }}">
+                                        <input type="text" class="form-control" id="church_address" name="address"
+                                            aria-describedby="addressHelp" value="{{ old('address') }}">
                                         <input type="hidden" id="latitude" name="latitude">
                                         <input type="hidden" id="longitude" name="longitude">
                                         <span class="danger text-danger">
@@ -204,6 +205,10 @@
         </div>
     </div>
 @endsection
+
+@push('stylesheets')
+    <link href="{{ URL::asset('admin-assets/app-assets/css/plugins/forms/select2.css') }}" rel="stylesheet" />
+@endpush
 
 @push('scripts')
     <script>

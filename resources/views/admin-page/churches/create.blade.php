@@ -10,6 +10,13 @@
                 <a href="{{ route('admin.churches.list') }}" class="btn btn-primary">Back to List</a>
             </div>
             <div class="card-body">
+                @if ($errors->any())
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <div class="alert alert-danger p-2">{{ $error }}</div>
+                        @endforeach
+                    </ul>
+                @endif
                 <form action="{{ route('admin.church.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <ul class="nav nav-tabs nav-justified border-bottom" role="tablist">
@@ -57,16 +64,6 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="criteria" class="form-label">Criteria</label>
-                                            <select name="criteria" id="criteria" class="form-select w-100">
-                                                <option value="diocese">Diocese</option>
-                                                <option value="vicariate">Vicariate</option>
-                                            </select>
-                                            <span class="text-danger danger">@error('criteria'){{ $message }}@enderror</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
                                             <label for="church_image" class="form-label">Church Image</label>
                                             <input type="file" class="form-control" id="church_image" name="church_image" aria-describedby="churchImageHelp">
                                             <span class="text-danger danger">@error('church_image'){{ $message }}@enderror</span>
@@ -90,7 +87,6 @@
                                                     <option value="">No Diocese Found</option>
                                                 @endforelse
                                             </select>
-                                            {{-- <input type="text" class="form-control" id="diocese" name="diocese" aria-describedby="dioceseHelp"> --}}
                                             <span class="text-danger danger">@error('diocese'){{ $message }}@enderror</span>
                                         </div>
                                     </div>

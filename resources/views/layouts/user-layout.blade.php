@@ -39,7 +39,7 @@
         <header id="header" class="site-header">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-xl-6 col-5">
+                    <div class="col-xl-6 col-8">
                         <div class="site">
                             <div class="site__menu">
                                 <a title="Menu Icon" href="#" class="site__menu__icon">
@@ -76,12 +76,6 @@
                                             </ul>
                                         </div><!-- .popup__menu -->
                                     </div><!-- .popup__content -->
-                                    <div class="popup__button popup__box">
-                                        <a title="Add place" href="add-place.html" class="btn">
-                                            <i class="la la-plus"></i>
-                                            <span>Add place</span>
-                                        </a>
-                                    </div><!-- .popup__button -->
                                 </div><!-- .popup -->
                             </div><!-- .site__menu -->
                             <div class="site__brand">
@@ -93,7 +87,7 @@
 
                         </div>
                     </div>
-                    <div class="col-xl-6 col-7">
+                    <div class="col-xl-6 col-4">
                         <div class="right-header align-right">
                             <nav class="main-menu">
                                 <ul>
@@ -209,7 +203,9 @@
                                 <p>Phone: <a href="tel:09458426538"></a></p>
                                 <ul>
                                     <li class="facebook">
-                                        <a title="Facebook" href="https://www.facebook.com/profile.php?id=100093120504740" target="_blank">
+                                        <a title="Facebook"
+                                            href="https://www.facebook.com/profile.php?id=100093120504740"
+                                            target="_blank">
                                             <i class="la la-facebook-f"></i>
                                         </a>
                                     </li>
@@ -231,7 +227,8 @@
                 <div class="footer__bottom d-flex justify-content-around align-items-center">
                     <p class="footer__bottom__copyright">2023 &copy; <a title="Uxper Team"
                             href="#">Kumpisalan</a>. All rights reserved.</p>
-                    <p>Design & Developed by <a href="https://godesq.com/" target="_blank">GodesQ Digital Marketing Services</a></p>
+                    <p>Design & Developed by <a href="https://godesq.com/" target="_blank">GodesQ Digital Marketing
+                            Services</a></p>
                 </div><!-- .top-footer -->
             </div><!-- .container -->
         </footer><!-- site-footer -->

@@ -138,6 +138,10 @@
     </div>
 @endsection
 
+@push('stylesheets')
+    <link href="{{ URL::asset('admin-assets/app-assets/css/plugins/forms/select2.css')}}" rel="stylesheet" />
+@endpush
+
 @push('scripts')
     <script>
         function getAge(e) {
