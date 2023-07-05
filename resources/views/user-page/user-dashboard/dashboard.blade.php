@@ -16,7 +16,7 @@
                     <div class="row">
                         <div class="col-lg-12 col-xl-8">
                             <div class="owner-box">
-                                <div class="card">
+                                <div class="p-2" style="box-shadow: 2px 2px 5px 0px rgba(232,232,232,1); border-radius: 5px;">
                                     <div class="card-body">
                                         @if (auth()->user()->latitude && auth()->user()->longitude)
                                             <h1 class="text-center">Churches Near You</h1>
@@ -28,7 +28,7 @@
                                             @foreach ($near_churches as $church)
                                                 <div class="col-lg-6 col-md-6">
                                                     <a href="/church/{{ $church->church_uuid }}/{{ $church->name }}">
-                                                        <div class="card my-2">
+                                                        <div class="my-2" style="box-shadow: 2px 2px 5px 0px rgba(232,232,232,1); border-radius: 5px;">
                                                             <div class="card-body">
                                                                 <div class="row">
                                                                     <div class="col-xl-4 col-lg-4 d-flex align-items-start">
@@ -71,7 +71,7 @@
                             </div>
                         </div>
                         <div class="col-lg-12 col-xl-4">
-                            <div class="card">
+                            <div class="p-2" style="box-shadow: 2px 2px 5px 0px rgba(232,232,232,1); border-radius: 5px;">
                                 <div class="card-body">
                                     <h1>Saved Churches</h1>
                                     <div class="row">
@@ -79,7 +79,7 @@
                                             <div class="col-lg-12 ">
                                                 <a
                                                     href="/church/{{ $saved_church->church->church_uuid }}/{{ $saved_church->church->name }}">
-                                                    <div class="card my-2">
+                                                    <div class="my-2" style="box-shadow: 2px 2px 5px 0px rgba(232,232,232,1); border-radius: 5px;">
                                                         <div class="card-body">
                                                             <div class="row">
                                                                 <div class="col-xl-4 col-lg-4 d-flex align-items-center">

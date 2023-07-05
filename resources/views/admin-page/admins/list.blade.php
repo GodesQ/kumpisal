@@ -8,7 +8,11 @@
             <div class="card-header">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <h4 class="card-title fw-semibold">Admins List</h4>
-                    <a href="{{ route('admin.create') }}" class="btn btn-primary btn-block">Create</a>
+                    @auth('admin')
+                        @can('create_admin')
+                            <a href="{{ route('admin.create') }}" class="btn btn-primary btn-block">Create</a>
+                        @endcan
+                    @endauth
                 </div>
             </div>
             <div class="card-body">
@@ -34,7 +38,7 @@
 
 @push('scripts')
     <script>
-         let table = $('.data-table').DataTable({
+        let table = $('.data-table').DataTable({
             processing: true,
             pageLength: 25,
             responsive: true,
@@ -42,8 +46,7 @@
             ajax: {
                 url: "{{ route('admin.admins.list') }}",
             },
-            columns: [
-                {
+            columns: [{
                     data: 'id',
                     name: 'id'
                 },

@@ -15,7 +15,11 @@
             <div class="card-header">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <h4 class="card-title fw-semibold">Roles List</h4>
-                    <a href="{{ route('admin.role.create') }}" class="btn btn-primary btn-block">Create</a>
+                    @auth('admin')
+                        @can('create_role')
+                            <a href="{{ route('admin.role.create') }}" class="btn btn-primary btn-block">Create</a>
+                        @endcan
+                    @endauth
                 </div>
             </div>
             <div class="card-body">

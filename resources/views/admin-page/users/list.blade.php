@@ -4,7 +4,7 @@
 
 @section('content')
 
-    @if(Session::get('success'))
+    @if (Session::get('success'))
         @push('scripts')
             <script>
                 toastr.success("{{ Session::get('success') }}", 'Success')
@@ -17,7 +17,11 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <h4 class="card-title fw-semibold">Users List</h4>
-                    <a href="{{ route('admin.user.create') }}" class="btn btn-primary btn-block">Create</a>
+                    @auth('admin')
+                        @can('create_user')
+                            <a href="{{ route('admin.user.create') }}" class="btn btn-primary btn-block">Create</a>
+                        @endcan
+                    @endauth
                 </div>
                 <div class="card">
                     <div class="card-body">
@@ -53,7 +57,6 @@
 
 @push('scripts')
     <script>
-
         let table = $('.data-table').DataTable({
             processing: true,
             pageLength: 25,
@@ -62,8 +65,7 @@
             ajax: {
                 url: "{{ route('admin.users.list') }}",
             },
-            columns: [
-                {
+            columns: [{
                     data: 'id',
                     name: 'id'
                 },
@@ -94,7 +96,7 @@
             ]
         });
 
-        $(document).on("click", ".remove-btn", function (e) {
+        $(document).on("click", ".remove-btn", function(e) {
             let uuid = $(this).attr("id");
             Swal.fire({
                 title: 'Are you sure?',
@@ -104,7 +106,7 @@
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, remove it!'
-                }).then((result) => {
+            }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
                         url: "{{ route('admin.user.delete') }}",
@@ -114,18 +116,18 @@
                             user_uuid: uuid
                         },
                         success: function(response) {
-                            if(response.status == 'Removed') {
-                                Swal.fire('Removed!',response.message, 'success').then(result => {
-                                    if(result.isConfirmed) {
-                                        location.reload();
-                                    }
-                                })
+                            if (response.status == 'Removed') {
+                                Swal.fire('Removed!', response.message, 'success').then(
+                                    result => {
+                                        if (result.isConfirmed) {
+                                            location.reload();
+                                        }
+                                    })
                             }
                         }
                     })
                 }
             })
         });
-
     </script>
 @endpush

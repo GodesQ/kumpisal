@@ -7,15 +7,15 @@
         <div class="site-content owner-content">
             @include('user-page.user-dashboard.user-menu')
             <div class="container">
-                <div class="card">
+                <div class="p-2" style="box-shadow: 2px 2px 5px 0px rgba(232,232,232,1); border-radius: 5px; background: #fff;">
                     <div class="card-body">
-                        <h1>Saved Churches</h1>
+                        <h1 class="text-center">Saved Churches</h1>
                         <hr>
                         <div class="row">
                             @forelse (auth()->user()->saved_churches as $saved_church)
                                 <div class="col-lg-4 col-md-6">
                                     <a href="/church/{{ $saved_church->church->church_uuid }}/{{ $saved_church->church->name }}">
-                                        <div class="card my-2">
+                                        <div class="my-2" style="box-shadow: 2px 2px 5px 0px rgba(232,232,232,1); border-radius: 5px; background: #fff;">
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-xl-4 col-lg-4 d-flex align-items-center">

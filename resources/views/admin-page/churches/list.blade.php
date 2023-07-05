@@ -16,7 +16,11 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <h4 class="card-title fw-semibold">Churches List</h4>
-                    <a href="{{ route('admin.church.create') }}" class="btn btn-primary btn-block">Create</a>
+                    @auth('admin')
+                        @can('create_church')
+                            <a href="{{ route('admin.church.create') }}" class="btn btn-primary btn-block">Create</a>
+                        @endcan
+                    @endauth
                 </div>
                 <div class="card">
                     <div class="card-body">

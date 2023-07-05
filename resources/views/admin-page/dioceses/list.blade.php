@@ -17,7 +17,11 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <h4 class="card-title fw-semibold">Dioceses List</h4>
-                    <a href="{{ route('admin.diocese.create') }}" class="btn btn-primary btn-block">Create</a>
+                    @auth('admin')
+                        @can('create_diocese')
+                            <a href="{{ route('admin.diocese.create') }}" class="btn btn-primary btn-block">Create</a>
+                        @endcan
+                    @endauth
                 </div>
                 <div class="card">
                     <div class="card-body">
@@ -49,10 +53,9 @@
             responsive: true,
             serverSide: true,
             ajax: {
-                url: '{{ route("admin.dioceses.list") }}'
+                url: '{{ route('admin.dioceses.list') }}'
             },
-            columns: [
-                {
+            columns: [{
                     data: 'id',
                     name: 'id'
                 },

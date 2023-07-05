@@ -9,7 +9,11 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <h4 class="card-title fw-semibold">Permission List</h4>
-                        <a href="{{ route('admin.permission.create') }}" class="btn btn-primary btn-block">Create</a>
+                        @auth('admin')
+                            @can('create_permission')
+                                <a href="{{ route('admin.permission.create') }}" class="btn btn-primary btn-block">Create</a>
+                            @endcan
+                        @endauth
                     </div>
                 </div>
                 <div class="card-body">

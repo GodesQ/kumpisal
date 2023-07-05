@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use DB;
 
@@ -20,6 +21,7 @@ use App\Http\Requests\Admin\UpdateAdminRequest;
 
 use DataTables;
 use App\Repositories\AdminLogRepository;
+
 
 class AdminController extends Controller
 {
@@ -71,8 +73,12 @@ class AdminController extends Controller
             return Datatables::of($admins)
                     ->addIndexColumn()
                     ->addColumn('action', function($row) {
-                        $btn = '<a href="/admin/edit/' .$row->id. '" class="btn btn-primary btn-sm"><i class="ti ti-edit"></i></a>
-                        <a id="' .$row->id. '" class="btn btn-danger btn-sm remove-btn"><i class="ti ti-trash"></i></a>';
+                        $btn = '<a href="/admin/edit/' .$row->id. '" class="btn btn-primary btn-sm"><i class="ti ti-edit"></i></a> ';
+
+                        if (Gate::allows('delete_admin')) {
+                            $btn .= '<a id="' .$row->id. '" class="btn btn-danger btn-sm remove-btn"><i class="ti ti-trash"></i></a>';
+                        }
+
                         return $btn;
                     })
                     ->rawColumns(['action'])

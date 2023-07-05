@@ -200,7 +200,7 @@
                             <aside class="footer__top__nav footer__top__nav--contact">
                                 <h3>Contact Us</h3>
                                 <p>Email: <a href="mailto:info@kumpisalan.com">info@kumpisalan.com</a></p>
-                                <p>Phone: <a href="tel:09458426538"></a></p>
+                                <p>Phone: <a href="tel:09458426538">09458426538</a></p>
                                 <ul>
                                     <li class="facebook">
                                         <a title="Facebook"
