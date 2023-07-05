@@ -64,7 +64,6 @@ class UserAuthController extends Controller
     }
 
     public function verifyEmailMessage(Request $request) {
-        if(Auth::user()->is_verify) return Auth::user()->is_admin_generated ? redirect()->route('representative.dashboard')->with('success', 'Email Already Verified.') : redirect()->route('user.dashboard')->with('success', 'Email Already Verified.');
         return view('user-page.misc.verify_email_message');
     }
 
