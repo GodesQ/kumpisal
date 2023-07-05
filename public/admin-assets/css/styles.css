@@ -16204,7 +16204,6 @@ fieldset:disabled .btn {
 .left-sidebar .scroll-sidebar {
     overflow-y: auto;
     padding: 0 24px;
-    height: calc(100vh - 190px);
     border-radius: 7px;
 }
 .left-sidebar .scroll-sidebar .simplebar-track.simplebar-horizontal {
@@ -16511,9 +16510,9 @@ fieldset:disabled .btn {
         flex-direction: row;
     }
     .navbar-collapse {
-        border-top: 1px solid #ebf1f6;
+        border-top: 1px solid #331f14;
         padding: 0 15px;
-        background-color: whitesmoke;
+        background-color: #331f14;
         border-bottom-left-radius: 15px;
         border-bottom-right-radius: 15px;
     }

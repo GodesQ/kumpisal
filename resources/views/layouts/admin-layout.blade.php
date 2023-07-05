@@ -184,7 +184,7 @@
                         <li class="nav-item d-block d-xl-none">
                             <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse"
                                 href="javascript:void(0)">
-                                <i class="ti ti-menu-2"></i>
+                                <i class="ti ti-menu-2" style="color: #fff;"></i>
                             </a>
                         </li>
                     </ul>

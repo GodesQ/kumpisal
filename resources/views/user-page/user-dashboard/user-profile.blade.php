@@ -74,9 +74,9 @@
                             <div class="col-md-12">
                                 <div class="field-input">
                                     <label for="address">Address</label>
-                                    <div class="d-flex justify-content-center">
+                                    <div class="d-flex flex-wrap">
                                         <input style="width: 85;" type="text" name="address" id="address" value="{{ auth()->user()->address }}">
-                                        <button style="width: 15%;" type="button" class="btn btn-primary" id="view-map-btn">View Map<i class="ti ti-marker"></i></button>
+                                        <button style="width: auto;" type="button" class="btn btn-primary" id="view-map-btn">View Map<i class="ti ti-marker"></i></button>
                                     </div>
                                     <input type="hidden" name="latitude" id="latitude" value="{{ auth()->user()->latitude }}">
                                     <input type="hidden" name="longitude" id="longitude" value="{{ auth()->user()->longitude }}">
@@ -195,6 +195,7 @@
     <script>
         var map;
         var address;
+        var my_marker;
         function initialize() {
             let address = document.querySelector('#address');
             let latitude = document.querySelector('#latitude');
@@ -219,7 +220,7 @@
                 scaledSize: new google.maps.Size(40,40)
             }
 
-            let my_marker = new google.maps.Marker({
+            my_marker = new google.maps.Marker({
                 position: latitude && longitude ? new google.maps.LatLng(Number(latitude.value), Number(longitude.value) ) : new google.maps.LatLng(Number(14.5995124), Number(120.9842195) ),
                 map: map,
                 icon: user_icon_marker,
@@ -264,7 +265,6 @@
                         addressEl.value = address;
                         latEl.value = lat;
                         longEl.value = long;
-                        filterChurches(1);
                     } else {
                         console.log( 'Geocode was not successful for the following reason: ' + status );
                     }
@@ -294,6 +294,7 @@
             } else {
                 mapContainer.classList.add('show-map-container');
                 e.target.innerHTML = 'Hide Map';
+                initialize()
             }
 
         })
