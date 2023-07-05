@@ -27,38 +27,38 @@
                                         <div class="row">
                                             @foreach ($near_churches as $church)
                                                 <div class="col-lg-6 col-md-6">
-                                                    <div class="card my-2">
-                                                        <div class="card-body">
-                                                            <div class="row">
-                                                                <div class="col-xl-4 col-lg-4 d-flex align-items-start">
-                                                                    <img src="{{ URL::asset('admin-assets/images/churches/' . $church->church_image) }}"
-                                                                        alt="{{ $church->church_image }}"
-                                                                        style="border-radius: 5px; height: 100% !important; object-fit: cover; width: 100%;">
-                                                                </div>
-                                                                <div class="col-xl-8 col-lg-8">
-                                                                    <div class="content-con">
-                                                                        <h4>{{ strlen($church->name) >= 35 ? substr($church->name, 0, 35) . '...' : $church->name }}
-                                                                        </h4>
-                                                                        <hr>
-                                                                        {{-- <p>{{ substr($church->description, 0, 80) }}...</p> --}}
-                                                                        <ul class="my-2">
-                                                                            @if ($church->distance)
-                                                                                <li style="list-style: none;"><span
-                                                                                        style="font-weight: 800;">Distance</span>
-                                                                                    :
-                                                                                    {{ number_format($church->distance, 2) }}
-                                                                                    km</li>
-                                                                            @else
-                                                                                <li style="list-style: none;"><span
-                                                                                        style="font-weight: 800;">Priest</span>
-                                                                                    : {{ $church->parish_priest }}</li>
-                                                                            @endif
-                                                                        </ul>
+                                                    <a href="/church/{{ $church->church_uuid }}/{{ $church->name }}">
+                                                        <div class="card my-2">
+                                                            <div class="card-body">
+                                                                <div class="row">
+                                                                    <div class="col-xl-4 col-lg-4 d-flex align-items-start">
+                                                                        <img src="{{ URL::asset('admin-assets/images/churches/' . $church->church_image) }}"
+                                                                            alt="{{ $church->church_image }}"
+                                                                            style="border-radius: 5px; height: 100% !important; object-fit: cover; width: 100%;">
+                                                                    </div>
+                                                                    <div class="col-xl-8 col-lg-8">
+                                                                        <div class="content-con">
+                                                                            <h4>{{ strlen($church->name) >= 35 ? substr($church->name, 0, 35) . '...' : $church->name }}
+                                                                            </h4>
+                                                                            <hr>
+                                                                            {{-- <p>{{ substr($church->description, 0, 80) }}...</p> --}}
+                                                                            <ul class="my-2">
+                                                                                @if ($church->distance)
+                                                                                    <li style="list-style: none;"><span style="font-weight: 800;">Distance</span> :
+                                                                                        {{ number_format($church->distance, 2) }}
+                                                                                        km</li>
+                                                                                @else
+                                                                                    <li style="list-style: none;"><span
+                                                                                            style="font-weight: 800;">Priest</span>
+                                                                                        : {{ $church->parish_priest }}</li>
+                                                                                @endif
+                                                                            </ul>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </a>
                                                 </div>
                                             @endforeach
                                         </div>
