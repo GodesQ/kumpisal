@@ -72,7 +72,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="verify_email" name="is_verify" value="1" {{ $user->is_verify ? 'checked' : null }}>
+                                <input class="form-check-input" type="checkbox" id="verify_email" name="is_verify" value="1" {{ $user->is_verify ? 'checked disabled' : null }} >
                                 <label class="form-label" for="verify_email">
                                     Verify Email <span style="font-size: 12px; font-weight: 400;">(If you check this box, It will not send a verification to email you registered.)</span>
                                 </label>

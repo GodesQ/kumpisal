@@ -132,7 +132,7 @@ class ChurchController extends Controller
     public function detailPage(Request $request)
     {
         $church = Church::where('church_uuid', $request->uuid)
-            ->with('schedules')
+            ->with('schedules', 'church_diocese')
             ->firstOrFail();
         return view('user-page.church-listing.church-info', compact('church'));
     }

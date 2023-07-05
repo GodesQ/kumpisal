@@ -59,5 +59,8 @@ class Church extends Model
         return $query->where('is_delete', 0);
     }
 
+    public function church_diocese() {
+        return $this->hasOne(Diocese::class, 'id', 'diocese');
+    }
 
 }

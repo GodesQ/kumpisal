@@ -79,22 +79,28 @@
                                 <div class="">{{ $church->description }}</div><!-- .place__desc -->
                             </div>
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-lg-3 col-md-6">
                                     <div class="place__box place__box-overview">
                                         <h3 style="margin-bottom: 5px !important;">Feast Date</h3>
                                         <div class="">{{ $church->feast_date }}</div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-lg-3 col-md-6">
                                     <div class="place__box place__box-overview">
                                         <h3 style="margin-bottom: 5px !important;">Parish Priest</h3>
-                                        <div class="">{{ $church->parish_priest }}</div>
+                                        <div class="">{{ $church->parish_priest ? $church->parish_priest : "Not Found" }}</div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-lg-3 col-md-6">
                                     <div class="place__box place__box-overview">
                                         <h3 style="margin-bottom: 5px !important;">Titular</h3>
-                                        <div class="">{{ $church->titular }}</div>
+                                        <div class="">{{ $church->titular ? $church->titular : "Not Found" }}</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="place__box place__box-overview">
+                                        <h3 style="margin-bottom: 5px !important;">Diocese</h3>
+                                        <div class="">{{ $church->church_diocese ? $church->church_diocese->name : "Not Found" }}</div>
                                     </div>
                                 </div>
                             </div>
