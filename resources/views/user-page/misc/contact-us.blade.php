@@ -4,7 +4,7 @@
 
 @section('content')
 <main id="main" class="site-main contact-main">
-    <div class="page-title page-title--small align-left" style="background-image: url(user-assets/images/bg/bg-about.png);">
+    <div class="page-title page-title--small align-left" style="background-image: url(user-assets/images/bg/about-us-bg.jpg); width: 100%; background-size: cover; background-position: center center;">
         <div class="container">
             <div class="page-title__content">
                 <h1 class="page-title__name">Contact Us</h1>
@@ -54,7 +54,7 @@
                                 <span class="text-danger">@error('message'){{ $message }}@enderror</span>
                             </div>
                             <div class="field-submit mt-3">
-                                <button class="btn btn-primary">Save Message</button>
+                                <button class="btn btn-primary">Send Message</button>
                             </div>
                         </form>
                     </div>

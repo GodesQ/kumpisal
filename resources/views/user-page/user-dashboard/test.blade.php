@@ -14,21 +14,15 @@
     #change-password-form.profile-tab-active {
         display: inline-block !important;
     }
-    .address-input-con {
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-    }
 </style>
 
     <main class="main-site main" id="main-site">
         @include('user-page.user-dashboard.user-menu')
-
         <div class="bg-under"></div>
         <div class="main-profile-container">
             <div class="profile-menu">
-                <button type="button" class="profile-menu-btn profile active">Profile <i class="ti ti-user"></i></button>
-                <button type="button" class="profile-menu-btn change-password">Change Password <i class="ti ti-lock"></i></button>
+                <button type="button" class="profile-menu-btn profile active">Profile</button>
+                <button type="button" class="profile-menu-btn change-password">Change Password</button>
             </div>
             <div class="profile-content">
                 <div id="profile-form" class="profile-tab profile-tab-active" class="member-wrap">
@@ -84,7 +78,7 @@
                                     <div class="col-md-12">
                                         <div class="field-input">
                                             <label for="address">Address</label>
-                                            <div class="address-input-con">
+                                            <div class="d-flex flex-wrap">
                                                 <input style="width: 85;" type="text" name="address" id="address"
                                                     value="{{ auth()->user()->address }}">
                                                 {{-- <button style="width: auto;" type="button" class="btn btn-primary" id="view-map-btn">View Map<i class="ti ti-marker"></i></button> --}}
@@ -100,7 +94,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <label for="prefer_days">Preferred Days</label>
+                                    <label for="address">Preferred Days</label>
                                     <?php $prefer_days = explode('|', auth()->user()->prefer_days); ?>
                                     <div class="col-md-12 mt-2">
                                         <div class="days-container">
@@ -220,12 +214,10 @@
                         <div class="field-input">
                             <label for="new_password">New Password</label>
                             <input type="password" name="new_password" placeholder="Enter new password" id="new_password">
-                            <span class="text-danger">@error('new_password'){{ $message }}@enderror</span>
                         </div>
                         <div class="field-input">
                             <label for="re_new">Confirm Password</label>
                             <input type="password" name="confirm_password" placeholder="Enter new password" id="confirm_password">
-                            <span class="text-danger">@error('confirm_password'){{ $message }}@enderror</span>
                         </div>
                         <div class="field-check" >
                             <label for="is_logout" style="max-width: 100% !important; flex: 1 !important;">

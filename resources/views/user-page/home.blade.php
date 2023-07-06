@@ -10,9 +10,9 @@
                     <h1 class="site-banner__title">Kumpisalan: Journey of <br> Self-Discovery and Reflection</h1>
                     <form action="{{ route('churches.searchPage') }}" class="site-banner__search layout-02 offset-item">
                         <div class="field-input">
-                            <label for="loca">Where</label>
+                            <label for="loca">Search</label>
                             <input class="site-banner__search__input" id="loca" type="text" name="address"
-                                placeholder="Your place" required>
+                                placeholder="a Church" required>
                             <input type="hidden" name="latitude" id="latitude" value="">
                             <input type="hidden" name="longitude" id="longitude" value="">
                         </div><!-- .site-banner__search__input -->
@@ -42,7 +42,7 @@
                                     </div>
                                     <div class="cities__info">
                                         <h3 class="cities__capital">
-                                            {{ strlen($church->name) ? substr($church->name, 0, 30) . '...' : $church->name }}
+                                            <a style="color: #fff;" href="{{ route('churches.detailPage', ['uuid' => $church->church_uuid, 'name' => $church->name]) }}">{{ strlen($church->name) ? substr($church->name, 0, 30) . '...' : $church->name }}</a>
                                         </h3>
                                         <p class="cities__number">
                                             {{ $church->distance ? number_format($church->distance, 2) . ' km' : null }}

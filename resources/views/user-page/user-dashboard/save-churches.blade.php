@@ -6,7 +6,7 @@
     <main id="main" class="site-main">
         <div class="site-content owner-content">
             @include('user-page.user-dashboard.user-menu')
-            <div class="container">
+            <div class="container py-5">
                 <div class="p-2" style="box-shadow: 2px 2px 5px 0px rgba(232,232,232,1); border-radius: 5px; background: #fff;">
                     <div class="card-body">
                         <h1 class="text-center">Saved Churches</h1>

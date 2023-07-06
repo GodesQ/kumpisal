@@ -28,7 +28,7 @@
     <main id="main" class="site-main">
         <div class="site-content owner-content">
             @include('user-page.representative-dashboard.representative-menu')
-            <div class="container">
+            <div class="container py-5">
                 <div class="member-wrap">
                     <form action="{{ route('representative.profile.post', auth()->user()->id) }}" enctype="multipart/form-data" method="POST" class="member-profile form-underline">
                         @csrf

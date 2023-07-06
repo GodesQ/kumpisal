@@ -4,12 +4,10 @@
 
 @section('content')
     <main id="main" class="site-main">
-        <div class="page-title page-title--small align-left"
-            style="background-image: url(user-assets/images/bg/bg-about.png);">
+        <div class="page-title page-title--small align-left" style="background-image: url(user-assets/images/bg/about-us-bg.jpg); width: 100%; background-size: cover; background-position: center center;">
             <div class="container">
                 <div class="page-title__content">
                     <h1 class="page-title__name">About Us</h1>
-                    <p class="page-title__slogan">Tell you about us</p>
                 </div>
             </div>
         </div><!-- .page-title -->

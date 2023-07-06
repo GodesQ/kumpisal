@@ -209,11 +209,6 @@
                                             <i class="la la-facebook-f"></i>
                                         </a>
                                     </li>
-                                    <li class="twitter">
-                                        <a title="Twitter" href="#">
-                                            <i class="la la-twitter"></i>
-                                        </a>
-                                    </li>
                                     <li class="instagram">
                                         <a title="Instagram" href="#">
                                             <i class="la la-instagram"></i>

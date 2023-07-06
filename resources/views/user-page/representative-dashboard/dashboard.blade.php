@@ -6,7 +6,7 @@
     <main id="main" class="site-main">
         <div class="site-content owner-content">
             @include('user-page.representative-dashboard.representative-menu')
-            <div class="container">
+            <div class="container py-5">
                 <div class="member-wrap">
                     @if (!auth()->user()->is_verify)
                         <div class="alert alert-danger p-2 w-100">

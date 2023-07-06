@@ -12,9 +12,14 @@
             .hide {
                 display: none !important;
             }
+
             .disabled {
                 background: gray !important;
                 color: #000 !important;
+            }
+
+            .timer-hide {
+                opacity: 0 !important;
             }
         </style>
     @endpush
@@ -30,7 +35,7 @@
                             <span style="font-weight: 800;">{{ Auth::user()->email }}</span>
                         </p>
                         <p class="mt-4">Just click on the button in that email to complete your signup. <br>
-                            If you don't see it, you may need to <b>check your spam</b> folder.
+                            If its not found in your inbox, you may need to <b>check your spam</b> folder.
                         </p>
                         <p class="mt-4">
                             Still can't find the email?
@@ -38,7 +43,8 @@
                         <div class="my-4">
                             <button class="btn btn-primary" id="resend-email">Resend Email</button>
                             <input type="hidden" name="email" id="email" value="{{ Auth::user()->email }}">
-                            <div class="mt-3 timer-div"> <span id="timer" style="font-weight: 800;">60</span> seconds</div>
+                            <div class="mt-3 timer-div timer-hide"> <span id="timer" style="font-weight: 800;">60</span>
+                                seconds</div>
                         </div>
                         <p>Need help? <a href="">Contact Us</a></p>
                     </div>
@@ -54,45 +60,30 @@
         let timerValue = localStorage.getItem('timerValue');
         let countdown; // Variable to hold the interval
 
-        $('#resend-email').click(function () {
+        $('#resend-email').click(function(e) {
             let data = {
                 _token: '{{ csrf_token() }}',
                 email: $('#email').val()
             }
 
+            $('.timer-div').removeClass('timer-hide');
+            $(e.target).html('Sending...');
+            $(e.target).addClass('sending-btn');
+
             $.ajax({
                 url: "{{ route('user.resend_email_verification') }}",
                 method: 'POST',
                 data: data,
-            }).success(function (response) {
-                if(response.status) {
+            }).success(function(response) {
+                if (response.status) {
                     $('#resend-email').prop('disabled', true);
                     $('#resend-email').addClass('disabled');
                     startTimer();
                 }
+                $(e.target).html('Resend Email');
+                $(e.target).removeClass('sending-btn');
             })
-        })
-
-        // function isValidHttpUrl(string) {
-        //     let url = string;
-        //     let http_url;
-
-        //     try {
-        //         http_url = new URL(string);
-        //     } catch (error) {
-        //         http_url = {}
-        //     }
-
-        //     const validProtocols = ["http:", "https:"];
-        //     const validTLDs = ["com", "net", "org", "edu", "gov"]; // Add more TLDs if needed
-        //     const validWWW = ['www'];
-
-        //     if(validProtocols.includes(http_url?.protocol) || validTLDs.includes(url.split(".")[1]) || validWWW.includes(url.split(".")[0])) {
-        //         return true;
-        //     } else {
-        //         return false;
-        //     }
-        // }
+        });
 
         if (timerValue || parseInt(timerValue) >= 0) {
             // If the timer value exists, convert it to a number
@@ -113,7 +104,7 @@
                 timerValue--;
 
                 // Display the timer value on the page
-                document.getElementById('timer').textContent =  timerValue;
+                document.getElementById('timer').textContent = timerValue;
 
                 // Store the updated timer value in localStorage
                 localStorage.setItem('timerValue', timerValue.toString());
@@ -127,9 +118,10 @@
                     $('#resend-email').prop('disabled', false);
                     $('#resend-email').removeClass('disabled');
                     timerValue = parseInt(60);
+                    $('.timer-div').addClass('timer-hide');
 
                     // Display the timer value on the page
-                    document.getElementById('timer').textContent =  timerValue;
+                    document.getElementById('timer').textContent = timerValue;
                 }
 
             }, 1000); // 1000 milliseconds = 1 second

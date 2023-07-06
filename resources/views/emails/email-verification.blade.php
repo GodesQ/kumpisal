@@ -128,9 +128,11 @@
                                         <table border="0" cellspacing="0" cellpadding="0">
                                             <tr>
                                                 <td align="center" style="border-radius: 3px;" bgcolor="#331f14">
-                                                    <a href="{{ url('') }}/user_verify_email?email={{ $details['email'] }}"
-                                                        style="padding: 0.6rem 1rem 0.6rem 1rem; background-color: #000; color: white; text-decoration: none; border-radius: 5px; cursor: pointer; font-family: 'Google Sans', Helvetica, Arial, sans-serif; font-size: 16px;">VERIFY
-                                                        EMAIL ADDRESS</a>
+                                                    <form action="{{ url('') }}/user_verify_email">
+                                                        <input type="hidden" value="{{ $details['email'] }}" name="email">
+                                                        <button href="" style="cursor: pointer; padding: 0.6rem 1rem 0.6rem 1rem; background-color: #000; color: white; text-decoration: none; border-radius: 5px; cursor: pointer; font-family: 'Google Sans', Helvetica, Arial, sans-serif; font-size: 16px;">VERIFY
+                                                            EMAIL ADDRESS</button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         </table>
@@ -139,7 +141,6 @@
                             </table>
                         </td>
                     </tr> <!-- COPY -->
-
                     <tr>
                         <td bgcolor="#ffffff" align="center"
                             style="padding: 0px 30px 20px 30px; color: #666666; font-family: 'Google Sans', Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 25px;">
