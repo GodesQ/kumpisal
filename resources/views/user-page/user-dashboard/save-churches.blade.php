@@ -41,7 +41,7 @@
                                     </a>
                                 </div>
                             @empty
-                                <h3 class="text-center">Churces Not Found</h3>
+                                <h3 class="text-center">Churches Not Found</h3>
                             @endforelse
                         </div>
                     </div>

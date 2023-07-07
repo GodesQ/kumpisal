@@ -3,7 +3,7 @@
         <div class="place-item layout-02 place-hover" data-maps_name="mattone_restaurant">
             <div class="place-inner">
                 <div class="place-thumb">
-                    <a class="entry-thumb" href="{{ route('churches.detailPage', ['uuid' => $church->church_uuid, 'name' => $church->name]) }}"><img src="{{ asset('admin-assets/images/churches' . '/' . $church->church_image )}}"
+                    <a class="entry-thumb" href="{{ route('churches.detailPage', ['id' => $church->id, 'name' => $church->name]) }}"><img src="{{ asset('admin-assets/images/churches' . '/' . $church->church_image )}}"
                             alt=""></a>
                 </div>
                 <div class="entry-detail">
@@ -22,7 +22,7 @@
                         @endif
                     </div>
                     <h3 class="place-title">
-                        <a href="{{ route('churches.detailPage', ['uuid' => $church->church_uuid, 'name' => $church->name]) }}">
+                        <a href="{{ route('churches.detailPage', ['id' => $church->id, 'name' => $church->name]) }}">
                             {{ strlen($church->name) > 50 ? substr($church->name, 0, 50) . '...' : $church->name }}
                         </a>
                     </h3>

@@ -6,7 +6,8 @@
     <main id="main" class="site-main">
         <div class="site-content owner-content">
             @include('user-page.user-dashboard.user-menu')
-            <div class="container py-5">
+            <div class="bg-under"></div>
+            <div class="container py-5 dashboard-content">
                 <div class="member-wrap">
                     @if (!auth()->user()->is_verify)
                         <div class="alert alert-danger p-2 w-100">
@@ -16,7 +17,7 @@
                     <div class="row">
                         <div class="col-lg-12 col-xl-8">
                             <div class="owner-box">
-                                <div class="p-2" style="box-shadow: 2px 2px 5px 0px rgba(232,232,232,1); border-radius: 5px;">
+                                <div class="p-2" style="box-shadow: 2px 2px 5px 0px rgba(232,232,232,1); border-radius: 5px; background: #fff !important;">
                                     <div class="card-body">
                                         @if (auth()->user()->latitude && auth()->user()->longitude)
                                             <h1 class="text-center">Churches Near You</h1>
@@ -71,7 +72,7 @@
                             </div>
                         </div>
                         <div class="col-lg-12 col-xl-4">
-                            <div class="p-2" style="box-shadow: 2px 2px 5px 0px rgba(232,232,232,1); border-radius: 5px;">
+                            <div class="p-2" style="box-shadow: 2px 2px 5px 0px rgba(232,232,232,1); border-radius: 5px; background: #fff;">
                                 <div class="card-body">
                                     <h1>Saved Churches</h1>
                                     <div class="row">
@@ -116,7 +117,7 @@
                                                 </a>
                                             </div>
                                         @empty
-                                            <h3 class="text-center">Churces Not Found</h3>
+                                            <h3 class="text-center">Churches Not Found</h3>
                                         @endforelse
                                     </div>
                                 </div>

@@ -83,12 +83,55 @@
                 filterChurches(1)
             });
 
+            let debounceTimer;
+
+            $(document).on('input', '#church_name', function(event) {
+                clearTimeout(debounceTimer); // Clear the previous timer
+
+                let value = event.target.value;
+                if (value) {
+                    debounceTimer = setTimeout(function() {
+                        $.ajax({
+                            url: `churches/fetch_names?church=${value}`,
+                            success: function(data) {
+                                let output = '';
+                                if (data.length > 0) {
+                                    data.forEach(d => {
+                                        output +=
+                                            `<div class="suggested-church" data-name="${d.name}">${d.name.slice(0, 35)}...</div>`;
+                                    });
+                                    $('.suggested-churches').addClass('active');
+                                    $('.suggested-churches').html(output);
+                                } else {
+                                    $('.suggested-churches').removeClass('active');
+                                }
+                            }
+                        });
+                    }, 1000); // Set the desired delay (e.g., 500 milliseconds)
+                } else {
+                    $('.suggested-churches').html('');
+                    $('.suggested-churches').removeClass('active');
+                }
+            });
+
+
+            // Define setChurchName outside the event handler
+            function setChurchName(event) {
+                let data_name = event.target.getAttribute("data-name");
+                $('#church_name').val(data_name);
+                $('.suggested-churches').html('');
+                $('.suggested-churches').removeClass('active');
+            }
+
+            // Assign click event to the dynamically generated elements
+            $(document).on('click', '.suggested-church', setChurchName);
+
+
+
             function filterChurches(page) {
                 $('#churches-list').html('<h3 class="text-center">Searching...</h3>');
                 let selected_criterias = [];
                 let selected_days = [];
-
-
 
                 // get all checked days
                 $.each($(".day:checked"), function() {
@@ -98,7 +141,7 @@
                 selected_days = encodeURIComponent(JSON.stringify(selected_days));
 
                 let filter_parameters =
-                    `church_name=${$('#church_name').val()}&church_address=${$('#church_address').val()}&latitude=${latitude.value}&longitude=${longitude.value}&days=${selected_days}`;
+                    `church_name=${$('#church_name').val()}&church_address=${$('#church_address').val()}&latitude=${latitude.value}&longitude=${longitude.value}&days=${selected_days}&radius=${$('#radius').val()}`;
                 $.ajax({
                     url: "churches/fetch?page=" + page + '&' + filter_parameters,
                     success: function(data) {

@@ -2596,6 +2596,12 @@ a.place__comments__reply i { display: inline-block; vertical-align: middle; marg
     background: #FFF8F1;
 }
 
+.dashboard-content {
+    margin-top: -150px;
+    z-index: 10;
+    background-color: transparent;
+}
+
 .main-profile-container {
     width: 100%;
     max-width: 1200px;
@@ -2669,6 +2675,26 @@ a.place__comments__reply i { display: inline-block; vertical-align: middle; marg
     color: #fff;
     border-radius: 5px;
     font-size: 12px;
+}
+
+.suggested-churches {
+    width: 100%;
+    display: none;
+    margin-top: 5px;
+    box-shadow: 2px 2px 2px lightgray;
+}
+
+.suggested-churches.active {
+    display: block !important;
+}
+
+.suggested-church {
+    border-bottom: .5px solid lightgray;
+    width: 100%;
+    padding: 5px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 780px) {

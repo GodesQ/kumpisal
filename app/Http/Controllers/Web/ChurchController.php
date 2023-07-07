@@ -68,6 +68,7 @@ class ChurchController extends Controller
         $longitude = $request->longitude;
         $criterias = json_decode($request->criterias);
         $days = json_decode($request->days);
+        $radius = $request->radius;
 
         $churches = Church::select('*')
             ->active(1)
@@ -101,7 +102,7 @@ class ChurchController extends Controller
                     return $q->where('has_sunday_sched', 1);
                 }
             })
-            ->when($latitude and $longitude && $church_address, function ($q) use ($latitude, $longitude) {
+            ->when($latitude and $longitude && $church_address, function ($q) use ($latitude, $longitude, $radius) {
                 return $q
                     ->addSelect(
                         DB::raw(
@@ -116,7 +117,7 @@ class ChurchController extends Controller
                                 * sin(radians(churches.latitude))) AS distance",
                         ),
                     )
-                    ->having('distance', '<=', '5')
+                    ->having('distance', '<=', $radius)
                     ->orderBy('distance', 'asc');
             })
             ->latest()
@@ -129,9 +130,20 @@ class ChurchController extends Controller
         ]);
     }
 
+    public function fetchChurchName(Request $request) {
+        $query = $request->church;
+
+        $results = Church::select('id', 'name')
+        ->where(DB::raw('lower(name)'), 'like', '%' . strtolower($query) . '%')
+        ->limit(5)
+        ->get();
+
+        return response($results, 200);
+    }
+
     public function detailPage(Request $request)
     {
-        $church = Church::where('church_uuid', $request->uuid)
+        $church = Church::where('id', $request->id)
             ->with('schedules', 'church_diocese')
             ->firstOrFail();
         return view('user-page.church-listing.church-info', compact('church'));

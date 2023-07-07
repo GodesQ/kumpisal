@@ -111,6 +111,9 @@
                                 </div>
                             @endif
 
+
+
+                            <!-- .popup-form -->
                             <div class="popup popup-form">
                                 <a title="Close" href="#" class="popup__close">
                                     <i class="las la-times la-24-black"></i>
@@ -124,6 +127,7 @@
                                     @include('user-page.auth.login')
                                 </div>
                             </div><!-- .popup-form -->
+
                             @auth
                                 <div class="dropdown">
                                     @if (auth()->user()->user_image)
@@ -171,7 +175,7 @@
                                         alt="Kumpisalan Logo" width="200">
                                 </a>
 
-                                <p class="footer__top__info__desc mt-3">Journey Inward: Unveiling the Depths Within - A
+                                <p class="footer__top__info__desc mt-3">Journey Inward: Unveiling the Depths <br> Within - A
                                     Soulful Quest for Self-Understanding</p>
                             </div>
                         </div>
@@ -221,7 +225,7 @@
                 </div><!-- .top-footer -->
                 <div class="footer__bottom d-flex justify-content-around align-items-center">
                     <p class="footer__bottom__copyright">2023 &copy; <a title="Uxper Team"
-                            href="#">Kumpisalan</a>. All rights reserved.</p>
+                            href="#">kumpisalan</a>. All rights reserved.</p>
                     <p>Design & Developed by <a href="https://godesq.com/" target="_blank">GodesQ Digital Marketing
                             Services</a></p>
                 </div><!-- .top-footer -->

@@ -75,7 +75,8 @@ Route::get('/', function () {
 
 Route::get('churches', [ChurchController::class, 'searchPage'])->name('churches.searchPage');
 Route::get('churches/fetch', [ChurchController::class, 'fetchData'])->name('churches.fetchData');
-Route::get('church/{uuid}/{name}', [ChurchController::class, 'detailPage'])->name('churches.detailPage');
+Route::get('churches/fetch_names', [ChurchController::class, 'fetchChurchName'])->name('churches.fetchChurchName');
+Route::get('church/{id}/{name}', [ChurchController::class, 'detailPage'])->name('churches.detailPage');
 
 Route::group(['prefix' => 'user', 'as' => 'user.', 'middleware' => ['auth', 'auth.user.verify_email', 'auth.user']], function() {
     Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');

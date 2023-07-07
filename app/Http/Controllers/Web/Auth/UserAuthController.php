@@ -97,6 +97,6 @@ class UserAuthController extends Controller
 
     public function logout(Request $request) {
         Auth::logout();
-        return redirect()->route('home')->with('success', 'Logout Successfully');
+        return redirect()->route('home')->with('success', 'Successfully logged out');
     }
 }

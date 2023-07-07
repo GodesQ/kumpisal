@@ -35,14 +35,14 @@
                                 <div class="cities__item hover__box">
                                     <div class="cities__thumb hover__box__thumb">
                                         <a title="{{ $church->name }}"
-                                            href="{{ route('churches.detailPage', ['uuid' => $church->church_uuid, 'name' => $church->name]) }}">
+                                            href="{{ route('churches.detailPage', ['id' => $church->id, 'name' => $church->name]) }}">
                                             <img src="{{ URL::asset('admin-assets/images/churches/' . $church->church_image) }}"
                                                 alt="{{ $church->name }}" class="church-img">
                                         </a>
                                     </div>
                                     <div class="cities__info">
                                         <h3 class="cities__capital">
-                                            <a style="color: #fff;" href="{{ route('churches.detailPage', ['uuid' => $church->church_uuid, 'name' => $church->name]) }}">{{ strlen($church->name) ? substr($church->name, 0, 30) . '...' : $church->name }}</a>
+                                            <a style="color: #fff;" href="{{ route('churches.detailPage', ['id' => $church->id, 'name' => $church->name]) }}">{{ strlen($church->name) ? substr($church->name, 0, 30) . '...' : $church->name }}</a>
                                         </h3>
                                         <p class="cities__number">
                                             {{ $church->distance ? number_format($church->distance, 2) . ' km' : null }}

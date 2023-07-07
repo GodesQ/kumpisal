@@ -35,7 +35,7 @@
                             <span style="font-weight: 800;">{{ Auth::user()->email }}</span>
                         </p>
                         <p class="mt-4">Just click on the button in that email to complete your signup. <br>
-                            If its not found in your inbox, you may need to <b>check your spam</b> folder.
+                            If its not found in your inbox, <b>check your spam</b> folder.
                         </p>
                         <p class="mt-4">
                             Still can't find the email?

@@ -14,6 +14,7 @@
             <input class="w-100 mt-1" type="text" id="church_name" placeholder="Ex. Saint Paul, Saint Peter"
                 name="church_name">
         </div>
+        <div class="suggested-churches active"></div>
     </div>
     <div class="filter-box">
         <div class="field-group field-input">
@@ -23,6 +24,18 @@
             <input class="w-100 mt-1" type="text" id="church_address" placeholder="Address" name="church_address" value="{{ $queries ? $queries['address'] : null }}">
             <input type="hidden" name="latitude" id="latitude" value="{{ $queries ? $queries['latitude'] : null }}">
             <input type="hidden" name="longitude" id="longitude" value="{{ $queries ? $queries['longitude'] : null }}">
+        </div>
+    </div>
+
+    <div class="filter-box">
+        <div class="field-group field-select">
+            <label for="radius">Radius</label>
+            <select name="radius" id="radius" class="form-select" style="border: 1px solid #331f14">
+                <option value="5">5km</option>
+                <option value="10">10km</option>
+                <option value="20">20km</option>
+                <option value="50">50km</option>
+            </select>
         </div>
     </div>
 
