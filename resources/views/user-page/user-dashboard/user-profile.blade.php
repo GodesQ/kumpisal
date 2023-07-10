@@ -23,7 +23,6 @@
 
     <main class="main-site main" id="main-site">
         @include('user-page.user-dashboard.user-menu')
-
         <div class="bg-under"></div>
         <div class="main-profile-container">
             <div class="profile-menu">
@@ -35,14 +34,6 @@
                     <form action="{{ route('user.profile.post', auth()->user()->user_uuid) }}" enctype="multipart/form-data"
                         method="POST" class="member-profile form-underline">
                         @csrf
-                        {{-- <div class="member-avatar">
-                            <img id="member_avatar" src="{{ asset('user-assets/images/member-avatar.png') }}" alt="Member Avatar">
-                            <label for="upload_new">
-                                <input id="upload_new" type="file" name="member_avatar" placeholder="Upload New">
-                                Upload new
-                            </label>
-
-                        </div> --}}
                         <input type="hidden" name="old_user_image" id="old_user_image" value="{{ auth()->user()->user_image }}">
                         <div class="row">
                             <div class="col-lg-9">

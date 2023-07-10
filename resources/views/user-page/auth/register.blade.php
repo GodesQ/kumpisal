@@ -15,8 +15,9 @@
 </style>
 <form action="{{ route('register.user') }}" class="form-sign form-content" method="POST" id="signup">
     @csrf
+    <input type="hidden" name="type_form" value="register">
     <div class="field-inline">
-        <div class="field-input">
+        <div class="field-input" style="line-height: 23px;">
             <input type="text" placeholder="First Name" value="" name="firstname">
             <span class="text-danger danger">
                 @error('firstname')
@@ -24,7 +25,7 @@
                 @enderror
             </span>
         </div>
-        <div class="field-input">
+        <div class="field-input" style="line-height: 23px;">
             <input type="text" placeholder="Last Name" value="" name="lastname">
             <span class="text-danger danger">
                 @error('lastname')
@@ -33,7 +34,7 @@
             </span>
         </div>
     </div>
-    <div class="field-input">
+    <div class="field-input" style="line-height: 23px;">
         <input type="email" placeholder="Email" value="" name="email">
         <span class="text-danger danger">
             @error('email')
@@ -41,9 +42,10 @@
             @enderror
         </span>
     </div>
-    <div class="field-input">
-        <input type="password" placeholder="Password" value="" id="password_input" name="password"
-            style="margin-bottom: 5px !important;">
+    <div class="field-input" style="position: relative !important; line-height: 23px;">
+        <input type="password" placeholder="Password" value="" id="register_input_password" name="password"
+            style="margin-bottom: 10px !important; ">
+        <span class="password-btn"><i class="fa fa-eye password-btn-icon"></i></span>
         <ul style="margin-left: 20px; margin-bottom: 20px;">
             <li style="height: 30px;" id="password-validation-one" class="password-validation">Atleast 8 characters</li>
             <li style="height: 30px;" id="password-validation-two" class="password-validation">Atleast 1 capital letter
@@ -51,12 +53,12 @@
             <li style="height: 30px;" id="password-validation-three" class="password-validation">Atleast 1 number or
                 symbol</li>
         </ul>
-        <span class="text-danger danger">
-            @error('password')
-                {{ $message }}
-            @enderror
-        </span>
     </div>
+    <span class="text-danger danger">
+        @error('password')
+            {{ $message }}
+        @enderror
+    </span>
     <div class="field-check">
         <label for="accept_terms_condition">
             <input type="checkbox" id="accept_terms_condition" value="1" name="accept_terms_condition">
@@ -71,6 +73,7 @@
 </form>
 
 @push('scripts')
+
     <script>
         let accept_terms_condition_btn = document.getElementById('accept_terms_condition');
         let signup_btn = document.getElementById('signup_btn');
@@ -83,7 +86,7 @@
             signup_btn.disabled = !(e.target.checked && passwordValidate());
         });
 
-        document.getElementById('password_input').addEventListener('input', function(event) {
+        document.getElementById('register_input_password').addEventListener('input', function(event) {
             let password = event.target.value;
 
             // Regular expression pattern for validation
@@ -112,7 +115,7 @@
                 if (!/[0-9\W]/.test(password)) {
                     passwordValidatorThree.classList.add('failed');
                 } else {
-                    passwordValidatorTwo.classList.add('validated');
+                    passwordValidatorThree.classList.add('validated');
                 }
             } else {
                 // Password meets the requirements
@@ -129,5 +132,20 @@
                 return validator.classList.contains('failed') || !validator.classList.contains('validated');
             });
         }
+
+        $(document).on('click', '.password-btn', function(e) {
+            let passwordInput = document.querySelector('#register_input_password');
+            let inputType = passwordInput.type;
+
+            if (inputType == 'password') {
+                $('.password-btn-icon').removeClass('fa-eye');
+                $('.password-btn-icon').addClass('fa-eye-slash');
+                passwordInput.type = 'text';
+            } else {
+                $('.password-btn-icon').addClass('fa-eye');
+                $('.password-btn-icon').removeClass('fa-eye-slash');
+                passwordInput.type = 'password';
+            }
+        });
     </script>
 @endpush

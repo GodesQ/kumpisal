@@ -111,8 +111,6 @@
                                 </div>
                             @endif
 
-
-
                             <!-- .popup-form -->
                             <div class="popup popup-form">
                                 <a title="Close" href="#" class="popup__close">
@@ -175,7 +173,8 @@
                                         alt="Kumpisalan Logo" width="200">
                                 </a>
 
-                                <p class="footer__top__info__desc mt-3">Journey Inward: Unveiling the Depths <br> Within - A
+                                <p class="footer__top__info__desc mt-3">Journey Inward: Unveiling the Depths <br>
+                                    Within - A
                                     Soulful Quest for Self-Understanding</p>
                             </div>
                         </div>
@@ -226,12 +225,15 @@
                 <div class="footer__bottom d-flex justify-content-around align-items-center">
                     <p class="footer__bottom__copyright">2023 &copy; <a title="Uxper Team"
                             href="#">kumpisalan</a>. All rights reserved.</p>
-                    <p>Design & Developed by <a href="https://godesq.com/" target="_blank">GodesQ Digital Marketing
+                    <p class="footer__bottom__copyright">Design & Developed by <a href="https://godesq.com/"
+                            target="_blank">GodesQ Digital Marketing
                             Services</a></p>
                 </div><!-- .top-footer -->
             </div><!-- .container -->
         </footer><!-- site-footer -->
     </div><!-- #wrapper -->
+
+
 
     <script src="{{ asset('user-assets/js/jquery-1.12.4.js') }}"></script>
     <script src="{{ asset('user-assets/libs/popper/popper.js') }}"></script>
@@ -251,6 +253,30 @@
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEmTK1XpJ2VJuylKczq2-49A6_WuUlfe4&libraries=places&callback=initialize">
     </script>
+
+    @if ($errors->any())
+        @if (old('type_form') == 'login')
+            <script type="text/javascript">
+                $('.popup--left').removeClass('open');
+                $('.nav-login').addClass('active');
+                $('.form-log').fadeIn(0);
+                $('.nav-signup').removeClass('active');
+                $('.form-sign').fadeOut(0);
+                $('.popup-background').fadeIn(0);
+                $('.popup-form').toggleClass('open');
+            </script>
+        @elseif (old('type_form') == 'register')
+            <script>
+                $('.popup--left').removeClass('open');
+                $('.nav-signup').addClass('active');
+                $('.form-sign').fadeIn(0);
+                $('.nav-login').removeClass('active');
+                $('.form-log').fadeOut(0);
+                $('.popup-background').fadeIn(0);
+                $('.popup-form').toggleClass('open');
+            </script>
+        @endif
+    @endif
 
     <script>
         function initialize() {

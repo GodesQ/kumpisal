@@ -114,7 +114,7 @@ class UserController extends Controller
                         if($row->is_verify) {
                             $badge = '<span class="badge bg-success rounded-3 fw-semibold">Verified</span>';
                         } else {
-                            $badge = '<span class="badge bg-warning rounded-3 fw-semibold">Not Verify</span>';
+                            $badge = '<span class="badge bg-warning rounded-3 fw-semibold">Not Verified</span>';
                         }
                         return $badge;
                     })

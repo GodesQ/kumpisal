@@ -24,6 +24,7 @@ class UserAuthController extends Controller
         $credentials = $request->validated();
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
+
             if(!$user->is_verify) {
                 return redirect()->route('user.verify_email_message')->with('fail', 'Please verify your email to continue.');
             }

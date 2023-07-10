@@ -34,7 +34,7 @@ class ContactMessageController extends Controller
         // SEND EMAIL FOR VERIFICATION (james@godesq.com)
         $send_mail = Mail::to(env('SUPPORT_EMAIL'))->send(new ContactMessageMail($details, $message));
 
-        if($message) return back()->with('success', 'Your Message Successfully Send.');
+        if($message) return back()->with('success', 'Your message has been successfully sent.');
     }
 
     public function lists(Request $request) {
@@ -76,7 +76,7 @@ class ContactMessageController extends Controller
 
         if($reply) return response([
             'status' => 'create',
-            'message' => 'Reply Successfully'
+            'message' => 'Replied Successfully'
         ], 201);
     }
 }

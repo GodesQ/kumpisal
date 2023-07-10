@@ -196,6 +196,7 @@ class ChurchController extends Controller
                 $remove_image = @unlink($new_upload_image);
                 return back()->with('fail', 'Failed to create church. Please Try Again.');
             }
+
             return redirect()
                 ->route('admin.churches.list')
                 ->with('success', 'Church Successfully Created.');

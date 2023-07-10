@@ -2641,7 +2641,7 @@ a.place__comments__reply i { display: inline-block; vertical-align: middle; marg
 
 .profile-content {
     background: #fff !important;
-    width: 100%;
+    width: 70%;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 3px 3px 5px 0px rgba(232,232,232,1);
@@ -2695,6 +2695,26 @@ a.place__comments__reply i { display: inline-block; vertical-align: middle; marg
     font-size: 13px;
     font-weight: 500;
     cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+    .bg-under {
+        height: 150px;
+    }
+
+    .main-profile-container {
+        flex-direction: column !important;
+        padding: 10px 20px;
+    }
+    .profile-menu {
+        width: 100%;
+    }
+    .profile-content {
+        width: 100%;
+    }
+    .profile-picture-container {
+        flex-direction: start !important;
+    }
 }
 
 @media screen and (max-width: 780px) {

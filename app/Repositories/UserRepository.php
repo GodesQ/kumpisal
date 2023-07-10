@@ -23,7 +23,7 @@ class UserRepository
     public function store($request, $data)
     {
         $inputs = [];
-        $user = new User();
+        $user = new User;
 
         $create_user = $user->create(
             array_merge($data, [
@@ -40,6 +40,7 @@ class UserRepository
         }
 
         if ($request->missing('is_verify')) {
+
             # details for sending email to worker
             $details = [
                 'title' => 'Verification Email from Kumpisalan App',
