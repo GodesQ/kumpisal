@@ -39,7 +39,7 @@
         <header id="header" class="site-header">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-xl-6 col-8">
+                    <div class="col-lg-6 col-8">
                         <div class="site">
                             <div class="site__menu">
                                 <a title="Menu Icon" href="#" class="site__menu__icon">
@@ -87,7 +87,7 @@
 
                         </div>
                     </div>
-                    <div class="col-xl-6 col-4">
+                    <div class="col-lg-6 col-4">
                         <div class="right-header align-right">
                             <nav class="main-menu">
                                 <ul>
@@ -157,7 +157,7 @@
                                 </div>
                             @endauth
                         </div><!-- .right-header -->
-                    </div><!-- .col-md-6 -->
+                    </div>
                 </div><!-- .row -->
             </div><!-- .container-fluid -->
         </header><!-- .site-header -->
