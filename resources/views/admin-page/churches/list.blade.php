@@ -37,6 +37,9 @@
                                         <th class="border-bottom-0">
                                             <h6 class="fw-semibold mb-0">Parish Priest</h6>
                                         </th>
+                                        <th class="border-bottom-0">
+                                            <h6 class="fw-semibold mb-0">Diocese</h6>
+                                        </th>
                                         <th class="border-bottom-0" width="100">
                                             <h6 class="fw-semibold mb-0">Actions</h6>
                                         </th>
@@ -74,6 +77,12 @@
                 {
                     data: 'parish_priest',
                     name: 'parish_priest',
+                    orderable: true,
+                    searchable: true
+                },
+                {
+                    data: 'church_diocese',
+                    name: 'church_diocese',
                     orderable: true,
                     searchable: true
                 },

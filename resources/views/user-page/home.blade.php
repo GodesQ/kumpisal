@@ -79,6 +79,7 @@
                 latitude.value = lat;
                 longitude.value = long;
                 resultArray = places[0].address_components;
+                $('.site-banner__search').submit();
             });
         }
 

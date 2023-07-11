@@ -154,9 +154,14 @@ class ChurchController extends Controller
         if ($request->ajax()) {
             $churches = Church::latest('id')
                 ->active(1)
-                ->isNotDeleted();
+                ->isNotDeleted()
+                ->with('church_diocese');
+
             return Datatables::of($churches)
                 ->addIndexColumn()
+                ->addColumn('church_diocese', function ($row) {
+                    return $row->church_diocese ? $row->church_diocese->name : 'Diocese Not Found';
+                })
                 ->addColumn('action', function ($row) {
                     $btn =
                         '<a href="/admin/church/edit/' .

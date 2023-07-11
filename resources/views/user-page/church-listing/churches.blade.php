@@ -190,13 +190,15 @@
                 }
 
                 map.fitBounds(bounds); // Fit to the bound
-                map.setZoom(15); // This function sets the zoom to 15, meaning zooms to level 15.
+                map.setZoom(15); // This function sets the zoom to 15, meaning zoomjs to level 15.
 
                 lat = places[0].geometry.location.lat()
                 long = places[0].geometry.location.lng()
                 latitude.value = lat;
                 longitude.value = long;
                 resultArray = places[0].address_components;
+
+                filterChurches(1);
             });
 
             setMarkerDraggable(my_marker);
@@ -299,13 +301,13 @@
         initialize()
 
         // remove enter functionality in address input
-        $(document).ready(function() {
-            $('#church_address').keydown(function(event) {
-                if (event.keyCode == 13) {
-                    event.preventDefault();
-                    return false;
-                }
-            });
-        });
+        // $(document).ready(function() {
+        //     $('#church_address').keydown(function(event) {
+        //         if (event.keyCode == 13) {
+        //             event.preventDefault();
+        //             return false;
+        //         }
+        //     });
+        // });
     </script>
 @endpush
