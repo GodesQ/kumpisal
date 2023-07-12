@@ -48,10 +48,10 @@ class VicariateController extends Controller
         $vicariate = Vicariate::create($data);
 
         if($vicariate) {
-            if($request->has('redirect_to_list')) {
-                return redirect()->route('admin.vicariates.list')->with('success', 'Vicariate Created Successfully');
-            } else {
+            if($request->has('stay_at_this_page')) {
                 return redirect()->back()->with('success', 'Vicariate Created Successfully');
+            } else {
+                return redirect()->route('admin.vicariates.list')->with('success', 'Vicariate Created Successfully');
             }
         }
         abort(500);

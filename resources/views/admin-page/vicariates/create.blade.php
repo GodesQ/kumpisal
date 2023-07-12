@@ -45,6 +45,12 @@
                                 </span>
                             </div>
                         </div>
+                        <div class="col-md-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="stay_at_this_page" name="stay_at_this_page" value="1" checked>
+                                <label class="form-label" for="stay_at_this_page">Stay at this page</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="d-flex jsutify-content-end" style="width: 100%">
                         <button class="btn btn-primary">Save Vicariate</button>
