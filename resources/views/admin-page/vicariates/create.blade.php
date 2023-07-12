@@ -10,6 +10,9 @@
                 <a href="{{ route('admin.vicariates.list') }}" class="btn btn-primary">Back to List</a>
             </div>
             <div class="card-body">
+                @if (Session::get('success'))
+                    <div class="alert alert-success">{{ Session::get('success') }}</div>
+                @endif
                 <form action="{{ route('admin.vicariate.store') }}" method="post">
                     @csrf
                     <div class="row">

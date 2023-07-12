@@ -44,7 +44,10 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="field-input">
-                                        <input type="tel" name="contact_no" value="" placeholder="Phone Number">
+                                        <div class="d-flex justify-content-between align-items-end">
+                                            <div style="border: 2px solid #2d2d2d; border-right: none; height: 100%; padding: 6.5px 10px;">+639</div>
+                                            <input type="tel" name="contact_no" value="" placeholder="" class="px-2" max="10" style="margin-bottom: 0px; border: 2px solid #2d2d2d !important;">
+                                        </div>
                                         <span class="text-danger">@error('contact_no'){{ $message }}@enderror</span>
                                     </div>
                                 </div>
