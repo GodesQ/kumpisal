@@ -63,4 +63,8 @@ class Church extends Model
         return $this->hasOne(Diocese::class, 'id', 'diocese');
     }
 
+    public function church_vicariate() {
+        return $this->hasOne(Vicariate::class, 'id', 'vicariate');
+    }
+
 }

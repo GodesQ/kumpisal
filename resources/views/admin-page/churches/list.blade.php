@@ -11,6 +11,12 @@
         @endpush
     @endif
 
+    <style>
+        td {
+            font-size: 12px;
+        }
+    </style>
+
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
@@ -25,7 +31,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table text-nowrap mb-0 align-middle data-table">
+                            <table class="table text-nowrap mb-0 align-middle data-table table-responsive">
                                 <thead class="text-dark fs-4">
                                     <tr>
                                         <th class="border-bottom-0" width="50">
@@ -35,7 +41,7 @@
                                             <h6 class="fw-semibold mb-0">Church Name</h6>
                                         </th>
                                         <th class="border-bottom-0">
-                                            <h6 class="fw-semibold mb-0">Parish Priest</h6>
+                                            <h6 class="fw-semibold mb-0">Vicariate</h6>
                                         </th>
                                         <th class="border-bottom-0">
                                             <h6 class="fw-semibold mb-0">Diocese</h6>
@@ -75,8 +81,8 @@
                     searchable: true
                 },
                 {
-                    data: 'parish_priest',
-                    name: 'parish_priest',
+                    data: 'church_vicariate',
+                    name: 'church_vicariate',
                     orderable: true,
                     searchable: true
                 },

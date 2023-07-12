@@ -79,7 +79,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="diocese" class="form-label">Diocese</label>
-                                            <select name="diocese" id="diocese" class="select2 form-select">
+                                            <select name="diocese" id="diocese" class="select2 form-select" onchange="getVicariates(this)">
                                                 <option value="">---- Select Diocese ----</option>
                                                 @forelse ($dioceses as $diocese)
                                                     <option value="{{ $diocese->id }}">{{ $diocese->name }}</option>
@@ -90,11 +90,19 @@
                                             <span class="text-danger danger">@error('diocese'){{ $message }}@enderror</span>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="description" class="form-label">Church Description</label>
                                             <textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>
                                             <span class="text-danger danger">@error('description'){{ $message }}@enderror</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="vicariate" class="form-label">Vicariate</label>
+                                            <select name="vicariate" id="vicariate" class="select2 form-select">
+                                                <option value="">---- Select Diocese First Before Vicariate ----</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -148,6 +156,22 @@
 
 @push('scripts')
 <script>
+    function getVicariates(e) {
+        let csrf = '{{ csrf_token() }}';
+        let url = `{{ route("admin.vicariates.select") }}?diocese=${e.value}`;
+
+        $.ajax({
+            url: url,
+            method: 'GET',
+            success: function (data) {
+                $('#vicariate option').remove();
+                data.forEach(element => {
+                    $(`<option value=${element.id}>${element.name}</option>`).appendTo('#vicariate');
+                });
+            }
+        });
+    }
+
     function initialize() {
         let address = document.querySelector('#address');
         let latitude = document.querySelector('#latitude');

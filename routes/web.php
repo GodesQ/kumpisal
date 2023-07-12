@@ -136,12 +136,6 @@ Route::group(['prefix'=> 'admin', 'as' => 'admin.', 'middleware' => ['auth.admin
     Route::post('/church/update/{uuid}', [ChurchController::class, 'update'])->name('church.update')->middleware('can:edit_church');
     Route::delete('/church/delete', [ChurchController::class, 'delete'])->name('church.delete');
 
-    // Route::get('/confession_schedules', [ConfessionScheduleController::class, 'lists'])->name('confession_schedules.list');
-    // Route::get('/confession_schedule/create', [ConfessionScheduleController::class, 'create'])->name('confession_schedule.create');
-    // Route::post('/confession_schedule/store', [ConfessionScheduleController::class, 'store'])->name('confession_schedule.store');
-    // Route::get('/confession_schedule/edit/{id}', [ConfessionScheduleController::class, 'edit'])->name('confession_schedule.edit');
-    // Route::post('/confession_schedule/update/{id}', [ConfessionScheduleController::class, 'update'])->name('confession_schedule.update');
-
     Route::get('/admins', [AdminController::class, 'lists'])->name('admins.list')->middleware('can:view_admins_list');
     Route::get('/create', [AdminController::class, 'create'])->name('create')->middleware('can:create_admin');
     Route::post('/store', [AdminController::class, 'store'])->name('store')->middleware('can:create_admin');
@@ -167,6 +161,7 @@ Route::group(['prefix'=> 'admin', 'as' => 'admin.', 'middleware' => ['auth.admin
     Route::post('/diocese/update/{id}', [DioceseController::class, 'update'])->name('diocese.update');
 
     Route::get('/vicariates', [VicariateController::class, 'lists'])->name('vicariates.list');
+    Route::get('/vicariates/select', [VicariateController::class, 'select'])->name('vicariates.select');
     Route::get('/vicariate/create', [VicariateController::class, 'create'])->name('vicariate.create');
     Route::post('/vicariate/store', [VicariateController::class, 'store'])->name('vicariate.store');
     Route::get('/vicariate/edit/{id}', [VicariateController::class, 'edit'])->name('vicariate.edit');

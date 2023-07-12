@@ -16,6 +16,7 @@ use DataTables;
 use App\Models\Church;
 use App\Models\ChurchDay;
 use App\Models\Diocese;
+use App\Models\Vicariate;
 
 use App\Repositories\ChurchRepository;
 use App\Repositories\ChurchTimeScheduleRepository;
@@ -155,10 +156,13 @@ class ChurchController extends Controller
             $churches = Church::latest('id')
                 ->active(1)
                 ->isNotDeleted()
-                ->with('church_diocese');
+                ->with('church_diocese', 'church_vicariate');
 
             return Datatables::of($churches)
                 ->addIndexColumn()
+                ->addColumn('church_vicariate', function ($row) {
+                    return $row->church_vicariate ? $row->church_vicariate->name : 'Vicariate Not Found';
+                })
                 ->addColumn('church_diocese', function ($row) {
                     return $row->church_diocese ? $row->church_diocese->name : 'Diocese Not Found';
                 })
@@ -213,9 +217,11 @@ class ChurchController extends Controller
     public function edit(Request $request)
     {
         $church = Church::where('church_uuid', $request->uuid)
-            ->with('schedules')
+            ->with('schedules', 'church_vicariate')
             ->firstOrFail();
+
         $dioceses = Diocese::get();
+        // $vicariates = Vicariate::select('name')->groupBy('name')->get();
         return view('admin-page.churches.edit', compact('church', 'dioceses'));
     }
 

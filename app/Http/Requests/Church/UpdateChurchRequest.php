@@ -37,6 +37,7 @@ class UpdateChurchRequest extends FormRequest
             'is_active' => 'nullable',
             'titular' => 'nullable',
             'diocese' => 'nullable|exists:dioceses,id',
+            'vicariate' => 'nullable|exists:vicariates,id',
             'monday_sched_starttime.*' => 'nullable',
             'monday_sched_endtime.*' => 'nullable|after:monday_sched_starttime.*',
             'tuesday_sched_starttime.*' => 'nullable',

@@ -38,6 +38,12 @@ class VicariateController extends Controller
         return view('admin-page.vicariates.list');
     }
 
+    public function select(Request $request) {
+        $diocese = $request->diocese;
+        $vicariates = Vicariate::where('diocese', $diocese)->get();
+        return response($vicariates, 200);
+    }
+
     public function create(Request $request) {
         $dioceses = Diocese::get();
         return view('admin-page.vicariates.create', compact('dioceses'));
