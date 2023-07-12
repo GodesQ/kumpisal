@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://kumpisalan.com/user-assets/images/assets/dark-kumpisalan.png" alt="Kumpisalan" style="max-width: 250px !important;"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://kumpisalan.com/user-assets/images/assets/light-kumpisalan.png" alt="Kumpisalan" style="max-width: 250px !important;"></a></p>
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
