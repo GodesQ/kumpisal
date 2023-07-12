@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h4>Create Diocese</h4>
+                <h4>Create Vicariate</h4>
                 <a href="{{ route('admin.vicariates.list') }}" class="btn btn-primary">Back to List</a>
             </div>
             <div class="card-body">

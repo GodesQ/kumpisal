@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Vicariate;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\UniqueNameAndDiocese;
 
 class CreateVicariateRequest extends FormRequest
 {
@@ -24,8 +25,8 @@ class CreateVicariateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'diocese' => 'required|exists:dioceses,id'
+            'name' => ['required', new UniqueNameAndDiocese],
+            'diocese' => ['required', new UniqueNameAndDiocese],
         ];
     }
 }

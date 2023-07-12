@@ -329,12 +329,18 @@
 
     @if (Session::get('fail'))
         <script>
+            toastr.options = {
+                closeButton: true, // Add close button
+            };
             toastr.error("{{ Session::get('fail') }}", 'Fail');
         </script>
     @endif
 
     @if (Session::get('success'))
         <script>
+            toastr.options = {
+                closeButton: true, // Add close button
+            };
             toastr.success("{{ Session::get('success') }}", 'Success');
         </script>
     @endif
