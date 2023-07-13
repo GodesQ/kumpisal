@@ -28,7 +28,7 @@
                                         <div class="row">
                                             @foreach ($near_churches as $church)
                                                 <div class="col-lg-6 col-md-6">
-                                                    <a href="/church/{{ $church->church_uuid }}/{{ $church->name }}">
+                                                    <a href="/church/{{ $church->name }}">
                                                         <div class="my-2" style="box-shadow: 2px 2px 5px 0px rgba(232,232,232,1); border-radius: 5px;">
                                                             <div class="card-body">
                                                                 <div class="row">
@@ -80,7 +80,7 @@
                                         @forelse (auth()->user()->saved_churches as $saved_church)
                                             <div class="col-lg-12 ">
                                                 <a
-                                                    href="/church/{{ $saved_church->church->church_uuid }}/{{ $saved_church->church->name }}">
+                                                    href="/church/{{ $saved_church->church->name }}">
                                                     <div class="my-2" style="box-shadow: 2px 2px 5px 0px rgba(232,232,232,1); border-radius: 5px;">
                                                         <div class="card-body">
                                                             <div class="row">

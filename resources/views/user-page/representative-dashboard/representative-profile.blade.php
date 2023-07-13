@@ -36,8 +36,8 @@
             </div>
             <div class="profile-content">
                 <div id="profile-form" class="profile-tab profile-tab-active" class="member-wrap">
-                    <form action="{{ route('representative.profile.post', auth()->user()->user_uuid) }}" enctype="multipart/form-data"
-                        method="POST" class="member-profile form-underline">
+                    <form action="{{ route('representative.profile.post', auth()->user()->user_uuid) }}"
+                        enctype="multipart/form-data" method="POST" class="member-profile form-underline">
                         @csrf
                         <input type="hidden" name="old_user_image" id="old_user_image"
                             value="{{ auth()->user()->user_image }}">
@@ -263,26 +263,48 @@
         });
 
         function selectActiveTab(clickedElement) {
+            // Clear the active class from all profile tabs
+            for (let index = 0; index < profileTabs.length; index++) {
+                profileTabs[index].classList.toggle('profile-tab-active', false);
+            }
+
+            // Add the active class to the appropriate form
             if (clickedElement.classList.contains('change-password')) {
-                for (let index = 0; index < profileTabs.length; index++) {
-                    profileTabs[index].classList.remove('profile-tab-active');
-                }
-                document.querySelector('#change-password-form').classList.add('profile-tab-active');
+                document.querySelector('#change-password-form').classList.toggle('profile-tab-active', true);
             }
 
             if (clickedElement.classList.contains('profile')) {
-                for (let index = 0; index < profileTabs.length; index++) {
-                    profileTabs[index].classList.remove('profile-tab-active');
-                }
-                document.querySelector('#profile-form').classList.add('profile-tab-active');
+                document.querySelector('#profile-form').classList.toggle('profile-tab-active', true);
             }
         }
+
 
         function removeProfileBtnActive() {
             const btnLength = profileMenuBtn.length;
             for (let index = 0; index < btnLength; index++) {
                 profileMenuBtn[index].classList.remove('active');
             }
+        }
+
+        function initialize() {
+            let address = document.querySelector('#address');
+            let latitude = document.querySelector('#latitude');
+            let longitude = document.querySelector('#longitude');
+
+            // for search
+            let searchBox = new google.maps.places.SearchBox(address);
+
+            google.maps.event.addListener(searchBox, 'places_changed', function() {
+                var places = searchBox.getPlaces(),
+                    bounds = new google.maps.LatLngBounds(),
+                    i, place, lat, long, resultArray, address = places[0].formatted_address;
+                lat = places[0].geometry.location.lat()
+                long = places[0].geometry.location.lng();
+                latitude.value = lat;
+                longitude.value = long;
+                resultArray = places[0].address_components;
+                $('.site-banner__search').submit();
+            });
         }
     </script>
 @endpush
