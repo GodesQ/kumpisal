@@ -240,6 +240,7 @@ class ChurchController extends Controller
             $remove_image = @unlink($old_upload_image);
 
             $church_image_path = Str::snake($request->name) . '.' . $file->getClientOriginalExtension();
+
             // save to directory
             $save_file = $file->move(public_path() . '/admin-assets/images/churches', $church_image_path);
         }
@@ -249,6 +250,7 @@ class ChurchController extends Controller
 
         if (!$save_church && $save_file) {
             $new_upload_image = public_path('/admin-assets/images/churches/') . $request->church_image_name;
+
             $remove_image = @unlink($new_upload_image);
             return back()->with('fail', 'Failed to create church. Please Try Again.');
         }

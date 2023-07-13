@@ -1,43 +1,46 @@
 @extends('layouts.user-layout')
 
-@section('title', 'Profile')
+@section('title')
+    {{ auth()->user()->name }} - Edit Profile
+@endsection
 
 @section('content')
+    <style>
+        .profile-tab {
+            display: none;
+        }
 
-<style>
-    .profile-tab {
-        display: none;
-    }
-    #profile-form.profile-tab-active {
-        display: inline-block !important;
-    }
-    #change-password-form.profile-tab-active {
-        display: inline-block !important;
-    }
-</style>
+        #profile-form.profile-tab-active {
+            display: inline-block !important;
+        }
+
+        #change-password-form.profile-tab-active {
+            display: inline-block !important;
+        }
+
+        .address-input-con {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+        }
+    </style>
 
     <main class="main-site main" id="main-site">
         @include('user-page.user-dashboard.user-menu')
         <div class="bg-under"></div>
         <div class="main-profile-container">
             <div class="profile-menu">
-                <button type="button" class="profile-menu-btn profile active">Profile</button>
-                <button type="button" class="profile-menu-btn change-password">Change Password</button>
+                <button type="button" class="profile-menu-btn profile active">Profile <i class="ti ti-user"></i></button>
+                <button type="button" class="profile-menu-btn change-password">Change Password <i
+                        class="ti ti-lock"></i></button>
             </div>
             <div class="profile-content">
                 <div id="profile-form" class="profile-tab profile-tab-active" class="member-wrap">
                     <form action="{{ route('user.profile.post', auth()->user()->user_uuid) }}" enctype="multipart/form-data"
                         method="POST" class="member-profile form-underline">
                         @csrf
-                        {{-- <div class="member-avatar">
-                            <img id="member_avatar" src="{{ asset('user-assets/images/member-avatar.png') }}" alt="Member Avatar">
-                            <label for="upload_new">
-                                <input id="upload_new" type="file" name="member_avatar" placeholder="Upload New">
-                                Upload new
-                            </label>
-
-                        </div> --}}
-                        <input type="hidden" name="old_user_image" id="old_user_image" value="{{ auth()->user()->user_image }}">
+                        <input type="hidden" name="old_user_image" id="old_user_image"
+                            value="{{ auth()->user()->user_image }}">
                         <div class="row">
                             <div class="col-lg-9">
                                 <div class="row">
@@ -78,7 +81,7 @@
                                     <div class="col-md-12">
                                         <div class="field-input">
                                             <label for="address">Address</label>
-                                            <div class="d-flex flex-wrap">
+                                            <div class="address-input-con">
                                                 <input style="width: 85;" type="text" name="address" id="address"
                                                     value="{{ auth()->user()->address }}">
                                                 {{-- <button style="width: auto;" type="button" class="btn btn-primary" id="view-map-btn">View Map<i class="ti ti-marker"></i></button> --}}
@@ -94,91 +97,33 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <label for="address">Preferred Days</label>
-                                    <?php $prefer_days = explode('|', auth()->user()->prefer_days); ?>
-                                    <div class="col-md-12 mt-2">
-                                        <div class="days-container">
-                                            <div style="width: 25%" class="days-child">
-                                                <div class="field-check">
-                                                    <label for="monday"
-                                                        style="max-width: 100% !important; flex: 1 !important;">
-                                                        <input type="checkbox" name="prefer_days[]" id="monday"
-                                                            value="monday"
-                                                            {{ in_array('monday', $prefer_days) ? 'checked' : null }}>Monday
-                                                        <span class="checkmark">
-                                                            <i class="la la-check"></i>
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                                <div class="field-check">
-                                                    <label for="tuesday"
-                                                        style="max-width: 100% !important; flex: 1 !important;">
-                                                        <input type="checkbox" name="prefer_days[]" id="tuesday"
-                                                            value="tuesday"
-                                                            {{ in_array('tuesday', $prefer_days) ? 'checked' : null }}>Tuesday
-                                                        <span class="checkmark">
-                                                            <i class="la la-check"></i>
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                                <div class="field-check">
-                                                    <label for="wednesday"
-                                                        style="max-width: 100% !important; flex: 1 !important;">
-                                                        <input type="checkbox" name="prefer_days[]" id="wednesday"
-                                                            value="wednesday"
-                                                            {{ in_array('wednesday', $prefer_days) ? 'checked' : null }}>Wednesday
-                                                        <span class="checkmark">
-                                                            <i class="la la-check"></i>
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                                <div class="field-check">
-                                                    <label for="thursday"
-                                                        style="max-width: 100% !important; flex: 1 !important;">
-                                                        <input type="checkbox" name="prefer_days[]" id="thursday"
-                                                            value="thursday"
-                                                            {{ in_array('thursday', $prefer_days) ? 'checked' : null }}>Thursday
-                                                        <span class="checkmark">
-                                                            <i class="la la-check"></i>
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div style="width: 30%;" class="days-child">
-                                                <div class="field-check">
-                                                    <label for="friday"
-                                                        style="max-width: 100% !important; flex: 1 !important;">
-                                                        <input type="checkbox" name="prefer_days[]" id="friday"
-                                                            value="friday"
-                                                            {{ in_array('friday', $prefer_days) ? 'checked' : null }}>Friday
-                                                        <span class="checkmark">
-                                                            <i class="la la-check"></i>
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                                <div class="field-check">
-                                                    <label for="saturday"
-                                                        style="max-width: 100% !important; flex: 1 !important;">
-                                                        <input type="checkbox" name="prefer_days[]" id="saturday"
-                                                            value="saturday"
-                                                            {{ in_array('saturday', $prefer_days) ? 'checked' : null }}>Saturday
-                                                        <span class="checkmark">
-                                                            <i class="la la-check"></i>
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                                <div class="field-check">
-                                                    <label for="sunday"
-                                                        style="max-width: 100% !important; flex: 1 !important;">
-                                                        <input type="checkbox" name="prefer_days[]" id="sunday"
-                                                            value="sunday"
-                                                            {{ in_array('sunday', $prefer_days) ? 'checked' : null }}>Sunday
-                                                        <span class="checkmark">
-                                                            <i class="la la-check"></i>
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                            </div>
+                                    <div class="col-md-6">
+                                        <div class="field-input">
+                                            <label for="years_of_service">Years of Service</label>
+                                            <input type="number" name="years_of_service" id="years_of_service"
+                                                value="{{ auth()->user()->representative_info->years_of_service }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="field-input">
+                                            <label for="contact_no">Contact No</label>
+                                            <input type="text" name="contact_no" id="contact_no"
+                                                value="{{ auth()->user()->representative_info->contact_no }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="field-input">
+                                            <label for="birthdate">Birthdate</label>
+                                            <input type="date" name="birthdate" id="birthdate"
+                                                value="{{ auth()->user()->representative_info->birthdate }}"
+                                                onchange="getAge(this)">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="field-input">
+                                            <label for="age">Age</label>
+                                            <input type="number" name="age" id="age" readonly
+                                                value="{{ auth()->user()->representative_info->age }}">
                                         </div>
                                     </div>
                                 </div>
@@ -186,11 +131,14 @@
                             <div class="col-lg-3">
                                 <div class="profile-picture-container">
                                     @if (auth()->user()->user_image)
-                                        <img src="{{ URL::asset('user-assets/images/avatars/' . auth()->user()->user_image) }}" alt="" class="profile-picture">
+                                        <img src="{{ URL::asset('user-assets/images/avatars/' . auth()->user()->user_image) }}"
+                                            alt="" class="profile-picture">
                                     @else
-                                        <img src="{{ URL::asset('user-assets/images/avatars/default-user-image.png') }}" alt="" class="profile-picture">
+                                        <img src="{{ URL::asset('user-assets/images/avatars/default-user-image.png') }}"
+                                            alt="" class="profile-picture">
                                     @endif
-                                    <input type="file" hidden name="member_avatar" id="user_image_input" accept="image/*">
+                                    <input type="file" hidden name="member_avatar" id="user_image_input"
+                                        accept="image/*">
                                     <div class="mt-2">
                                         <button type="button" id="change-profile-btn">Upload Photo</button>
                                     </div>
@@ -204,24 +152,39 @@
                     </form>
                 </div>
                 <div id="change-password-form" class="profile-tab">
-                    <form action="{{ route('user.change_password.post', auth()->user()->user_uuid) }}" method="POST" class="member-password form-underline">
+                    <form action="{{ route('user.change_password.post', auth()->user()->user_uuid) }}" method="POST"
+                        class="member-password form-underline">
                         @csrf
                         <h4 class="mb-2" style="font-size: 25px">Change Password</h4>
                         <div class="field-input">
                             <label for="password">Current Password</label>
-                            <input type="password" name="password" placeholder="Enter current password" id="old_password">
+                            <input type="password" name="password" placeholder="Enter current password"
+                                id="old_password">
                         </div>
                         <div class="field-input">
                             <label for="new_password">New Password</label>
-                            <input type="password" name="new_password" placeholder="Enter new password" id="new_password">
+                            <input type="password" name="new_password" placeholder="Enter new password"
+                                id="new_password">
+                            <span class="text-danger">
+                                @error('new_password')
+                                    {{ $message }}
+                                @enderror
+                            </span>
                         </div>
                         <div class="field-input">
                             <label for="re_new">Confirm Password</label>
-                            <input type="password" name="confirm_password" placeholder="Enter new password" id="confirm_password">
+                            <input type="password" name="confirm_password" placeholder="Enter new password"
+                                id="confirm_password">
+                            <span class="text-danger">
+                                @error('confirm_password')
+                                    {{ $message }}
+                                @enderror
+                            </span>
                         </div>
-                        <div class="field-check" >
+                        <div class="field-check">
                             <label for="is_logout" style="max-width: 100% !important; flex: 1 !important;">
-                                <input type="checkbox" name="is_logout" id="is_logout" value="1">Logout after password change?
+                                <input type="checkbox" name="is_logout" id="is_logout" value="1">Logout after
+                                password change?
                                 <span class="checkmark">
                                     <i class="la la-check"></i>
                                 </span>
@@ -239,6 +202,18 @@
 
 @push('scripts')
     <script>
+        function getAge(e) {
+            var today = new Date();
+            var birthDate = new Date(e.value);
+            var age = today.getFullYear() - birthDate.getFullYear();
+            var m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            const ageInput = document.querySelector("#age");
+            ageInput.value = age;
+        }
+
         let profileMenuBtn = document.querySelectorAll('.profile-menu-btn');
         let profileTabs = document.querySelectorAll('.profile-tab');
         let changeProfileBtn = document.querySelector('#change-profile-btn');
@@ -260,18 +235,18 @@
                 var fileType = file.type.split('/')[0];
 
                 if (fileType === 'image') {
-                var reader = new FileReader();
+                    var reader = new FileReader();
 
-                reader.onload = function (e) {
-                    preview.setAttribute('src', e.target.result);
-                };
+                    reader.onload = function(e) {
+                        preview.setAttribute('src', e.target.result);
+                    };
 
-                reader.readAsDataURL(file);
-                errorMessage.textContent = ''; // Clear any previous error message
+                    reader.readAsDataURL(file);
+                    errorMessage.textContent = ''; // Clear any previous error message
                 } else {
-                input.value = ''; // Clear the selected file
-                preview.setAttribute('src', '#');
-                errorMessage.textContent = 'Invalid file format. Please select an image file.';
+                    input.value = ''; // Clear the selected file
+                    preview.setAttribute('src', '#');
+                    errorMessage.textContent = 'Invalid file format. Please select an image file.';
                 }
             }
         }
@@ -288,14 +263,14 @@
         });
 
         function selectActiveTab(clickedElement) {
-            if(clickedElement.classList.contains('change-password')) {
+            if (clickedElement.classList.contains('change-password')) {
                 for (let index = 0; index < profileTabs.length; index++) {
                     profileTabs[index].classList.remove('profile-tab-active');
                 }
                 document.querySelector('#change-password-form').classList.add('profile-tab-active');
             }
 
-            if(clickedElement.classList.contains('profile')) {
+            if (clickedElement.classList.contains('profile')) {
                 for (let index = 0; index < profileTabs.length; index++) {
                     profileTabs[index].classList.remove('profile-tab-active');
                 }

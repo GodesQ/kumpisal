@@ -1,6 +1,8 @@
 @extends('layouts.user-layout')
 
-@section('title', 'Profile')
+@section('title')
+    {{ auth()->user()->name }} - Edit Profile
+@endsection
 
 @section('content')
 

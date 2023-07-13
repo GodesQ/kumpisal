@@ -44,7 +44,7 @@ class RepresentativeController extends Controller
     public function saveProfile(SaveRepresentativeProfileRequest $request)
     {
         $data = $request->validated();
-        $user_image;
+        $user_image = $request->old_user_image;
 
         if ($request->hasFile('member_avatar')) {
             $old_upload_image = public_path('/user-assets/images/avatars/') . $request->old_user_image;
@@ -57,6 +57,7 @@ class RepresentativeController extends Controller
         }
 
         $representative = Auth::user();
+
         $save_representative = $representative->update(
             array_merge($data, [
                 'user_image' => $user_image,
