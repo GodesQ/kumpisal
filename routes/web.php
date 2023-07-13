@@ -171,7 +171,7 @@ Route::group(['prefix'=> 'admin', 'as' => 'admin.', 'middleware' => ['auth.admin
     Route::get('/contact_messages', [ContactMessageController::class, 'lists'])->name('contact_messages.list');
     Route::get('/contact_message/show/{id}', [ContactMessageController::class, 'show'])->name('contact_message.show');
     Route::post('/contact_message_reply/post', [ContactMessageController::class, 'store_reply'])->name('contact_message_reply.store');
-    Route::get('/contact_message_replies/{id}', [ContactMessageController::class, 'reply_messages'])->name('contact_message.show');
+    Route::get('/contact_message_replies/{id}', [ContactMessageController::class, 'reply_messages'])->name('contact_message.reply');
 
     Route::get('/logs', [AdminLogController::class, 'lists'])->name('logs.list');
     Route::get('/log/show/{id}', [AdminLogController::class, 'show'])->name('log.show');
