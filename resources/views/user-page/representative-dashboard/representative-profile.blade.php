@@ -106,7 +106,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="field-input">
-                                            <label for="contact_no">Contact No</label>
+                                            <label for="contact_no">Contact Number</label>
                                             <input type="text" name="contact_no" id="contact_no"
                                                 value="{{ auth()->user()->representative_info->contact_no }}">
                                         </div>

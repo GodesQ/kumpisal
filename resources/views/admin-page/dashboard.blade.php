@@ -87,7 +87,6 @@
                                                 <h6 class="fw-semibold mb-1">
                                                     <a href="{{ route('admin.church.edit', $church->church_uuid) }}" style="color: #000;">{{ substr($church->name,0, 20) . '...' }}</a>
                                                 </h6>
-                                                <span class="fw-normal">{{ Str::ucfirst($church->criteria) }}</span>
                                             </td>
                                             <td class="border-bottom-0">
                                                 <p class="mb-0 fw-normal">{{ $church->parish_priest }}</p>

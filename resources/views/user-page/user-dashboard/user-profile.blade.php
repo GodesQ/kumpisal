@@ -5,23 +5,25 @@
 @endsection
 
 @section('content')
+    <style>
+        .profile-tab {
+            display: none;
+        }
 
-<style>
-    .profile-tab {
-        display: none;
-    }
-    #profile-form.profile-tab-active {
-        display: inline-block !important;
-    }
-    #change-password-form.profile-tab-active {
-        display: inline-block !important;
-    }
-    .address-input-con {
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-    }
-</style>
+        #profile-form.profile-tab-active {
+            display: inline-block !important;
+        }
+
+        #change-password-form.profile-tab-active {
+            display: inline-block !important;
+        }
+
+        .address-input-con {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+        }
+    </style>
 
     <main class="main-site main" id="main-site">
         @include('user-page.user-dashboard.user-menu')
@@ -29,14 +31,16 @@
         <div class="main-profile-container">
             <div class="profile-menu">
                 <button type="button" class="profile-menu-btn profile active">Profile <i class="ti ti-user"></i></button>
-                <button type="button" class="profile-menu-btn change-password">Change Password <i class="ti ti-lock"></i></button>
+                <button type="button" class="profile-menu-btn change-password">Change Password <i
+                        class="ti ti-lock"></i></button>
             </div>
             <div class="profile-content">
                 <div id="profile-form" class="profile-tab profile-tab-active" class="member-wrap">
                     <form action="{{ route('user.profile.post', auth()->user()->user_uuid) }}" enctype="multipart/form-data"
                         method="POST" class="member-profile form-underline">
                         @csrf
-                        <input type="hidden" name="old_user_image" id="old_user_image" value="{{ auth()->user()->user_image }}">
+                        <input type="hidden" name="old_user_image" id="old_user_image"
+                            value="{{ auth()->user()->user_image }}">
                         <div class="row">
                             <div class="col-lg-9">
                                 <div class="row">
@@ -185,11 +189,14 @@
                             <div class="col-lg-3">
                                 <div class="profile-picture-container">
                                     @if (auth()->user()->user_image)
-                                        <img src="{{ URL::asset('user-assets/images/avatars/' . auth()->user()->user_image) }}" alt="" class="profile-picture">
+                                        <img src="{{ URL::asset('user-assets/images/avatars/' . auth()->user()->user_image) }}"
+                                            alt="" class="profile-picture">
                                     @else
-                                        <img src="{{ URL::asset('user-assets/images/avatars/default-user-image.png') }}" alt="" class="profile-picture">
+                                        <img src="{{ URL::asset('user-assets/images/avatars/default-user-image.png') }}"
+                                            alt="" class="profile-picture">
                                     @endif
-                                    <input type="file" hidden name="member_avatar" id="user_image_input" accept="image/*">
+                                    <input type="file" hidden name="member_avatar" id="user_image_input"
+                                        accept="image/*">
                                     <div class="mt-2">
                                         <button type="button" id="change-profile-btn">Upload Photo</button>
                                     </div>
@@ -203,26 +210,39 @@
                     </form>
                 </div>
                 <div id="change-password-form" class="profile-tab">
-                    <form action="{{ route('user.change_password.post', auth()->user()->user_uuid) }}" method="POST" class="member-password form-underline">
+                    <form action="{{ route('user.change_password.post', auth()->user()->user_uuid) }}" method="POST"
+                        class="member-password form-underline">
                         @csrf
                         <h4 class="mb-2" style="font-size: 25px">Change Password</h4>
                         <div class="field-input">
                             <label for="password">Current Password</label>
-                            <input type="password" name="password" placeholder="Enter current password" id="old_password">
+                            <input type="password" name="password" placeholder="Enter current password"
+                                id="old_password">
                         </div>
                         <div class="field-input">
                             <label for="new_password">New Password</label>
-                            <input type="password" name="new_password" placeholder="Enter new password" id="new_password">
-                            <span class="text-danger">@error('new_password'){{ $message }}@enderror</span>
+                            <input type="password" name="new_password" placeholder="Enter new password"
+                                id="new_password">
+                            <span class="text-danger">
+                                @error('new_password')
+                                    {{ $message }}
+                                @enderror
+                            </span>
                         </div>
                         <div class="field-input">
                             <label for="re_new">Confirm Password</label>
-                            <input type="password" name="confirm_password" placeholder="Enter new password" id="confirm_password">
-                            <span class="text-danger">@error('confirm_password'){{ $message }}@enderror</span>
+                            <input type="password" name="confirm_password" placeholder="Enter new password"
+                                id="confirm_password">
+                            <span class="text-danger">
+                                @error('confirm_password')
+                                    {{ $message }}
+                                @enderror
+                            </span>
                         </div>
-                        <div class="field-check" >
+                        <div class="field-check">
                             <label for="is_logout" style="max-width: 100% !important; flex: 1 !important;">
-                                <input type="checkbox" name="is_logout" id="is_logout" value="1">Logout after password change?
+                                <input type="checkbox" name="is_logout" id="is_logout" value="1">Logout after
+                                password change?
                                 <span class="checkmark">
                                     <i class="la la-check"></i>
                                 </span>
@@ -261,18 +281,18 @@
                 var fileType = file.type.split('/')[0];
 
                 if (fileType === 'image') {
-                var reader = new FileReader();
+                    var reader = new FileReader();
 
-                reader.onload = function (e) {
-                    preview.setAttribute('src', e.target.result);
-                };
+                    reader.onload = function(e) {
+                        preview.setAttribute('src', e.target.result);
+                    };
 
-                reader.readAsDataURL(file);
-                errorMessage.textContent = ''; // Clear any previous error message
+                    reader.readAsDataURL(file);
+                    errorMessage.textContent = ''; // Clear any previous error message
                 } else {
-                input.value = ''; // Clear the selected file
-                preview.setAttribute('src', '#');
-                errorMessage.textContent = 'Invalid file format. Please select an image file.';
+                    input.value = ''; // Clear the selected file
+                    preview.setAttribute('src', '#');
+                    errorMessage.textContent = 'Invalid file format. Please select an image file.';
                 }
             }
         }
@@ -289,14 +309,14 @@
         });
 
         function selectActiveTab(clickedElement) {
-            if(clickedElement.classList.contains('change-password')) {
+            if (clickedElement.classList.contains('change-password')) {
                 for (let index = 0; index < profileTabs.length; index++) {
                     profileTabs[index].classList.remove('profile-tab-active');
                 }
                 document.querySelector('#change-password-form').classList.add('profile-tab-active');
             }
 
-            if(clickedElement.classList.contains('profile')) {
+            if (clickedElement.classList.contains('profile')) {
                 for (let index = 0; index < profileTabs.length; index++) {
                     profileTabs[index].classList.remove('profile-tab-active');
                 }
