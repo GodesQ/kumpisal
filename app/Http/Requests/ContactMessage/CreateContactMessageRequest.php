@@ -27,7 +27,7 @@ class CreateContactMessageRequest extends FormRequest
             'email' => 'required|email',
             'firstname' => 'required|max:20',
             'lastname' => 'required|max:20',
-            'contact_no' => 'nullable|numeric|max:10',
+            'contact_no' => 'nullable|numeric|max:9',
             'message' => 'required|max:500'
         ];
     }

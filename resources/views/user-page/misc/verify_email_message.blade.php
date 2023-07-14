@@ -21,18 +21,27 @@
             .timer-hide {
                 opacity: 0 !important;
             }
+            .resend-container {
+                width: 40%;
+            }
+
+            @media screen and (max-width: 500px) {
+                .resend-container {
+                    width: 100%;
+                }
+            }
         </style>
     @endpush
     <main id="main" class="site-main overflow">
-        <div class="container-fluid p-5">
+        <div class="container-fluid py-5 px-3">
             <div class="d-flex justify-content-center align-items-center w-100">
-                <div class="border p-3" style="width: 40%;">
+                <div class="border p-3 resend-container">
                     <div class="text-center border-bottom p-2">
                         <h3>Please Verify Your Email</h3>
                     </div>
                     <div class="container-fluid p-2 pt-4 text-center">
                         <p>You're almost there! We sent an email to <br>
-                            <span style="font-weight: 800;">{{ Auth::user()->email }}</span>
+                            <span style="font-weight: 800;">{{ optional(Auth::user())->email }}</span>
                         </p>
                         <p class="mt-4">Just click on the button in that email to complete your signup. <br>
                             If its not found in your inbox, <b>check your spam</b> folder.
@@ -42,7 +51,7 @@
                         </p>
                         <div class="my-4">
                             <button class="btn btn-primary" id="resend-email">Resend Email</button>
-                            <input type="hidden" name="email" id="email" value="{{ Auth::user()->email }}">
+                            <input type="hidden" name="email" id="email" value="{{ optional(Auth::user())->email }}">
                             <div class="mt-3 timer-div timer-hide"> <span id="timer" style="font-weight: 800;">60</span>
                                 seconds</div>
                         </div>
