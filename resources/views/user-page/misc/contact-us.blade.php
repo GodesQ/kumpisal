@@ -45,8 +45,8 @@
                                 <div class="col-md-6">
                                     <div class="field-input">
                                         <div class="d-flex justify-content-between align-items-end">
-                                            <div style="border: 2px solid #2d2d2d; border-right: none; height: 100%; padding: 6.5px 10px;">+63</div>
-                                            <input type="tel" name="contact_no" value="" placeholder="" class="px-2" max="9" style="margin-bottom: 0px; border: 2px solid #2d2d2d !important;">
+                                            <div style="border-bottom: 2px solid #2d2d2d; border-right: none !important; height: 100%; padding: 6.5px 10px;">+63</div>
+                                            <input type="tel" name="contact_no" value="" placeholder="Ex. 942315314" class="px-2" max="9" style="margin-bottom: 0px; border-bottom: 2px solid #2d2d2d !important; outline: none;">
                                         </div>
                                         <span class="text-danger">@error('contact_no'){{ $message }}@enderror</span>
                                     </div>

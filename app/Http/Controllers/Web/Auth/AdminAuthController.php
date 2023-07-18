@@ -14,7 +14,7 @@ class AdminAuthController extends Controller
 {
     public function login(Request $request) {
         // check if you are currently login
-        if(Auth::guard('admin')->check()) return back()->with('authenticated-but-login', 'You are currently login. Please logout first to continue.');
+        if(Auth::guard('admin')->check()) return redirect()->route('admin.dashboard');
 
         return view('admin-page.auth.login');
     }

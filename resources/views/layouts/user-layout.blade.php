@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="{{ URL::asset('admin-assets/css/icons/tabler-icons/tabler-icons.css') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
     @stack('styles')
+
 </head>
 
 <body>
@@ -320,7 +321,6 @@
         });
 
         $('.search__save').click(function() {
-            console.log(true);
             $('.site__search__form').submit();
         })
     </script>
@@ -331,6 +331,7 @@
         <script>
             toastr.options = {
                 closeButton: true, // Add close button
+                timeOut: 2000
             };
             toastr.error("{{ Session::get('fail') }}", 'Fail');
         </script>
@@ -340,6 +341,7 @@
         <script>
             toastr.options = {
                 closeButton: true, // Add close button
+                timeOut: 2000
             };
             toastr.success("{{ Session::get('success') }}", 'Success');
         </script>

@@ -34,23 +34,23 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="name" class="form-label">Church Name</label>
-                                            <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp">
+                                            <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp" value="{{ old('name') }}">
                                             <span class="text-danger danger">@error('name'){{ $message }}@enderror</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="parish_priest" class="form-label">Parish Priest</label>
-                                            <input type="text" class="form-control" id="parish_priest" name="parish_priest" aria-describedby="emailHelp">
+                                            <input type="text" class="form-control" id="parish_priest" name="parish_priest" aria-describedby="emailHelp" value="{{ old('parish_priest') }}">
                                             <span class="text-danger danger">@error('parish_priest'){{ $message }}@enderror</span>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="mb-3">
                                             <label for="address" class="form-label">Address</label>
-                                            <input type="text" class="form-control" id="address" name="address" aria-describedby="addressHelp">
-                                            <input type="hidden" name="latitude" id="latitude" value="">
-                                            <input type="hidden" name="longitude" id="longitude" value="">
+                                            <input type="text" class="form-control" id="address" name="address" aria-describedby="addressHelp" value="{{ old('address') }}">
+                                            <input type="hidden" name="latitude" id="latitude" value="{{ old('latitude') }}">
+                                            <input type="hidden" name="longitude" id="longitude" value="{{ old('longitude') }}">
                                             <span class="text-danger danger">@error('address'){{ $message }}@enderror</span>
 
                                         </div>
@@ -58,7 +58,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="feast_date" class="form-label">Feast Date</label>
-                                            <input type="text" class="form-control" id="feast_date" name="feast_date" aria-describedby="feastDateHelp">
+                                            <input type="text" class="form-control" id="feast_date" name="feast_date" aria-describedby="feastDateHelp" value="{{ old('feast_date') }}">
                                             <span class="text-danger danger">@error('feast_date'){{ $message }}@enderror</span>
                                         </div>
                                     </div>
@@ -72,7 +72,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="titular" class="form-label">Titular</label>
-                                            <input type="text" class="form-control" id="titular" name="titular" aria-describedby="titularHelp">
+                                            <input type="text" class="form-control" id="titular" name="titular" aria-describedby="titularHelp" value="{{ old('titular') }}">
                                             <span class="text-danger danger">@error('titular'){{ $message }}@enderror</span>
                                         </div>
                                     </div>
@@ -82,7 +82,7 @@
                                             <select name="diocese" id="diocese" class="select2 form-select" onchange="getVicariates(this)">
                                                 <option value="">---- Select Diocese ----</option>
                                                 @forelse ($dioceses as $diocese)
-                                                    <option value="{{ $diocese->id }}">{{ $diocese->name }}</option>
+                                                    <option value="{{ $diocese->id }}" {{ $diocese->id == old('diocese') ? 'selected' : null }}>{{ $diocese->name }}</option>
                                                 @empty
                                                     <option value="">No Diocese Found</option>
                                                 @endforelse
@@ -93,7 +93,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="description" class="form-label">Church Description</label>
-                                            <textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>
+                                            <textarea name="description" id="description" cols="30" rows="5" class="form-control">{{ old('description') }}</textarea>
                                             <span class="text-danger danger">@error('description'){{ $message }}@enderror</span>
                                         </div>
                                     </div>
@@ -108,14 +108,14 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="contact_number" class="form-label">Contact Number</label>
-                                            <input type="tel" name="contact_number" id="contact_number" class="form-control" value="">
+                                            <input type="tel" name="contact_number" id="contact_number" class="form-control" value="{{ old('contact_number') }}">
                                             <span class="text-danger danger">@error('contact_number'){{ $message }}@enderror</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="facebook_link" class="form-label">Facebook Link</label>
-                                            <input type="url" name="facebook_link" id="facebook_link" class="form-control" value="">
+                                            <input type="url" name="facebook_link" id="facebook_link" class="form-control" value="{{ old('facebook_link') }}">
                                             <span class="text-danger danger">@error('facebook_link'){{ $message }}@enderror</span>
                                         </div>
                                     </div>

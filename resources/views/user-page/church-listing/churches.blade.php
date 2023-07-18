@@ -54,10 +54,11 @@
 
 @push('scripts')
     <script>
-        var map, address, my_marker;
+        var map, address, my_marker, circle, infoWindow;
         let church_address = document.querySelector('#church_address');
         let latitude = document.querySelector('#latitude');
         let longitude = document.querySelector('#longitude');
+        let radius = document.querySelector('#radius');
 
         function initialize() {
 
@@ -126,8 +127,6 @@
             // Assign click event to the dynamically generated elements
             $(document).on('click', '.suggested-church', setChurchName);
 
-
-
             function filterChurches(page) {
                 $('#churches-list').html('<h3 class="text-center">Searching...</h3>');
                 let selected_criterias = [];
@@ -163,6 +162,9 @@
             };
 
             map = new google.maps.Map(document.querySelector("#place-map-filter"), mapOptions);
+            infoWindow = new google.maps.InfoWindow({
+                maxWidth: 300,
+            });
 
             const user_icon_marker = {
                 url: '../../../user-assets/images/icons/user-marker.png',
@@ -175,6 +177,21 @@
                 icon: user_icon_marker,
                 draggable: true,
             })
+
+            circle = new google.maps.Circle({
+                center: latitude.value == '' ? new google.maps.LatLng(14.5995124, 120.9842195) : new google.maps
+                    .LatLng(Number(latitude.value), Number(longitude.value)),
+                radius: Number(radius.value) * 1000,
+                strokeColor: '#331f14',
+                strokeOpacity: 1,
+                strokeWeight: 1,
+                fillColor: '#331F14',
+                fillOpacity: 0.1,
+                map: map
+            })
+
+            circle.bindTo('center', my_marker, 'position');
+            map.setZoom(13);
 
             // for search
             let searchBox = new google.maps.places.SearchBox(church_address);
@@ -199,6 +216,16 @@
                 resultArray = places[0].address_components;
 
                 filterChurches(1);
+
+                // Closes the previous info window if it already exists
+                if (infoWindow) {
+                    infoWindow.close();
+                }
+                infoWindow = new google.maps.InfoWindow({
+                    content: address
+                });
+
+                infoWindow.open(map, my_marker);
             });
 
             setMarkerDraggable(my_marker);
@@ -228,6 +255,21 @@
                     draggable: true,
                 })
 
+                circle = new google.maps.Circle({
+                    center: latitude.value == '' ? new google.maps.LatLng(14.5995124, 120.9842195) : new google.maps
+                        .LatLng(Number(latitude.value), Number(longitude.value)),
+                    radius: Number(radius.value) * 1000,
+                    strokeColor: '#331f14',
+                    strokeOpacity: 1,
+                    strokeWeight: 1,
+                    fillColor: '#331F14',
+                    fillOpacity: 0.1,
+                    map: map
+                })
+
+                circle.bindTo('center', my_marker, 'position');
+                map.setZoom(13);
+
                 setMarkerDraggable(my_marker);
 
                 if (churches.data.length === 0) return false;
@@ -256,12 +298,35 @@
 
                     (function(marker, data) {
                         google.maps.event.addListener(marker, "click", function(e) {
-                            infoWindow.setContent(`${data?.name}`);
+                            infoWindow.setContent(`
+                            <div class="d-flex justify-content-around" style="max-width: 225px; width: 180px; height: 70px; max-height: 70px; gap: 5px;">
+                                <a style="width: 40%; height: 100%;" href="/church/${data.id}/${data.name}">
+                                    <img src="${data.church_image ?  `../../../admin-assets/images/churches/${data.church_image}` : '../../../admin-assets/images/churches/default_church_image.jpg' }" style="width: 100%; height: 100%; object-fit: cover;" />
+                                </a>
+                                <div style="width: 60%">
+                                    <a href="/church/${data.id}/${data.name}" class="font-weight-bold" style="font-size: 10px; font-weight: 800;">${data.name.substring(0, 30)}...</a>
+                                    <div style="font-size: 9px;" class="my-1 font-weight-bold">Distance: ${Number(data.distance).toFixed(2) } km</div>
+                                <div>
+                            </div>
+                            `);
                             infoWindow.open(map, marker);
                         });
                     })(marker, data);
 
                 }
+
+                if (infoWindow) {
+                    infoWindow.close();
+                }
+
+                /**
+                 * Creates the info Window at the top of the marker
+                 */
+                infoWindow = new google.maps.InfoWindow({
+                    content: address,
+                });
+
+                infoWindow.open(map, marker);
             }
 
             function setMarkerDraggable(my_marker) {
@@ -294,20 +359,24 @@
                         }
                     });
 
+                    // Closes the previous info window if it already exists
+                    if (infoWindow) {
+                        infoWindow.close();
+                    }
+
+                    /**
+                     * Creates the info Window at the top of the marker
+                     */
+                    infoWindow = new google.maps.InfoWindow({
+                        content: address
+                    });
+
+                    infoWindow.open(map);
+
                 });
             }
         }
 
         initialize()
-
-        // remove enter functionality in address input
-        // $(document).ready(function() {
-        //     $('#church_address').keydown(function(event) {
-        //         if (event.keyCode == 13) {
-        //             event.preventDefault();
-        //             return false;
-        //         }
-        //     });
-        // });
     </script>
 @endpush

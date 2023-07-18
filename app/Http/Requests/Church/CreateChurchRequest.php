@@ -24,13 +24,12 @@ class CreateChurchRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:100',
+            'name' => 'required|max:100|unique:churches,name',
             'description' => 'required',
             'church_image' => 'required|file|max:10000|mimes:png,jpeg,jpg',
             'address' => 'nullable',
             'latitude' => 'nullable',
             'longitude' => 'nullable',
-            'diocese' => 'nullable',
             'parish_priest' => 'required',
             'feast_date' => 'required',
             'criteria' => 'nullable|in:diocese,vicariate',
