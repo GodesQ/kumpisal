@@ -70,7 +70,7 @@ class UserRepository
             array_merge($data, [
                 'name' => $request->firstname . ' ' . $request->lastname,
                 'password' => $request->new_password ? $request->new_password : DB::raw('password'),
-                'is_verify' =>$user->is_verify ? true : $request->has('is_verify') ? true : false,
+                'is_verify' => $request->has('is_verify') ? true : false,
                 'is_active' => $request->has('is_active') ? true : false,
             ]),
         );
