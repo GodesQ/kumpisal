@@ -7,7 +7,7 @@
         <div class="site-banner" style="background-image: url(user-assets/images/bg/top-banner.png);">
             <div class="container d-flex align-items-center justify-content-center">
                 <div class="site-banner__content">
-                    <h1 class="site-banner__title">Kumpisalan: Journey of <br> Self-Discovery and Reflection</h1>
+                    <h1 class="site-banner__title">Kumpisalan: Confession Schedules<br> Made Easy For You!</h1>
                     <form action="{{ route('churches.searchPage') }}" class="site-banner__search layout-02 offset-item">
                         <div class="field-input">
                             <label for="loca">Search</label>
